@@ -50,4 +50,18 @@ public class NaturezaOcorrencia {
         this.nome = nome;
     }
 
+    /**
+     * @return the noApp
+     */
+    public String getNoApp() {
+        return noApp;
+    }
+
+    /**
+     * @param noApp the noApp to set
+     */
+    public void setNoApp(String noApp) {
+        this.noApp = noApp;
+    }
+
 }

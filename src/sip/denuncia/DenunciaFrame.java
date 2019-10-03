@@ -271,7 +271,8 @@ public class DenunciaFrame extends javax.swing.JInternalFrame {
 
         } else {
             String valor = txtFiltro.getText();
-            listDenuncia = denunciaDB.consultaDenunciaNome(valor, valor);
+            listDenuncia = denunciaDB.consultaDenunciaNome(valor);
+            listDenunciaApp = denunciaDB.consultaDenunciaAppNome(valor);
         }
 
         int numeroLinhas = tableModel.getRowCount();

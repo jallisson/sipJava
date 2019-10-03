@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-/*
+ /*
  * ClienteFrame.java
  *
  * Created on 20/02/2011, 11:05:14
@@ -51,10 +51,10 @@ public final class NaturezaOcorrenciaFrame extends javax.swing.JInternalFrame {
     private AutorizacaoEventosFrame autorizacaoEventosFrame;
     private PessoaFrame pessoaFrame;
     private DenunciaFrame ocorrenciaFrame;
-    
-    
 
-    /** Creates new form ClienteFrame */
+    /**
+     * Creates new form ClienteFrame
+     */
     public NaturezaOcorrenciaFrame() {
         initComponents();
         defineModelo();
@@ -62,7 +62,7 @@ public final class NaturezaOcorrenciaFrame extends javax.swing.JInternalFrame {
         fechando();
 
     }
-    
+
     public NaturezaOcorrenciaFrame(DenunciaFrame ocorrenciaFrame) {
         initComponents();
         defineModelo();
@@ -70,9 +70,8 @@ public final class NaturezaOcorrenciaFrame extends javax.swing.JInternalFrame {
         this.ocorrenciaFrame = ocorrenciaFrame;
         txtFiltroNaturezaOcorrencia.requestFocus();
         modoSeleciona = Constantes.OCORRENCIA_FRAME;
-        
+
     }
-    
 
     private void fechando() {
         this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
@@ -80,17 +79,15 @@ public final class NaturezaOcorrenciaFrame extends javax.swing.JInternalFrame {
         this.addInternalFrameListener(
                 new InternalFrameAdapter() {
 
-                    @Override
-                    public void internalFrameClosing(InternalFrameEvent e) {
-                        dispose();
-                        Menu.menuVisivel();
+            @Override
+            public void internalFrameClosing(InternalFrameEvent e) {
+                dispose();
+                Menu.menuVisivel();
 
-                    }
-                });
+            }
+        });
     }
 
-    
-    
     private void defineModelo() {
         tableModel = (DefaultTableModel) tblNaturezaOcorrencia.getModel();
         listModel = tblNaturezaOcorrencia.getSelectionModel();
@@ -136,27 +133,28 @@ public final class NaturezaOcorrenciaFrame extends javax.swing.JInternalFrame {
         if (tblNaturezaOcorrencia.getSelectedRow() != -1) {
             int indice = tblNaturezaOcorrencia.getSelectedRow();
             txtNome.setText(listNaturezaOcorrencia.get(indice).getNome());
+            cbApp.setSelectedItem(listNaturezaOcorrencia.get(indice).getNoApp());
 
         } else {
             txtNome.setText("");
+            cbApp.setSelectedItem("SELECIONE");
 
         }
     }
-
-    private void limpaCampos() {
-        {
-            txtNome.setText("");
-
-        }
-    }
+ 
 
     private void incluiNaturezaOcorrencia() {
         if (txtNome.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(this, "Informe o nome do NaturezaOcorrencia!", "Nome", JOptionPane.INFORMATION_MESSAGE);
             txtNome.requestFocus();
+        if (cbApp.getSelectedItem().equals("SELECIONE")) {
+                JOptionPane.showMessageDialog(this, "Informe se vai no App", "No App", JOptionPane.INFORMATION_MESSAGE);
+                cbApp.requestFocus();
+            }
         } else {
             NaturezaOcorrencia NaturezaOcorrencia = new NaturezaOcorrencia();
             NaturezaOcorrencia.setNome(txtNome.getText().trim());
+            NaturezaOcorrencia.setNoApp(cbApp.getSelectedItem().toString());
 
             NaturezaOcorrenciaBD agenteBD = new NaturezaOcorrenciaBD();
             if (agenteBD.incluiNaturezaOcorrencia(NaturezaOcorrencia)) {
@@ -175,10 +173,15 @@ public final class NaturezaOcorrenciaFrame extends javax.swing.JInternalFrame {
         if (txtNome.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(this, "Informe o nome do NaturezaOcorrencia!", "Nome", JOptionPane.INFORMATION_MESSAGE);
             txtNome.requestFocus();
+        if (cbApp.getSelectedItem().equals("SELECIONE")) {
+                JOptionPane.showMessageDialog(this, "Informe se vai no App", "No App", JOptionPane.INFORMATION_MESSAGE);
+                cbApp.requestFocus();
+            }    
         } else {
             NaturezaOcorrencia NaturezaOcorrencia = new NaturezaOcorrencia();
             NaturezaOcorrencia.setId(this.listNaturezaOcorrencia.get(tblNaturezaOcorrencia.getSelectedRow()).getId());
             NaturezaOcorrencia.setNome(txtNome.getText().trim());
+            NaturezaOcorrencia.setNoApp(cbApp.getSelectedItem().toString());
 
             NaturezaOcorrenciaBD NaturezaOcorrenciaBD = new NaturezaOcorrenciaBD();
             if (NaturezaOcorrenciaBD.alteraNaturezaOcorrencia(NaturezaOcorrencia)) {
@@ -204,16 +207,51 @@ public final class NaturezaOcorrenciaFrame extends javax.swing.JInternalFrame {
     }
 
     private void caixaAlta() {
-        txtNome.addKeyListener(new KeyListener(){@Override public void keyTyped(final KeyEvent e) {SwingUtilities.invokeLater(new Runnable() {@Override public void run() {JTextField campo = (JTextField) e.getSource(); int posicaoCursor = campo.getCaretPosition(); campo.setText(campo.getText().toUpperCase()); if (posicaoCursor != campo.getCaretPosition()) {campo.setCaretPosition(posicaoCursor);}}});} @Override public void keyReleased(KeyEvent e) {} @Override public void keyPressed(KeyEvent e) {}});  
-       }
+        txtNome.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(final KeyEvent e) {
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        JTextField campo = (JTextField) e.getSource();
+                        int posicaoCursor = campo.getCaretPosition();
+                        campo.setText(campo.getText().toUpperCase());
+                        if (posicaoCursor != campo.getCaretPosition()) {
+                            campo.setCaretPosition(posicaoCursor);
+                        }
+                    }
+                });
+            }
 
+            @Override
+            public void keyReleased(KeyEvent e) {
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+            }
+        });
+    }
+
+     private void limpaCampos() {
+        {
+            txtNome.setText("");
+            cbApp.setSelectedItem("SELECIONE");
+
+
+        }
+    }
+     
     private void habilitaCampos() {
         txtNome.setEditable(true);
+        cbApp.setEnabled(true);
+
 
     }
 
     private void desabilitaCampos() {
         txtNome.setEditable(false);
+        cbApp.setEnabled(true);
     }
 
     private void desabilitaBotoes() {
@@ -248,7 +286,7 @@ public final class NaturezaOcorrenciaFrame extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Selecione dados da lista!", "Natureza Ocorrencia", JOptionPane.INFORMATION_MESSAGE);
         }
     }
-    
+
     private void selecionaNaturezaOcorrenciaAutorizacaoEventos() {
         if (tblNaturezaOcorrencia.getSelectedRow() != -1) {
             //autorizacaoEventosFrame.setNaturezaOcorrencia(listNaturezaOcorrencia.get(tblNaturezaOcorrencia.getSelectedRow()));
@@ -258,8 +296,8 @@ public final class NaturezaOcorrenciaFrame extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Selecione um NaturezaOcorrencia da lista!", "NaturezaOcorrencia", JOptionPane.INFORMATION_MESSAGE);
         }
     }
-    
-      private void selecionaNaturezaOcorrenciaPessoa() {
+
+    private void selecionaNaturezaOcorrenciaPessoa() {
         if (tblNaturezaOcorrencia.getSelectedRow() != -1) {
             //pessoaFrame.setNaturezaOcorrencia(listNaturezaOcorrencia.get(tblNaturezaOcorrencia.getSelectedRow()));
             this.dispose();
@@ -269,11 +307,10 @@ public final class NaturezaOcorrenciaFrame extends javax.swing.JInternalFrame {
         }
     }
 
-   
-    /** This method is called from within the constructor to
-     * initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is
-     * always regenerated by the Form Editor.
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -285,6 +322,9 @@ public final class NaturezaOcorrenciaFrame extends javax.swing.JInternalFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
+        jPanel8 = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        cbApp = new javax.swing.JComboBox();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         txtFiltroNaturezaOcorrencia = new javax.swing.JTextField();
@@ -340,6 +380,41 @@ public final class NaturezaOcorrenciaFrame extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel2.add(txtNome, gridBagConstraints);
+
+        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jPanel8.setLayout(new java.awt.GridBagLayout());
+
+        jLabel8.setText("No App");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel8.add(jLabel8, gridBagConstraints);
+
+        cbApp.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        cbApp.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SELECIONE", "SIM", "NÃO" }));
+        cbApp.setEnabled(false);
+        cbApp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbAppActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 20;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel8.add(cbApp, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel2.add(jPanel8, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -570,17 +645,22 @@ public final class NaturezaOcorrenciaFrame extends javax.swing.JInternalFrame {
 
     private void tblNaturezaOcorrenciaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblNaturezaOcorrenciaKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-             if (modoSeleciona == Constantes.OCORRENCIA_FRAME) {
+            if (modoSeleciona == Constantes.OCORRENCIA_FRAME) {
                 selecionaNaturezaOcorrenciaOcorrencia();
                 dispose();
             }
-             evt.consume();
+            evt.consume();
         }
     }//GEN-LAST:event_tblNaturezaOcorrenciaKeyPressed
 
     private void txtFiltroNaturezaOcorrenciaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFiltroNaturezaOcorrenciaFocusLost
         atualizaTabela(); // TODO add your handling code here:
     }//GEN-LAST:event_txtFiltroNaturezaOcorrenciaFocusLost
+
+    private void cbAppActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbAppActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbAppActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnCancelar;
@@ -588,13 +668,16 @@ public final class NaturezaOcorrenciaFrame extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnFiltrar;
     private javax.swing.JButton btnNovo;
     private javax.swing.JButton btnSalvar;
+    private javax.swing.JComboBox cbApp;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblNaturezaOcorrencia;
     private javax.swing.JTextField txtFiltroNaturezaOcorrencia;

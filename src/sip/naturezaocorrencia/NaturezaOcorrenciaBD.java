@@ -24,11 +24,9 @@ public class NaturezaOcorrenciaBD {
     private AcessoBD acessoBD = new AcessoBD();
     private String consultaNaturezaOcorrencia = "select * from natureza_ocorrencia order by natureza_ocorrencia.id desc";
     private String consultaNaturezaOcorrenciaNome = "select * from natureza_ocorrencia where natureza_ocorrencia.nome like ?";
-    private String incluiNaturezaOcorrencia = "insert into natureza_ocorrencia (nome) values(?)";
-    private String alteraNaturezaOcorrencia = "update natureza_ocorrencia set nome = ? where natureza_ocorrencia.id = ?";
+    private String incluiNaturezaOcorrencia = "insert into natureza_ocorrencia (nome, noapp) values(?, ?)";
+    private String alteraNaturezaOcorrencia = "update natureza_ocorrencia set nome = ?, noapp = ? where natureza_ocorrencia.id = ?";
     private String excluiNaturezaOcorrencia = "delete from natureza_ocorrencia where natureza_ocorrencia.id = ?";
-    
-
 
     public List<NaturezaOcorrencia> consultaNaturezaOcorrencia() {
         List<NaturezaOcorrencia> listNaturezaOcorrencia = new ArrayList<>();
@@ -41,6 +39,7 @@ public class NaturezaOcorrenciaBD {
                 naturezaOcorrencia = new NaturezaOcorrencia();
                 naturezaOcorrencia.setId(rs.getInt("id"));
                 naturezaOcorrencia.setNome(rs.getString("nome"));
+                naturezaOcorrencia.setNoApp(rs.getString("noapp"));
                 listNaturezaOcorrencia.add(naturezaOcorrencia);
             }
             acessoBD.desconectar();
@@ -50,7 +49,7 @@ public class NaturezaOcorrenciaBD {
         return listNaturezaOcorrencia;
     }
 
-    public List<NaturezaOcorrencia> consultaNaturezaOcorrenciaNome (String nome) {
+    public List<NaturezaOcorrencia> consultaNaturezaOcorrenciaNome(String nome) {
         List<NaturezaOcorrencia> listaNaturezaOcorrencia = new ArrayList<>();
         NaturezaOcorrencia naturezaOcorrencia;
         try {
@@ -63,7 +62,8 @@ public class NaturezaOcorrenciaBD {
                 naturezaOcorrencia = new NaturezaOcorrencia();
                 naturezaOcorrencia.setId(rs.getInt("id"));
                 naturezaOcorrencia.setNome(rs.getString("nome"));
-        
+                naturezaOcorrencia.setNoApp(rs.getString("noapp"));
+
                 listaNaturezaOcorrencia.add(naturezaOcorrencia);
             }
             acessoBD.desconectar();
@@ -72,7 +72,7 @@ public class NaturezaOcorrenciaBD {
         }
         return listaNaturezaOcorrencia;
     }
-        
+
     public boolean incluiNaturezaOcorrencia(NaturezaOcorrencia naturezaOcorrencia) {
         try {
             con = acessoBD.conectar();
@@ -88,14 +88,15 @@ public class NaturezaOcorrenciaBD {
         }
         return false;
     }
-    
+
     public boolean alteraNaturezaOcorrencia(NaturezaOcorrencia naturezaOcorrencia) {
         try {
             con = acessoBD.conectar();
             ps = con.prepareStatement(alteraNaturezaOcorrencia);
 
             ps.setString(1, naturezaOcorrencia.getNome());
-            ps.setInt(2, naturezaOcorrencia.getId());
+            ps.setString(2, naturezaOcorrencia.getNoApp());
+            ps.setInt(3, naturezaOcorrencia.getId());
 
             ps.executeUpdate();
 
@@ -106,8 +107,8 @@ public class NaturezaOcorrenciaBD {
         }
         return false;
     }
-    
-     public boolean excluiNaturezaOcorrencia(NaturezaOcorrencia naturezaOcorrencia){
+
+    public boolean excluiNaturezaOcorrencia(NaturezaOcorrencia naturezaOcorrencia) {
         try {
             con = acessoBD.conectar();
             ps = con.prepareStatement(excluiNaturezaOcorrencia);
@@ -124,11 +125,11 @@ public class NaturezaOcorrenciaBD {
 
         return false;
     }
-     
-      public boolean testaConexao() {
+
+    public boolean testaConexao() {
         try {
             con = acessoBD.conectar();
-            
+
             acessoBD.desconectar();
             return true;
         } catch (Exception e) {
@@ -137,5 +138,5 @@ public class NaturezaOcorrenciaBD {
 
         return false;
     }
-    
+
 }
