@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="listagemTriagemPoluicao" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a6075c17-3fd2-4082-b521-37b1c162d14b">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="DATA_INICIAL" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="DATA_FINAL" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     triagem_ocorrencia.`ID` AS triagem_ocorrencia_ID,
+     triagem_ocorrencia.`ID_USUARIO` AS triagem_ocorrencia_ID_USUARIO,
+     triagem_ocorrencia.`ID_OCORRENCIA` AS triagem_ocorrencia_ID_OCORRENCIA,
+     triagem_ocorrencia.`DATA_TRIAGEM` AS triagem_ocorrencia_DATA_TRIAGEM,
+     triagem_ocorrencia.`RESUMO` AS triagem_ocorrencia_RESUMO,
+     ocorrencia.`ID` AS ocorrencia_ID,
+     ocorrencia.`ID_USUARIO` AS ocorrencia_ID_USUARIO,
+     ocorrencia.`DATA_REGISTRO` AS ocorrencia_DATA_REGISTRO,
+     ocorrencia.`ID_NATUREZA_OCORRENCIA` AS ocorrencia_ID_NATUREZA_OCORRENCIA,
+     ocorrencia.`ID_DENUNCIADO` AS ocorrencia_ID_DENUNCIADO,
+     ocorrencia.`RELATO_OCORRENCIA` AS ocorrencia_RELATO_OCORRENCIA,
+     pessoa.`ID` AS pessoa_ID,
+     pessoa.`NOME` AS pessoa_NOME,
+     pessoa.`ID_LOGRADOURO` AS pessoa_ID_LOGRADOURO,
+     pessoa.`NUMERO` AS pessoa_NUMERO,
+     pessoa.`TEL_FIXO` AS pessoa_TEL_FIXO,
+     pessoa.`TEL_CEL` AS pessoa_TEL_CEL,
+     pessoa.`ID_BAIRRO` AS pessoa_ID_BAIRRO,
+     pessoa.`COMPLEMENTO` AS pessoa_COMPLEMENTO,
+     pessoa.`ID_CIDADE` AS pessoa_ID_CIDADE,
+     bairro.`ID` AS bairro_ID,
+     bairro.`NOME` AS bairro_NOME,
+     bairro.`LIVRO` AS bairro_LIVRO,
+     bairro.`FOLHA` AS bairro_FOLHA,
+     bairro.`MATRICULA` AS bairro_MATRICULA,
+     bairro.`TIPO` AS bairro_TIPO,
+     logradouro.`ID` AS logradouro_ID,
+     logradouro.`NOME` AS logradouro_NOME
+FROM
+     `ocorrencia` ocorrencia INNER JOIN `triagem_ocorrencia` triagem_ocorrencia ON ocorrencia.`ID` = triagem_ocorrencia.`ID_OCORRENCIA`
+     INNER JOIN `pessoa` pessoa ON ocorrencia.`ID_DENUNCIADO` = pessoa.`ID`
+     INNER JOIN `bairro` bairro ON pessoa.`ID_BAIRRO` = bairro.`ID`
+     INNER JOIN `logradouro` logradouro ON pessoa.`ID_LOGRADOURO` = logradouro.`ID`
+WHERE
+ triagem_ocorrencia.`DATA_TRIAGEM` BETWEEN $P{DATA_INICIAL} AND $P{DATA_FINAL}]]>
+	</queryString>
+	<field name="triagem_ocorrencia_ID" class="java.lang.Long"/>
+	<field name="triagem_ocorrencia_ID_USUARIO" class="java.lang.Long"/>
+	<field name="triagem_ocorrencia_ID_OCORRENCIA" class="java.lang.Long"/>
+	<field name="triagem_ocorrencia_DATA_TRIAGEM" class="java.sql.Date"/>
+	<field name="triagem_ocorrencia_RESUMO" class="java.lang.String"/>
+	<field name="ocorrencia_ID" class="java.lang.Long"/>
+	<field name="ocorrencia_ID_USUARIO" class="java.lang.Long"/>
+	<field name="ocorrencia_DATA_REGISTRO" class="java.sql.Date"/>
+	<field name="ocorrencia_ID_NATUREZA_OCORRENCIA" class="java.lang.Long"/>
+	<field name="ocorrencia_ID_DENUNCIADO" class="java.lang.Long"/>
+	<field name="ocorrencia_RELATO_OCORRENCIA" class="java.lang.String"/>
+	<field name="pessoa_ID" class="java.lang.Long"/>
+	<field name="pessoa_NOME" class="java.lang.String"/>
+	<field name="pessoa_ID_LOGRADOURO" class="java.lang.Long"/>
+	<field name="pessoa_NUMERO" class="java.lang.String"/>
+	<field name="pessoa_TEL_FIXO" class="java.lang.String"/>
+	<field name="pessoa_TEL_CEL" class="java.lang.String"/>
+	<field name="pessoa_ID_BAIRRO" class="java.lang.Long"/>
+	<field name="pessoa_COMPLEMENTO" class="java.lang.String"/>
+	<field name="pessoa_ID_CIDADE" class="java.lang.Long"/>
+	<field name="bairro_ID" class="java.lang.Long"/>
+	<field name="bairro_NOME" class="java.lang.String"/>
+	<field name="bairro_LIVRO" class="java.lang.String"/>
+	<field name="bairro_FOLHA" class="java.lang.Long"/>
+	<field name="bairro_MATRICULA" class="java.lang.String"/>
+	<field name="bairro_TIPO" class="java.lang.String"/>
+	<field name="logradouro_ID" class="java.lang.Long"/>
+	<field name="logradouro_NOME" class="java.lang.String"/>
+	<variable name="COLUMN_SOMA" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$V{COLUMN_COUNT}]]></variableExpression>
+	</variable>
+	<title>
+		<band height="87" splitType="Stretch">
+			<staticText>
+				<reportElement x="285" y="0" width="265" height="20" uuid="b6824619-d3d3-4ed3-a75d-3e119d5b19f3"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RELATÓRIO DE FISCALIZAÇÃO NOTURNA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="282" y="20" width="315" height="20" uuid="33b26517-e2e9-4084-ab35-40e229683541"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["E PREVENSÃO A POLUIÇÃO SONORA "+ new SimpleDateFormat("yyyy").format($F{triagem_ocorrencia_DATA_TRIAGEM})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="221" y="40" width="413" height="20" uuid="f4b06a3b-f998-4b3a-bea8-9e385a0d8aa4"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["OS ESTABELECIMENTO DEVEM SER MONITORADOS NAS ROTINAS"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="221" y="60" width="337" height="20" uuid="67359ab9-1c6f-4f1a-bf1d-49ca10c05e93"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="SansSerif" size="11" isBold="true" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Periodo de: "+ new SimpleDateFormat("dd/MM/yyyy").format($P{DATA_INICIAL}) + " a " + new SimpleDateFormat("dd/MM/yyyy").format($P{DATA_FINAL})]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="24">
+			<staticText>
+				<reportElement x="0" y="0" width="139" height="20" uuid="3c645c95-a84e-45e8-970d-248391fca522"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Estabelecimento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="139" y="0" width="146" height="20" uuid="028b33bc-9092-4923-81c9-31e5023fee09"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Endereço]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="385" y="1" width="122" height="20" uuid="46616f50-1b3e-4205-8855-2afecdca159f"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Verificar]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="507" y="1" width="123" height="20" uuid="b476e8a4-15cb-45e5-8fc7-e02013a3b05a"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Situação na SEMMARH]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="630" y="0" width="172" height="20" uuid="71f0f1af-ce62-4317-b2ca-634f19596380"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Situação Atual]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="20" width="802" height="1" uuid="ca41a8d1-b97c-4922-ab75-05aee5a5ddc8"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="285" y="1" width="100" height="20" uuid="1cb1cd5e-1fd1-4458-80ce-05e00d55e078"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bairro]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="26">
+			<rectangle>
+				<reportElement x="0" y="0" width="800" height="20" backcolor="#F4F7FC" uuid="3ed65dbc-1b34-4c3a-b041-f1b0ee76708d">
+					<printWhenExpression><![CDATA[($V{REPORT_COUNT} % 2) != 0]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<textField>
+				<reportElement x="0" y="0" width="139" height="20" uuid="b282bc21-2a20-473b-a799-4b1493dcb31c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{pessoa_NOME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="139" y="0" width="146" height="20" uuid="d71129e5-5292-4fb5-a109-959711cf535b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{logradouro_NOME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="385" y="0" width="122" height="20" uuid="4c6a5ee7-ee7c-4283-a86d-ddc7ae6ce2be"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{triagem_ocorrencia_RESUMO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="285" y="0" width="100" height="20" uuid="62f2b355-7fda-47cc-b022-c8d480e8d883"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{bairro_NOME}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="21">
+			<staticText>
+				<reportElement x="0" y="1" width="235" height="20" uuid="bfda35be-bb49-4cac-858c-c39d0b1de5fc"/>
+				<textElement>
+					<font fontName="Constantia"/>
+				</textElement>
+				<text><![CDATA[Sip - Sistema de Informação de Processos]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="743" y="1" width="52" height="20" uuid="71cae9bc-7de3-4c74-9f7d-5d149cccc5c0"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{COLUMN_COUNT}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="0" width="802" height="1" uuid="a4907700-4189-4e97-a886-96055dd17d0a"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="665" y="1" width="80" height="20" uuid="659812f7-6e75-407c-89f8-723e8b72374c"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Qtde Pagina:]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20">
+			<textField>
+				<reportElement x="675" y="0" width="80" height="20" uuid="bedcc66e-e97d-4710-be18-308a361f5aed"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Pagina "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="755" y="0" width="40" height="20" uuid="102ce262-2936-43a4-bf2b-8f9246d118de"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<lastPageFooter>
+		<band height="40">
+			<staticText>
+				<reportElement x="348" y="0" width="100" height="20" uuid="efe574de-51a3-4a08-81ca-fd2639873b5e"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fim do Relatório]]></text>
+			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement x="721" y="20" width="40" height="20" uuid="0797ce22-5f13-48e4-b435-e69e539b3197"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="641" y="20" width="80" height="20" uuid="f2010c33-2620-4ff5-b647-370a7127b45a"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Pagina "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="641" y="0" width="80" height="20" uuid="84ed9ec1-a5ff-4279-95a7-ae7f44691fe9"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Qtde Geral:]]></text>
+			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement x="721" y="0" width="79" height="20" uuid="3335e132-c866-4188-8df6-7129b254eb91"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{COLUMN_SOMA}]]></textFieldExpression>
+			</textField>
+		</band>
+	</lastPageFooter>
+</jasperReport>

@@ -1,0 +1,429 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="titulosEmitidosLote" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.1000000000000005"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="ID_LOTE" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CAMINHO_IMAGEM" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ID_USUARIO" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     emissao_titulo.`ID` AS emissao_titulo_ID,
+     emissao_titulo.`ID_USUARIO` AS emissao_titulo_ID_USUARIO,
+     emissao_titulo.`ID_LOTEEMISSAO` AS emissao_titulo_ID_LOTEEMISSAO,
+     emissao_titulo.`ID_PROCESSO` AS emissao_titulo_ID_PROCESSO,
+     emissao_titulo.`DATA_IMPRESSAO` AS emissao_titulo_DATA_IMPRESSAO,
+     emissao_titulo.`MESANO` AS emissao_titulo_MESANO,
+     emissao_titulo.`CONVOCACAO` AS emissao_titulo_CONVOCACAO,
+     emissao_titulo.`VIZINHO` AS emissao_titulo_VIZINHO,
+     emissao_titulo.`CONTROLE` AS emissao_titulo_CONTROLE,
+     emissao_titulo.`EMISSAO` AS emissao_titulo_EMISSAO,
+     emissao_titulo.`CONTROLE_FORM` AS emissao_titulo_CONTROLE_FORM,
+     processo.`ID` AS processo_ID,
+     processo.`ID_USUARIO` AS processo_ID_USUARIO,
+     processo.`NUM_PROCESSO` AS processo_NUM_PROCESSO,
+     processo.`ID_REQUERENTE` AS processo_ID_REQUERENTE,
+     processo.`DATA_PROCESSO` AS processo_DATA_PROCESSO,
+     processo.`MESANO` AS processo_MESANO,
+     processo.`TIPO` AS processo_TIPO,
+     processo.`SITUACAO` AS processo_SITUACAO,
+     requerente.`ID` AS requerente_ID,
+     requerente.`ID_LOGRADOURO` AS requerente_ID_LOGRADOURO,
+     requerente.`NOME` AS requerente_NOME,
+     requerente.`NACIONALIDADE` AS requerente_NACIONALIDADE,
+     requerente.`EST_CIVIL` AS requerente_EST_CIVIL,
+     requerente.`PROFISSAO` AS requerente_PROFISSAO,
+     requerente.`RG` AS requerente_RG,
+     requerente.`ORGAO` AS requerente_ORGAO,
+     requerente.`CPF` AS requerente_CPF,
+     requerente.`NUMERO` AS requerente_NUMERO,
+     requerente.`ID_BAIRRO` AS requerente_ID_BAIRRO,
+     requerente.`ID_CIDADE` AS requerente_ID_CIDADE,
+     requerente.`TEL_FIXO` AS requerente_TEL_FIXO,
+     requerente.`TEL_CEL` AS requerente_TEL_CEL,
+     requerente.`NUBENTE` AS requerente_NUBENTE,
+     requerente.`REGIME` AS requerente_REGIME,
+     lote_emissao.`ID` AS lote_emissao_ID,
+     lote_emissao.`LOTE` AS lote_emissao_LOTE,
+     lote_emissao.`DESCRICAO` AS lote_emissao_DESCRICAO,
+     lote_emissao.`DATA_LOTE` AS lote_emissao_DATA_LOTE,
+     lote_emissao.`MESANO` AS lote_emissao_MESANO,
+     imovel.`ID` AS imovel_ID,
+     imovel.`ID_USUARIO` AS imovel_ID_USUARIO,
+     imovel.`ID_PROCESSO` AS imovel_ID_PROCESSO,
+     imovel.`M_AREA` AS imovel_M_AREA,
+     imovel.`ID_LOGRAFRENTE` AS imovel_ID_LOGRAFRENTE,
+     imovel.`NUMERO` AS imovel_NUMERO,
+     imovel.`ID_BAIRRO` AS imovel_ID_BAIRRO,
+     imovel.`M_FRENTE` AS imovel_M_FRENTE,
+     imovel.`VIZIN_DIR` AS imovel_VIZIN_DIR,
+     imovel.`M_DIREITA` AS imovel_M_DIREITA,
+     imovel.`VIZIN_ESQ` AS imovel_VIZIN_ESQ,
+     imovel.`M_ESQUERDA` AS imovel_M_ESQUERDA,
+     imovel.`VIZIN_FUN` AS imovel_VIZIN_FUN,
+     imovel.`M_FUNDO` AS imovel_M_FUNDO,
+     imovel.`ID_LOGRADIR` AS imovel_ID_LOGRADIR,
+     imovel.`ID_LOGRAFUNDO` AS imovel_ID_LOGRAFUNDO,
+     imovel.`ID_LOGRAESQ` AS imovel_ID_LOGRAESQ,
+     imovel.`VALOR_TOTAL` AS imovel_VALOR_TOTAL,
+     imovel.`VDEFAULT` AS imovel_VDEFAULT,
+     imovel.`ESQUINA` AS imovel_ESQUINA,
+     imovel.`DIS_ESQUINA` AS imovel_DIS_ESQUINA,
+     imovel.`LOGRA_ESQUINA` AS imovel_LOGRA_ESQUINA,
+     bairro.`ID` AS bairro_ID,
+     bairro.`NOME` AS bairro_NOME,
+     bairro.`LIVRO` AS bairro_LIVRO,
+     bairro.`FOLHA` AS bairro_FOLHA,
+     bairro.`MATRICULA` AS bairro_MATRICULA,
+     bairro.`TIPO` AS bairro_TIPO,
+     usuario.`ID` AS usuario_ID,
+     usuario.`NOME` AS usuario_NOME,
+     usuario.`LOGIN` AS usuario_LOGIN,
+     usuario.`SENHA` AS usuario_SENHA,
+     usuario.`SETOR` AS usuario_SETOR
+FROM
+       `processo` processo LEFT JOIN `emissao_titulo` emissao_titulo ON processo.`ID` = emissao_titulo.`ID_PROCESSO`
+     LEFT JOIN `requerente` requerente ON processo.`ID_REQUERENTE` = requerente.`ID`
+     LEFT JOIN `imovel` imovel ON processo.`ID` = imovel.`ID_PROCESSO`
+     LEFT JOIN `bairro` bairro ON imovel.`ID_BAIRRO` = bairro.`ID`
+     LEFT JOIN `lote_emissao` lote_emissao ON emissao_titulo.`ID_LOTEEMISSAO` = lote_emissao.`ID`
+     LEFT JOIN `usuario` usuario ON processo.`ID_USUARIO` = usuario.`ID`
+
+WHERE
+     lote_emissao.`ID` = $P{ID_LOTE} AND usuario.`ID`
+GROUP BY
+     processo.`ID`
+ORDER BY
+     requerente.`NOME` ASC]]>
+	</queryString>
+	<field name="emissao_titulo_ID" class="java.lang.Long"/>
+	<field name="emissao_titulo_ID_USUARIO" class="java.lang.Long"/>
+	<field name="emissao_titulo_ID_LOTEEMISSAO" class="java.lang.Long"/>
+	<field name="emissao_titulo_ID_PROCESSO" class="java.lang.Long"/>
+	<field name="emissao_titulo_DATA_IMPRESSAO" class="java.sql.Date"/>
+	<field name="emissao_titulo_MESANO" class="java.lang.String"/>
+	<field name="emissao_titulo_CONVOCACAO" class="java.lang.String"/>
+	<field name="emissao_titulo_VIZINHO" class="java.lang.String"/>
+	<field name="emissao_titulo_CONTROLE" class="java.lang.String"/>
+	<field name="emissao_titulo_EMISSAO" class="java.lang.String"/>
+	<field name="emissao_titulo_CONTROLE_FORM" class="java.lang.String"/>
+	<field name="processo_ID" class="java.lang.Long"/>
+	<field name="processo_ID_USUARIO" class="java.lang.Long"/>
+	<field name="processo_NUM_PROCESSO" class="java.lang.String"/>
+	<field name="processo_ID_REQUERENTE" class="java.lang.Long"/>
+	<field name="processo_DATA_PROCESSO" class="java.sql.Date"/>
+	<field name="processo_MESANO" class="java.lang.String"/>
+	<field name="processo_TIPO" class="java.lang.String"/>
+	<field name="processo_SITUACAO" class="java.lang.String"/>
+	<field name="requerente_ID" class="java.lang.Long"/>
+	<field name="requerente_ID_LOGRADOURO" class="java.lang.Long"/>
+	<field name="requerente_NOME" class="java.lang.String"/>
+	<field name="requerente_NACIONALIDADE" class="java.lang.String"/>
+	<field name="requerente_EST_CIVIL" class="java.lang.String"/>
+	<field name="requerente_PROFISSAO" class="java.lang.String"/>
+	<field name="requerente_RG" class="java.lang.String"/>
+	<field name="requerente_ORGAO" class="java.lang.String"/>
+	<field name="requerente_CPF" class="java.lang.String"/>
+	<field name="requerente_NUMERO" class="java.lang.String"/>
+	<field name="requerente_ID_BAIRRO" class="java.lang.Long"/>
+	<field name="requerente_ID_CIDADE" class="java.lang.Long"/>
+	<field name="requerente_TEL_FIXO" class="java.lang.String"/>
+	<field name="requerente_TEL_CEL" class="java.lang.String"/>
+	<field name="requerente_NUBENTE" class="java.lang.String"/>
+	<field name="requerente_REGIME" class="java.lang.String"/>
+	<field name="lote_emissao_ID" class="java.lang.Long"/>
+	<field name="lote_emissao_LOTE" class="java.lang.String"/>
+	<field name="lote_emissao_DESCRICAO" class="java.lang.String"/>
+	<field name="lote_emissao_DATA_LOTE" class="java.sql.Date"/>
+	<field name="lote_emissao_MESANO" class="java.lang.String"/>
+	<field name="imovel_ID" class="java.lang.Long"/>
+	<field name="imovel_ID_USUARIO" class="java.lang.Long"/>
+	<field name="imovel_ID_PROCESSO" class="java.lang.Long"/>
+	<field name="imovel_M_AREA" class="java.lang.Double"/>
+	<field name="imovel_ID_LOGRAFRENTE" class="java.lang.Long"/>
+	<field name="imovel_NUMERO" class="java.lang.String"/>
+	<field name="imovel_ID_BAIRRO" class="java.lang.Long"/>
+	<field name="imovel_M_FRENTE" class="java.lang.Double"/>
+	<field name="imovel_VIZIN_DIR" class="java.lang.String"/>
+	<field name="imovel_M_DIREITA" class="java.lang.Double"/>
+	<field name="imovel_VIZIN_ESQ" class="java.lang.String"/>
+	<field name="imovel_M_ESQUERDA" class="java.lang.Double"/>
+	<field name="imovel_VIZIN_FUN" class="java.lang.String"/>
+	<field name="imovel_M_FUNDO" class="java.lang.Double"/>
+	<field name="imovel_ID_LOGRADIR" class="java.lang.Long"/>
+	<field name="imovel_ID_LOGRAFUNDO" class="java.lang.Long"/>
+	<field name="imovel_ID_LOGRAESQ" class="java.lang.Long"/>
+	<field name="imovel_VALOR_TOTAL" class="java.lang.Double"/>
+	<field name="imovel_VDEFAULT" class="java.lang.String"/>
+	<field name="imovel_ESQUINA" class="java.lang.String"/>
+	<field name="imovel_DIS_ESQUINA" class="java.lang.Double"/>
+	<field name="imovel_LOGRA_ESQUINA" class="java.lang.String"/>
+	<field name="bairro_ID" class="java.lang.Long"/>
+	<field name="bairro_NOME" class="java.lang.String"/>
+	<field name="bairro_LIVRO" class="java.lang.String"/>
+	<field name="bairro_FOLHA" class="java.lang.Long"/>
+	<field name="bairro_MATRICULA" class="java.lang.String"/>
+	<field name="bairro_TIPO" class="java.lang.String"/>
+	<field name="usuario_ID" class="java.lang.Long"/>
+	<field name="usuario_NOME" class="java.lang.String"/>
+	<field name="usuario_LOGIN" class="java.lang.String"/>
+	<field name="usuario_SENHA" class="java.lang.String"/>
+	<field name="usuario_SETOR" class="java.lang.String"/>
+	<variable name="COLUMN_SOMA" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$V{COLUMN_COUNT}]]></variableExpression>
+	</variable>
+	<title>
+		<band height="90" splitType="Stretch">
+			<staticText>
+				<reportElement x="200" y="0" width="413" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SIP - SISTEMA DE INFORMAÇÃO DE PROCESSOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="620" y="0" width="110" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Data de Emissão:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="705" y="0" width="97" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="191" y="20" width="429" height="23"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RELATÓRIO ANALÍTICO TITULOS LANÇADO POR USUARIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="65" width="31" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Lote:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="31" y="65" width="217" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{lote_emissao_LOTE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="248" y="65" width="56" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Descrição:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="304" y="65" width="498" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{lote_emissao_DESCRICAO}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="40" y="0" width="96" height="59" backcolor="#D4D0C8"/>
+				<imageExpression class="java.lang.String"><![CDATA[$P{CAMINHO_IMAGEM}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="23" splitType="Stretch">
+			<staticText>
+				<reportElement x="70" y="1" width="105" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Processo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="175" y="0" width="346" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Requerente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="1" width="70" height="20"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Id Emissão]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="640" y="1" width="101" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nª Formulário]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="521" y="1" width="119" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bairro]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="18" width="802" height="1"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="741" y="0" width="61" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Emitido]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<rectangle>
+				<reportElement x="2" y="0" width="800" height="20" backcolor="#F4F7FC">
+					<printWhenExpression><![CDATA[($V{REPORT_COUNT} % 2) != 0]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<textField>
+				<reportElement x="70" y="0" width="105" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{processo_NUM_PROCESSO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="175" y="0" width="346" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{requerente_NOME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="70" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Long"><![CDATA[$F{emissao_titulo_ID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="640" y="0" width="104" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{emissao_titulo_CONTROLE_FORM}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="521" y="0" width="119" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{bairro_NOME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="744" y="0" width="58" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{emissao_titulo_EMISSAO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="21" splitType="Stretch">
+			<staticText>
+				<reportElement x="2" y="1" width="235" height="20"/>
+				<textElement>
+					<font fontName="Constantia"/>
+				</textElement>
+				<text><![CDATA[Sip - Sistema de Informação de Processos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="672" y="1" width="80" height="20"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Qtde Pagina:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="750" y="1" width="52" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{COLUMN_COUNT}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="2" y="0" width="802" height="1"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="640" y="0" width="80" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA["Pagina "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="720" y="0" width="40" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<lastPageFooter>
+		<band height="40">
+			<staticText>
+				<reportElement x="363" y="0" width="100" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fim do Relatório]]></text>
+			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement x="720" y="20" width="40" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="640" y="20" width="80" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA["Pagina "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="531" y="0" width="189" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Qtde Geral:]]></text>
+			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement x="720" y="0" width="79" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{COLUMN_SOMA}]]></textFieldExpression>
+			</textField>
+		</band>
+	</lastPageFooter>
+</jasperReport>

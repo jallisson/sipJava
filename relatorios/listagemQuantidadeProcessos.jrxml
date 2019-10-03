@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="listagemQuantidadeProcessos" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8f2dd8bd-e8fc-4fb0-a0f4-c5502fdcd852">
+	<property name="ireport.zoom" value="1.2100000000000002"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="DATA_INICIAL" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="DATA_FINAL" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     processo.`ID` AS processo_ID,
+     processo.`ID_USUARIO` AS processo_ID_USUARIO,
+     processo.`NUM_PROCESSO` AS processo_NUM_PROCESSO,
+     processo.`ID_REQUERENTE` AS processo_ID_REQUERENTE,
+     processo.`DATA_PROCESSO` AS processo_DATA_PROCESSO,
+     processo.`MESANO` AS processo_MESANO,
+     processo.`TIPO_LICENCA` AS processo_TIPO_LICENCA,
+     processo.`TRAMITOU_DMA` AS processo_TRAMITOU_DMA,
+     processo.`ID_ATIVIDADE` AS processo_ID_ATIVIDADE,
+     processo.`ARQUIVADO` AS processo_ARQUIVADO,
+     processo.`CONTROLE` AS processo_CONTROLE,
+     processo.`LANCADO_DMA` AS processo_LANCADO_DMA,
+     requerente.`ID` AS requerente_ID,
+     requerente.`ID_LOGRADOURO` AS requerente_ID_LOGRADOURO,
+     requerente.`NOME` AS requerente_NOME,
+     requerente.`NACIONALIDADE` AS requerente_NACIONALIDADE,
+     requerente.`EST_CIVIL` AS requerente_EST_CIVIL,
+     requerente.`PROFISSAO` AS requerente_PROFISSAO,
+     requerente.`RG` AS requerente_RG,
+     requerente.`ORGAO` AS requerente_ORGAO,
+     requerente.`CPF` AS requerente_CPF,
+     requerente.`NUMERO` AS requerente_NUMERO,
+     requerente.`ID_BAIRRO` AS requerente_ID_BAIRRO,
+     requerente.`ID_CIDADE` AS requerente_ID_CIDADE,
+     requerente.`TEL_FIXO` AS requerente_TEL_FIXO,
+     requerente.`TEL_CEL` AS requerente_TEL_CEL,
+     requerente.`NUBENTE` AS requerente_NUBENTE,
+     requerente.`REGIME` AS requerente_REGIME,
+     requerente.`REPRESENTADO` AS requerente_REPRESENTADO,
+     requerente.`REPRESENTADO_NOME` AS requerente_REPRESENTADO_NOME,
+     requerente.`REPRESENTADO_TIPO` AS requerente_REPRESENTADO_TIPO,
+     requerente.`TIPO_PESSOA` AS requerente_TIPO_PESSOA,
+     requerente.`ID_REQUERENTE` AS requerente_ID_REQUERENTE,
+     requerente.`COMPLEMENTO` AS requerente_COMPLEMENTO,
+     requerente.`CEP` AS requerente_CEP
+FROM
+     `requerente` requerente INNER JOIN `processo` processo ON requerente.`ID` = processo.`ID_REQUERENTE`
+WHERE
+ processo.`DATA_PROCESSO` BETWEEN $P{DATA_INICIAL} AND $P{DATA_FINAL}
+ORDER BY
+processo.`DATA_PROCESSO`]]>
+	</queryString>
+	<field name="processo_ID" class="java.lang.Long"/>
+	<field name="processo_ID_USUARIO" class="java.lang.Long"/>
+	<field name="processo_NUM_PROCESSO" class="java.lang.String"/>
+	<field name="processo_ID_REQUERENTE" class="java.lang.Long"/>
+	<field name="processo_DATA_PROCESSO" class="java.sql.Date"/>
+	<field name="processo_MESANO" class="java.lang.String"/>
+	<field name="processo_TIPO_LICENCA" class="java.lang.String"/>
+	<field name="processo_TRAMITOU_DMA" class="java.lang.String"/>
+	<field name="processo_ID_ATIVIDADE" class="java.lang.Long"/>
+	<field name="processo_ARQUIVADO" class="java.lang.String"/>
+	<field name="processo_CONTROLE" class="java.lang.String"/>
+	<field name="processo_LANCADO_DMA" class="java.lang.String"/>
+	<field name="requerente_ID" class="java.lang.Long"/>
+	<field name="requerente_ID_LOGRADOURO" class="java.lang.Long"/>
+	<field name="requerente_NOME" class="java.lang.String"/>
+	<field name="requerente_NACIONALIDADE" class="java.lang.String"/>
+	<field name="requerente_EST_CIVIL" class="java.lang.String"/>
+	<field name="requerente_PROFISSAO" class="java.lang.String"/>
+	<field name="requerente_RG" class="java.lang.String"/>
+	<field name="requerente_ORGAO" class="java.lang.String"/>
+	<field name="requerente_CPF" class="java.lang.String"/>
+	<field name="requerente_NUMERO" class="java.lang.String"/>
+	<field name="requerente_ID_BAIRRO" class="java.lang.Long"/>
+	<field name="requerente_ID_CIDADE" class="java.lang.Long"/>
+	<field name="requerente_TEL_FIXO" class="java.lang.String"/>
+	<field name="requerente_TEL_CEL" class="java.lang.String"/>
+	<field name="requerente_NUBENTE" class="java.lang.String"/>
+	<field name="requerente_REGIME" class="java.lang.String"/>
+	<field name="requerente_REPRESENTADO" class="java.lang.String"/>
+	<field name="requerente_REPRESENTADO_NOME" class="java.lang.String"/>
+	<field name="requerente_REPRESENTADO_TIPO" class="java.lang.String"/>
+	<field name="requerente_TIPO_PESSOA" class="java.lang.String"/>
+	<field name="requerente_ID_REQUERENTE" class="java.lang.Long"/>
+	<field name="requerente_COMPLEMENTO" class="java.lang.String"/>
+	<field name="requerente_CEP" class="java.lang.String"/>
+	<title>
+		<band height="78" splitType="Stretch">
+			<staticText>
+				<reportElement x="43" y="30" width="472" height="19" uuid="4a4fa345-9f5f-427d-8a1e-482a5581d5a3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[QTDE DE PROCESSO LANÇADO - PROTOCOLO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="74" y="10" width="413" height="20" uuid="54ffb395-1c59-49af-b89b-30cb8d9db9a9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SIP - SISTEMA DE INFORMAÇÃO DE PROCESSOS]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="74" y="49" width="425" height="20" uuid="b27fa64b-6882-4051-9da2-cbe8bfd58865"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Arial" size="10" isBold="true" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Periodo de: "+ new SimpleDateFormat("dd/MM/yyyy").format($P{DATA_INICIAL}) + " a " + new SimpleDateFormat("dd/MM/yyyy").format($P{DATA_FINAL})]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20" uuid="d46fefb4-7688-4349-bd73-9c6d9eff941a"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Numero Processo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="0" width="200" height="20" uuid="f0186f75-43db-4fe3-9c34-a8f283ad0c83"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="372" y="0" width="183" height="20" uuid="8e64799c-b707-40c1-a7f1-4d219cc1c291"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Requerente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="0" width="72" height="20" uuid="04dbe473-2833-4b3c-917e-83d21065d619"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="25" splitType="Stretch">
+			<rectangle>
+				<reportElement x="-1" y="0" width="555" height="25" backcolor="#F0F0F0" uuid="b6003af3-e24e-4115-afc8-94146b289b5d">
+					<printWhenExpression><![CDATA[($V{REPORT_COUNT} % 2) != 0]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<textField>
+				<reportElement x="0" y="0" width="100" height="25" uuid="1cc7a768-3175-4499-afb1-cb9def137e34"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{processo_NUM_PROCESSO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="0" width="200" height="25" uuid="44d3f7f9-6b55-4811-991d-5f4a539d1e0a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{processo_TIPO_LICENCA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="372" y="0" width="183" height="25" uuid="e6aadcc0-251b-4b7d-88b5-5338a7020107"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{requerente_NOME}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="300" y="0" width="72" height="25" uuid="ddb3ff4d-7501-41be-ad47-f03c88c2ef31"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{processo_DATA_PROCESSO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="19" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="234" height="19" uuid="5d3cd155-b180-4d09-8ccc-c51ed050120e"/>
+				<textElement>
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<text><![CDATA[Sip - Sistema de Informação de Processos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="469" y="0" width="30" height="19" uuid="54468dd7-c102-4b0b-825a-c9fa07bb5d93"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Qtde :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="501" y="0" width="53" height="19" uuid="8451d7c1-0472-4510-9e4c-2b2d52950e9d"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{COLUMN_COUNT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="435" y="0" width="80" height="20" uuid="cf178ade-7419-4a54-a80f-64050e9ad82b"/>
+				<textElement textAlignment="Right">
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="516" y="0" width="40" height="20" uuid="6a6c5b06-b348-48f6-960e-256eb8d531c2"/>
+				<textElement>
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<lastPageFooter>
+		<band height="40">
+			<staticText>
+				<reportElement x="223" y="4" width="100" height="16" uuid="546f3d6f-1e73-402a-9397-3d5cd131854d"/>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fim do Relatório]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="501" y="0" width="53" height="20" uuid="49d6af43-5f93-4580-8b7e-951ee3985ed4"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="446" y="0" width="53" height="20" uuid="050ca8ef-8f8d-4934-8a05-78422ca272b3"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Qtde Total:]]></text>
+			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement x="516" y="20" width="40" height="20" uuid="256bdf9a-f42f-4b2c-928f-72028162c88d"/>
+				<textElement>
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="435" y="20" width="80" height="20" uuid="c355945a-1527-4d9e-b405-ba7acacde051"/>
+				<textElement textAlignment="Right">
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+		</band>
+	</lastPageFooter>
+</jasperReport>

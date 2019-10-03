@@ -1,0 +1,576 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="titulosEmitidosLote" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7a06500f-7fe5-4f6c-a06f-edc0999c4f17">
+	<property name="ireport.zoom" value="1.3310000000000008"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="680"/>
+	<parameter name="ID_AUTORIZACAO" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CAMINHO_IMAGEM" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CAMINHO_LOGOPREFEITURA" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\jallisson\\Desktop\\Nova pasta (2)\\SISTEMA SEPLUMA\\SISTEMA SIP\\MYSQL\\SIP\\Projeto\\Sip\\relatorios\\autorizacao\\eventos\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     processo.`ID` AS processo_ID,
+     processo.`ID_USUARIO` AS processo_ID_USUARIO,
+     processo.`NUM_PROCESSO` AS processo_NUM_PROCESSO,
+     processo.`ID_REQUERENTE` AS processo_ID_REQUERENTE,
+     processo.`DATA_PROCESSO` AS processo_DATA_PROCESSO,
+     processo.`MESANO` AS processo_MESANO,
+     processo.`TIPO_LICENCA` AS processo_TIPO_LICENCA,
+     processo.`TRAMITOU_DMA` AS processo_TRAMITOU_DMA,
+     processo.`ID_ATIVIDADE` AS processo_ID_ATIVIDADE,
+     requerente.`ID` AS requerente_ID,
+     requerente.`ID_LOGRADOURO` AS requerente_ID_LOGRADOURO,
+     requerente.`NOME` AS requerente_NOME,
+     requerente.`NACIONALIDADE` AS requerente_NACIONALIDADE,
+     requerente.`EST_CIVIL` AS requerente_EST_CIVIL,
+     requerente.`PROFISSAO` AS requerente_PROFISSAO,
+     requerente.`RG` AS requerente_RG,
+     requerente.`ORGAO` AS requerente_ORGAO,
+     requerente.`CPF` AS requerente_CPF,
+     requerente.`NUMERO` AS requerente_NUMERO,
+     requerente.`ID_BAIRRO` AS requerente_ID_BAIRRO,
+     requerente.`ID_CIDADE` AS requerente_ID_CIDADE,
+     requerente.`TEL_FIXO` AS requerente_TEL_FIXO,
+     requerente.`TEL_CEL` AS requerente_TEL_CEL,
+     requerente.`NUBENTE` AS requerente_NUBENTE,
+     requerente.`REGIME` AS requerente_REGIME,
+     requerente.`REPRESENTADO` AS requerente_REPRESENTADO,
+     requerente.`REPRESENTADO_NOME` AS requerente_REPRESENTADO_NOME,
+     requerente.`REPRESENTADO_TIPO` AS requerente_REPRESENTADO_TIPO,
+     requerente.`TIPO_PESSOA` AS requerente_TIPO_PESSOA,
+     requerente.`ID_REQUERENTE` AS requerente_ID_REQUERENTE,
+     requerente.`COMPLEMENTO` AS requerente_COMPLEMENTO,
+     requerente.`CEP` AS requerente_CEP,
+     autorizacao_eventos.`ID` AS autorizacao_eventos_ID,
+     autorizacao_eventos.`ID_USUARIO` AS autorizacao_eventos_ID_USUARIO,
+     autorizacao_eventos.`ID_JURIDICO` AS autorizacao_eventos_ID_JURIDICO,
+     autorizacao_eventos.`ID_PROCESSO` AS autorizacao_eventos_ID_PROCESSO,
+     autorizacao_eventos.`ID_TIPO_EVENTO` AS autorizacao_eventos_ID_TIPO_EVENTO,
+     autorizacao_eventos.`ID_LOGRADOURO` AS autorizacao_eventos_ID_LOGRADOURO,
+     autorizacao_eventos.`ID_BAIRRO` AS autorizacao_eventos_ID_BAIRRO,
+     autorizacao_eventos.`NOME_EVENTO` AS autorizacao_eventos_NOME_EVENTO,
+     autorizacao_eventos.`HORA_INICIAL` AS autorizacao_eventos_HORA_INICIAL,
+     autorizacao_eventos.`HORA_FINAL` AS autorizacao_eventos_HORA_FINAL,
+     autorizacao_eventos.`DESCRICAO_AREA` AS autorizacao_eventos_DESCRICAO_AREA,
+     autorizacao_eventos.`ESTIMATIVA` AS autorizacao_eventos_ESTIMATIVA,
+     autorizacao_eventos.`DATA_EVENTO` AS autorizacao_eventos_DATA_EVENTO,
+     autorizacao_eventos.`MESANO` AS autorizacao_eventos_MESANO,
+     autorizacao_eventos.`EMITIDO` AS autorizacao_eventos_EMITIDO,
+     distribuicao.`ID` AS distribuicao_ID,
+     distribuicao.`ID_USUARIO` AS distribuicao_ID_USUARIO,
+     distribuicao.`ID_ANALISTA` AS distribuicao_ID_ANALISTA,
+     distribuicao.`ID_PROCESSO` AS distribuicao_ID_PROCESSO,
+     distribuicao.`DATA_DIST` AS distribuicao_DATA_DIST,
+     distribuicao.`MESANO` AS distribuicao_MESANO,
+     distribuicao.`CONTROLE` AS distribuicao_CONTROLE,
+     distribuicao.`TRAMITOU_ANALISE` AS distribuicao_TRAMITOU_ANALISE,
+     distribuicao.`TRAMITOU_JURIDICO` AS distribuicao_TRAMITOU_JURIDICO,
+     juridico.`ID` AS juridico_ID,
+     juridico.`ID_USUARIO` AS juridico_ID_USUARIO,
+     juridico.`ID_DISTRIBUICAO` AS juridico_ID_DISTRIBUICAO,
+     juridico.`DATA_JURIDICO` AS juridico_DATA_JURIDICO,
+     juridico.`TRAMITOU_GABINETE` AS juridico_TRAMITOU_GABINETE,
+     juridico.`TRAMITOU_EMISSAO` AS juridico_TRAMITOU_EMISSAO,
+     bairro.`ID` AS bairro_ID,
+     bairro.`NOME` AS bairro_NOME,
+     bairro.`LIVRO` AS bairro_LIVRO,
+     bairro.`FOLHA` AS bairro_FOLHA,
+     bairro.`MATRICULA` AS bairro_MATRICULA,
+     bairro.`TIPO` AS bairro_TIPO,
+     bairro_A.`ID` AS bairro_A_ID,
+     bairro_A.`NOME` AS bairro_A_NOME,
+     bairro_A.`LIVRO` AS bairro_A_LIVRO,
+     bairro_A.`FOLHA` AS bairro_A_FOLHA,
+     bairro_A.`MATRICULA` AS bairro_A_MATRICULA,
+     bairro_A.`TIPO` AS bairro_A_TIPO,
+     tipo_evento.`ID` AS tipo_evento_ID,
+     tipo_evento.`NOME` AS tipo_evento_NOME,
+     cidade.`ID` AS cidade_ID,
+     cidade.`NOME` AS cidade_NOME,
+     cidade.`UF` AS cidade_UF,
+     logradouro.`ID` AS logradouro_ID,
+     logradouro.`NOME` AS logradouro_NOME,
+     logradouro_A.`ID` AS logradouro_A_ID,
+     logradouro_A.`NOME` AS logradouro_A_NOME
+FROM
+`autorizacao_eventos` autorizacao_eventos
+     LEFT JOIN `juridico` juridico ON autorizacao_eventos.`ID_JURIDICO` = juridico.`ID`
+     LEFT JOIN `distribuicao` distribuicao ON distribuicao.`ID` = juridico.`ID_DISTRIBUICAO`
+     LEFT JOIN `processo` processo ON processo.`ID` = distribuicao.`ID_PROCESSO` OR processo.`ID` = autorizacao_eventos.`ID_PROCESSO`
+     LEFT JOIN `atividade` atividade ON processo.`ID_ATIVIDADE` = atividade.`ID`
+     LEFT JOIN `requerente` requerente ON requerente.`ID` = processo.`ID_REQUERENTE`
+     LEFT JOIN `logradouro` logradouro ON requerente.`ID_LOGRADOURO` = logradouro.`ID`
+     LEFT JOIN `bairro` bairro ON requerente.`ID_BAIRRO` = bairro.`ID`
+     LEFT JOIN `cidade` cidade ON requerente.`ID_CIDADE` = cidade.`ID`
+     LEFT JOIN `tipo_evento` tipo_evento ON autorizacao_eventos.`ID_TIPO_EVENTO` = tipo_evento.`ID`
+     LEFT JOIN `bairro` bairro_A ON autorizacao_eventos.`ID_BAIRRO` = bairro_A.`ID`
+     LEFT JOIN `logradouro` logradouro_A ON autorizacao_eventos.`ID_LOGRADOURO` = logradouro_A.`ID`
+WHERE
+     autorizacao_eventos.`ID` = $P{ID_AUTORIZACAO}]]>
+	</queryString>
+	<field name="processo_ID" class="java.lang.Long"/>
+	<field name="processo_ID_USUARIO" class="java.lang.Long"/>
+	<field name="processo_NUM_PROCESSO" class="java.lang.String"/>
+	<field name="processo_ID_REQUERENTE" class="java.lang.Long"/>
+	<field name="processo_DATA_PROCESSO" class="java.sql.Date"/>
+	<field name="processo_MESANO" class="java.lang.String"/>
+	<field name="processo_TIPO_LICENCA" class="java.lang.String"/>
+	<field name="processo_TRAMITOU_DMA" class="java.lang.String"/>
+	<field name="processo_ID_ATIVIDADE" class="java.lang.Long"/>
+	<field name="requerente_ID" class="java.lang.Long"/>
+	<field name="requerente_ID_LOGRADOURO" class="java.lang.Long"/>
+	<field name="requerente_NOME" class="java.lang.String"/>
+	<field name="requerente_NACIONALIDADE" class="java.lang.String"/>
+	<field name="requerente_EST_CIVIL" class="java.lang.String"/>
+	<field name="requerente_PROFISSAO" class="java.lang.String"/>
+	<field name="requerente_RG" class="java.lang.String"/>
+	<field name="requerente_ORGAO" class="java.lang.String"/>
+	<field name="requerente_CPF" class="java.lang.String"/>
+	<field name="requerente_NUMERO" class="java.lang.String"/>
+	<field name="requerente_ID_BAIRRO" class="java.lang.Long"/>
+	<field name="requerente_ID_CIDADE" class="java.lang.Long"/>
+	<field name="requerente_TEL_FIXO" class="java.lang.String"/>
+	<field name="requerente_TEL_CEL" class="java.lang.String"/>
+	<field name="requerente_NUBENTE" class="java.lang.String"/>
+	<field name="requerente_REGIME" class="java.lang.String"/>
+	<field name="requerente_REPRESENTADO" class="java.lang.String"/>
+	<field name="requerente_REPRESENTADO_NOME" class="java.lang.String"/>
+	<field name="requerente_REPRESENTADO_TIPO" class="java.lang.String"/>
+	<field name="requerente_TIPO_PESSOA" class="java.lang.String"/>
+	<field name="requerente_ID_REQUERENTE" class="java.lang.Long"/>
+	<field name="requerente_COMPLEMENTO" class="java.lang.String"/>
+	<field name="requerente_CEP" class="java.lang.String"/>
+	<field name="autorizacao_eventos_ID" class="java.lang.Long"/>
+	<field name="autorizacao_eventos_ID_USUARIO" class="java.lang.Long"/>
+	<field name="autorizacao_eventos_ID_JURIDICO" class="java.lang.Long"/>
+	<field name="autorizacao_eventos_ID_PROCESSO" class="java.lang.Long"/>
+	<field name="autorizacao_eventos_ID_TIPO_EVENTO" class="java.lang.Long"/>
+	<field name="autorizacao_eventos_ID_LOGRADOURO" class="java.lang.Long"/>
+	<field name="autorizacao_eventos_ID_BAIRRO" class="java.lang.Long"/>
+	<field name="autorizacao_eventos_NOME_EVENTO" class="java.lang.String"/>
+	<field name="autorizacao_eventos_HORA_INICIAL" class="java.lang.String"/>
+	<field name="autorizacao_eventos_HORA_FINAL" class="java.lang.String"/>
+	<field name="autorizacao_eventos_DESCRICAO_AREA" class="java.lang.String"/>
+	<field name="autorizacao_eventos_ESTIMATIVA" class="java.lang.Long"/>
+	<field name="autorizacao_eventos_DATA_EVENTO" class="java.sql.Date"/>
+	<field name="autorizacao_eventos_MESANO" class="java.lang.String"/>
+	<field name="autorizacao_eventos_EMITIDO" class="java.lang.String"/>
+	<field name="distribuicao_ID" class="java.lang.Long"/>
+	<field name="distribuicao_ID_USUARIO" class="java.lang.Long"/>
+	<field name="distribuicao_ID_ANALISTA" class="java.lang.Long"/>
+	<field name="distribuicao_ID_PROCESSO" class="java.lang.Long"/>
+	<field name="distribuicao_DATA_DIST" class="java.sql.Date"/>
+	<field name="distribuicao_MESANO" class="java.lang.String"/>
+	<field name="distribuicao_CONTROLE" class="java.lang.String"/>
+	<field name="distribuicao_TRAMITOU_ANALISE" class="java.lang.String"/>
+	<field name="distribuicao_TRAMITOU_JURIDICO" class="java.lang.String"/>
+	<field name="juridico_ID" class="java.lang.Long"/>
+	<field name="juridico_ID_USUARIO" class="java.lang.Long"/>
+	<field name="juridico_ID_DISTRIBUICAO" class="java.lang.Long"/>
+	<field name="juridico_DATA_JURIDICO" class="java.sql.Date"/>
+	<field name="juridico_TRAMITOU_GABINETE" class="java.lang.String"/>
+	<field name="juridico_TRAMITOU_EMISSAO" class="java.lang.String"/>
+	<field name="bairro_ID" class="java.lang.Long"/>
+	<field name="bairro_NOME" class="java.lang.String"/>
+	<field name="bairro_LIVRO" class="java.lang.String"/>
+	<field name="bairro_FOLHA" class="java.lang.Long"/>
+	<field name="bairro_MATRICULA" class="java.lang.String"/>
+	<field name="bairro_TIPO" class="java.lang.String"/>
+	<field name="bairro_A_ID" class="java.lang.Long"/>
+	<field name="bairro_A_NOME" class="java.lang.String"/>
+	<field name="bairro_A_LIVRO" class="java.lang.String"/>
+	<field name="bairro_A_FOLHA" class="java.lang.Long"/>
+	<field name="bairro_A_MATRICULA" class="java.lang.String"/>
+	<field name="bairro_A_TIPO" class="java.lang.String"/>
+	<field name="tipo_evento_ID" class="java.lang.Long"/>
+	<field name="tipo_evento_NOME" class="java.lang.String"/>
+	<field name="cidade_ID" class="java.lang.Long"/>
+	<field name="cidade_NOME" class="java.lang.String"/>
+	<field name="cidade_UF" class="java.lang.String"/>
+	<field name="logradouro_ID" class="java.lang.Long"/>
+	<field name="logradouro_NOME" class="java.lang.String"/>
+	<field name="logradouro_A_ID" class="java.lang.Long"/>
+	<field name="logradouro_A_NOME" class="java.lang.String"/>
+	<title>
+		<band height="802" splitType="Stretch">
+			<rectangle>
+				<reportElement x="55" y="567" width="452" height="38" uuid="002f477c-5c8f-4ef3-8b94-73810f69cea4"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="113" y="45" width="342" height="59" uuid="d64c912a-a56f-44bb-a869-19ca23467e14"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ESTADO DO MARANHÃO
+PREFEITURA DE IMPERATRIZ
+SECRETARIA MUNICIPAL DE PLANEJAMENTO URBANO
+E MEIO AMBIENTE
+
+]]></text>
+			</staticText>
+			<image scaleImage="FillFrame" isUsingCache="true">
+				<reportElement isPrintRepeatedValues="false" x="256" y="0" width="53" height="45" uuid="d4620328-b4f0-4a04-8bb6-c82923e343ed"/>
+				<imageExpression><![CDATA[$P{CAMINHO_IMAGEM}]]></imageExpression>
+			</image>
+			<rectangle>
+				<reportElement x="130" y="104" width="309" height="37" uuid="ee71fd43-bffa-4794-938c-c1528cfd4fe2"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="155" y="104" width="253" height="24" uuid="264addcd-d588-460d-b9cd-876ecd5dbbcb"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[AUTORIZAÇÃO PARA EVENTOS
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="155" y="124" width="253" height="13" uuid="f1354819-5858-48c4-ae19-22fe4ba88d78"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Departamento de Licenciamento Ambiental]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="55" y="166" width="450" height="38" uuid="4b800a84-7bd8-4c47-b67e-c8b02b9e027f"/>
+				<textElement markup="html">
+					<font fontName="Arial" size="11" isBold="false"/>
+				</textElement>
+				<text><![CDATA[&nbsp &nbsp &nbsp &nbsp &nbsp  De acordo com o que preceitua a <u>Lei Municipal 1.424/2011</u> (Lei de Licenciamento Ambiental) <b>AUTORIZAMOS</b> a <u>realização</u> do Evento Provisório.  Descriminado abaixo:]]></text>
+			</staticText>
+			<rectangle radius="5">
+				<reportElement x="55" y="215" width="450" height="24" uuid="76d30c4e-d279-47a5-8e1e-bb3979a09b18"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="125" y="219" width="309" height="20" uuid="b6628f7d-75ab-44c6-bd1c-8a9ca9dd8d61"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[IDENTIFICAÇÃO DO DOCUMENTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="113" y="249" width="65" height="14" uuid="343ee10c-f6b7-4cc9-8cd8-ef3b8713dd86"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Processso nº]]></text>
+			</staticText>
+			<line>
+				<reportElement x="55" y="265" width="450" height="1" uuid="d2aac61e-8dc7-44c7-8975-346012361f4e"/>
+			</line>
+			<textField>
+				<reportElement x="184" y="249" width="100" height="14" uuid="c3b0a345-d8c3-4d36-8974-e232fb4383bf"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{processo_NUM_PROCESSO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="291" y="249" width="54" height="14" uuid="c55f7b16-6d2e-4996-a221-b1f3ce3685cb"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Evento nº]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="349" y="249" width="137" height="14" uuid="0b865f80-eeda-48e4-9eb0-042a7e7b2299"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{autorizacao_eventos_ID}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="190" y="286" width="159" height="14" uuid="81a35260-3967-47c7-8c73-13fda0daf528"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DADOS DO REQUERENTE]]></text>
+			</staticText>
+			<line>
+				<reportElement x="55" y="303" width="450" height="1" uuid="4af873da-ed71-4a05-907d-85d58c4b3730"/>
+			</line>
+			<staticText>
+				<reportElement x="55" y="320" width="37" height="14" uuid="c5f5ac1c-668a-4279-a122-a6c0568b84ee"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="95" y="320" width="246" height="14" uuid="11118a85-b638-42b8-84fd-1b5d766c97c7"/>
+				<textElement>
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{requerente_NOME}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="341" y="320" width="71" height="14" uuid="53428de8-aa71-4dc7-9f99-2e241a31517f"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CPF/CNPJ:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="405" y="320" width="100" height="14" uuid="626d42e2-3ddb-4794-b4bb-f1f434d87996"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{requerente_CPF}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="55" y="337" width="58" height="14" uuid="dcea0c8d-6306-4615-a174-306326bbe10f"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Endereço:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="115" y="337" width="390" height="14" uuid="56b26799-f266-4d34-a835-6323b5fdc876"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{logradouro_NOME}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="55" y="353" width="40" height="14" uuid="b28f6899-7f70-4e27-a48f-2a37588b88ff"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bairro:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="97" y="353" width="408" height="14" uuid="28560d23-28ae-466b-aa67-caf2a7bd55cc"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bairro_NOME}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="55" y="370" width="75" height="14" uuid="7fb6846e-a0c1-4d4b-8abc-51e1980e5199"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Contato Fixo:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="130" y="370" width="134" height="14" uuid="c556169a-15a4-4376-9764-a1e35f61136a"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{requerente_TEL_FIXO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="275" y="370" width="89" height="14" uuid="046572c1-c0bd-4851-808b-5a0ecb271ecb"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Contato Celular:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="364" y="370" width="141" height="14" uuid="d83e07e7-afcc-48bd-b946-999caf658ad5"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{requerente_TEL_CEL}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="55" y="387" width="450" height="1" uuid="15a10cd1-2adb-44ff-b179-2d51060043f5"/>
+			</line>
+			<staticText>
+				<reportElement x="178" y="396" width="197" height="14" uuid="388809de-abec-40ca-92e5-e66a707ebae5"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CARACTERÍSTICAS DO EVENTO]]></text>
+			</staticText>
+			<line>
+				<reportElement x="55" y="415" width="450" height="1" uuid="6f9ae6fa-96e9-45ed-86c4-ffe2183a1369"/>
+			</line>
+			<staticText>
+				<reportElement x="58" y="432" width="97" height="14" uuid="d02becb4-8f6d-4e1d-9d70-099e69cc9d7b"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome do Evento:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="155" y="432" width="350" height="14" uuid="7d0d30ed-4630-45db-8741-e7857a0dbbb6"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{autorizacao_eventos_NOME_EVENTO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="58" y="449" width="97" height="14" uuid="753e4c43-8d6f-40ca-96a9-c2bd0bb42af4"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipo de Evento:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="155" y="449" width="350" height="14" uuid="3a40d973-428c-403b-984b-a1efcd0028eb"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tipo_evento_NOME}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="58" y="466" width="97" height="14" uuid="24e2e1bf-cb9e-485a-a4ea-0a89781f63ce"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Local do Evento:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="156" y="466" width="349" height="14" uuid="b6eabc82-6805-4ebd-a22e-ca3b2d4cab43"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{logradouro_A_NOME}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="58" y="483" width="40" height="14" uuid="8bfd9223-e47b-4d11-bfbb-e8eda504ed78"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bairro:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="98" y="483" width="136" height="14" uuid="6a4154f7-29be-46e4-980a-075a3bebcb7a"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bairro_A_NOME}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="240" y="483" width="101" height="14" uuid="e1c0fcfa-2cc1-4b6d-8e51-19ff92d901fb"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Horário de Início:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="341" y="483" width="51" height="14" uuid="095403f5-b9b4-492b-852b-e7a3f11ab9d5"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{autorizacao_eventos_HORA_INICIAL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="398" y="483" width="56" height="14" uuid="3e66468f-fb25-4082-9544-97c1324ac0c0"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Término:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="454" y="483" width="51" height="14" uuid="84dd8bcc-bafb-4fe5-b887-5ae1ed2d1dfd"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{autorizacao_eventos_HORA_FINAL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="58" y="500" width="98" height="14" uuid="d231c9f9-62fd-4658-878e-7df221011d45"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Descrição da área:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="157" y="500" width="348" height="14" uuid="7891b373-2610-4faa-9f8b-21563023f6d6"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{autorizacao_eventos_DESCRICAO_AREA}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="58" y="517" width="120" height="14" uuid="6c3fce12-a8e3-48c3-9e3b-4c9e7860fd9a"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Estimativa de pessoas:]]></text>
+			</staticText>
+			<textField pattern="#,##0">
+				<reportElement x="178" y="517" width="86" height="14" uuid="b145323b-5b33-49bd-af77-89d022c3d5ba"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{autorizacao_eventos_ESTIMATIVA}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="58" y="534" width="86" height="14" uuid="c0d44da9-72e9-4690-aead-f4abadb9e8c1"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data do Evento:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="144" y="534" width="356" height="14" uuid="45d0d4c1-9e79-47b3-b5d3-0c9e9c7b55dc"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{autorizacao_eventos_DATA_EVENTO}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="57" y="553" width="450" height="1" uuid="779623a9-946b-4f59-b775-145328152051"/>
+			</line>
+			<staticText>
+				<reportElement x="55" y="575" width="452" height="24" uuid="13b3b673-e6f9-4fbf-84a4-361b4dc0f97a"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RECOMENDAÇÕES E CONDICIONANTES - VIDE VERSO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="55" y="677" width="217" height="66" uuid="00e2f59f-c665-4dc6-844a-82e6e95070ef"/>
+				<textElement textAlignment="Center" markup="html">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[<b>ALDENEIDE JORGE DA SILVA</b>
+Secretária Adjunta
+Sec. Mun. De Meio Amb. e Recursos Hídricos
+
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="325" y="677" width="180" height="66" uuid="fa9a49cc-1271-4f33-bfad-7cfe4103a838"/>
+				<textElement textAlignment="Center" markup="html">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[<b>ROSA ARRUDA COELHO</b>
+Secretaria da Sec. Mun. De Meio Amb. e Recursos Hídricos
+]]></text>
+			</staticText>
+			<image scaleImage="FillFrame" isUsingCache="true">
+				<reportElement isPrintRepeatedValues="false" x="55" y="758" width="185" height="37" uuid="2f61521e-2a0b-47db-a1f9-60049832d74d"/>
+				<imageExpression><![CDATA[$P{CAMINHO_LOGOPREFEITURA}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="246" y="772" width="261" height="18" uuid="eda43071-3bc8-4933-abc1-5a9dcb2bb523"/>
+				<textElement textAlignment="Center" markup="html">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Rua Rafael de Almeida, nº 600 – Bacuri / Imperatriz - MA]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="-14" y="797" width="14" height="5" uuid="59c03f7e-e871-4802-94bb-da4f448c8ccb"/>
+				<subreportParameter name="ID_AUTORIZACAO">
+					<subreportParameterExpression><![CDATA[$F{autorizacao_eventos_ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="CAMINHO_LOGOPREFEITURA">
+					<subreportParameterExpression><![CDATA[$P{CAMINHO_LOGOPREFEITURA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "Pagina2.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</title>
+</jasperReport>

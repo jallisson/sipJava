@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Despacho" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="61"/>
+	<property name="ireport.y" value="427"/>
+	<parameter name="ID_EMISSAO" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CAMINHO_IMAGEM1" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CAMINHO_IMAGEM2" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CAMINHO_IMAGEM3" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     requerente.`ID` AS requerente_ID,
+     requerente.`ID_LOGRADOURO` AS requerente_ID_LOGRADOURO,
+     requerente.`NOME` AS requerente_NOME,
+     requerente.`NACIONALIDADE` AS requerente_NACIONALIDADE,
+     requerente.`EST_CIVIL` AS requerente_EST_CIVIL,
+     requerente.`PROFISSAO` AS requerente_PROFISSAO,
+     requerente.`RG` AS requerente_RG,
+     requerente.`ORGAO` AS requerente_ORGAO,
+     requerente.`CPF` AS requerente_CPF,
+     requerente.`NUMERO` AS requerente_NUMERO,
+     requerente.`ID_BAIRRO` AS requerente_ID_BAIRRO,
+     requerente.`ID_CIDADE` AS requerente_ID_CIDADE,
+     requerente.`TEL_FIXO` AS requerente_TEL_FIXO,
+     requerente.`TEL_CEL` AS requerente_TEL_CEL,
+     processo.`ID` AS processo_ID,
+     processo.`ID_USUARIO` AS processo_ID_USUARIO,
+     processo.`NUM_PROCESSO` AS processo_NUM_PROCESSO,
+     processo.`ID_REQUERENTE` AS processo_ID_REQUERENTE,
+     processo.`DATA_PROCESSO` AS processo_DATA_PROCESSO,
+     processo.`MESANO` AS processo_MESANO,
+     processo.`TIPO` AS processo_TIPO,
+     processo.`SITUACAO` AS processo_SITUACAO,
+     emissao_titulo.`ID` AS emissao_titulo_ID,
+     emissao_titulo.`ID_USUARIO` AS emissao_titulo_ID_USUARIO,
+     emissao_titulo.`ID_LOTEEMISSAO` AS emissao_titulo_ID_LOTEEMISSAO,
+     emissao_titulo.`ID_PROCESSO` AS emissao_titulo_ID_PROCESSO,
+     emissao_titulo.`DATA_IMPRESSAO` AS emissao_titulo_DATA_IMPRESSAO,
+     emissao_titulo.`MESANO` AS emissao_titulo_MESANO,
+     emissao_titulo.`CONVOCACAO` AS emissao_titulo_CONVOCACAO,
+     emissao_titulo.`VIZINHO` AS emissao_titulo_VIZINHO,
+     emissao_titulo.`CONTROLE` AS emissao_titulo_CONTROLE,
+     emissao_titulo.`EMISSAO` AS emissao_titulo_EMISSAO
+FROM
+     `requerente` requerente INNER JOIN `processo` processo ON requerente.`ID` = processo.`ID_REQUERENTE`
+     INNER JOIN `emissao_titulo` emissao_titulo ON processo.`ID` = emissao_titulo.`ID_PROCESSO`
+WHERE
+     emissao_titulo.`ID` = $P{ID_EMISSAO}
+ORDER BY
+requerente.`NOME` ASC]]>
+	</queryString>
+	<field name="requerente_ID" class="java.lang.Long"/>
+	<field name="requerente_ID_LOGRADOURO" class="java.lang.Long"/>
+	<field name="requerente_NOME" class="java.lang.String"/>
+	<field name="requerente_NACIONALIDADE" class="java.lang.String"/>
+	<field name="requerente_EST_CIVIL" class="java.lang.String"/>
+	<field name="requerente_PROFISSAO" class="java.lang.String"/>
+	<field name="requerente_RG" class="java.lang.String"/>
+	<field name="requerente_ORGAO" class="java.lang.String"/>
+	<field name="requerente_CPF" class="java.lang.String"/>
+	<field name="requerente_NUMERO" class="java.lang.String"/>
+	<field name="requerente_ID_BAIRRO" class="java.lang.Long"/>
+	<field name="requerente_ID_CIDADE" class="java.lang.Long"/>
+	<field name="requerente_TEL_FIXO" class="java.lang.String"/>
+	<field name="requerente_TEL_CEL" class="java.lang.String"/>
+	<field name="processo_ID" class="java.lang.Long"/>
+	<field name="processo_ID_USUARIO" class="java.lang.Long"/>
+	<field name="processo_NUM_PROCESSO" class="java.lang.String"/>
+	<field name="processo_ID_REQUERENTE" class="java.lang.Long"/>
+	<field name="processo_DATA_PROCESSO" class="java.sql.Date"/>
+	<field name="processo_MESANO" class="java.lang.String"/>
+	<field name="processo_TIPO" class="java.lang.String"/>
+	<field name="processo_SITUACAO" class="java.lang.String"/>
+	<field name="emissao_titulo_ID" class="java.lang.Long"/>
+	<field name="emissao_titulo_ID_USUARIO" class="java.lang.Long"/>
+	<field name="emissao_titulo_ID_LOTEEMISSAO" class="java.lang.Long"/>
+	<field name="emissao_titulo_ID_PROCESSO" class="java.lang.Long"/>
+	<field name="emissao_titulo_DATA_IMPRESSAO" class="java.sql.Date"/>
+	<field name="emissao_titulo_MESANO" class="java.lang.String"/>
+	<field name="emissao_titulo_CONVOCACAO" class="java.lang.String"/>
+	<field name="emissao_titulo_VIZINHO" class="java.lang.String"/>
+	<field name="emissao_titulo_CONTROLE" class="java.lang.String"/>
+	<field name="emissao_titulo_EMISSAO" class="java.lang.String"/>
+	<title>
+		<band height="802" splitType="Stretch">
+			<rectangle>
+				<reportElement x="169" y="525" width="350" height="170"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="48" y="174" width="464" height="154"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Courier New" size="12"/>
+				</textElement>
+				<text><![CDATA[			Vistos etc...
+
+			Compulsando os autos, verifica-se que a pretensão do(a) Interessado(a) assiste razão, mormente em que o Departamento de Assessoria Jurídica Fundiária deste órgão, preenchidos os requisitos legais, opinou pelo deferimento do Título Definitivo.
+Ante o exposto, e por tudo que consta dos autos, RATIFICO o parecer em apreço, determinando que o Departamento de Titulação deste órgão, depois de colhido o referendum do Excelentíssimo Prefeito Municipal de Imperatriz, Dr. Sebastião Torres Madeira, ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="86" y="134" width="72" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Courier New" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PROCESSO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="86" y="154" width="110" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Courier New" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[INTERESSADO (A): ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="158" y="134" width="316" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Courier New" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{processo_NUM_PROCESSO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="197" y="154" width="315" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Courier New" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{requerente_NOME}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="221" y="94" width="163" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Courier New" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DECISÃO ORDINATÓRIA ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="48" y="328" width="464" height="35"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Courier New" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["FAÇA A EXPEDIÇÃO DO RESPECTIVO TÍTULO DEFINITIVO EM FAVOR DE "+$F{requerente_NOME}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="196" y="389" width="274" height="20"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Courier New" size="12"/>
+				</textElement>
+				<text><![CDATA[Registre-se. Publique-se. Cumpra-se.]]></text>
+			</staticText>
+			<textField pattern="&apos;Imperatriz (MA), &apos;dd &apos;de&apos; MMMMM &apos;de&apos; yyyy&apos;.&apos;">
+				<reportElement x="196" y="409" width="316" height="20"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Courier New" size="12" isBold="false" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="145" y="19" width="289" height="48" forecolor="#000000"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ESTADO DO MARANHÃO
+PREFEITURA DE IMPERATRIZ
+SECRETARIA DE REGULARIZAÇÃO FUNDIÁRIA
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="175" y="528" width="337" height="31"/>
+				<textElement textAlignment="Center" markup="html">
+					<font fontName="Courier New" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[<b>DESPACHO ORDINATÓRIO DO PREFEITO MUNICIPAL DE IMPERATRIZ, ESTADO DO MARANHÃO.</b>
+
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="175" y="559" width="337" height="76"/>
+				<textElement textAlignment="Justified" markup="html">
+					<font fontName="Courier New" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Estando em conforme, REFERENDO a decisão do Excelentíssimo Senhor Secretário de Regularização Fundiária Urbana de Imperatriz, <b>WHIGSON DE SOUSA CUNHA,</b> <b>CONCEDENDO</b> o <b>TÍTULO DEFINITIVO,</b> objeto do presente feito.]]></text>
+			</staticText>
+			<textField pattern="&apos;Imperatriz - MA, &apos;dd &apos;de&apos; MMMMM &apos;de&apos; yyyy&apos;.&apos;">
+				<reportElement x="175" y="635" width="337" height="20"/>
+				<textElement textAlignment="Right">
+					<font fontName="Courier New" size="12" isBold="false" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="232" y="655" width="259" height="40"/>
+				<textElement textAlignment="Center" markup="html">
+					<font fontName="Courier New" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[<b>DR. SEBASTIÃO TORRES MADEIRA</b>
+Prefeito de Imperatriz
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="169" y="480" width="238" height="16"/>
+				<textElement textAlignment="Center" markup="none">
+					<font fontName="Courier New" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[WHIGSON DE SOUSA CUNHA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="123" y="496" width="322" height="16"/>
+				<textElement textAlignment="Center" markup="none">
+					<font fontName="Courier New" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[SEC. MUNICIPAL DE REGULARIZAÇÃO FUNDIÁRIA URBANA]]></text>
+			</staticText>
+			<image>
+				<reportElement x="69" y="13" width="76" height="57"/>
+				<imageExpression class="java.lang.String"><![CDATA[$P{CAMINHO_IMAGEM1}]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="0" y="729" width="69" height="56"/>
+				<imageExpression class="java.lang.String"><![CDATA[$P{CAMINHO_IMAGEM2}]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="483" y="741" width="72" height="44"/>
+				<imageExpression class="java.lang.String"><![CDATA[$P{CAMINHO_IMAGEM3}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+</jasperReport>

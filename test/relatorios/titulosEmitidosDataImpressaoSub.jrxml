@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="titulosEmitidosLote" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="DATA_INICIAL" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="DATA_FINAL" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     count( lote_emissao.`ID`),
+     emissao_titulo.`ID` AS emissao_titulo_ID,
+     emissao_titulo.`ID_USUARIO` AS emissao_titulo_ID_USUARIO,
+     emissao_titulo.`ID_LOTEEMISSAO` AS emissao_titulo_ID_LOTEEMISSAO,
+     emissao_titulo.`ID_PROCESSO` AS emissao_titulo_ID_PROCESSO,
+     emissao_titulo.`DATA_IMPRESSAO` AS emissao_titulo_DATA_IMPRESSAO,
+     emissao_titulo.`MESANO` AS emissao_titulo_MESANO,
+     emissao_titulo.`CONVOCACAO` AS emissao_titulo_CONVOCACAO,
+     emissao_titulo.`VIZINHO` AS emissao_titulo_VIZINHO,
+     emissao_titulo.`CONTROLE` AS emissao_titulo_CONTROLE,
+     emissao_titulo.`EMISSAO` AS emissao_titulo_EMISSAO,
+     emissao_titulo.`CONTROLE_FORM` AS emissao_titulo_CONTROLE_FORM,
+     processo.`ID` AS processo_ID,
+     processo.`ID_USUARIO` AS processo_ID_USUARIO,
+     processo.`NUM_PROCESSO` AS processo_NUM_PROCESSO,
+     processo.`ID_REQUERENTE` AS processo_ID_REQUERENTE,
+     processo.`DATA_PROCESSO` AS processo_DATA_PROCESSO,
+     processo.`MESANO` AS processo_MESANO,
+     processo.`TIPO` AS processo_TIPO,
+     processo.`SITUACAO` AS processo_SITUACAO,
+     requerente.`ID` AS requerente_ID,
+     requerente.`ID_LOGRADOURO` AS requerente_ID_LOGRADOURO,
+     requerente.`NOME` AS requerente_NOME,
+     requerente.`NACIONALIDADE` AS requerente_NACIONALIDADE,
+     requerente.`EST_CIVIL` AS requerente_EST_CIVIL,
+     requerente.`PROFISSAO` AS requerente_PROFISSAO,
+     requerente.`RG` AS requerente_RG,
+     requerente.`ORGAO` AS requerente_ORGAO,
+     requerente.`CPF` AS requerente_CPF,
+     requerente.`NUMERO` AS requerente_NUMERO,
+     requerente.`ID_BAIRRO` AS requerente_ID_BAIRRO,
+     requerente.`ID_CIDADE` AS requerente_ID_CIDADE,
+     requerente.`TEL_FIXO` AS requerente_TEL_FIXO,
+     requerente.`TEL_CEL` AS requerente_TEL_CEL,
+     requerente.`NUBENTE` AS requerente_NUBENTE,
+     requerente.`REGIME` AS requerente_REGIME,
+     lote_emissao.`ID` AS lote_emissao_ID,
+     lote_emissao.`LOTE` AS lote_emissao_LOTE,
+     lote_emissao.`DESCRICAO` AS lote_emissao_DESCRICAO,
+     lote_emissao.`DATA_LOTE` AS lote_emissao_DATA_LOTE,
+     lote_emissao.`MESANO` AS lote_emissao_MESANO,
+     imovel.`ID` AS imovel_ID,
+     imovel.`ID_USUARIO` AS imovel_ID_USUARIO,
+     imovel.`ID_PROCESSO` AS imovel_ID_PROCESSO,
+     imovel.`M_AREA` AS imovel_M_AREA,
+     imovel.`ID_LOGRAFRENTE` AS imovel_ID_LOGRAFRENTE,
+     imovel.`NUMERO` AS imovel_NUMERO,
+     imovel.`ID_BAIRRO` AS imovel_ID_BAIRRO,
+     imovel.`M_FRENTE` AS imovel_M_FRENTE,
+     imovel.`VIZIN_DIR` AS imovel_VIZIN_DIR,
+     imovel.`M_DIREITA` AS imovel_M_DIREITA,
+     imovel.`VIZIN_ESQ` AS imovel_VIZIN_ESQ,
+     imovel.`M_ESQUERDA` AS imovel_M_ESQUERDA,
+     imovel.`VIZIN_FUN` AS imovel_VIZIN_FUN,
+     imovel.`M_FUNDO` AS imovel_M_FUNDO,
+     imovel.`ID_LOGRADIR` AS imovel_ID_LOGRADIR,
+     imovel.`ID_LOGRAFUNDO` AS imovel_ID_LOGRAFUNDO,
+     imovel.`ID_LOGRAESQ` AS imovel_ID_LOGRAESQ,
+     imovel.`VALOR_TOTAL` AS imovel_VALOR_TOTAL,
+     imovel.`VDEFAULT` AS imovel_VDEFAULT,
+     imovel.`ESQUINA` AS imovel_ESQUINA,
+     imovel.`DIS_ESQUINA` AS imovel_DIS_ESQUINA,
+     imovel.`LOGRA_ESQUINA` AS imovel_LOGRA_ESQUINA,
+     bairro.`ID` AS bairro_ID,
+     bairro.`NOME` AS bairro_NOME,
+     bairro.`LIVRO` AS bairro_LIVRO,
+     bairro.`FOLHA` AS bairro_FOLHA,
+     bairro.`MATRICULA` AS bairro_MATRICULA,
+     bairro.`TIPO` AS bairro_TIPO
+FROM
+     `processo` processo LEFT JOIN `emissao_titulo` emissao_titulo ON processo.`ID` = emissao_titulo.`ID_PROCESSO`
+     LEFT JOIN `requerente` requerente ON processo.`ID_REQUERENTE` = requerente.`ID`
+     LEFT JOIN `imovel` imovel ON processo.`ID` = imovel.`ID_PROCESSO`
+     LEFT JOIN `bairro` bairro ON imovel.`ID_BAIRRO` = bairro.`ID`
+     LEFT JOIN `lote_emissao` lote_emissao ON emissao_titulo.`ID_LOTEEMISSAO` = lote_emissao.`ID`
+WHERE
+  emissao_titulo.`DATA_IMPRESSAO`  BETWEEN $P{DATA_INICIAL} AND $P{DATA_FINAL}
+ AND emissao_titulo.`EMISSAO` = "Sim"
+GROUP BY
+ lote_emissao.`ID`
+ORDER BY
+requerente.`NOME` ASC]]>
+	</queryString>
+	<field name="count( lote_emissao.`ID`)" class="java.lang.Long"/>
+	<field name="emissao_titulo_ID" class="java.lang.Long"/>
+	<field name="emissao_titulo_ID_USUARIO" class="java.lang.Long"/>
+	<field name="emissao_titulo_ID_LOTEEMISSAO" class="java.lang.Long"/>
+	<field name="emissao_titulo_ID_PROCESSO" class="java.lang.Long"/>
+	<field name="emissao_titulo_DATA_IMPRESSAO" class="java.sql.Date"/>
+	<field name="emissao_titulo_MESANO" class="java.lang.String"/>
+	<field name="emissao_titulo_CONVOCACAO" class="java.lang.String"/>
+	<field name="emissao_titulo_VIZINHO" class="java.lang.String"/>
+	<field name="emissao_titulo_CONTROLE" class="java.lang.String"/>
+	<field name="emissao_titulo_EMISSAO" class="java.lang.String"/>
+	<field name="emissao_titulo_CONTROLE_FORM" class="java.lang.String"/>
+	<field name="processo_ID" class="java.lang.Long"/>
+	<field name="processo_ID_USUARIO" class="java.lang.Long"/>
+	<field name="processo_NUM_PROCESSO" class="java.lang.String"/>
+	<field name="processo_ID_REQUERENTE" class="java.lang.Long"/>
+	<field name="processo_DATA_PROCESSO" class="java.sql.Date"/>
+	<field name="processo_MESANO" class="java.lang.String"/>
+	<field name="processo_TIPO" class="java.lang.String"/>
+	<field name="processo_SITUACAO" class="java.lang.String"/>
+	<field name="requerente_ID" class="java.lang.Long"/>
+	<field name="requerente_ID_LOGRADOURO" class="java.lang.Long"/>
+	<field name="requerente_NOME" class="java.lang.String"/>
+	<field name="requerente_NACIONALIDADE" class="java.lang.String"/>
+	<field name="requerente_EST_CIVIL" class="java.lang.String"/>
+	<field name="requerente_PROFISSAO" class="java.lang.String"/>
+	<field name="requerente_RG" class="java.lang.String"/>
+	<field name="requerente_ORGAO" class="java.lang.String"/>
+	<field name="requerente_CPF" class="java.lang.String"/>
+	<field name="requerente_NUMERO" class="java.lang.String"/>
+	<field name="requerente_ID_BAIRRO" class="java.lang.Long"/>
+	<field name="requerente_ID_CIDADE" class="java.lang.Long"/>
+	<field name="requerente_TEL_FIXO" class="java.lang.String"/>
+	<field name="requerente_TEL_CEL" class="java.lang.String"/>
+	<field name="requerente_NUBENTE" class="java.lang.String"/>
+	<field name="requerente_REGIME" class="java.lang.String"/>
+	<field name="lote_emissao_ID" class="java.lang.Long"/>
+	<field name="lote_emissao_LOTE" class="java.lang.String"/>
+	<field name="lote_emissao_DESCRICAO" class="java.lang.String"/>
+	<field name="lote_emissao_DATA_LOTE" class="java.sql.Date"/>
+	<field name="lote_emissao_MESANO" class="java.lang.String"/>
+	<field name="imovel_ID" class="java.lang.Long"/>
+	<field name="imovel_ID_USUARIO" class="java.lang.Long"/>
+	<field name="imovel_ID_PROCESSO" class="java.lang.Long"/>
+	<field name="imovel_M_AREA" class="java.lang.Double"/>
+	<field name="imovel_ID_LOGRAFRENTE" class="java.lang.Long"/>
+	<field name="imovel_NUMERO" class="java.lang.String"/>
+	<field name="imovel_ID_BAIRRO" class="java.lang.Long"/>
+	<field name="imovel_M_FRENTE" class="java.lang.Double"/>
+	<field name="imovel_VIZIN_DIR" class="java.lang.String"/>
+	<field name="imovel_M_DIREITA" class="java.lang.Double"/>
+	<field name="imovel_VIZIN_ESQ" class="java.lang.String"/>
+	<field name="imovel_M_ESQUERDA" class="java.lang.Double"/>
+	<field name="imovel_VIZIN_FUN" class="java.lang.String"/>
+	<field name="imovel_M_FUNDO" class="java.lang.Double"/>
+	<field name="imovel_ID_LOGRADIR" class="java.lang.Long"/>
+	<field name="imovel_ID_LOGRAFUNDO" class="java.lang.Long"/>
+	<field name="imovel_ID_LOGRAESQ" class="java.lang.Long"/>
+	<field name="imovel_VALOR_TOTAL" class="java.lang.Double"/>
+	<field name="imovel_VDEFAULT" class="java.lang.String"/>
+	<field name="imovel_ESQUINA" class="java.lang.String"/>
+	<field name="imovel_DIS_ESQUINA" class="java.lang.Double"/>
+	<field name="imovel_LOGRA_ESQUINA" class="java.lang.String"/>
+	<field name="bairro_ID" class="java.lang.Long"/>
+	<field name="bairro_NOME" class="java.lang.String"/>
+	<field name="bairro_LIVRO" class="java.lang.String"/>
+	<field name="bairro_FOLHA" class="java.lang.Long"/>
+	<field name="bairro_MATRICULA" class="java.lang.String"/>
+	<field name="bairro_TIPO" class="java.lang.String"/>
+	<variable name="COLUMN_SOMA" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$V{COLUMN_COUNT}]]></variableExpression>
+	</variable>
+	<variable name="SOMA QTDE" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{count( lote_emissao.`ID`)}]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<columnHeader>
+		<band height="22">
+			<staticText>
+				<reportElement x="294" y="2" width="100" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[QUANTIDADE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="150" y="2" width="144" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LOTE]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<rectangle>
+				<reportElement x="150" y="0" width="244" height="20" backcolor="#F4F7FC">
+					<printWhenExpression><![CDATA[($V{REPORT_COUNT} % 2) != 0]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<textField>
+				<reportElement x="294" y="0" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.Long"><![CDATA[$F{count( lote_emissao.`ID`)}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="150" y="0" width="144" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{lote_emissao_LOTE}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="196">
+			<pie3DChart>
+				<chart>
+					<reportElement x="0" y="0" width="265" height="175"/>
+					<chartTitle>
+						<font size="5" isBold="true"/>
+					</chartTitle>
+					<chartSubtitle>
+						<font size="5" isBold="true"/>
+					</chartSubtitle>
+					<chartLegend>
+						<font size="5" isBold="true"/>
+					</chartLegend>
+				</chart>
+				<pieDataset>
+					<keyExpression><![CDATA[$F{lote_emissao_LOTE}]]></keyExpression>
+					<valueExpression><![CDATA[$F{count( lote_emissao.`ID`)}]]></valueExpression>
+				</pieDataset>
+				<pie3DPlot>
+					<plot/>
+					<itemLabel color="#000000" backgroundColor="#FFFFFF">
+						<font size="5" isBold="true"/>
+					</itemLabel>
+				</pie3DPlot>
+			</pie3DChart>
+			<bar3DChart>
+				<chart>
+					<reportElement x="265" y="0" width="290" height="175"/>
+					<chartTitle>
+						<font size="5" isBold="true"/>
+					</chartTitle>
+					<chartSubtitle>
+						<font size="5" isBold="true"/>
+					</chartSubtitle>
+					<chartLegend>
+						<font size="5" isBold="true"/>
+					</chartLegend>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{lote_emissao_LOTE}]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{lote_emissao_LOTE}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{count( lote_emissao.`ID`)}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<bar3DPlot>
+					<plot/>
+					<itemLabel color="#000000" backgroundColor="#FFFFFF">
+						<font size="5" isBold="true"/>
+					</itemLabel>
+					<categoryAxisFormat>
+						<axisFormat>
+							<labelFont>
+								<font size="5" isBold="true"/>
+							</labelFont>
+							<tickLabelFont>
+								<font size="5" isBold="true"/>
+							</tickLabelFont>
+						</axisFormat>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat>
+							<labelFont>
+								<font size="5" isBold="true"/>
+							</labelFont>
+							<tickLabelFont>
+								<font size="5" isBold="true"/>
+							</tickLabelFont>
+						</axisFormat>
+					</valueAxisFormat>
+				</bar3DPlot>
+			</bar3DChart>
+			<textField>
+				<reportElement x="282" y="175" width="100" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{SOMA QTDE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="182" y="175" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL GERAL:]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

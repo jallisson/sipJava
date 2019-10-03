@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<palette_item version="1.0">
+  <component classname="org.jdesktop.layout.LayoutStyle" />
+  <classpath>
+      <resource type="jar" name="C:\Users\TI\Desktop\PROYECTO FERRETRIA\PROYECTO FERRETRIA\Proyecto_Ferreteria_Verdadero\dist\lib\swing-layout-1.0.4.jar" />
+  </classpath>
+</palette_item>

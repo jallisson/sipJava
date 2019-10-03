@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="AtendimentoSub" language="groovy" columnCount="20" printOrder="Horizontal" pageWidth="595" pageHeight="842" columnWidth="27" leftMargin="20" rightMargin="20" topMargin="0" bottomMargin="20" uuid="1ff53012-f7fa-4353-abe9-26399ae60735">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="ID_EMISSAO" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     terreno_imob.`LOTE` AS terreno_imob_LOTE,
+     emissao_titulo.`ID` AS emissao_titulo_ID,
+     imovel.`ID` AS imovel_ID,
+     processo.`ID` AS processo_ID
+FROM
+     `imovel` imovel INNER JOIN `terreno_imob` terreno_imob ON imovel.`ID` = terreno_imob.`ID_IMOVEL`
+     INNER JOIN `processo` processo ON imovel.`ID_PROCESSO` = processo.`ID`
+     INNER JOIN `emissao_titulo` emissao_titulo ON processo.`ID` = emissao_titulo.`ID_PROCESSO`
+WHERE
+     emissao_titulo.`ID` = $P{ID_EMISSAO} and imovel.`VDEFAULT` <> "Sim"
+GROUP BY
+      terreno_imob.`LOTE`]]>
+	</queryString>
+	<field name="terreno_imob_LOTE" class="java.lang.String"/>
+	<field name="emissao_titulo_ID" class="java.lang.Long"/>
+	<field name="imovel_ID" class="java.lang.Long"/>
+	<field name="processo_ID" class="java.lang.Long"/>
+	<detail>
+		<band height="18">
+			<textField>
+				<reportElement x="0" y="0" width="555" height="18" uuid="756a5a00-ae40-467f-952a-f9eb145343e8">
+					<printWhenExpression><![CDATA[($F{terreno_imob_LOTE} != "***" ) ? true : false]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{terreno_imob_LOTE}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

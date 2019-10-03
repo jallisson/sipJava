@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="estudo" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d3dc852a-1d00-4d10-89c9-439458ad1152">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="ID_PARECER" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     anexos_processo.`ID` AS anexos_processo_ID,
+     anexos_processo.`ID_PROCESSO` AS anexos_processo_ID_PROCESSO,
+     anexos_processo.`NOME_ARQUIVO` AS anexos_processo_NOME_ARQUIVO,
+     anexos_processo.`CAMINHO_ARQUIVO` AS anexos_processo_CAMINHO_ARQUIVO,
+     anexos_processo.`ID_USUARIO` AS anexos_processo_ID_USUARIO,
+     anexos_processo.`DESCRICAO_ANEXO` AS anexos_processo_DESCRICAO_ANEXO,
+     parecer_analise.`ID` AS parecer_analise_ID,
+     parecer_analise.`ID_USUARIO` AS parecer_analise_ID_USUARIO,
+     parecer_analise.`ID_ANALISE` AS parecer_analise_ID_ANALISE,
+     parecer_analise.`DATA_PARECER` AS parecer_analise_DATA_PARECER,
+     parecer_analise.`TIPO` AS parecer_analise_TIPO,
+     parecer_analise.`CONTROLE` AS parecer_analise_CONTROLE,
+     parecer_analise.`ID_ANEXOS_PROCESSO` AS parecer_analise_ID_ANEXOS_PROCESSO,
+     parecer_analise.`DATA_VISTORIA` AS parecer_analise_DATA_VISTORIA
+FROM
+     `anexos_processo` anexos_processo LEFT JOIN `parecer_analise` parecer_analise ON anexos_processo.`ID` = parecer_analise.`ID_ANEXOS_PROCESSO`
+WHERE
+     parecer_analise.`ID` = $P{ID_PARECER}]]>
+	</queryString>
+	<field name="anexos_processo_ID" class="java.lang.Long"/>
+	<field name="anexos_processo_ID_PROCESSO" class="java.lang.Long"/>
+	<field name="anexos_processo_NOME_ARQUIVO" class="java.lang.String"/>
+	<field name="anexos_processo_CAMINHO_ARQUIVO" class="java.lang.String"/>
+	<field name="anexos_processo_ID_USUARIO" class="java.lang.Long"/>
+	<field name="anexos_processo_DESCRICAO_ANEXO" class="java.lang.String"/>
+	<field name="parecer_analise_ID" class="java.lang.Long"/>
+	<field name="parecer_analise_ID_USUARIO" class="java.lang.Long"/>
+	<field name="parecer_analise_ID_ANALISE" class="java.lang.Long"/>
+	<field name="parecer_analise_DATA_PARECER" class="java.sql.Date"/>
+	<field name="parecer_analise_TIPO" class="java.lang.String"/>
+	<field name="parecer_analise_CONTROLE" class="java.lang.String"/>
+	<field name="parecer_analise_ID_ANEXOS_PROCESSO" class="java.lang.Long"/>
+	<field name="parecer_analise_DATA_VISTORIA" class="java.sql.Date"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<textField>
+				<reportElement x="81" y="33" width="224" height="20" uuid="ab948256-2019-4955-b841-f9cd8ae3ffd3"/>
+				<textFieldExpression><![CDATA[$F{anexos_processo_DESCRICAO_ANEXO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="138" y="13" width="100" height="20" uuid="83f3b690-43d8-4559-b3a4-880724747f19"/>
+				<textFieldExpression><![CDATA[$F{parecer_analise_ID}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

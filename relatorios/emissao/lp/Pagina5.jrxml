@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="titulosEmitidosLote" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7a06500f-7fe5-4f6c-a06f-edc0999c4f17">
+	<property name="ireport.zoom" value="1.3310000000000062"/>
+	<property name="ireport.x" value="11"/>
+	<property name="ireport.y" value="17"/>
+	<parameter name="ID_EMISSAO" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     tramitacao.`ID` AS tramitacao_ID,
+     tramitacao.`ID_USUARIO` AS tramitacao_ID_USUARIO,
+     tramitacao.`ID_PROCESSO` AS tramitacao_ID_PROCESSO,
+     tramitacao.`DATA_TRAMITACAO` AS tramitacao_DATA_TRAMITACAO,
+     tramitacao.`HORA` AS tramitacao_HORA,
+     tramitacao.`MESANO` AS tramitacao_MESANO,
+     tramitacao.`STATUSS` AS tramitacao_STATUSS,
+     tramitacao.`PARECER` AS tramitacao_PARECER,
+     tramitacao.`SETOR` AS tramitacao_SETOR,
+     tramitacao.`SETOR_ORIGEM` AS tramitacao_SETOR_ORIGEM,
+     tramitacao.`SETOR_DESTINO` AS tramitacao_SETOR_DESTINO,
+     tramitacao.`OBSERVACAO` AS tramitacao_OBSERVACAO,
+     tramitacao.`CONTROLE` AS tramitacao_CONTROLE,
+     requerente.`ID` AS requerente_ID,
+     requerente.`ID_LOGRADOURO` AS requerente_ID_LOGRADOURO,
+     requerente.`NOME` AS requerente_NOME,
+     requerente.`NACIONALIDADE` AS requerente_NACIONALIDADE,
+     requerente.`EST_CIVIL` AS requerente_EST_CIVIL,
+     requerente.`PROFISSAO` AS requerente_PROFISSAO,
+     requerente.`RG` AS requerente_RG,
+     requerente.`ORGAO` AS requerente_ORGAO,
+     requerente.`CPF` AS requerente_CPF,
+     requerente.`NUMERO` AS requerente_NUMERO,
+     requerente.`ID_BAIRRO` AS requerente_ID_BAIRRO,
+     requerente.`ID_CIDADE` AS requerente_ID_CIDADE,
+     requerente.`TEL_FIXO` AS requerente_TEL_FIXO,
+     requerente.`TEL_CEL` AS requerente_TEL_CEL,
+     requerente.`NUBENTE` AS requerente_NUBENTE,
+     requerente.`REGIME` AS requerente_REGIME,
+     processo.`ID` AS processo_ID,
+     processo.`ID_USUARIO` AS processo_ID_USUARIO,
+     processo.`NUM_PROCESSO` AS processo_NUM_PROCESSO,
+     processo.`ID_REQUERENTE` AS processo_ID_REQUERENTE,
+     processo.`DATA_PROCESSO` AS processo_DATA_PROCESSO,
+     processo.`MESANO` AS processo_MESANO,
+     processo.`TIPO_LICENCA` AS processo_TIPO_LICENCA,
+     requerente.`COMPLEMENTO` AS requerente_COMPLEMENTO,
+     requerente.`CEP` AS requerente_CEP,
+     logradouro.`ID` AS logradouro_ID,
+     logradouro.`NOME` AS logradouro_NOME,
+     bairro.`ID` AS bairro_ID,
+     bairro.`NOME` AS bairro_NOME,
+     cidade.`ID` AS cidade_ID,
+     cidade.`NOME` AS cidade_NOME,
+     cidade.`UF` AS cidade_UF,
+     atividade.`ID` AS atividade_ID,
+     atividade.`NOME` AS atividade_NOME,
+     processo.`ID_ATIVIDADE` AS processo_ID_ATIVIDADE,
+     emissao_licenca.`ID` AS emissao_licenca_ID,
+     emissao_licenca.`ID_JURIDICO` AS emissao_licenca_ID_JURIDICO,
+     emissao_licenca.`ID_USUARIO` AS emissao_licenca_ID_USUARIO,
+     emissao_licenca.`DATA_EMISSAO` AS emissao_licenca_DATA_EMISSAO,
+     emissao_licenca.`MESANO` AS emissao_licenca_MESANO,
+     emissao_licenca.`AREA_TERRENO` AS emissao_licenca_AREA_TERRENO,
+     emissao_licenca.`AREA_CONSTRUIDA` AS emissao_licenca_AREA_CONSTRUIDA,
+     emissao_licenca.`HORA_INICIAL` AS emissao_licenca_HORA_INICIAL,
+     emissao_licenca.`HORA_FINAL` AS emissao_licenca_HORA_FINAL,
+     juridico.`ID` AS juridico_ID,
+     juridico.`ID_USUARIO` AS juridico_ID_USUARIO,
+     juridico.`ID_DISTRIBUICAO` AS juridico_ID_DISTRIBUICAO,
+     juridico.`DATA_JURIDICO` AS juridico_DATA_JURIDICO,
+     juridico.`TRAMITOU_GABINETE` AS juridico_TRAMITOU_GABINETE,
+     juridico.`TRAMITOU_EMISSAO` AS juridico_TRAMITOU_EMISSAO,
+     distribuicao.`ID` AS distribuicao_ID,
+     distribuicao.`ID_USUARIO` AS distribuicao_ID_USUARIO,
+     distribuicao.`ID_ANALISTA` AS distribuicao_ID_ANALISTA,
+     distribuicao.`ID_PROCESSO` AS distribuicao_ID_PROCESSO,
+     distribuicao.`DATA_DIST` AS distribuicao_DATA_DIST,
+     distribuicao.`MESANO` AS distribuicao_MESANO,
+     distribuicao.`CONTROLE` AS distribuicao_CONTROLE,
+     distribuicao.`TRAMITOU_ANALISE` AS distribuicao_TRAMITOU_ANALISE,
+     distribuicao.`TRAMITOU_JURIDICO` AS distribuicao_TRAMITOU_JURIDICO
+FROM
+     `requerente` requerente INNER JOIN `processo` processo ON requerente.`ID` = processo.`ID_REQUERENTE`
+     INNER JOIN `tramitacao` tramitacao ON processo.`ID` = tramitacao.`ID_PROCESSO`
+     INNER JOIN `atividade` atividade ON processo.`ID_ATIVIDADE` = atividade.`ID`
+     INNER JOIN `distribuicao` distribuicao ON processo.`ID` = distribuicao.`ID_PROCESSO`
+     INNER JOIN `juridico` juridico ON distribuicao.`ID` = juridico.`ID_DISTRIBUICAO`
+     INNER JOIN `emissao_licenca` emissao_licenca ON juridico.`ID` = emissao_licenca.`ID_JURIDICO`
+     INNER JOIN `logradouro` logradouro ON requerente.`ID_LOGRADOURO` = logradouro.`ID`
+     INNER JOIN `bairro` bairro ON requerente.`ID_BAIRRO` = bairro.`ID`
+     INNER JOIN `cidade` cidade ON requerente.`ID_CIDADE` = cidade.`ID`
+WHERE
+     emissao_licenca.`ID` = $P{ID_EMISSAO}]]>
+	</queryString>
+	<field name="tramitacao_ID" class="java.lang.Long"/>
+	<field name="tramitacao_ID_USUARIO" class="java.lang.Long"/>
+	<field name="tramitacao_ID_PROCESSO" class="java.lang.Long"/>
+	<field name="tramitacao_DATA_TRAMITACAO" class="java.sql.Date"/>
+	<field name="tramitacao_HORA" class="java.lang.String"/>
+	<field name="tramitacao_MESANO" class="java.lang.String"/>
+	<field name="tramitacao_STATUSS" class="java.lang.String"/>
+	<field name="tramitacao_PARECER" class="java.lang.String"/>
+	<field name="tramitacao_SETOR" class="java.lang.String"/>
+	<field name="tramitacao_SETOR_ORIGEM" class="java.lang.String"/>
+	<field name="tramitacao_SETOR_DESTINO" class="java.lang.String"/>
+	<field name="tramitacao_OBSERVACAO" class="java.lang.String"/>
+	<field name="tramitacao_CONTROLE" class="java.lang.String"/>
+	<field name="requerente_ID" class="java.lang.Long"/>
+	<field name="requerente_ID_LOGRADOURO" class="java.lang.Long"/>
+	<field name="requerente_NOME" class="java.lang.String"/>
+	<field name="requerente_NACIONALIDADE" class="java.lang.String"/>
+	<field name="requerente_EST_CIVIL" class="java.lang.String"/>
+	<field name="requerente_PROFISSAO" class="java.lang.String"/>
+	<field name="requerente_RG" class="java.lang.String"/>
+	<field name="requerente_ORGAO" class="java.lang.String"/>
+	<field name="requerente_CPF" class="java.lang.String"/>
+	<field name="requerente_NUMERO" class="java.lang.String"/>
+	<field name="requerente_ID_BAIRRO" class="java.lang.Long"/>
+	<field name="requerente_ID_CIDADE" class="java.lang.Long"/>
+	<field name="requerente_TEL_FIXO" class="java.lang.String"/>
+	<field name="requerente_TEL_CEL" class="java.lang.String"/>
+	<field name="requerente_NUBENTE" class="java.lang.String"/>
+	<field name="requerente_REGIME" class="java.lang.String"/>
+	<field name="processo_ID" class="java.lang.Long"/>
+	<field name="processo_ID_USUARIO" class="java.lang.Long"/>
+	<field name="processo_NUM_PROCESSO" class="java.lang.String"/>
+	<field name="processo_ID_REQUERENTE" class="java.lang.Long"/>
+	<field name="processo_DATA_PROCESSO" class="java.sql.Date"/>
+	<field name="processo_MESANO" class="java.lang.String"/>
+	<field name="processo_TIPO_LICENCA" class="java.lang.String"/>
+	<field name="requerente_COMPLEMENTO" class="java.lang.String"/>
+	<field name="requerente_CEP" class="java.lang.String"/>
+	<field name="logradouro_ID" class="java.lang.Long"/>
+	<field name="logradouro_NOME" class="java.lang.String"/>
+	<field name="bairro_ID" class="java.lang.Long"/>
+	<field name="bairro_NOME" class="java.lang.String"/>
+	<field name="cidade_ID" class="java.lang.Long"/>
+	<field name="cidade_NOME" class="java.lang.String"/>
+	<field name="cidade_UF" class="java.lang.String"/>
+	<field name="atividade_ID" class="java.lang.Long"/>
+	<field name="atividade_NOME" class="java.lang.String"/>
+	<field name="processo_ID_ATIVIDADE" class="java.lang.Long"/>
+	<field name="emissao_licenca_ID" class="java.lang.Long"/>
+	<field name="emissao_licenca_ID_JURIDICO" class="java.lang.Long"/>
+	<field name="emissao_licenca_ID_USUARIO" class="java.lang.Long"/>
+	<field name="emissao_licenca_DATA_EMISSAO" class="java.sql.Date"/>
+	<field name="emissao_licenca_MESANO" class="java.lang.String"/>
+	<field name="emissao_licenca_AREA_TERRENO" class="java.lang.Double"/>
+	<field name="emissao_licenca_AREA_CONSTRUIDA" class="java.lang.Double"/>
+	<field name="emissao_licenca_HORA_INICIAL" class="java.lang.String"/>
+	<field name="emissao_licenca_HORA_FINAL" class="java.lang.String"/>
+	<field name="juridico_ID" class="java.lang.Long"/>
+	<field name="juridico_ID_USUARIO" class="java.lang.Long"/>
+	<field name="juridico_ID_DISTRIBUICAO" class="java.lang.Long"/>
+	<field name="juridico_DATA_JURIDICO" class="java.sql.Date"/>
+	<field name="juridico_TRAMITOU_GABINETE" class="java.lang.String"/>
+	<field name="juridico_TRAMITOU_EMISSAO" class="java.lang.String"/>
+	<title>
+		<band height="760" splitType="Stretch">
+			<ellipse>
+				<reportElement x="251" y="730" width="36" height="30" forecolor="#999999" backcolor="#666666" uuid="c147b268-6c74-4971-98bd-524373e61cc2"/>
+			</ellipse>
+			<staticText>
+				<reportElement x="266" y="735" width="11" height="20" forecolor="#FFFFFF" uuid="fa79593d-a2f4-47df-8e64-0b7bd3a585b8"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[5]]></text>
+			</staticText>
+			<elementGroup/>
+			<staticText>
+				<reportElement x="29" y="45" width="500" height="15" uuid="c56025fe-40f7-4821-81e5-550c9da243ed"/>
+				<textElement textAlignment="Justified" markup="none">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[2       RECOMENDAÇÕES ESPECÍFICAS: LICENÇA PRÉVIA (LP)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="29" y="65" width="26" height="15" uuid="e59fc884-a642-4255-9ef6-2aa80d442f75"/>
+				<textElement textAlignment="Justified" markup="none">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[2.1]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="66" y="65" width="463" height="63" uuid="91eacfa2-98dd-4bcf-b9c1-7fb0f1e645af"/>
+				<textElement textAlignment="Justified" markup="html">
+					<font fontName="Arial" size="11" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["A empresa <b>"+$F{requerente_NOME}+" inscrito no CNPJ:"+ $F{requerente_CPF}+"</b>, localizada na <b>"+$F{logradouro_NOME}+", Nº "+$F{requerente_NUMERO}+", BAIRRO "+$F{bairro_NOME}+"</b> no Município de "+$F{cidade_NOME}+" - "+$F{cidade_UF}+", <b>DEVERÁ</b> cumprir com as determinações proposta no Plano de Controle Ambiental – PCA e adotar as medidas contidas nas Condicionantes Supracitadas."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="66" y="136" width="463" height="114" uuid="c8cac739-dbee-4792-982a-5dfc4787ed66"/>
+				<textElement textAlignment="Justified" markup="html">
+					<font fontName="Arial" size="11" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Fica a empresa <b>"+$F{requerente_NOME}+" inscrito no CNPJ: "+$F{requerente_CPF}+"</b>, ciente de que o não cumprimento fiel destas recomendações condicionantes constantes deste documento, assim como qualquer dano ao meio ambiente, por negligencia, omissão ou imperícia, é de sua inteira responsabilidade, podendo a Licença Ambiental ser cassada a qualquer momento, por este órgão ou pela via judicial e o infrator responsabilizado civil e criminalmente, conforme determina a Legislação Ambiental em vigor. E ainda, o <b>não cumprimento destas condicionantes</b>, acarretará no cancelamento desta "+ $F{processo_TIPO_LICENCA}+" (L.P) com aplicação de multa. **********************************************************************************************************************"]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+</jasperReport>

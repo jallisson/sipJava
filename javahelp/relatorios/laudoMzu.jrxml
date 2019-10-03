@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="laudoMzu" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="ID_LAUDO" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CAMINHO_IMAGEM1" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CAMINHO_IMAGEM2" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CAMINHO_IMAGEM3" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     laudo_imovel.`ID` AS laudo_imovel_ID,
+     laudo_imovel.`ID_IMOVEL` AS laudo_imovel_ID_IMOVEL,
+     laudo_imovel.`TECNICO_RES` AS laudo_imovel_TECNICO_RES,
+     laudo_imovel.`DATA_VIST` AS laudo_imovel_DATA_VIST,
+     processo.`ID` AS processo_ID,
+     processo.`ID_USUARIO` AS processo_ID_USUARIO,
+     processo.`NUM_PROCESSO` AS processo_NUM_PROCESSO,
+     processo.`ID_REQUERENTE` AS processo_ID_REQUERENTE,
+     processo.`DATA_PROCESSO` AS processo_DATA_PROCESSO,
+     processo.`MESANO` AS processo_MESANO,
+     processo.`TIPO` AS processo_TIPO,
+     processo.`SITUACAO` AS processo_SITUACAO,
+     imovel.`ID` AS imovel_ID,
+     imovel.`ID_USUARIO` AS imovel_ID_USUARIO,
+     imovel.`ID_PROCESSO` AS imovel_ID_PROCESSO,
+     imovel.`M_AREA` AS imovel_M_AREA,
+     imovel.`ID_LOGRAFRENTE` AS imovel_ID_LOGRAFRENTE,
+     imovel.`NUMERO` AS imovel_NUMERO,
+     imovel.`ID_BAIRRO` AS imovel_ID_BAIRRO,
+     imovel.`M_FRENTE` AS imovel_M_FRENTE,
+     imovel.`VIZIN_DIR` AS imovel_VIZIN_DIR,
+     imovel.`M_DIREITA` AS imovel_M_DIREITA,
+     imovel.`VIZIN_ESQ` AS imovel_VIZIN_ESQ,
+     imovel.`M_ESQUERDA` AS imovel_M_ESQUERDA,
+     imovel.`VIZIN_FUN` AS imovel_VIZIN_FUN,
+     imovel.`M_FUNDO` AS imovel_M_FUNDO,
+     imovel.`ID_LOGRADIR` AS imovel_ID_LOGRADIR,
+     imovel.`ID_LOGRAFUNDO` AS imovel_ID_LOGRAFUNDO,
+     imovel.`ID_LOGRAESQ` AS imovel_ID_LOGRAESQ,
+     imovel.`VALOR_TOTAL` AS imovel_VALOR_TOTAL,
+     imovel.`VDEFAULT` AS imovel_VDEFAULT,
+     imovel.`ESQUINA` AS imovel_ESQUINA,
+     imovel.`DIS_ESQUINA` AS imovel_DIS_ESQUINA,
+     imovel.`LOGRA_ESQUINA` AS imovel_LOGRA_ESQUINA,
+     requerente.`ID` AS requerente_ID,
+     requerente.`ID_LOGRADOURO` AS requerente_ID_LOGRADOURO,
+     requerente.`NOME` AS requerente_NOME,
+     requerente.`NACIONALIDADE` AS requerente_NACIONALIDADE,
+     requerente.`EST_CIVIL` AS requerente_EST_CIVIL,
+     requerente.`PROFISSAO` AS requerente_PROFISSAO,
+     requerente.`RG` AS requerente_RG,
+     requerente.`ORGAO` AS requerente_ORGAO,
+     requerente.`CPF` AS requerente_CPF,
+     requerente.`NUMERO` AS requerente_NUMERO,
+     requerente.`ID_BAIRRO` AS requerente_ID_BAIRRO,
+     requerente.`ID_CIDADE` AS requerente_ID_CIDADE,
+     requerente.`TEL_FIXO` AS requerente_TEL_FIXO,
+     requerente.`TEL_CEL` AS requerente_TEL_CEL,
+     requerente.`NUBENTE` AS requerente_NUBENTE,
+     requerente.`REGIME` AS requerente_REGIME,
+     logradouro_IMOV_FRENTE.`ID` AS logradouro_IMOV_FRENTE_ID,
+     logradouro_IMOV_FRENTE.`NOME` AS logradouro__IMOV_FRENTE_NOME,
+     logradouro_IMOV_DIREITA.`ID` AS logradouro_IMOV_DIREITA_ID,
+     logradouro_IMOV_DIREITA.`NOME` AS logradouro__IMOV_DIREITA_NOME,
+     logradouro_IMOV_FUNDO.`ID` AS logradouro__IMOV_FUNDO_ID,
+     logradouro_IMOV_FUNDO.`NOME` AS logradouro__IMOV_FUNDO_NOME,
+     logradouro_IMOV_ESQ.`ID` AS logradouro_IMOV_ESQ_ID,
+     logradouro_IMOV_ESQ.`NOME` AS logradouro_IMOV_ESQ_NOME,
+     bairro_IMOV.`ID` AS bairro_IMOV_ID,
+     bairro_IMOV.`NOME` AS bairro_IMOV_NOME,
+     laudo_imovel.`ANOS_POSSE` AS laudo_imovel_ANOS_POSSE,
+     tramitacao.`ID` AS tramitacao_ID,
+     tramitacao.`ID_USUARIO` AS tramitacao_ID_USUARIO,
+     tramitacao.`ID_PROCESSO` AS tramitacao_ID_PROCESSO,
+     tramitacao.`ID_LOTETITULACAO` AS tramitacao_ID_LOTETITULACAO,
+     tramitacao.`DATA_TRAMITACAO` AS tramitacao_DATA_TRAMITACAO,
+     tramitacao.`HORA` AS tramitacao_HORA,
+     tramitacao.`MESANO` AS tramitacao_MESANO,
+     tramitacao.`STATUSS` AS tramitacao_STATUSS,
+     tramitacao.`PARECER` AS tramitacao_PARECER,
+     tramitacao.`SETOR` AS tramitacao_SETOR,
+     tramitacao.`SETOR_ORIGEM` AS tramitacao_SETOR_ORIGEM,
+     tramitacao.`SETOR_DESTINO` AS tramitacao_SETOR_DESTINO,
+     tramitacao.`LAUDO_MZU` AS tramitacao_LAUDO_MZU,
+     tramitacao.`OBSERVACAO` AS tramitacao_OBSERVACAO,
+     tramitacao.`CONTROLE` AS tramitacao_CONTROLE,
+     tramitacao.`SITUACAO_CAD` AS tramitacao_SITUACAO_CAD,
+     lote_titulacao.`ID` AS lote_titulacao_ID,
+     lote_titulacao.`LOTE` AS lote_titulacao_LOTE,
+     lote_titulacao.`DESCRICAO` AS lote_titulacao_DESCRICAO,
+     laudo_imovel.`TIPO_IMOVEL` AS laudo_imovel_TIPO_IMOVEL
+FROM
+     `processo` processo INNER JOIN `imovel` imovel ON processo.`ID` = imovel.`ID_PROCESSO`
+     INNER JOIN `laudo_imovel` laudo_imovel ON imovel.`ID` = laudo_imovel.`ID_IMOVEL`
+     INNER JOIN `logradouro` logradouro_IMOV_FRENTE ON imovel.`ID_LOGRAFRENTE` = logradouro_IMOV_FRENTE.`ID`
+     INNER JOIN `logradouro` logradouro_IMOV_DIREITA ON imovel.`ID_LOGRADIR` = logradouro_IMOV_DIREITA.`ID`
+     INNER JOIN `logradouro` logradouro_IMOV_FUNDO ON imovel.`ID_LOGRAFUNDO` = logradouro_IMOV_FUNDO.`ID`
+     INNER JOIN `logradouro` logradouro_IMOV_ESQ ON imovel.`ID_LOGRAESQ` = logradouro_IMOV_ESQ.`ID`
+     INNER JOIN `bairro` bairro_IMOV ON imovel.`ID_BAIRRO` = bairro_IMOV.`ID`
+     INNER JOIN `requerente` requerente ON processo.`ID_REQUERENTE` = requerente.`ID`
+     LEFT JOIN `tramitacao` tramitacao ON processo.`ID` = tramitacao.`ID_PROCESSO`
+     LEFT JOIN `lote_titulacao` lote_titulacao ON tramitacao.`ID_LOTETITULACAO` = lote_titulacao.`ID`
+WHERE
+     laudo_imovel.`ID` = $P{ID_LAUDO}
+ORDER BY
+     tramitacao.`ID` DESC]]>
+	</queryString>
+	<field name="laudo_imovel_ID" class="java.lang.Long"/>
+	<field name="laudo_imovel_ID_IMOVEL" class="java.lang.Long"/>
+	<field name="laudo_imovel_TECNICO_RES" class="java.lang.String"/>
+	<field name="laudo_imovel_DATA_VIST" class="java.sql.Date"/>
+	<field name="processo_ID" class="java.lang.Long"/>
+	<field name="processo_ID_USUARIO" class="java.lang.Long"/>
+	<field name="processo_NUM_PROCESSO" class="java.lang.String"/>
+	<field name="processo_ID_REQUERENTE" class="java.lang.Long"/>
+	<field name="processo_DATA_PROCESSO" class="java.sql.Date"/>
+	<field name="processo_MESANO" class="java.lang.String"/>
+	<field name="processo_TIPO" class="java.lang.String"/>
+	<field name="processo_SITUACAO" class="java.lang.String"/>
+	<field name="imovel_ID" class="java.lang.Long"/>
+	<field name="imovel_ID_USUARIO" class="java.lang.Long"/>
+	<field name="imovel_ID_PROCESSO" class="java.lang.Long"/>
+	<field name="imovel_M_AREA" class="java.lang.Double"/>
+	<field name="imovel_ID_LOGRAFRENTE" class="java.lang.Long"/>
+	<field name="imovel_NUMERO" class="java.lang.String"/>
+	<field name="imovel_ID_BAIRRO" class="java.lang.Long"/>
+	<field name="imovel_M_FRENTE" class="java.lang.Double"/>
+	<field name="imovel_VIZIN_DIR" class="java.lang.String"/>
+	<field name="imovel_M_DIREITA" class="java.lang.Double"/>
+	<field name="imovel_VIZIN_ESQ" class="java.lang.String"/>
+	<field name="imovel_M_ESQUERDA" class="java.lang.Double"/>
+	<field name="imovel_VIZIN_FUN" class="java.lang.String"/>
+	<field name="imovel_M_FUNDO" class="java.lang.Double"/>
+	<field name="imovel_ID_LOGRADIR" class="java.lang.Long"/>
+	<field name="imovel_ID_LOGRAFUNDO" class="java.lang.Long"/>
+	<field name="imovel_ID_LOGRAESQ" class="java.lang.Long"/>
+	<field name="imovel_VALOR_TOTAL" class="java.lang.Double"/>
+	<field name="imovel_VDEFAULT" class="java.lang.String"/>
+	<field name="imovel_ESQUINA" class="java.lang.String"/>
+	<field name="imovel_DIS_ESQUINA" class="java.lang.Double"/>
+	<field name="imovel_LOGRA_ESQUINA" class="java.lang.String"/>
+	<field name="requerente_ID" class="java.lang.Long"/>
+	<field name="requerente_ID_LOGRADOURO" class="java.lang.Long"/>
+	<field name="requerente_NOME" class="java.lang.String"/>
+	<field name="requerente_NACIONALIDADE" class="java.lang.String"/>
+	<field name="requerente_EST_CIVIL" class="java.lang.String"/>
+	<field name="requerente_PROFISSAO" class="java.lang.String"/>
+	<field name="requerente_RG" class="java.lang.String"/>
+	<field name="requerente_ORGAO" class="java.lang.String"/>
+	<field name="requerente_CPF" class="java.lang.String"/>
+	<field name="requerente_NUMERO" class="java.lang.String"/>
+	<field name="requerente_ID_BAIRRO" class="java.lang.Long"/>
+	<field name="requerente_ID_CIDADE" class="java.lang.Long"/>
+	<field name="requerente_TEL_FIXO" class="java.lang.String"/>
+	<field name="requerente_TEL_CEL" class="java.lang.String"/>
+	<field name="requerente_NUBENTE" class="java.lang.String"/>
+	<field name="requerente_REGIME" class="java.lang.String"/>
+	<field name="logradouro_IMOV_FRENTE_ID" class="java.lang.Long"/>
+	<field name="logradouro__IMOV_FRENTE_NOME" class="java.lang.String"/>
+	<field name="logradouro_IMOV_DIREITA_ID" class="java.lang.Long"/>
+	<field name="logradouro__IMOV_DIREITA_NOME" class="java.lang.String"/>
+	<field name="logradouro__IMOV_FUNDO_ID" class="java.lang.Long"/>
+	<field name="logradouro__IMOV_FUNDO_NOME" class="java.lang.String"/>
+	<field name="logradouro_IMOV_ESQ_ID" class="java.lang.Long"/>
+	<field name="logradouro_IMOV_ESQ_NOME" class="java.lang.String"/>
+	<field name="bairro_IMOV_ID" class="java.lang.Long"/>
+	<field name="bairro_IMOV_NOME" class="java.lang.String"/>
+	<field name="laudo_imovel_ANOS_POSSE" class="java.lang.String"/>
+	<field name="tramitacao_ID" class="java.lang.Long"/>
+	<field name="tramitacao_ID_USUARIO" class="java.lang.Long"/>
+	<field name="tramitacao_ID_PROCESSO" class="java.lang.Long"/>
+	<field name="tramitacao_ID_LOTETITULACAO" class="java.lang.Long"/>
+	<field name="tramitacao_DATA_TRAMITACAO" class="java.sql.Date"/>
+	<field name="tramitacao_HORA" class="java.lang.String"/>
+	<field name="tramitacao_MESANO" class="java.lang.String"/>
+	<field name="tramitacao_STATUSS" class="java.lang.String"/>
+	<field name="tramitacao_PARECER" class="java.lang.String"/>
+	<field name="tramitacao_SETOR" class="java.lang.String"/>
+	<field name="tramitacao_SETOR_ORIGEM" class="java.lang.String"/>
+	<field name="tramitacao_SETOR_DESTINO" class="java.lang.String"/>
+	<field name="tramitacao_LAUDO_MZU" class="java.lang.String"/>
+	<field name="tramitacao_OBSERVACAO" class="java.lang.String"/>
+	<field name="tramitacao_CONTROLE" class="java.lang.String"/>
+	<field name="tramitacao_SITUACAO_CAD" class="java.lang.String"/>
+	<field name="lote_titulacao_ID" class="java.lang.Long"/>
+	<field name="lote_titulacao_LOTE" class="java.lang.String"/>
+	<field name="lote_titulacao_DESCRICAO" class="java.lang.String"/>
+	<field name="laudo_imovel_TIPO_IMOVEL" class="java.lang.String"/>
+	<title>
+		<band height="802" splitType="Stretch">
+			<staticText>
+				<reportElement x="59" y="41" width="418" height="40"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ESTADO DO MARANHÃO
+PREFEITURA MUNICIPAL DE IMPERATRIZ
+SECRETARIA MUNICIPAL DE REGULARIZAÇÃO FUNDIÁRIA URBANA
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="154" y="81" width="222" height="21"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[RELATÓRIO TÉCNICO CONCLUSIVO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="16" y="111" width="67" height="19"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[PROCESSO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="16" y="130" width="87" height="16"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Arial" size="11" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[INTERESSADO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="16" y="146" width="111" height="16"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Arial" size="11" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[DATA DA VISTORIA:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="83" y="111" width="467" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{processo_NUM_PROCESSO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="103" y="131" width="447" height="15"/>
+				<textElement>
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{requerente_NOME}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="127" y="146" width="423" height="16"/>
+				<textElement>
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{laudo_imovel_DATA_VIST}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="53" y="188" width="219" height="25"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
+					<font fontName="Arial" size="11" isBold="true" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[● INFORMAÇÕES TÉCNICAS OBJETIVAS]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="53" y="255" width="417" height="72"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["O Referido imóvel fica situado na quadra, ladeada pelos logradouros: "+$F{logradouro__IMOV_FRENTE_NOME}+", "+
+$F{logradouro__IMOV_DIREITA_NOME}+", "+$F{logradouro__IMOV_FUNDO_NOME}+", "+$F{logradouro_IMOV_ESQ_NOME}+", "+
+"no bairro denominado "+$F{bairro_IMOV_NOME}+", Imperatriz, Estado do Maranhão."]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="53" y="230" width="219" height="25"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="false" isUnderline="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[1. LOCALIZAÇÃO TÉCNICAS DO IMÓVEL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement stretchType="RelativeToBandHeight" x="53" y="327" width="219" height="18" isRemoveLineWhenBlank="true"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="false" isUnderline="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[2 DIMENSÕES:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="53" y="345" width="417" height="33"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Arial" size="11" isBold="false" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Informamos que o imóvel objeto do processo supracitado, após vistoria, encontra-se com as seguintes dimensões:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="53" y="378" width="61" height="19"/>
+				<textElement verticalAlignment="Middle" markup="html">
+					<font fontName="Arial" size="11" isBold="true" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[● FRENTE:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="53" y="397" width="131" height="19"/>
+				<textElement verticalAlignment="Middle" markup="html">
+					<font fontName="Arial" size="11" isBold="true" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[● LATERAL ESQUERDA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="53" y="416" width="114" height="19"/>
+				<textElement verticalAlignment="Middle" markup="html">
+					<font fontName="Arial" size="11" isBold="true" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[● LATERAL DIREITA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="53" y="435" width="61" height="19"/>
+				<textElement verticalAlignment="Middle" markup="html">
+					<font fontName="Arial" size="11" isBold="true" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[● FUNDO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="53" y="454" width="143" height="19"/>
+				<textElement verticalAlignment="Middle" markup="html">
+					<font fontName="Arial" size="11" isBold="true" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[● ÁREA TOTAL TERRENO:]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement x="114" y="378" width="356" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[String.format("%.2f", $F{imovel_M_FRENTE})+"m"]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement x="184" y="398" width="286" height="18"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[String.format("%.2f", $F{imovel_M_ESQUERDA})+"m"]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement x="167" y="416" width="303" height="18"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[String.format("%.2f", $F{imovel_M_DIREITA})+"m"]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement x="106" y="435" width="364" height="19"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[String.format("%.2f", $F{imovel_M_FUNDO})+"m"]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement x="196" y="454" width="274" height="19"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[String.format("%.2f", $F{imovel_M_AREA})+"m²"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="54" y="473" width="416" height="28"/>
+				<textElement markup="html">
+					<font fontName="Arial" size="11" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["<u>3. SITUAÇÃO DO IMÓVEL:</u> é um(a) "+$F{laudo_imovel_TIPO_IMOVEL}+" e o(a) requerente detém sua posse a "+$F{laudo_imovel_ANOS_POSSE}+" anos."]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="53" y="525" width="417" height="51"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font fontName="Arial" size="11" isBold="false" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Finda a vistoria de campo, este Setor CONCLUI, que a referida área, objeto de pedido de titulação nos presentes autos, encontra-se em conformidades com a legislação de uso e ocupação do solo, bem como apresenta todos os requisitos legais garantidores a pretensão da parte interessada.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="167" y="593" width="218" height="19"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font fontName="Arial" size="11" isBold="false" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Esse é, sucintamente, o relatório conclusivo.]]></text>
+			</staticText>
+			<textField pattern="&apos;Imperatriz - MA, &apos;dd &apos;de&apos; MMMMM &apos;de&apos; yyyy&apos;.&apos;">
+				<reportElement x="154" y="626" width="337" height="20"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="12" isBold="false" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="405" y="0" width="150" height="16"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{lote_titulacao_LOTE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="54" y="695" width="423" height="21"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Arial" size="11" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[TÉC. EM EDIFICAÇÕES DE MAPEAMENTO E ZONEAMENTO URBANO DA SERF]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="54" y="675" width="423" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{laudo_imovel_TECNICO_RES}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="53" y="740" width="438" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.25"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement positionType="Float" x="142" y="741" width="258" height="46"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Arial" size="10" isBold="false" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Secretaria Municipal de Regularização Fundiária Urbana Rua Godofredo Viana, 201-A, Centro - CEP. 65.900-440 Imperatriz - MA. - e-mail:serfitz@hotmail.com]]></text>
+			</staticText>
+			<image>
+				<reportElement x="248" y="0" width="58" height="41"/>
+				<imageExpression class="java.lang.String"><![CDATA[$P{CAMINHO_IMAGEM1}]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="14" y="748" width="69" height="54"/>
+				<imageExpression class="java.lang.String"><![CDATA[$P{CAMINHO_IMAGEM2}]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="470" y="748" width="69" height="54"/>
+				<imageExpression class="java.lang.String"><![CDATA[$P{CAMINHO_IMAGEM3}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement positionType="Float" x="53" y="511" width="89" height="14"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font fontName="Arial" size="11" isBold="false" isUnderline="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[4 - CONCLUSÃO:]]></text>
+			</staticText>
+		</band>
+	</title>
+</jasperReport>

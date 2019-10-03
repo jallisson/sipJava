@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="titulosEmitidosLote" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="215"/>
+	<parameter name="NUMERO" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="LOGO_PREFEITURA" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="LOGO_SERF" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="LOGO_CIDADE" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="DATA_ENVIO" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     tramitacao.`ID` AS tramitacao_ID,
+     tramitacao.`ID_USUARIO` AS tramitacao_ID_USUARIO,
+     tramitacao.`ID_PROCESSO` AS tramitacao_ID_PROCESSO,
+     tramitacao.`ID_LOTETITULACAO` AS tramitacao_ID_LOTETITULACAO,
+     tramitacao.`DATA_TRAMITACAO` AS tramitacao_DATA_TRAMITACAO,
+     tramitacao.`HORA` AS tramitacao_HORA,
+     tramitacao.`MESANO` AS tramitacao_MESANO,
+     tramitacao.`STATUSS` AS tramitacao_STATUSS,
+     tramitacao.`PARECER` AS tramitacao_PARECER,
+     tramitacao.`SETOR` AS tramitacao_SETOR,
+     tramitacao.`SETOR_ORIGEM` AS tramitacao_SETOR_ORIGEM,
+     tramitacao.`SETOR_DESTINO` AS tramitacao_SETOR_DESTINO,
+     tramitacao.`LAUDO_MZU` AS tramitacao_LAUDO_MZU,
+     tramitacao.`OBSERVACAO` AS tramitacao_OBSERVACAO,
+     tramitacao.`CONTROLE` AS tramitacao_CONTROLE,
+     tramitacao.`SITUACAO_CAD` AS tramitacao_SITUACAO_CAD,
+     processo.`ID` AS processo_ID,
+     processo.`ID_USUARIO` AS processo_ID_USUARIO,
+     processo.`NUM_PROCESSO` AS processo_NUM_PROCESSO,
+     processo.`ID_REQUERENTE` AS processo_ID_REQUERENTE,
+     processo.`DATA_PROCESSO` AS processo_DATA_PROCESSO,
+     processo.`MESANO` AS processo_MESANO,
+     processo.`TIPO` AS processo_TIPO,
+     processo.`SITUACAO` AS processo_SITUACAO,
+     requerente.`ID` AS requerente_ID,
+     requerente.`ID_LOGRADOURO` AS requerente_ID_LOGRADOURO,
+     requerente.`NOME` AS requerente_NOME,
+     requerente.`NACIONALIDADE` AS requerente_NACIONALIDADE,
+     requerente.`EST_CIVIL` AS requerente_EST_CIVIL,
+     requerente.`PROFISSAO` AS requerente_PROFISSAO,
+     requerente.`RG` AS requerente_RG,
+     requerente.`ORGAO` AS requerente_ORGAO,
+     requerente.`CPF` AS requerente_CPF,
+     requerente.`NUMERO` AS requerente_NUMERO,
+     requerente.`ID_BAIRRO` AS requerente_ID_BAIRRO,
+     requerente.`ID_CIDADE` AS requerente_ID_CIDADE,
+     requerente.`TEL_FIXO` AS requerente_TEL_FIXO,
+     requerente.`TEL_CEL` AS requerente_TEL_CEL,
+     requerente.`NUBENTE` AS requerente_NUBENTE,
+     requerente.`REGIME` AS requerente_REGIME,
+     requerente.`REPRESENTADO` AS requerente_REPRESENTADO,
+     requerente.`REPRESENTADO_NOME` AS requerente_REPRESENTADO_NOME,
+     requerente.`REPRESENTADO_TIPO` AS requerente_REPRESENTADO_TIPO
+FROM
+     `processo` processo INNER JOIN `tramitacao` tramitacao ON processo.`ID` = tramitacao.`ID_PROCESSO`
+     INNER JOIN `requerente` requerente ON processo.`ID_REQUERENTE` = requerente.`ID`
+ WHERE tramitacao.`STATUSS` = 'ENVIADO' and tramitacao.`SETOR_ORIGEM` = 'TITULAÇÃO' and tramitacao.`SETOR_DESTINO` = 'CADASTRO' and $P{NUMERO}
+ and tramitacao.`DATA_TRAMITACAO` = $P{DATA_ENVIO}
+ORDER BY requerente.`NOME`]]>
+	</queryString>
+	<field name="tramitacao_ID" class="java.lang.Long"/>
+	<field name="tramitacao_ID_USUARIO" class="java.lang.Long"/>
+	<field name="tramitacao_ID_PROCESSO" class="java.lang.Long"/>
+	<field name="tramitacao_ID_LOTETITULACAO" class="java.lang.Long"/>
+	<field name="tramitacao_DATA_TRAMITACAO" class="java.sql.Date"/>
+	<field name="tramitacao_HORA" class="java.lang.String"/>
+	<field name="tramitacao_MESANO" class="java.lang.String"/>
+	<field name="tramitacao_STATUSS" class="java.lang.String"/>
+	<field name="tramitacao_PARECER" class="java.lang.String"/>
+	<field name="tramitacao_SETOR" class="java.lang.String"/>
+	<field name="tramitacao_SETOR_ORIGEM" class="java.lang.String"/>
+	<field name="tramitacao_SETOR_DESTINO" class="java.lang.String"/>
+	<field name="tramitacao_LAUDO_MZU" class="java.lang.String"/>
+	<field name="tramitacao_OBSERVACAO" class="java.lang.String"/>
+	<field name="tramitacao_CONTROLE" class="java.lang.String"/>
+	<field name="tramitacao_SITUACAO_CAD" class="java.lang.String"/>
+	<field name="processo_ID" class="java.lang.Long"/>
+	<field name="processo_ID_USUARIO" class="java.lang.Long"/>
+	<field name="processo_NUM_PROCESSO" class="java.lang.String"/>
+	<field name="processo_ID_REQUERENTE" class="java.lang.Long"/>
+	<field name="processo_DATA_PROCESSO" class="java.sql.Date"/>
+	<field name="processo_MESANO" class="java.lang.String"/>
+	<field name="processo_TIPO" class="java.lang.String"/>
+	<field name="processo_SITUACAO" class="java.lang.String"/>
+	<field name="requerente_ID" class="java.lang.Long"/>
+	<field name="requerente_ID_LOGRADOURO" class="java.lang.Long"/>
+	<field name="requerente_NOME" class="java.lang.String"/>
+	<field name="requerente_NACIONALIDADE" class="java.lang.String"/>
+	<field name="requerente_EST_CIVIL" class="java.lang.String"/>
+	<field name="requerente_PROFISSAO" class="java.lang.String"/>
+	<field name="requerente_RG" class="java.lang.String"/>
+	<field name="requerente_ORGAO" class="java.lang.String"/>
+	<field name="requerente_CPF" class="java.lang.String"/>
+	<field name="requerente_NUMERO" class="java.lang.String"/>
+	<field name="requerente_ID_BAIRRO" class="java.lang.Long"/>
+	<field name="requerente_ID_CIDADE" class="java.lang.Long"/>
+	<field name="requerente_TEL_FIXO" class="java.lang.String"/>
+	<field name="requerente_TEL_CEL" class="java.lang.String"/>
+	<field name="requerente_NUBENTE" class="java.lang.String"/>
+	<field name="requerente_REGIME" class="java.lang.String"/>
+	<field name="requerente_REPRESENTADO" class="java.lang.String"/>
+	<field name="requerente_REPRESENTADO_NOME" class="java.lang.String"/>
+	<field name="requerente_REPRESENTADO_TIPO" class="java.lang.String"/>
+	<variable name="COLUMN_SOMA" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$V{COLUMN_COUNT}]]></variableExpression>
+	</variable>
+	<title>
+		<band height="220" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Transparent" x="39" y="50" width="461" height="48" forecolor="#000000"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ESTADO DO MARANHÃO
+PREFEITURA DE IMPERATRIZ
+SECRETARIA MUNICIPAL DE REGULARIZAÇÃO FUNDIÁRIA URBANA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="4" y="98" width="368" height="120"/>
+				<textElement>
+					<font fontName="Calibri" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Memorando nª "+$P{NUMERO}+"/"+new SimpleDateFormat("yyyy").format($F{tramitacao_DATA_TRAMITACAO})+"/DET/SERF/ITZ\n"+
+"Imperatriz - MA, "+new SimpleDateFormat("dd 'de' MMMM 'de' yyyy").format($F{tramitacao_DATA_TRAMITACAO})+"\n"+
+"De: Depto. de Emissão de Títulos\n"+
+"Ao: Setor de Cadastro Imobiliário (Luzenilde da Costa Batista)\n"+
+"Assunto: Relatório Cadastral\n"+
+"Encaminhar-se ao Setor de Cadastro Imobiliario os processos para que nos forneça o relatório cadastral dos processos abaixo descritos:"]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="240" y="0" width="100" height="50"/>
+				<imageExpression class="java.lang.String"><![CDATA[$P{LOGO_CIDADE}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="24" splitType="Stretch">
+			<line>
+				<reportElement x="4" y="19" width="549" height="1"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="4" y="0" width="449" height="19" backcolor="#000000"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Requerente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="453" y="0" width="102" height="19"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Processo]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<rectangle>
+				<reportElement x="4" y="0" width="549" height="20" backcolor="#CCFFFF">
+					<printWhenExpression><![CDATA[($V{REPORT_COUNT} % 2) != 0]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<textField>
+				<reportElement x="5" y="0" width="448" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{requerente_NOME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="453" y="0" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{processo_NUM_PROCESSO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="21" splitType="Stretch">
+			<staticText>
+				<reportElement x="5" y="1" width="235" height="20"/>
+				<textElement>
+					<font fontName="Constantia"/>
+				</textElement>
+				<text><![CDATA[Sip - Sistema de Informação de Processos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="420" y="1" width="80" height="20"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Qtde Pagina:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="498" y="1" width="52" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{COLUMN_COUNT}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="4" y="1" width="549" height="1"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="430" y="0" width="80" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA["Pagina "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="510" y="0" width="40" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<lastPageFooter>
+		<band height="126">
+			<staticText>
+				<reportElement x="168" y="22" width="211" height="22"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
+					<font fontName="Calibri" size="11" isBold="false"/>
+				</textElement>
+				<text><![CDATA[<b>DRA. ELIETE MORAES SOUSA</b>
+]]></text>
+			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement x="511" y="106" width="40" height="20"/>
+				<textElement>
+					<font fontName="Calibri"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="431" y="106" width="80" height="20"/>
+				<textElement textAlignment="Right">
+					<font fontName="Calibri"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Pagina "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="431" y="86" width="80" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Calibri" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Qtde Geral:]]></text>
+			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement x="515" y="86" width="38" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{COLUMN_SOMA}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="154" y="81" width="234" height="45"/>
+				<textElement textAlignment="Center" markup="html">
+					<font fontName="Calibri" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Secretaria Municipal de Regularização Fundiária Urbana
+Rua Godofredo Viana, 201-A, Centro - CEP. 65.900-440
+Imperatriz – MA - e-mail:serfitz@hotmail.com
+]]></text>
+			</staticText>
+			<image>
+				<reportElement x="74" y="22" width="57" height="50"/>
+				<imageExpression class="java.lang.String"><![CDATA[$P{LOGO_PREFEITURA}]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="410" y="22" width="57" height="50"/>
+				<imageExpression class="java.lang.String"><![CDATA[$P{LOGO_SERF}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="142" y="43" width="258" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<text><![CDATA[DIRETOR DO DEPARTAMENTO DE EMISSÃO DE TÍTULOS]]></text>
+			</staticText>
+		</band>
+	</lastPageFooter>
+</jasperReport>

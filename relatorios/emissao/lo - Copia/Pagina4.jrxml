@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="titulosEmitidosLote" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7a06500f-7fe5-4f6c-a06f-edc0999c4f17">
+	<property name="ireport.zoom" value="1.3310000000000062"/>
+	<property name="ireport.x" value="9"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="ID_EMISSAO" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     tramitacao.`ID` AS tramitacao_ID,
+     tramitacao.`ID_USUARIO` AS tramitacao_ID_USUARIO,
+     tramitacao.`ID_PROCESSO` AS tramitacao_ID_PROCESSO,
+     tramitacao.`DATA_TRAMITACAO` AS tramitacao_DATA_TRAMITACAO,
+     tramitacao.`HORA` AS tramitacao_HORA,
+     tramitacao.`MESANO` AS tramitacao_MESANO,
+     tramitacao.`STATUSS` AS tramitacao_STATUSS,
+     tramitacao.`PARECER` AS tramitacao_PARECER,
+     tramitacao.`SETOR` AS tramitacao_SETOR,
+     tramitacao.`SETOR_ORIGEM` AS tramitacao_SETOR_ORIGEM,
+     tramitacao.`SETOR_DESTINO` AS tramitacao_SETOR_DESTINO,
+     tramitacao.`OBSERVACAO` AS tramitacao_OBSERVACAO,
+     tramitacao.`CONTROLE` AS tramitacao_CONTROLE,
+     requerente.`ID` AS requerente_ID,
+     requerente.`ID_LOGRADOURO` AS requerente_ID_LOGRADOURO,
+     requerente.`NOME` AS requerente_NOME,
+     requerente.`NACIONALIDADE` AS requerente_NACIONALIDADE,
+     requerente.`EST_CIVIL` AS requerente_EST_CIVIL,
+     requerente.`PROFISSAO` AS requerente_PROFISSAO,
+     requerente.`RG` AS requerente_RG,
+     requerente.`ORGAO` AS requerente_ORGAO,
+     requerente.`CPF` AS requerente_CPF,
+     requerente.`NUMERO` AS requerente_NUMERO,
+     requerente.`ID_BAIRRO` AS requerente_ID_BAIRRO,
+     requerente.`ID_CIDADE` AS requerente_ID_CIDADE,
+     requerente.`TEL_FIXO` AS requerente_TEL_FIXO,
+     requerente.`TEL_CEL` AS requerente_TEL_CEL,
+     requerente.`NUBENTE` AS requerente_NUBENTE,
+     requerente.`REGIME` AS requerente_REGIME,
+     processo.`ID` AS processo_ID,
+     processo.`ID_USUARIO` AS processo_ID_USUARIO,
+     processo.`NUM_PROCESSO` AS processo_NUM_PROCESSO,
+     processo.`ID_REQUERENTE` AS processo_ID_REQUERENTE,
+     processo.`DATA_PROCESSO` AS processo_DATA_PROCESSO,
+     processo.`MESANO` AS processo_MESANO,
+     processo.`TIPO_LICENCA` AS processo_TIPO_LICENCA,
+     requerente.`COMPLEMENTO` AS requerente_COMPLEMENTO,
+     requerente.`CEP` AS requerente_CEP,
+     logradouro.`ID` AS logradouro_ID,
+     logradouro.`NOME` AS logradouro_NOME,
+     bairro.`ID` AS bairro_ID,
+     bairro.`NOME` AS bairro_NOME,
+     cidade.`ID` AS cidade_ID,
+     cidade.`NOME` AS cidade_NOME,
+     cidade.`UF` AS cidade_UF,
+     atividade.`ID` AS atividade_ID,
+     atividade.`NOME` AS atividade_NOME,
+     processo.`ID_ATIVIDADE` AS processo_ID_ATIVIDADE,
+     emissao_licenca.`ID` AS emissao_licenca_ID,
+     emissao_licenca.`ID_JURIDICO` AS emissao_licenca_ID_JURIDICO,
+     emissao_licenca.`ID_USUARIO` AS emissao_licenca_ID_USUARIO,
+     emissao_licenca.`DATA_EMISSAO` AS emissao_licenca_DATA_EMISSAO,
+     emissao_licenca.`MESANO` AS emissao_licenca_MESANO,
+     emissao_licenca.`AREA_TERRENO` AS emissao_licenca_AREA_TERRENO,
+     emissao_licenca.`AREA_CONSTRUIDA` AS emissao_licenca_AREA_CONSTRUIDA,
+     emissao_licenca.`HORA_INICIAL` AS emissao_licenca_HORA_INICIAL,
+     emissao_licenca.`HORA_FINAL` AS emissao_licenca_HORA_FINAL,
+     juridico.`ID` AS juridico_ID,
+     juridico.`ID_USUARIO` AS juridico_ID_USUARIO,
+     juridico.`ID_DISTRIBUICAO` AS juridico_ID_DISTRIBUICAO,
+     juridico.`DATA_JURIDICO` AS juridico_DATA_JURIDICO,
+     juridico.`TRAMITOU_GABINETE` AS juridico_TRAMITOU_GABINETE,
+     juridico.`TRAMITOU_EMISSAO` AS juridico_TRAMITOU_EMISSAO,
+     distribuicao.`ID` AS distribuicao_ID,
+     distribuicao.`ID_USUARIO` AS distribuicao_ID_USUARIO,
+     distribuicao.`ID_ANALISTA` AS distribuicao_ID_ANALISTA,
+     distribuicao.`ID_PROCESSO` AS distribuicao_ID_PROCESSO,
+     distribuicao.`DATA_DIST` AS distribuicao_DATA_DIST,
+     distribuicao.`MESANO` AS distribuicao_MESANO,
+     distribuicao.`CONTROLE` AS distribuicao_CONTROLE,
+     distribuicao.`TRAMITOU_ANALISE` AS distribuicao_TRAMITOU_ANALISE,
+     distribuicao.`TRAMITOU_JURIDICO` AS distribuicao_TRAMITOU_JURIDICO
+FROM
+     `requerente` requerente INNER JOIN `processo` processo ON requerente.`ID` = processo.`ID_REQUERENTE`
+     INNER JOIN `tramitacao` tramitacao ON processo.`ID` = tramitacao.`ID_PROCESSO`
+     INNER JOIN `atividade` atividade ON processo.`ID_ATIVIDADE` = atividade.`ID`
+     INNER JOIN `distribuicao` distribuicao ON processo.`ID` = distribuicao.`ID_PROCESSO`
+     INNER JOIN `juridico` juridico ON distribuicao.`ID` = juridico.`ID_DISTRIBUICAO`
+     INNER JOIN `emissao_licenca` emissao_licenca ON juridico.`ID` = emissao_licenca.`ID_JURIDICO`
+     INNER JOIN `logradouro` logradouro ON requerente.`ID_LOGRADOURO` = logradouro.`ID`
+     INNER JOIN `bairro` bairro ON requerente.`ID_BAIRRO` = bairro.`ID`
+     INNER JOIN `cidade` cidade ON requerente.`ID_CIDADE` = cidade.`ID`
+WHERE
+     emissao_licenca.`ID` = $P{ID_EMISSAO}]]>
+	</queryString>
+	<field name="tramitacao_ID" class="java.lang.Long"/>
+	<field name="tramitacao_ID_USUARIO" class="java.lang.Long"/>
+	<field name="tramitacao_ID_PROCESSO" class="java.lang.Long"/>
+	<field name="tramitacao_DATA_TRAMITACAO" class="java.sql.Date"/>
+	<field name="tramitacao_HORA" class="java.lang.String"/>
+	<field name="tramitacao_MESANO" class="java.lang.String"/>
+	<field name="tramitacao_STATUSS" class="java.lang.String"/>
+	<field name="tramitacao_PARECER" class="java.lang.String"/>
+	<field name="tramitacao_SETOR" class="java.lang.String"/>
+	<field name="tramitacao_SETOR_ORIGEM" class="java.lang.String"/>
+	<field name="tramitacao_SETOR_DESTINO" class="java.lang.String"/>
+	<field name="tramitacao_OBSERVACAO" class="java.lang.String"/>
+	<field name="tramitacao_CONTROLE" class="java.lang.String"/>
+	<field name="requerente_ID" class="java.lang.Long"/>
+	<field name="requerente_ID_LOGRADOURO" class="java.lang.Long"/>
+	<field name="requerente_NOME" class="java.lang.String"/>
+	<field name="requerente_NACIONALIDADE" class="java.lang.String"/>
+	<field name="requerente_EST_CIVIL" class="java.lang.String"/>
+	<field name="requerente_PROFISSAO" class="java.lang.String"/>
+	<field name="requerente_RG" class="java.lang.String"/>
+	<field name="requerente_ORGAO" class="java.lang.String"/>
+	<field name="requerente_CPF" class="java.lang.String"/>
+	<field name="requerente_NUMERO" class="java.lang.String"/>
+	<field name="requerente_ID_BAIRRO" class="java.lang.Long"/>
+	<field name="requerente_ID_CIDADE" class="java.lang.Long"/>
+	<field name="requerente_TEL_FIXO" class="java.lang.String"/>
+	<field name="requerente_TEL_CEL" class="java.lang.String"/>
+	<field name="requerente_NUBENTE" class="java.lang.String"/>
+	<field name="requerente_REGIME" class="java.lang.String"/>
+	<field name="processo_ID" class="java.lang.Long"/>
+	<field name="processo_ID_USUARIO" class="java.lang.Long"/>
+	<field name="processo_NUM_PROCESSO" class="java.lang.String"/>
+	<field name="processo_ID_REQUERENTE" class="java.lang.Long"/>
+	<field name="processo_DATA_PROCESSO" class="java.sql.Date"/>
+	<field name="processo_MESANO" class="java.lang.String"/>
+	<field name="processo_TIPO_LICENCA" class="java.lang.String"/>
+	<field name="requerente_COMPLEMENTO" class="java.lang.String"/>
+	<field name="requerente_CEP" class="java.lang.String"/>
+	<field name="logradouro_ID" class="java.lang.Long"/>
+	<field name="logradouro_NOME" class="java.lang.String"/>
+	<field name="bairro_ID" class="java.lang.Long"/>
+	<field name="bairro_NOME" class="java.lang.String"/>
+	<field name="cidade_ID" class="java.lang.Long"/>
+	<field name="cidade_NOME" class="java.lang.String"/>
+	<field name="cidade_UF" class="java.lang.String"/>
+	<field name="atividade_ID" class="java.lang.Long"/>
+	<field name="atividade_NOME" class="java.lang.String"/>
+	<field name="processo_ID_ATIVIDADE" class="java.lang.Long"/>
+	<field name="emissao_licenca_ID" class="java.lang.Long"/>
+	<field name="emissao_licenca_ID_JURIDICO" class="java.lang.Long"/>
+	<field name="emissao_licenca_ID_USUARIO" class="java.lang.Long"/>
+	<field name="emissao_licenca_DATA_EMISSAO" class="java.sql.Date"/>
+	<field name="emissao_licenca_MESANO" class="java.lang.String"/>
+	<field name="emissao_licenca_AREA_TERRENO" class="java.lang.Double"/>
+	<field name="emissao_licenca_AREA_CONSTRUIDA" class="java.lang.Double"/>
+	<field name="emissao_licenca_HORA_INICIAL" class="java.lang.String"/>
+	<field name="emissao_licenca_HORA_FINAL" class="java.lang.String"/>
+	<field name="juridico_ID" class="java.lang.Long"/>
+	<field name="juridico_ID_USUARIO" class="java.lang.Long"/>
+	<field name="juridico_ID_DISTRIBUICAO" class="java.lang.Long"/>
+	<field name="juridico_DATA_JURIDICO" class="java.sql.Date"/>
+	<field name="juridico_TRAMITOU_GABINETE" class="java.lang.String"/>
+	<field name="juridico_TRAMITOU_EMISSAO" class="java.lang.String"/>
+	<title>
+		<band height="760" splitType="Stretch">
+			<ellipse>
+				<reportElement x="251" y="730" width="36" height="30" forecolor="#999999" backcolor="#666666" uuid="c147b268-6c74-4971-98bd-524373e61cc2"/>
+			</ellipse>
+			<staticText>
+				<reportElement x="266" y="735" width="11" height="20" forecolor="#FFFFFF" uuid="fa79593d-a2f4-47df-8e64-0b7bd3a585b8"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[4]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="28" y="292" width="26" height="15" uuid="6c36527e-1440-46a5-bb6e-2b4fc7d2e804"/>
+				<textElement textAlignment="Justified" markup="none">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[1.7.4]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="60" y="292" width="463" height="38" uuid="033f3570-432f-4905-8880-5baf64f436f4"/>
+				<textElement textAlignment="Justified" markup="html">
+					<font fontName="Arial" size="11" isBold="false"/>
+				</textElement>
+				<text><![CDATA[<b>Armazenamento -</b> O armazenamento de produtos químicos deve ser feito, preferencialmente, em locais cobertos, bem ventilados, que possuam piso impermeável e dispositivo para contenção, evitando a percolação de substâncias para o solo e água subterrânea. ]]></text>
+			</staticText>
+			<elementGroup/>
+			<staticText>
+				<reportElement x="60" y="336" width="463" height="33" uuid="51ecf7d7-82b9-45ad-a185-345c60cecf3c"/>
+				<textElement textAlignment="Justified" markup="html">
+					<font fontName="Arial" size="11" isBold="false"/>
+				</textElement>
+				<text><![CDATA[<b>Manutenção -</b> Realizar inspeções periódicas, bem como manutenção preventiva e corretiva, dos sistemas que contém produtos químicos.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="60" y="373" width="463" height="68" uuid="8801a7ce-c983-4866-813e-0664376e3247"/>
+				<textElement textAlignment="Justified" markup="html">
+					<font fontName="Arial" size="11" isBold="false"/>
+				</textElement>
+				<text><![CDATA[<b>Resposta à Emergência - </b>Deverá ser atendido o Plano para Resposta à Emergência contendo procedimentos e incluindo medidas como: ações a serem tomadas em casos de derramamento ou vazamento, remoção imediata do resíduo da bacia de contenção, destinação adequada dos resíduos contaminados gerados, lista de equipamentos de segurança existentes, bem como sua localização, tipo de material e capacidade etc.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="60" y="451" width="463" height="44" uuid="9313ac3a-8846-49f2-8467-c8088631e03f"/>
+				<textElement textAlignment="Justified" markup="html">
+					<font fontName="Arial" size="11" isBold="false"/>
+				</textElement>
+				<text><![CDATA[<b>Disposição Correta de Resíduos Originários de Acidentes com Produtos Químicos -</b> Não lançar em rede de drenagem ou nos corpos receptores qualquer resíduo ou efluente proveniente de vazamento ou derramamento acidental;]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="60" y="505" width="463" height="58" uuid="0582b7b4-d818-4510-8569-e9bad4b390de"/>
+				<textElement textAlignment="Justified" markup="html">
+					<font fontName="Arial" size="11" isBold="false"/>
+				</textElement>
+				<text><![CDATA[<b>Gerenciamento de Áreas Contaminadas -</b> Atender à Resolução CONAMA nº 420/2009, que dispõe sobre critérios e valores orientadores de qualidade do solo quanto à presença de substâncias químicas e estabelece diretrizes para o gerenciamento ambiental de áreas contaminadas por essas substâncias em decorrência de atividades antrópicas;]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="60" y="574" width="463" height="72" uuid="844a7093-d7b9-4438-88d7-82fa3dc7985f"/>
+				<textElement textAlignment="Justified" markup="html">
+					<font fontName="Arial" size="11" isBold="false"/>
+				</textElement>
+				<text><![CDATA[<b>Treinamento -</b> Deverá ser realizado treinamento envolvendo todas as etapas de transporte, manuseio/manipulação e resposta a emergência envolvendo produtos químicos, consistindo no estabelecimento de um programa de capacitação profissional que inclua cursos técnicos e de desenvolvimento pessoal para os funcionários, objetivando melhorias no desempenho de suas tarefas, com consciência ambiental, responsabilidade e segurança.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="28" y="336" width="26" height="15" uuid="f38253ec-053f-4961-934d-2c6bfae262c4"/>
+				<textElement textAlignment="Justified" markup="none">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[1.7.5]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="28" y="373" width="26" height="15" uuid="5aed4dfe-ee2f-49c3-b62f-e72105ecc1c7"/>
+				<textElement textAlignment="Justified" markup="none">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[1.7.6]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="28" y="451" width="26" height="15" uuid="d8d25098-547a-4e30-9021-1921845b7f4f"/>
+				<textElement textAlignment="Justified" markup="none">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[1.7.7]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="28" y="505" width="26" height="15" uuid="ded108b3-ab13-4135-ae2d-1ef5786b9be5"/>
+				<textElement textAlignment="Justified" markup="none">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[1.7.8]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="28" y="574" width="26" height="15" uuid="80e97718-a9e1-45c6-817b-33b6514f1673"/>
+				<textElement textAlignment="Justified" markup="none">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[1.7.9]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="60" y="195" width="463" height="91" uuid="ef1128ab-b3db-44c9-844a-55d341a43c46"/>
+				<textElement textAlignment="Justified" markup="html">
+					<font fontName="Arial" size="11" isBold="false"/>
+				</textElement>
+				<text><![CDATA[<b>Acondicionamento -</b> Os contêineres e tambores, ou outros tipos de embalagens, para acondicionamento de produtos químicos devem estar em boas condições de uso (sem defeitos ou ferrugem acentuada), serem resistentes ao ataque dos produtos armazenados, identificados corretamente, e sua disposição na área de armazenamento deve ser feita de tal forma que possam ser facilmente inspecionados. Caso haja necessidade de tanques de armazenamento de produtos químicos, dar preferência a tanques aéreos munidos com diques de contenção.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="60" y="113" width="463" height="69" uuid="199295b5-a483-4ad0-8463-ad63f343d54e"/>
+				<textElement textAlignment="Justified" markup="html">
+					<font fontName="Arial" size="11" isBold="false"/>
+				</textElement>
+				<text><![CDATA[<b>Segregação - </b> Esta técnica visa a separação dos diferentes fluxos de produtos químicos utilizados no processo produtivo, de modo a evitar que produtos perigosos contaminem aqueles não perigosos, reduzindo o volume de resíduos tóxicos e, consequentemente, reduzindo os custos associados ao seu tratamento e disposição. Devem ser segregados conforme suas compatibilidades de forma a prevenir reações entre os produtos por ocasião de vazamentos ou, ainda, que substâncias corrosivas possam atingir recipientes íntegros.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="28" y="195" width="26" height="15" uuid="940949d6-0db4-4f0c-be60-b39d7c693bc2"/>
+				<textElement>
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[1.7.3]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="28" y="113" width="26" height="15" uuid="d7b335bc-4c03-4487-a4bb-b1d80349a46b"/>
+				<textElement textAlignment="Justified" markup="none">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[1.7.2]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="28" y="72" width="26" height="15" uuid="42f3cb94-c0ac-44d6-89d3-51d022bb61ef"/>
+				<textElement textAlignment="Justified" markup="none">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[1.7.1]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="60" y="72" width="463" height="31" uuid="f8a1c61b-71c4-4fe3-84e0-f87c54b31ee5"/>
+				<textElement textAlignment="Justified" markup="html">
+					<font fontName="Arial" size="11" isBold="false"/>
+				</textElement>
+				<text><![CDATA[O empreendedor deverá atentar, no mínimo, aos seguintes itens abaixo, no que tange aos Riscos Tecnológicos envolvendo Produtos Químicos:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="28" y="44" width="495" height="15" uuid="0f4eb28e-4292-4afb-8bbb-9a581bdddbfc"/>
+				<textElement textAlignment="Justified" markup="none">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[1.7   EXIGÊNCIAS RELATIVAS AO CONTROLE DE RISCOS TECNOLÓGICOS ENVOLVENDO PRODUTOS QUÍMICOS]]></text>
+			</staticText>
+		</band>
+	</title>
+</jasperReport>

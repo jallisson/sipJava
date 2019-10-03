@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="titulosEmitidosLote" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8694e265-81d0-4c86-a61b-830f8c9f3658">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="ID_LOTE" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CAMINHO_IMAGEM" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select tram.id, tram.statuss, tram.id_lotetitulacao, tram.data_tramitacao, tram.hora, pro.num_processo, lote_titu.lote as lote, lote_titu.descricao as descricao_lote, req.nome as nome_Requerente, imov.id, bai.nome as nome_bairro from tramitacao tram  join processo pro on tram.id_processo = pro.id join lote_titulacao lote_titu on tram.id_lotetitulacao = lote_titu.id join requerente req on pro.id_requerente = req.id left join imovel imov on pro.id = imov.id_processo left join bairro bai on imov.id_bairro = bai.id
+ join
+  (select max(id) as id, id_processo, statuss
+   from tramitacao
+   group by id_processo
+  ) as b
+on (tram.id_processo=b.id_processo and tram.id=b.id)
+ WHERE tram.id_lotetitulacao = $P{ID_LOTE}]]>
+	</queryString>
+	<field name="id" class="java.lang.Long"/>
+	<field name="statuss" class="java.lang.String"/>
+	<field name="id_lotetitulacao" class="java.lang.Long"/>
+	<field name="data_tramitacao" class="java.sql.Date"/>
+	<field name="hora" class="java.lang.String"/>
+	<field name="num_processo" class="java.lang.String"/>
+	<field name="lote" class="java.lang.String"/>
+	<field name="descricao_lote" class="java.lang.String"/>
+	<field name="nome_Requerente" class="java.lang.String"/>
+	<field name="nome_bairro" class="java.lang.String"/>
+	<variable name="COLUMN_SOMA" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$V{COLUMN_COUNT}]]></variableExpression>
+	</variable>
+	<title>
+		<band height="76" splitType="Stretch">
+			<staticText>
+				<reportElement x="127" y="0" width="286" height="20" uuid="5edd7e40-3b7b-4879-8538-d97ef33ce557"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SIP - SISTEMA DE INFORMAÇÃO DE PROCESSOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="420" y="0" width="110" height="20" uuid="d10cd8e8-0ff3-4e3a-8c57-4d1dd0051d09"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<text><![CDATA[Data de Emissão:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="468" y="0" width="85" height="20" uuid="aba79bbd-8d01-43e5-aba1-ad5b6884c583"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="116" y="24" width="309" height="19" uuid="34e45d76-5a7e-4f10-9717-657a467dce4c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="14" isBold="false"/>
+				</textElement>
+				<text><![CDATA[TRAMITAÇÃO POR LOTE TITULAÇÃO]]></text>
+			</staticText>
+			<image>
+				<reportElement x="9" y="0" width="96" height="52" backcolor="#D4D0C8" uuid="dd01568b-e56a-4b26-9192-5f80398f724a"/>
+				<imageExpression><![CDATA[$P{CAMINHO_IMAGEM}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="48" y="60" width="79" height="10" uuid="9ac0c425-698b-42a1-838e-a8ff57521478"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Verdana" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{lote}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="6" y="60" width="42" height="10" uuid="68f96747-2f6c-4ac9-adc2-14dec5425397"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="Verdana" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Lote:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="191" y="60" width="359" height="10" uuid="ab9fbf0f-9603-4a70-b206-4c7dd8b6a3f2"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Verdana" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descricao_lote}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="127" y="60" width="64" height="10" uuid="64c3334e-4395-4338-9870-2a7d6d2d89d2"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="Verdana" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Descrição:]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="24" splitType="Stretch">
+			<staticText>
+				<reportElement x="2" y="0" width="88" height="23" uuid="ebe989c2-27ca-4a6f-bb58-13fd57557736"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Verdana" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Processo]]></text>
+			</staticText>
+			<line>
+				<reportElement x="4" y="19" width="549" height="1" uuid="a4f2c2d9-0ab8-42a4-aa5f-f6d3379f5458"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="405" y="0" width="75" height="20" uuid="c40315c3-a07f-4b60-aade-17a7969f939c"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Verdana" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="480" y="0" width="75" height="20" uuid="fd8d26d0-24ae-4c3b-82d9-0579acbd48f8"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Verdana" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hora]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="90" y="1" width="189" height="23" uuid="b209b3a0-c423-45b4-b911-85f1cac62693"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Verdana" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Requerente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="279" y="1" width="126" height="23" uuid="35a0e102-cd02-4539-88c5-b55e333de8a9"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Verdana" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bairro]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<rectangle>
+				<reportElement x="4" y="0" width="549" height="20" backcolor="#F4F7FC" uuid="a8d1e7a4-4a1c-4c30-b2f8-5745d8c99007">
+					<printWhenExpression><![CDATA[($V{REPORT_COUNT} % 2) != 0]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<textField>
+				<reportElement x="478" y="0" width="75" height="20" uuid="fb287da5-460a-43ef-994f-a04735e3579a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{hora}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="405" y="0" width="73" height="20" uuid="ca55c5a4-33ad-4936-83c2-bebefe8b8b57"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{data_tramitacao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="92" y="0" width="187" height="20" uuid="33341d77-575e-4400-ba4b-5264d4b0bfec"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome_Requerente}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="279" y="0" width="126" height="20" uuid="569469bb-0412-4f33-a7e6-5830fe15cb8c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome_bairro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="4" y="0" width="88" height="20" uuid="98def3f2-bb47-4334-841f-dff985219e2c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{num_processo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="21" splitType="Stretch">
+			<staticText>
+				<reportElement x="6" y="1" width="231" height="20" uuid="7a9009ad-7f06-4a65-ab42-3c6161db1581"/>
+				<textElement>
+					<font fontName="Constantia"/>
+				</textElement>
+				<text><![CDATA[Sip - Sistema de Informação de Processos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="420" y="1" width="80" height="20" uuid="2d609c06-af0b-4833-9ab3-03a6ff0d2df5"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Qtde Pagina:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="498" y="1" width="52" height="20" uuid="3282a3d0-d4e6-4ebe-9843-2499783a3970"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{COLUMN_COUNT}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="4" y="1" width="549" height="1" uuid="f3a8942c-b97b-464e-ab2e-8312396a53ec"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="388" y="0" width="80" height="20" uuid="ecd07441-59e3-4998-9e7b-9a9496cbc2b2"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Pagina "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="468" y="0" width="40" height="20" uuid="5cbaaa09-26c6-4c02-b938-601fc0c91d66"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<lastPageFooter>
+		<band height="40">
+			<staticText>
+				<reportElement x="191" y="20" width="100" height="20" uuid="c2e37320-eb93-44bf-9044-f356f38f8f37"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fim do Relatório]]></text>
+			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement x="468" y="20" width="40" height="20" uuid="9f20e9ae-5424-4c58-b17c-9e6e96a117d2"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="388" y="20" width="80" height="20" uuid="3d67d6e1-ba4a-4421-92d8-c897330f7189"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Pagina "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="279" y="0" width="189" height="20" uuid="2909536a-d5e2-499d-ad50-4a73d9c7d158"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Qtde Geral:]]></text>
+			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement x="468" y="0" width="79" height="20" uuid="6128c408-c435-481e-b9bd-5168382440ee"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{COLUMN_SOMA}]]></textFieldExpression>
+			</textField>
+		</band>
+	</lastPageFooter>
+</jasperReport>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="estudo" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="711e8d0c-79a9-4d25-b6ed-89f5d94e4ec4">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="480"/>
+	<queryString>
+		<![CDATA[SELECT
+     bairro.`ID` AS bairro_ID,
+     bairro.`NOME` AS bairro_NOME,
+     bairro.`LIVRO` AS bairro_LIVRO,
+     bairro.`FOLHA` AS bairro_FOLHA,
+     bairro.`MATRICULA` AS bairro_MATRICULA,
+     bairro.`TIPO` AS bairro_TIPO
+FROM
+     `bairro` bairro]]>
+	</queryString>
+	<field name="bairro_ID" class="java.lang.Long"/>
+	<field name="bairro_NOME" class="java.lang.String"/>
+	<field name="bairro_LIVRO" class="java.lang.String"/>
+	<field name="bairro_FOLHA" class="java.lang.Long"/>
+	<field name="bairro_MATRICULA" class="java.lang.String"/>
+	<field name="bairro_TIPO" class="java.lang.String"/>
+	<background>
+		<band height="802">
+			<componentElement>
+				<reportElement x="169" y="71" width="316" height="280" uuid="f2c6eea9-364c-4445-914a-10fa9e885ce4"/>
+				<mp:map xmlns:mp="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" evaluationTime="Report" mapScale="4">
+					<mp:latitudeExpression><![CDATA[-5.5212929951161795]]></mp:latitudeExpression>
+					<mp:longitudeExpression><![CDATA[-47.47515064592437]]></mp:longitudeExpression>
+					<mp:zoomExpression><![CDATA[17]]></mp:zoomExpression>
+				</mp:map>
+			</componentElement>
+		</band>
+	</background>
+	<title>
+		<band height="379" splitType="Stretch">
+			<staticText>
+				<reportElement x="157" y="0" width="291" height="40" uuid="757fce8a-d7f0-4bab-a967-059e2b666a4f"/>
+				<textElement>
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ESTUDO DE PALETAS]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="11" y="67" width="100" height="20" uuid="c13914a1-0077-4f84-a4c8-e58dbdc0164c"/>
+				<textFieldExpression><![CDATA[$F{bairro_NOME}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+</jasperReport>

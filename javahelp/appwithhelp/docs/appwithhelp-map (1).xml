@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map PUBLIC "-//Sun Microsystems Inc.//DTD JavaHelp Map Version 2.0//EN" "http://java.sun.com/products/javahelp/map_2_0.dtd">
+<map version="2.0">
+    <mapID target="appwithhelp.about" url="content/appwithhelp-about.html"/>
+    <mapID target="appwithhelp.more" url="content/appwithhelp-more.html"/>
+    <mapID target="appwithhelp.menucadastro" url="content/appwithhelp-menucadastro.html"/>
+    <mapID target="appwithhelp.cadastromonitor" url="content/appwithhelp-cadastromonitor.html"/>
+    <mapID target="appwithhelp.cadastroocorrencia" url="content/appwithhelp-cadastroocorrencia.html"/>
+    <mapID target="appwithhelp.cadastrocarro" url="content/appwithhelp-cadastrocarro.html"/>
+    <mapID target="appwithhelp.cadastromotorista" url="content/appwithhelp-cadastromotorista.html"/>
+    <mapID target="appwithhelp.cadastrocobrador" url="content/appwithhelp-cadastrocobrador.html"/>
+    <mapID target="appwithhelp.cadastrorotas" url="content/appwithhelp-cadastrorotas.html"/>
+    <mapID target="appwithhelp.cadastroempresas" url="content/appwithhelp-cadastroempresas.html"/>
+    <mapID target="appwithhelp.menumovimento" url="content/appwithhelp-menumovimento.html"/>
+    <mapID target="appwithhelp.registrarvideo" url="content/appwithhelp-registrarvideo.html"/>
+    <mapID target="appwithhelp.alterarvideo" url="content/appwithhelp-alterarvideo.html"/>
+    <mapID target="appwithhelp.inserirocorrencia" url="content/appwithhelp-inserirocorrencia.html"/>
+    <mapID target="appwithhelp.excluirocorrencia" url="content/appwithhelp-excluirocorrencia.html"/>
+    <mapID target="appwithhelp.consultarvideo" url="content/appwithhelp-consultarvideo.html"/>
+    <mapID target="appwithhelp.menurelatorios" url="content/appwithhelp-menurelatorios.html"/>
+    <mapID target="appwithhelp.controledeacesso" url="content/appwithhelp-controledeacesso.html"/>  
+</map>

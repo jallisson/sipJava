@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="parecer_tecnico" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="45784159-55ed-4d8b-a999-310b9c86719e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="ID_PARECER" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     processo.`ID` AS processo_ID,
+     processo.`ID_USUARIO` AS processo_ID_USUARIO,
+     processo.`NUM_PROCESSO` AS processo_NUM_PROCESSO,
+     processo.`ID_REQUERENTE` AS processo_ID_REQUERENTE,
+     processo.`DATA_PROCESSO` AS processo_DATA_PROCESSO,
+     processo.`MESANO` AS processo_MESANO,
+     processo.`TIPO_LICENCA` AS processo_TIPO_LICENCA,
+     processo.`TRAMITOU_DMA` AS processo_TRAMITOU_DMA,
+     processo.`ID_ATIVIDADE` AS processo_ID_ATIVIDADE,
+     parecer_analise.`ID` AS parecer_analise_ID,
+     parecer_analise.`ID_USUARIO` AS parecer_analise_ID_USUARIO,
+     parecer_analise.`ID_ANALISE` AS parecer_analise_ID_ANALISE,
+     parecer_analise.`DATA_PARECER` AS parecer_analise_DATA_PARECER,
+     parecer_analise.`TIPO` AS parecer_analise_TIPO,
+     parecer_analise.`CONTROLE` AS parecer_analise_CONTROLE,
+     parecer_analise.`ID_ANEXOS_PROCESSO` AS parecer_analise_ID_ANEXOS_PROCESSO,
+     parecer_analise.`DATA_VISTORIA` AS parecer_analise_DATA_VISTORIA,
+     analise.`ID` AS analise_ID,
+     analise.`ID_USUARIO` AS analise_ID_USUARIO,
+     analise.`ID_DISTRIBUICAO` AS analise_ID_DISTRIBUICAO,
+     analise.`DATA_ANALISE` AS analise_DATA_ANALISE,
+     analise.`ANO` AS analise_ANO,
+     requerente.`ID` AS requerente_ID,
+     requerente.`ID_LOGRADOURO` AS requerente_ID_LOGRADOURO,
+     requerente.`NOME` AS requerente_NOME,
+     requerente.`NACIONALIDADE` AS requerente_NACIONALIDADE,
+     requerente.`EST_CIVIL` AS requerente_EST_CIVIL,
+     requerente.`PROFISSAO` AS requerente_PROFISSAO,
+     requerente.`RG` AS requerente_RG,
+     requerente.`ORGAO` AS requerente_ORGAO,
+     requerente.`CPF` AS requerente_CPF,
+     requerente.`NUMERO` AS requerente_NUMERO,
+     requerente.`ID_BAIRRO` AS requerente_ID_BAIRRO,
+     requerente.`ID_CIDADE` AS requerente_ID_CIDADE,
+     requerente.`TEL_FIXO` AS requerente_TEL_FIXO,
+     requerente.`TEL_CEL` AS requerente_TEL_CEL,
+     requerente.`NUBENTE` AS requerente_NUBENTE,
+     requerente.`REGIME` AS requerente_REGIME,
+     requerente.`REPRESENTADO` AS requerente_REPRESENTADO,
+     requerente.`REPRESENTADO_NOME` AS requerente_REPRESENTADO_NOME,
+     requerente.`REPRESENTADO_TIPO` AS requerente_REPRESENTADO_TIPO,
+     requerente.`TIPO_PESSOA` AS requerente_TIPO_PESSOA,
+     requerente.`ID_REQUERENTE` AS requerente_ID_REQUERENTE,
+     requerente.`COMPLEMENTO` AS requerente_COMPLEMENTO,
+     requerente.`CEP` AS requerente_CEP,
+     distribuicao.`ID` AS distribuicao_ID,
+     distribuicao.`ID_USUARIO` AS distribuicao_ID_USUARIO,
+     distribuicao.`ID_ANALISTA` AS distribuicao_ID_ANALISTA,
+     distribuicao.`ID_PROCESSO` AS distribuicao_ID_PROCESSO,
+     distribuicao.`DATA_DIST` AS distribuicao_DATA_DIST,
+     distribuicao.`MESANO` AS distribuicao_MESANO,
+     distribuicao.`CONTROLE` AS distribuicao_CONTROLE,
+     distribuicao.`TRAMITOU_ANALISE` AS distribuicao_TRAMITOU_ANALISE,
+     distribuicao.`TRAMITOU_JURIDICO` AS distribuicao_TRAMITOU_JURIDICO,
+     atividade.`ID` AS atividade_ID,
+     atividade.`NOME` AS atividade_NOME,
+     atividade.`POTENCIAL_POLUIDOR` AS atividade_POTENCIAL_POLUIDOR,
+     requerente_A.`ID` AS requerente_A_ID,
+     requerente_A.`ID_LOGRADOURO` AS requerente_A_ID_LOGRADOURO,
+     requerente_A.`NOME` AS requerente_A_NOME,
+     requerente_A.`NACIONALIDADE` AS requerente_A_NACIONALIDADE,
+     requerente_A.`EST_CIVIL` AS requerente_A_EST_CIVIL,
+     requerente_A.`PROFISSAO` AS requerente_A_PROFISSAO,
+     requerente_A.`RG` AS requerente_A_RG,
+     requerente_A.`ORGAO` AS requerente_A_ORGAO,
+     requerente_A.`CPF` AS requerente_A_CPF,
+     requerente_A.`NUMERO` AS requerente_A_NUMERO,
+     requerente_A.`ID_BAIRRO` AS requerente_A_ID_BAIRRO,
+     requerente_A.`ID_CIDADE` AS requerente_A_ID_CIDADE,
+     requerente_A.`TEL_FIXO` AS requerente_A_TEL_FIXO,
+     requerente_A.`TEL_CEL` AS requerente_A_TEL_CEL,
+     requerente_A.`NUBENTE` AS requerente_A_NUBENTE,
+     requerente_A.`REGIME` AS requerente_A_REGIME,
+     requerente_A.`REPRESENTADO` AS requerente_A_REPRESENTADO,
+     requerente_A.`REPRESENTADO_NOME` AS requerente_A_REPRESENTADO_NOME,
+     requerente_A.`REPRESENTADO_TIPO` AS requerente_A_REPRESENTADO_TIPO,
+     requerente_A.`TIPO_PESSOA` AS requerente_A_TIPO_PESSOA,
+     requerente_A.`ID_REQUERENTE` AS requerente_A_ID_REQUERENTE,
+     requerente_A.`COMPLEMENTO` AS requerente_A_COMPLEMENTO,
+     requerente_A.`CEP` AS requerente_A_CEP
+FROM
+     `analise` analise LEFT JOIN `parecer_analise` parecer_analise ON analise.`ID` = parecer_analise.`ID_ANALISE`
+     LEFT JOIN `distribuicao` distribuicao ON analise.`ID_DISTRIBUICAO` = distribuicao.`ID`
+     LEFT JOIN `processo` processo ON distribuicao.`ID_PROCESSO` = processo.`ID`
+     LEFT JOIN `requerente` requerente ON processo.`ID_REQUERENTE` = requerente.`ID`
+     LEFT JOIN `atividade` atividade ON processo.`ID_ATIVIDADE` = atividade.`ID`
+     LEFT JOIN `requerente` requerente_A ON requerente.`ID_REQUERENTE` = requerente_A.`ID`
+WHERE
+     parecer_analise.`ID` = $P{ID_PARECER}]]>
+	</queryString>
+	<field name="processo_ID" class="java.lang.Long"/>
+	<field name="processo_ID_USUARIO" class="java.lang.Long"/>
+	<field name="processo_NUM_PROCESSO" class="java.lang.String"/>
+	<field name="processo_ID_REQUERENTE" class="java.lang.Long"/>
+	<field name="processo_DATA_PROCESSO" class="java.sql.Date"/>
+	<field name="processo_MESANO" class="java.lang.String"/>
+	<field name="processo_TIPO_LICENCA" class="java.lang.String"/>
+	<field name="processo_TRAMITOU_DMA" class="java.lang.String"/>
+	<field name="processo_ID_ATIVIDADE" class="java.lang.Long"/>
+	<field name="parecer_analise_ID" class="java.lang.Long"/>
+	<field name="parecer_analise_ID_USUARIO" class="java.lang.Long"/>
+	<field name="parecer_analise_ID_ANALISE" class="java.lang.Long"/>
+	<field name="parecer_analise_DATA_PARECER" class="java.sql.Date"/>
+	<field name="parecer_analise_TIPO" class="java.lang.String"/>
+	<field name="parecer_analise_CONTROLE" class="java.lang.String"/>
+	<field name="parecer_analise_ID_ANEXOS_PROCESSO" class="java.lang.Long"/>
+	<field name="parecer_analise_DATA_VISTORIA" class="java.sql.Date"/>
+	<field name="analise_ID" class="java.lang.Long"/>
+	<field name="analise_ID_USUARIO" class="java.lang.Long"/>
+	<field name="analise_ID_DISTRIBUICAO" class="java.lang.Long"/>
+	<field name="analise_DATA_ANALISE" class="java.sql.Date"/>
+	<field name="analise_ANO" class="java.lang.String"/>
+	<field name="requerente_ID" class="java.lang.Long"/>
+	<field name="requerente_ID_LOGRADOURO" class="java.lang.Long"/>
+	<field name="requerente_NOME" class="java.lang.String"/>
+	<field name="requerente_NACIONALIDADE" class="java.lang.String"/>
+	<field name="requerente_EST_CIVIL" class="java.lang.String"/>
+	<field name="requerente_PROFISSAO" class="java.lang.String"/>
+	<field name="requerente_RG" class="java.lang.String"/>
+	<field name="requerente_ORGAO" class="java.lang.String"/>
+	<field name="requerente_CPF" class="java.lang.String"/>
+	<field name="requerente_NUMERO" class="java.lang.String"/>
+	<field name="requerente_ID_BAIRRO" class="java.lang.Long"/>
+	<field name="requerente_ID_CIDADE" class="java.lang.Long"/>
+	<field name="requerente_TEL_FIXO" class="java.lang.String"/>
+	<field name="requerente_TEL_CEL" class="java.lang.String"/>
+	<field name="requerente_NUBENTE" class="java.lang.String"/>
+	<field name="requerente_REGIME" class="java.lang.String"/>
+	<field name="requerente_REPRESENTADO" class="java.lang.String"/>
+	<field name="requerente_REPRESENTADO_NOME" class="java.lang.String"/>
+	<field name="requerente_REPRESENTADO_TIPO" class="java.lang.String"/>
+	<field name="requerente_TIPO_PESSOA" class="java.lang.String"/>
+	<field name="requerente_ID_REQUERENTE" class="java.lang.Long"/>
+	<field name="requerente_COMPLEMENTO" class="java.lang.String"/>
+	<field name="requerente_CEP" class="java.lang.String"/>
+	<field name="distribuicao_ID" class="java.lang.Long"/>
+	<field name="distribuicao_ID_USUARIO" class="java.lang.Long"/>
+	<field name="distribuicao_ID_ANALISTA" class="java.lang.Long"/>
+	<field name="distribuicao_ID_PROCESSO" class="java.lang.Long"/>
+	<field name="distribuicao_DATA_DIST" class="java.sql.Date"/>
+	<field name="distribuicao_MESANO" class="java.lang.String"/>
+	<field name="distribuicao_CONTROLE" class="java.lang.String"/>
+	<field name="distribuicao_TRAMITOU_ANALISE" class="java.lang.String"/>
+	<field name="distribuicao_TRAMITOU_JURIDICO" class="java.lang.String"/>
+	<field name="atividade_ID" class="java.lang.Long"/>
+	<field name="atividade_NOME" class="java.lang.String"/>
+	<field name="atividade_POTENCIAL_POLUIDOR" class="java.lang.String"/>
+	<field name="requerente_A_ID" class="java.lang.Long"/>
+	<field name="requerente_A_ID_LOGRADOURO" class="java.lang.Long"/>
+	<field name="requerente_A_NOME" class="java.lang.String"/>
+	<field name="requerente_A_NACIONALIDADE" class="java.lang.String"/>
+	<field name="requerente_A_EST_CIVIL" class="java.lang.String"/>
+	<field name="requerente_A_PROFISSAO" class="java.lang.String"/>
+	<field name="requerente_A_RG" class="java.lang.String"/>
+	<field name="requerente_A_ORGAO" class="java.lang.String"/>
+	<field name="requerente_A_CPF" class="java.lang.String"/>
+	<field name="requerente_A_NUMERO" class="java.lang.String"/>
+	<field name="requerente_A_ID_BAIRRO" class="java.lang.Long"/>
+	<field name="requerente_A_ID_CIDADE" class="java.lang.Long"/>
+	<field name="requerente_A_TEL_FIXO" class="java.lang.String"/>
+	<field name="requerente_A_TEL_CEL" class="java.lang.String"/>
+	<field name="requerente_A_NUBENTE" class="java.lang.String"/>
+	<field name="requerente_A_REGIME" class="java.lang.String"/>
+	<field name="requerente_A_REPRESENTADO" class="java.lang.String"/>
+	<field name="requerente_A_REPRESENTADO_NOME" class="java.lang.String"/>
+	<field name="requerente_A_REPRESENTADO_TIPO" class="java.lang.String"/>
+	<field name="requerente_A_TIPO_PESSOA" class="java.lang.String"/>
+	<field name="requerente_A_ID_REQUERENTE" class="java.lang.Long"/>
+	<field name="requerente_A_COMPLEMENTO" class="java.lang.String"/>
+	<field name="requerente_A_CEP" class="java.lang.String"/>
+	<title>
+		<band height="420" splitType="Stretch">
+			<textField>
+				<reportElement x="31" y="59" width="491" height="84" uuid="bda62220-e24f-41fc-9ed8-ed7a5739a889"/>
+				<textElement markup="html">
+					<font fontName="Arial" size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b>PROCESSO: </b>"+$F{processo_NUM_PROCESSO}+"<br>"+
+"<b>REQUERENTE: </b>"+$F{requerente_A_NOME}+"<br>"+
+"<b>RAZÃO SOCIAL: </b>"+$F{requerente_NOME}+"<br>"+
+"<b>CNPJ: </b>"+$F{requerente_CPF}+"<br>"+
+"<b>ATIVIDADE: </b>"+$F{atividade_NOME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="175" y="167" width="237" height="21" uuid="15349eef-518b-43d4-9f61-73aec74a1941"/>
+				<textElement markup="html">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["PARECER CONCLUSIVO  N° "+$F{parecer_analise_ID}+"/"+ new SimpleDateFormat("yyyy").format($F{parecer_analise_DATA_PARECER})]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+</jasperReport>

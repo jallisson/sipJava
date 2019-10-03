@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="titulosEmitidosLote" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7a06500f-7fe5-4f6c-a06f-edc0999c4f17">
+	<property name="ireport.zoom" value="1.3310000000000008"/>
+	<property name="ireport.x" value="9"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="ID_EMISSAO" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     tramitacao.`ID` AS tramitacao_ID,
+     tramitacao.`ID_USUARIO` AS tramitacao_ID_USUARIO,
+     tramitacao.`ID_PROCESSO` AS tramitacao_ID_PROCESSO,
+     tramitacao.`DATA_TRAMITACAO` AS tramitacao_DATA_TRAMITACAO,
+     tramitacao.`HORA` AS tramitacao_HORA,
+     tramitacao.`MESANO` AS tramitacao_MESANO,
+     tramitacao.`STATUSS` AS tramitacao_STATUSS,
+     tramitacao.`PARECER` AS tramitacao_PARECER,
+     tramitacao.`SETOR` AS tramitacao_SETOR,
+     tramitacao.`SETOR_ORIGEM` AS tramitacao_SETOR_ORIGEM,
+     tramitacao.`SETOR_DESTINO` AS tramitacao_SETOR_DESTINO,
+     tramitacao.`OBSERVACAO` AS tramitacao_OBSERVACAO,
+     tramitacao.`CONTROLE` AS tramitacao_CONTROLE,
+     requerente.`ID` AS requerente_ID,
+     requerente.`ID_LOGRADOURO` AS requerente_ID_LOGRADOURO,
+     requerente.`NOME` AS requerente_NOME,
+     requerente.`NACIONALIDADE` AS requerente_NACIONALIDADE,
+     requerente.`EST_CIVIL` AS requerente_EST_CIVIL,
+     requerente.`PROFISSAO` AS requerente_PROFISSAO,
+     requerente.`RG` AS requerente_RG,
+     requerente.`ORGAO` AS requerente_ORGAO,
+     requerente.`CPF` AS requerente_CPF,
+     requerente.`NUMERO` AS requerente_NUMERO,
+     requerente.`ID_BAIRRO` AS requerente_ID_BAIRRO,
+     requerente.`ID_CIDADE` AS requerente_ID_CIDADE,
+     requerente.`TEL_FIXO` AS requerente_TEL_FIXO,
+     requerente.`TEL_CEL` AS requerente_TEL_CEL,
+     requerente.`NUBENTE` AS requerente_NUBENTE,
+     requerente.`REGIME` AS requerente_REGIME,
+     processo.`ID` AS processo_ID,
+     processo.`ID_USUARIO` AS processo_ID_USUARIO,
+     processo.`NUM_PROCESSO` AS processo_NUM_PROCESSO,
+     processo.`ID_REQUERENTE` AS processo_ID_REQUERENTE,
+     processo.`DATA_PROCESSO` AS processo_DATA_PROCESSO,
+     processo.`MESANO` AS processo_MESANO,
+     processo.`TIPO_LICENCA` AS processo_TIPO_LICENCA,
+     requerente.`COMPLEMENTO` AS requerente_COMPLEMENTO,
+     requerente.`CEP` AS requerente_CEP,
+     logradouro.`ID` AS logradouro_ID,
+     logradouro.`NOME` AS logradouro_NOME,
+     bairro.`ID` AS bairro_ID,
+     bairro.`NOME` AS bairro_NOME,
+     cidade.`ID` AS cidade_ID,
+     cidade.`NOME` AS cidade_NOME,
+     cidade.`UF` AS cidade_UF,
+     atividade.`ID` AS atividade_ID,
+     atividade.`NOME` AS atividade_NOME,
+     processo.`ID_ATIVIDADE` AS processo_ID_ATIVIDADE,
+     emissao_licenca.`ID` AS emissao_licenca_ID,
+     emissao_licenca.`ID_JURIDICO` AS emissao_licenca_ID_JURIDICO,
+     emissao_licenca.`ID_USUARIO` AS emissao_licenca_ID_USUARIO,
+     emissao_licenca.`DATA_EMISSAO` AS emissao_licenca_DATA_EMISSAO,
+     emissao_licenca.`MESANO` AS emissao_licenca_MESANO,
+     emissao_licenca.`AREA_TERRENO` AS emissao_licenca_AREA_TERRENO,
+     emissao_licenca.`AREA_CONSTRUIDA` AS emissao_licenca_AREA_CONSTRUIDA,
+     emissao_licenca.`HORA_INICIAL` AS emissao_licenca_HORA_INICIAL,
+     emissao_licenca.`HORA_FINAL` AS emissao_licenca_HORA_FINAL,
+     juridico.`ID` AS juridico_ID,
+     juridico.`ID_USUARIO` AS juridico_ID_USUARIO,
+     juridico.`ID_DISTRIBUICAO` AS juridico_ID_DISTRIBUICAO,
+     juridico.`DATA_JURIDICO` AS juridico_DATA_JURIDICO,
+     juridico.`TRAMITOU_GABINETE` AS juridico_TRAMITOU_GABINETE,
+     juridico.`TRAMITOU_EMISSAO` AS juridico_TRAMITOU_EMISSAO,
+     distribuicao.`ID` AS distribuicao_ID,
+     distribuicao.`ID_USUARIO` AS distribuicao_ID_USUARIO,
+     distribuicao.`ID_ANALISTA` AS distribuicao_ID_ANALISTA,
+     distribuicao.`ID_PROCESSO` AS distribuicao_ID_PROCESSO,
+     distribuicao.`DATA_DIST` AS distribuicao_DATA_DIST,
+     distribuicao.`MESANO` AS distribuicao_MESANO,
+     distribuicao.`CONTROLE` AS distribuicao_CONTROLE,
+     distribuicao.`TRAMITOU_ANALISE` AS distribuicao_TRAMITOU_ANALISE,
+     distribuicao.`TRAMITOU_JURIDICO` AS distribuicao_TRAMITOU_JURIDICO,
+     emissao_licenca_A.`ID` AS emissao_licenca_A_ID,
+     emissao_licenca_A.`ID_JURIDICO` AS emissao_licenca_A_ID_JURIDICO,
+     emissao_licenca_A.`ID_USUARIO` AS emissao_licenca_A_ID_USUARIO,
+     emissao_licenca_A.`DATA_EMISSAO` AS emissao_licenca_A_DATA_EMISSAO,
+     emissao_licenca_A.`MESANO` AS emissao_licenca_A_MESANO,
+     emissao_licenca_A.`AREA_TERRENO` AS emissao_licenca_A_AREA_TERRENO,
+     emissao_licenca_A.`AREA_CONSTRUIDA` AS emissao_licenca_A_AREA_CONSTRUIDA,
+     emissao_licenca_A.`HORA_INICIAL` AS emissao_licenca_A_HORA_INICIAL,
+     emissao_licenca_A.`HORA_FINAL` AS emissao_licenca_A_HORA_FINAL,
+     distribuicao_A.`ID` AS distribuicao_A_ID,
+     distribuicao_A.`ID_USUARIO` AS distribuicao_A_ID_USUARIO,
+     distribuicao_A.`ID_ANALISTA` AS distribuicao_A_ID_ANALISTA,
+     distribuicao_A.`ID_PROCESSO` AS distribuicao_A_ID_PROCESSO,
+     distribuicao_A.`DATA_DIST` AS distribuicao_A_DATA_DIST,
+     distribuicao_A.`MESANO` AS distribuicao_A_MESANO,
+     distribuicao_A.`CONTROLE` AS distribuicao_A_CONTROLE,
+     distribuicao_A.`TRAMITOU_ANALISE` AS distribuicao_A_TRAMITOU_ANALISE,
+     distribuicao_A.`TRAMITOU_JURIDICO` AS distribuicao_A_TRAMITOU_JURIDICO
+FROM
+     `requerente` requerente INNER JOIN `processo` processo ON requerente.`ID` = processo.`ID_REQUERENTE`
+     INNER JOIN `tramitacao` tramitacao ON processo.`ID` = tramitacao.`ID_PROCESSO`
+     INNER JOIN `atividade` atividade ON processo.`ID_ATIVIDADE` = atividade.`ID`
+     INNER JOIN `distribuicao` distribuicao ON processo.`ID` = distribuicao.`ID_PROCESSO`
+     INNER JOIN `distribuicao` distribuicao_A ON processo.`ID` = distribuicao_A.`ID_PROCESSO`
+     INNER JOIN `juridico` juridico ON distribuicao_A.`ID` = juridico.`ID_DISTRIBUICAO`
+     AND distribuicao.`ID` = juridico.`ID_DISTRIBUICAO`
+     INNER JOIN `emissao_licenca` emissao_licenca ON juridico.`ID` = emissao_licenca.`ID_JURIDICO`
+     INNER JOIN `emissao_licenca` emissao_licenca_A ON juridico.`ID` = emissao_licenca_A.`ID_JURIDICO`
+     INNER JOIN `logradouro` logradouro ON requerente.`ID_LOGRADOURO` = logradouro.`ID`
+     INNER JOIN `bairro` bairro ON requerente.`ID_BAIRRO` = bairro.`ID`
+     INNER JOIN `cidade` cidade ON requerente.`ID_CIDADE` = cidade.`ID`
+WHERE
+     emissao_licenca_A.`ID` = $P{ID_EMISSAO}
+ORDER BY
+     tramitacao.`ID` ASC]]>
+	</queryString>
+	<field name="tramitacao_ID" class="java.lang.Long"/>
+	<field name="tramitacao_ID_USUARIO" class="java.lang.Long"/>
+	<field name="tramitacao_ID_PROCESSO" class="java.lang.Long"/>
+	<field name="tramitacao_DATA_TRAMITACAO" class="java.sql.Date"/>
+	<field name="tramitacao_HORA" class="java.lang.String"/>
+	<field name="tramitacao_MESANO" class="java.lang.String"/>
+	<field name="tramitacao_STATUSS" class="java.lang.String"/>
+	<field name="tramitacao_PARECER" class="java.lang.String"/>
+	<field name="tramitacao_SETOR" class="java.lang.String"/>
+	<field name="tramitacao_SETOR_ORIGEM" class="java.lang.String"/>
+	<field name="tramitacao_SETOR_DESTINO" class="java.lang.String"/>
+	<field name="tramitacao_OBSERVACAO" class="java.lang.String"/>
+	<field name="tramitacao_CONTROLE" class="java.lang.String"/>
+	<field name="requerente_ID" class="java.lang.Long"/>
+	<field name="requerente_ID_LOGRADOURO" class="java.lang.Long"/>
+	<field name="requerente_NOME" class="java.lang.String"/>
+	<field name="requerente_NACIONALIDADE" class="java.lang.String"/>
+	<field name="requerente_EST_CIVIL" class="java.lang.String"/>
+	<field name="requerente_PROFISSAO" class="java.lang.String"/>
+	<field name="requerente_RG" class="java.lang.String"/>
+	<field name="requerente_ORGAO" class="java.lang.String"/>
+	<field name="requerente_CPF" class="java.lang.String"/>
+	<field name="requerente_NUMERO" class="java.lang.String"/>
+	<field name="requerente_ID_BAIRRO" class="java.lang.Long"/>
+	<field name="requerente_ID_CIDADE" class="java.lang.Long"/>
+	<field name="requerente_TEL_FIXO" class="java.lang.String"/>
+	<field name="requerente_TEL_CEL" class="java.lang.String"/>
+	<field name="requerente_NUBENTE" class="java.lang.String"/>
+	<field name="requerente_REGIME" class="java.lang.String"/>
+	<field name="processo_ID" class="java.lang.Long"/>
+	<field name="processo_ID_USUARIO" class="java.lang.Long"/>
+	<field name="processo_NUM_PROCESSO" class="java.lang.String"/>
+	<field name="processo_ID_REQUERENTE" class="java.lang.Long"/>
+	<field name="processo_DATA_PROCESSO" class="java.sql.Date"/>
+	<field name="processo_MESANO" class="java.lang.String"/>
+	<field name="processo_TIPO_LICENCA" class="java.lang.String"/>
+	<field name="requerente_COMPLEMENTO" class="java.lang.String"/>
+	<field name="requerente_CEP" class="java.lang.String"/>
+	<field name="logradouro_ID" class="java.lang.Long"/>
+	<field name="logradouro_NOME" class="java.lang.String"/>
+	<field name="bairro_ID" class="java.lang.Long"/>
+	<field name="bairro_NOME" class="java.lang.String"/>
+	<field name="cidade_ID" class="java.lang.Long"/>
+	<field name="cidade_NOME" class="java.lang.String"/>
+	<field name="cidade_UF" class="java.lang.String"/>
+	<field name="atividade_ID" class="java.lang.Long"/>
+	<field name="atividade_NOME" class="java.lang.String"/>
+	<field name="processo_ID_ATIVIDADE" class="java.lang.Long"/>
+	<field name="emissao_licenca_ID" class="java.lang.Long"/>
+	<field name="emissao_licenca_ID_JURIDICO" class="java.lang.Long"/>
+	<field name="emissao_licenca_ID_USUARIO" class="java.lang.Long"/>
+	<field name="emissao_licenca_DATA_EMISSAO" class="java.sql.Date"/>
+	<field name="emissao_licenca_MESANO" class="java.lang.String"/>
+	<field name="emissao_licenca_AREA_TERRENO" class="java.lang.Double"/>
+	<field name="emissao_licenca_AREA_CONSTRUIDA" class="java.lang.Double"/>
+	<field name="emissao_licenca_HORA_INICIAL" class="java.lang.String"/>
+	<field name="emissao_licenca_HORA_FINAL" class="java.lang.String"/>
+	<field name="juridico_ID" class="java.lang.Long"/>
+	<field name="juridico_ID_USUARIO" class="java.lang.Long"/>
+	<field name="juridico_ID_DISTRIBUICAO" class="java.lang.Long"/>
+	<field name="juridico_DATA_JURIDICO" class="java.sql.Date"/>
+	<field name="juridico_TRAMITOU_GABINETE" class="java.lang.String"/>
+	<field name="juridico_TRAMITOU_EMISSAO" class="java.lang.String"/>
+	<field name="distribuicao_ID" class="java.lang.Long"/>
+	<field name="distribuicao_ID_USUARIO" class="java.lang.Long"/>
+	<field name="distribuicao_ID_ANALISTA" class="java.lang.Long"/>
+	<field name="distribuicao_ID_PROCESSO" class="java.lang.Long"/>
+	<field name="distribuicao_DATA_DIST" class="java.sql.Date"/>
+	<field name="distribuicao_MESANO" class="java.lang.String"/>
+	<field name="distribuicao_CONTROLE" class="java.lang.String"/>
+	<field name="distribuicao_TRAMITOU_ANALISE" class="java.lang.String"/>
+	<field name="distribuicao_TRAMITOU_JURIDICO" class="java.lang.String"/>
+	<field name="emissao_licenca_A_ID" class="java.lang.Long"/>
+	<field name="emissao_licenca_A_ID_JURIDICO" class="java.lang.Long"/>
+	<field name="emissao_licenca_A_ID_USUARIO" class="java.lang.Long"/>
+	<field name="emissao_licenca_A_DATA_EMISSAO" class="java.sql.Date"/>
+	<field name="emissao_licenca_A_MESANO" class="java.lang.String"/>
+	<field name="emissao_licenca_A_AREA_TERRENO" class="java.lang.Double"/>
+	<field name="emissao_licenca_A_AREA_CONSTRUIDA" class="java.lang.Double"/>
+	<field name="emissao_licenca_A_HORA_INICIAL" class="java.lang.String"/>
+	<field name="emissao_licenca_A_HORA_FINAL" class="java.lang.String"/>
+	<title>
+		<band height="760" splitType="Stretch">
+			<textField>
+				<reportElement x="28" y="14" width="495" height="94" uuid="d375ffae-98db-458d-8b0e-b86ed6f2623f"/>
+				<textElement textAlignment="Justified" markup="html">
+					<font fontName="Arial" size="11" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b> &nbsp &nbsp &nbsp &nbsp *RECOMENDAÇÕES GERAIS:\n</b><br/>"+
+"<b>1. &nbsp &nbsp CONDICIONANTES / RECOMENDAÇÕES\n</b><br/>"+
+"<p>A empresa <b>"+$F{requerente_NOME}+"</b> inscrito no CNPJ: <b>"+$F{requerente_CPF}+"</b>, está CONCEDIDA A "+$F{processo_TIPO_LICENCA}+" a atividade de <b>"+$F{atividade_NOME}+"</b>, localizada na <b>"+$F{logradouro_NOME}+", Nº "+$F{requerente_NUMERO}+", BAIRRO "+$F{bairro_NOME}+"</b> no Município de "+$F{cidade_NOME}+" - "+$F{cidade_UF}+".\n</p><br/><br/>"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="28" y="113" width="495" height="15" uuid="70ce33a4-ce7a-4da5-ac17-d61594e9363c"/>
+				<textElement textAlignment="Justified" markup="none">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[1.1    EXIGÊNCIAS RELATIVAS AO USO DE RECURSOS HÍDRICOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="28" y="133" width="26" height="15" uuid="6c36527e-1440-46a5-bb6e-2b4fc7d2e804"/>
+				<textElement textAlignment="Justified" markup="none">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[1.1.1]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="60" y="133" width="463" height="84" uuid="033f3570-432f-4905-8880-5baf64f436f4"/>
+				<textElement textAlignment="Justified" markup="html">
+					<font fontName="Arial" size="11" isBold="false"/>
+				</textElement>
+				<text><![CDATA[<p>O empreendedor deverá atender às objetivas e diretrizes da Política Nacional de Recursos
+Hídricos, atentando, principalmente, aos seguintes pontos <b>(conforme Art. 2º e 3º, da Lei Federal n° 9.433/1997):</b><br /></p>
+<p><b>I</b> - A utilização racional e integrada dos recursos hídricos com vistas ao desenvolvimento sustentável;</p><br />
+<p><b>II</b> - A integração da gestão de recursos hídricos com a gestão ambiental.</p>
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="28" y="217" width="26" height="15" uuid="875dfe5b-86a3-4c99-966f-71ec69664676"/>
+				<textElement textAlignment="Justified" markup="none">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[1.1.2]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="60" y="217" width="463" height="119" uuid="1bd85c55-af64-4d2d-9b64-9900cd1ede0b"/>
+				<textElement textAlignment="Justified" markup="html">
+					<font fontName="Arial" size="11" isBold="false"/>
+				</textElement>
+				<text><![CDATA[<p>O empreendedor está ciente de que estão sujeitos a outorga pelo Poder Público os direitos dos seguintes usos de recursos hídricos, especificamente (conforme Art. 12, da Lei Federal n° 9.433/1997):<br/></p>
+<b>I</b> - Captação de parcela da água existente em um corpo de água para consumo final ou insumo de processo produtivo;<br/><br/>
+<b>II</b> - Extração de água de aquífero subterrâneo para consumo final ou insumo de processo produtivo;<br/><br/>
+<b>III</b> - Lançamento em corpo de água de esgotos e demais resíduos líquidos ou gasosos, tratados ou não, com o fim de sua diluição, transporte ou disposição final.
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="28" y="350" width="495" height="15" uuid="a7aedde3-203b-45a0-909a-02c472305065"/>
+				<textElement textAlignment="Justified" markup="none">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[1.2     EXIGÊNCIAS RELATIVAS AO CONTROLE DE EFLUENTES LÍQUIDOS]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="60" y="378" width="463" height="58" uuid="3f18bbf8-1563-40b0-a982-b5840009660f"/>
+				<textElement markup="html">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA["O empreendedor está ciente de que os esgotos sanitários do estabelecimento devem ser segregados dos demais efluentes e lançados em rede pública coletora ou receber tratamento no próprio local, de acordo com <b>as Normas NBR 7229/93 e NBR 13.969/97 da ABNT e Resoluções do Conselho Nacional do Meio Ambiente – CONAMA, n.º 357/2005 e 430/2011;</b>"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="28" y="378" width="26" height="15" uuid="1741a181-fe61-4ef3-bc38-3d18de77eba4"/>
+				<textElement textAlignment="Justified" markup="none">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[1.2.1]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="60" y="444" width="463" height="42" uuid="bab45e49-22c8-46c1-84bd-7519547e811a"/>
+				<textElement markup="html">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Será definido como percentual mínimo aceitável para a eficiência de tratamento o índice de 90% para o efluente tratado em Estação de Tratamento de Efluente a ser lançado em manancial ou outra forma de disposição final, conforme <b>Portaria SEMA nº 79/2013</b>"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="28" y="444" width="26" height="15" uuid="6feff714-a225-4138-9f7e-a3c508724aaf"/>
+				<textElement textAlignment="Justified" markup="none">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[1.2.2]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="60" y="494" width="463" height="55" uuid="aacb6e89-fdb6-484a-8b90-94e74e2dc0ab"/>
+				<textElement markup="html">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA["O empreendedor está ciente de que os efluentes de qualquer fonte poluidora somente poderão ser lançados direta ou indiretamente nos corpos d’água com AUTORIZAÇÃO do órgão ambiental competente, conforme ditames das <b>Resoluções do CONAMA, nº 357/05 e 430/11;</b>"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="60" y="644" width="463" height="43" uuid="4b1ec32a-137f-4b74-949c-07bb331da349"/>
+				<textElement markup="html">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA["O empreendedor está ciente de que é proibido lançar em via pública, rede de drenagem ou nos corpos receptores qualquer resíduo ou efluente proveniente de vazamento ou derramamento acidental."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="60" y="695" width="463" height="31" uuid="71275b67-de36-4fae-9cc0-d0e78e318e55"/>
+				<textElement markup="html">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA["O empreendedor deverá manter em bom estado o sistema de drenagem de águas pluviais, de modo a evitar o carreamento de material para as áreas externas à empresa."]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="28" y="494" width="26" height="15" uuid="b5af6747-bd8a-4198-832c-a3a7870dd037"/>
+				<textElement textAlignment="Justified" markup="none">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[1.2.3]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="28" y="644" width="26" height="16" uuid="9ce681d6-241e-447f-8b25-58ab3ddf0e4c"/>
+				<textElement textAlignment="Justified" markup="none">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[1.2.5]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="28" y="695" width="26" height="16" uuid="8f64fe9a-da52-4d88-8480-91bb88f9bd78"/>
+				<textElement textAlignment="Justified" markup="none">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[1.2.6]]></text>
+			</staticText>
+			<elementGroup>
+				<ellipse>
+					<reportElement x="245" y="730" width="36" height="30" forecolor="#999999" backcolor="#666666" uuid="e24d1b49-95e1-4beb-8594-472c2b3d8b66"/>
+				</ellipse>
+				<staticText>
+					<reportElement x="260" y="735" width="11" height="20" forecolor="#FFFFFF" uuid="fb49982a-66dd-454c-8537-37a291da1186"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[2]]></text>
+				</staticText>
+			</elementGroup>
+			<textField>
+				<reportElement x="60" y="556" width="463" height="78" uuid="bcc1a498-9146-4a99-88c5-c88cd91ccd3f"/>
+				<textElement markup="html">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA["O empreendedor está ciente de que quando existirem áreas onde haja possibilidade de ocorrência de derramamentos acidentais de substâncias oleosas ( por exemplo, bacias de contenção de tanques aéreos de combustíveis, áreas de abastecimento de veículos, oficinas de manutenção de máquinas/equipamentos, áreas de armazenagem de óleo lubrificante, etc.) é obrigatória a instalação de pisos impermeáveis e sistemas de drenagem ( exemplo: caneletas) interligados a caixas separadoras de água-óleo, e desde que esta atenda as exigências de Resolução CONAMA nº 357/2005 e nº 430/2011, que limita em 20 mg/litro a concentração máxima de óleos e graxas na saída da caixa ( ou que atendam as normas mais restritivas.)"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="28" y="556" width="26" height="15" uuid="30ada0f3-058f-4e12-96f2-d0294c542e8a"/>
+				<textElement textAlignment="Justified" markup="none">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[1.2.4]]></text>
+			</staticText>
+		</band>
+	</title>
+</jasperReport>

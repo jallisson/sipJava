@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Atendimento" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="10" bottomMargin="20">
+	<property name="ireport.zoom" value="1.4641000000000006"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="407"/>
+	<import value="extenso.Extenso"/>
+	<scriptlet name="scriptlet1" class="net.sf.jasperreports.engine.JRDefaultScriptlet"/>
+	<parameter name="ID_EMISSAO" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     sum(imovel.`VALOR_TOTAL`),
+     imovel.`ID` AS imovel_ID,
+     imovel.`ID_USUARIO` AS imovel_ID_USUARIO,
+     imovel.`ID_PROCESSO` AS imovel_ID_PROCESSO,
+     imovel.`M_AREA` AS imovel_M_AREA,
+     imovel.`NUMERO` AS imovel_NUMERO,
+     imovel.`ID_BAIRRO` AS imovel_ID_BAIRRO,
+     imovel.`M_FRENTE` AS imovel_M_FRENTE,
+     imovel.`VIZIN_DIR` AS imovel_VIZIN_DIR,
+     imovel.`M_DIREITA` AS imovel_M_DIREITA,
+     imovel.`VIZIN_ESQ` AS imovel_VIZIN_ESQ,
+     imovel.`M_ESQUERDA` AS imovel_M_ESQUERDA,
+     imovel.`VIZIN_FUN` AS imovel_VIZIN_FUN,
+     imovel.`M_FUNDO` AS imovel_M_FUNDO,
+     imovel.`VALOR_TOTAL` AS imovel_VALOR_TOTAL,
+     processo.`ID` AS processo_ID,
+     processo.`ID_USUARIO` AS processo_ID_USUARIO,
+     processo.`NUM_PROCESSO` AS processo_NUM_PROCESSO,
+     processo.`ID_REQUERENTE` AS processo_ID_REQUERENTE,
+     processo.`DATA_PROCESSO` AS processo_DATA_PROCESSO,
+     processo.`MESANO` AS processo_MESANO,
+     processo.`TIPO` AS processo_TIPO,
+     processo.`SITUACAO` AS processo_SITUACAO,
+     requerente.`ID` AS requerente_ID,
+     requerente.`ID_LOGRADOURO` AS requerente_ID_LOGRADOURO,
+     requerente.`NACIONALIDADE` AS requerente_NACIONALIDADE,
+     requerente.`EST_CIVIL` AS requerente_EST_CIVIL,
+     requerente.`PROFISSAO` AS requerente_PROFISSAO,
+     requerente.`RG` AS requerente_RG,
+     requerente.`ORGAO` AS requerente_ORGAO,
+     requerente.`CPF` AS requerente_CPF,
+     requerente.`NUMERO` AS requerente_NUMERO,
+     requerente.`ID_BAIRRO` AS requerente_ID_BAIRRO,
+     requerente.`ID_CIDADE` AS requerente_ID_CIDADE,
+     requerente.`TEL_FIXO` AS requerente_TEL_FIXO,
+     requerente.`TEL_CEL` AS requerente_TEL_CEL,
+     emissao_titulo.`ID` AS emissao_titulo_ID,
+     emissao_titulo.`ID_USUARIO` AS emissao_titulo_ID_USUARIO,
+     emissao_titulo.`ID_LOTEEMISSAO` AS emissao_titulo_ID_LOTEEMISSAO,
+     emissao_titulo.`ID_PROCESSO` AS emissao_titulo_ID_PROCESSO,
+     emissao_titulo.`DATA_IMPRESSAO` AS emissao_titulo_DATA_IMPRESSAO,
+     emissao_titulo.`MESANO` AS emissao_titulo_MESANO,
+     emissao_titulo.`CONVOCACAO` AS emissao_titulo_CONVOCACAO,
+     emissao_titulo.`VIZINHO` AS emissao_titulo_VIZINHO,
+     emissao_titulo.`CONTROLE` AS emissao_titulo_CONTROLE,
+     cadastrosimob_imovel.`ID` AS cadastrosimob_imovel_ID,
+     cadastrosimob_imovel.`ID_IMOVEL` AS cadastrosimob_imovel_ID_IMOVEL,
+     cadastrosimob_imovel.`ID_CAD_IMOBILIARIO` AS cadastrosimob_imovel_ID_CAD_IMOBILIARIO,
+     cad_imobiliario.`ID` AS cad_imobiliario_ID,
+     cad_imobiliario.`INSCRICAO` AS cad_imobiliario_INSCRICAO,
+     cad_imobiliario.`DISTRITO` AS cad_imobiliario_DISTRITO,
+     cad_imobiliario.`SETOR` AS cad_imobiliario_SETOR,
+     cad_imobiliario.`QUADRA` AS cad_imobiliario_QUADRA,
+     cad_imobiliario.`LOTE` AS cad_imobiliario_LOTE,
+     cad_imobiliario.`UNIDADE` AS cad_imobiliario_UNIDADE,
+     cad_imobiliario.`VALOR` AS cad_imobiliario_VALOR,
+     cad_imobiliario.`ID_USUARIO` AS cad_imobiliario_ID_USUARIO,
+     terreno_imob.`ID` AS terreno_imob_ID,
+     terreno_imob.`ID_IMOVEL` AS terreno_imob_ID_IMOVEL,
+     terreno_imob.`QUADRA` AS terreno_imob_QUADRA,
+     terreno_imob.`LOTE` AS terreno_imob_LOTE
+FROM
+     `processo` processo INNER JOIN `imovel` imovel ON processo.`ID` = imovel.`ID_PROCESSO`
+     INNER JOIN `requerente` requerente ON processo.`ID_REQUERENTE` = requerente.`ID`
+     INNER JOIN `emissao_titulo` emissao_titulo ON processo.`ID` = emissao_titulo.`ID_PROCESSO`
+     INNER JOIN `cadastrosimob_imovel` cadastrosimob_imovel ON imovel.`ID` = cadastrosimob_imovel.`ID_IMOVEL`
+     INNER JOIN `terreno_imob` terreno_imob ON imovel.`ID` = terreno_imob.`ID_IMOVEL`
+     INNER JOIN `cad_imobiliario` cad_imobiliario ON cadastrosimob_imovel.`ID_CAD_IMOBILIARIO` = cad_imobiliario.`ID`
+WHERE
+     emissao_titulo.`ID` = $P{ID_EMISSAO}]]>
+	</queryString>
+	<field name="sum(imovel.`VALOR_TOTAL`)" class="java.lang.Double"/>
+	<field name="imovel_ID" class="java.lang.Long"/>
+	<field name="imovel_ID_USUARIO" class="java.lang.Long"/>
+	<field name="imovel_ID_PROCESSO" class="java.lang.Long"/>
+	<field name="imovel_M_AREA" class="java.lang.Double"/>
+	<field name="imovel_NUMERO" class="java.lang.String"/>
+	<field name="imovel_ID_BAIRRO" class="java.lang.Long"/>
+	<field name="imovel_M_FRENTE" class="java.lang.Double"/>
+	<field name="imovel_VIZIN_DIR" class="java.lang.String"/>
+	<field name="imovel_M_DIREITA" class="java.lang.Double"/>
+	<field name="imovel_VIZIN_ESQ" class="java.lang.String"/>
+	<field name="imovel_M_ESQUERDA" class="java.lang.Double"/>
+	<field name="imovel_VIZIN_FUN" class="java.lang.String"/>
+	<field name="imovel_M_FUNDO" class="java.lang.Double"/>
+	<field name="imovel_VALOR_TOTAL" class="java.lang.Double"/>
+	<field name="processo_ID" class="java.lang.Long"/>
+	<field name="processo_ID_USUARIO" class="java.lang.Long"/>
+	<field name="processo_NUM_PROCESSO" class="java.lang.String"/>
+	<field name="processo_ID_REQUERENTE" class="java.lang.Long"/>
+	<field name="processo_DATA_PROCESSO" class="java.sql.Date"/>
+	<field name="processo_MESANO" class="java.lang.String"/>
+	<field name="processo_TIPO" class="java.lang.String"/>
+	<field name="processo_SITUACAO" class="java.lang.String"/>
+	<field name="requerente_ID" class="java.lang.Long"/>
+	<field name="requerente_ID_LOGRADOURO" class="java.lang.Long"/>
+	<field name="requerente_NACIONALIDADE" class="java.lang.String"/>
+	<field name="requerente_EST_CIVIL" class="java.lang.String"/>
+	<field name="requerente_PROFISSAO" class="java.lang.String"/>
+	<field name="requerente_RG" class="java.lang.String"/>
+	<field name="requerente_ORGAO" class="java.lang.String"/>
+	<field name="requerente_CPF" class="java.lang.String"/>
+	<field name="requerente_NUMERO" class="java.lang.String"/>
+	<field name="requerente_ID_BAIRRO" class="java.lang.Long"/>
+	<field name="requerente_ID_CIDADE" class="java.lang.Long"/>
+	<field name="requerente_TEL_FIXO" class="java.lang.String"/>
+	<field name="requerente_TEL_CEL" class="java.lang.String"/>
+	<field name="emissao_titulo_ID" class="java.lang.Long"/>
+	<field name="emissao_titulo_ID_USUARIO" class="java.lang.Long"/>
+	<field name="emissao_titulo_ID_LOTEEMISSAO" class="java.lang.Long"/>
+	<field name="emissao_titulo_ID_PROCESSO" class="java.lang.Long"/>
+	<field name="emissao_titulo_DATA_IMPRESSAO" class="java.sql.Date"/>
+	<field name="emissao_titulo_MESANO" class="java.lang.String"/>
+	<field name="emissao_titulo_CONVOCACAO" class="java.lang.String"/>
+	<field name="emissao_titulo_VIZINHO" class="java.lang.String"/>
+	<field name="emissao_titulo_CONTROLE" class="java.lang.String"/>
+	<field name="cadastrosimob_imovel_ID" class="java.lang.Long"/>
+	<field name="cadastrosimob_imovel_ID_IMOVEL" class="java.lang.Long"/>
+	<field name="cadastrosimob_imovel_ID_CAD_IMOBILIARIO" class="java.lang.Long"/>
+	<field name="cad_imobiliario_ID" class="java.lang.Long"/>
+	<field name="cad_imobiliario_INSCRICAO" class="java.lang.String"/>
+	<field name="cad_imobiliario_DISTRITO" class="java.lang.String"/>
+	<field name="cad_imobiliario_SETOR" class="java.lang.String"/>
+	<field name="cad_imobiliario_QUADRA" class="java.lang.String"/>
+	<field name="cad_imobiliario_LOTE" class="java.lang.String"/>
+	<field name="cad_imobiliario_UNIDADE" class="java.lang.String"/>
+	<field name="cad_imobiliario_VALOR" class="java.lang.Double"/>
+	<field name="cad_imobiliario_ID_USUARIO" class="java.lang.Long"/>
+	<field name="terreno_imob_ID" class="java.lang.Long"/>
+	<field name="terreno_imob_ID_IMOVEL" class="java.lang.Long"/>
+	<field name="terreno_imob_QUADRA" class="java.lang.String"/>
+	<field name="terreno_imob_LOTE" class="java.lang.String"/>
+	<variable name="VALOR_ACUMULADO" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[]]></variableExpression>
+	</variable>
+	<variable name="SOMA_QUANTIDADE" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[]]></variableExpression>
+	</variable>
+	<title>
+		<band height="681" splitType="Stretch">
+			<textField>
+				<reportElement x="127" y="351" width="436" height="29"/>
+				<textElement>
+					<font fontName="Calibri" size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[String.format("%.2f", $F{sum(imovel.`VALOR_TOTAL`)})+" ("+new Extenso(new BigDecimal($F{sum(imovel.`VALOR_TOTAL`)}))+")"]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd                    MMMMM                                yyyy">
+				<reportElement x="181" y="584" width="331" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="14" isBold="true" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{emissao_titulo_DATA_IMPRESSAO}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="8" y="26" width="508" height="307"/>
+				<graphicElement>
+					<pen lineWidth="2.5"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement x="1" y="33" width="508" height="307"/>
+				<graphicElement>
+					<pen lineWidth="2.5"/>
+				</graphicElement>
+			</line>
+		</band>
+	</title>
+</jasperReport>

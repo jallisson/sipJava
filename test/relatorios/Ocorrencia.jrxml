@@ -1,0 +1,569 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Ocorrencia" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c440d119-6505-4628-8b5b-bcdf7343861b">
+	<property name="ireport.zoom" value="1.3310000000000004"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="783"/>
+	<parameter name="LOGO_CIDADE" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="LOGO_PREFEITURA" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ID_OCORRENCIA" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     ocorrencia.`ID` AS ocorrencia_ID,
+     ocorrencia.`ID_USUARIO` AS ocorrencia_ID_USUARIO,
+     ocorrencia.`DATA_REGISTRO` AS ocorrencia_DATA_REGISTRO,
+     ocorrencia.`ID_NATUREZA_OCORRENCIA` AS ocorrencia_ID_NATUREZA_OCORRENCIA,
+     ocorrencia.`ID_COMUNICANTE` AS ocorrencia_ID_COMUNICANTE,
+     ocorrencia.`ID_DENUNCIADO` AS ocorrencia_ID_DENUNCIADO,
+     ocorrencia.`RELATO_OCORRENCIA` AS ocorrencia_RELATO_OCORRENCIA,
+     usuario.`ID` AS usuario_ID,
+     usuario.`NOME` AS usuario_NOME,
+     usuario.`LOGIN` AS usuario_LOGIN,
+     usuario.`SENHA` AS usuario_SENHA,
+     usuario.`SETOR` AS usuario_SETOR,
+     pessoa_COMUNICANTE.`ID` AS pessoa_COMUNICANTE_ID,
+     pessoa_COMUNICANTE.`NOME` AS pessoa_COMUNICANTE_NOME,
+     pessoa_COMUNICANTE.`ID_LOGRADOURO` AS pessoa_COMUNICANTE_ID_LOGRADOURO,
+     pessoa_COMUNICANTE.`NUMERO` AS pessoa_COMUNICANTE_NUMERO,
+     pessoa_COMUNICANTE.`TEL_FIXO` AS pessoa_COMUNICANTE_TEL_FIXO,
+     pessoa_COMUNICANTE.`TEL_CEL` AS pessoa_COMUNICANTE_TEL_CEL,
+     pessoa_COMUNICANTE.`COMPLEMENTO` AS pessoa_COMUNICANTE_COMPLEMENTO,
+     pessoa_COMUNICANTE.`ID_CIDADE` AS pessoa_COMUNICANTE_ID_CIDADE,
+     pessoa_DENUNCIADO.`ID` AS pessoa_DENUNCIADO_ID,
+     pessoa_DENUNCIADO.`NOME` AS pessoa_DENUNCIADO_NOME,
+     pessoa_DENUNCIADO.`ID_LOGRADOURO` AS pessoa_DENUNCIADO_ID_LOGRADOURO,
+     pessoa_DENUNCIADO.`NUMERO` AS pessoa_DENUNCIADO_NUMERO,
+     pessoa_DENUNCIADO.`TEL_FIXO` AS pessoa_DENUNCIADO_TEL_FIXO,
+     pessoa_DENUNCIADO.`TEL_CEL` AS pessoa_DENUNCIADO_TEL_CEL,
+     pessoa_DENUNCIADO.`ID_BAIRRO` AS pessoa_DENUNCIADO_ID_BAIRRO,
+     pessoa_DENUNCIADO.`COMPLEMENTO` AS pessoa_DENUNCIADO_COMPLEMENTO,
+     pessoa_DENUNCIADO.`ID_CIDADE` AS pessoa_DENUNCIADO_ID_CIDADE,
+     natureza_ocorrencia.`ID` AS natureza_ocorrencia_ID,
+     natureza_ocorrencia.`NOME` AS natureza_ocorrencia_NOME,
+     logradouro.`ID` AS logradouro_ID,
+     logradouro.`NOME` AS logradouro_NOME,
+     logradouro_A.`ID` AS logradouro_A_ID,
+     logradouro_A.`NOME` AS logradouro_A_NOME,
+     bairro.`ID` AS bairro_ID,
+     bairro.`NOME` AS bairro_NOME,
+     bairro.`LIVRO` AS bairro_LIVRO,
+     bairro.`FOLHA` AS bairro_FOLHA,
+     bairro.`MATRICULA` AS bairro_MATRICULA,
+     bairro.`TIPO` AS bairro_TIPO,
+     bairro_A.`ID` AS bairro_A_ID,
+     bairro_A.`NOME` AS bairro_A_NOME,
+     bairro_A.`LIVRO` AS bairro_A_LIVRO,
+     bairro_A.`FOLHA` AS bairro_A_FOLHA,
+     bairro_A.`MATRICULA` AS bairro_A_MATRICULA,
+     bairro_A.`TIPO` AS bairro_A_TIPO,
+     cidade.`ID` AS cidade_ID,
+     cidade.`NOME` AS cidade_NOME,
+     cidade.`UF` AS cidade_UF,
+     cidade_A.`ID` AS cidade_A_ID,
+     cidade_A.`NOME` AS cidade_A_NOME,
+     cidade_A.`UF` AS cidade_A_UF
+FROM
+     `usuario` usuario INNER JOIN `ocorrencia` ocorrencia ON usuario.`ID` = ocorrencia.`ID_USUARIO`
+     INNER JOIN `pessoa` pessoa_COMUNICANTE ON ocorrencia.`ID_COMUNICANTE` = pessoa_COMUNICANTE.`ID`
+     INNER JOIN `pessoa` pessoa_DENUNCIADO ON ocorrencia.`ID_DENUNCIADO` = pessoa_DENUNCIADO.`ID`
+     INNER JOIN `natureza_ocorrencia` natureza_ocorrencia ON ocorrencia.`ID_NATUREZA_OCORRENCIA` = natureza_ocorrencia.`ID`
+     LEFT JOIN `logradouro` logradouro_A ON pessoa_DENUNCIADO.`ID_LOGRADOURO` = logradouro_A.`ID`
+     LEFT JOIN `bairro` bairro_A ON pessoa_DENUNCIADO.`ID_BAIRRO` = bairro_A.`ID`
+     LEFT JOIN `cidade` cidade_A ON pessoa_DENUNCIADO.`ID_CIDADE` = cidade_A.`ID`
+     LEFT JOIN `logradouro` logradouro ON pessoa_COMUNICANTE.`ID_LOGRADOURO` = logradouro.`ID`
+     LEFT JOIN `bairro` bairro ON pessoa_COMUNICANTE.`ID_BAIRRO` = bairro.`ID`
+     LEFT JOIN `cidade` cidade ON pessoa_COMUNICANTE.`ID_CIDADE` = cidade.`ID`
+WHERE
+     ocorrencia.`ID` = $P{ID_OCORRENCIA}]]>
+	</queryString>
+	<field name="ocorrencia_ID" class="java.lang.Long"/>
+	<field name="ocorrencia_ID_USUARIO" class="java.lang.Long"/>
+	<field name="ocorrencia_DATA_REGISTRO" class="java.sql.Date"/>
+	<field name="ocorrencia_ID_NATUREZA_OCORRENCIA" class="java.lang.Long"/>
+	<field name="ocorrencia_ID_COMUNICANTE" class="java.lang.Long"/>
+	<field name="ocorrencia_ID_DENUNCIADO" class="java.lang.Long"/>
+	<field name="ocorrencia_RELATO_OCORRENCIA" class="java.lang.String"/>
+	<field name="usuario_ID" class="java.lang.Long"/>
+	<field name="usuario_NOME" class="java.lang.String"/>
+	<field name="usuario_LOGIN" class="java.lang.String"/>
+	<field name="usuario_SENHA" class="java.lang.String"/>
+	<field name="usuario_SETOR" class="java.lang.String"/>
+	<field name="pessoa_COMUNICANTE_ID" class="java.lang.Long"/>
+	<field name="pessoa_COMUNICANTE_NOME" class="java.lang.String"/>
+	<field name="pessoa_COMUNICANTE_ID_LOGRADOURO" class="java.lang.Long"/>
+	<field name="pessoa_COMUNICANTE_NUMERO" class="java.lang.String"/>
+	<field name="pessoa_COMUNICANTE_TEL_FIXO" class="java.lang.String"/>
+	<field name="pessoa_COMUNICANTE_TEL_CEL" class="java.lang.String"/>
+	<field name="pessoa_COMUNICANTE_COMPLEMENTO" class="java.lang.String"/>
+	<field name="pessoa_COMUNICANTE_ID_CIDADE" class="java.lang.Long"/>
+	<field name="pessoa_DENUNCIADO_ID" class="java.lang.Long"/>
+	<field name="pessoa_DENUNCIADO_NOME" class="java.lang.String"/>
+	<field name="pessoa_DENUNCIADO_ID_LOGRADOURO" class="java.lang.Long"/>
+	<field name="pessoa_DENUNCIADO_NUMERO" class="java.lang.String"/>
+	<field name="pessoa_DENUNCIADO_TEL_FIXO" class="java.lang.String"/>
+	<field name="pessoa_DENUNCIADO_TEL_CEL" class="java.lang.String"/>
+	<field name="pessoa_DENUNCIADO_ID_BAIRRO" class="java.lang.Long"/>
+	<field name="pessoa_DENUNCIADO_COMPLEMENTO" class="java.lang.String"/>
+	<field name="pessoa_DENUNCIADO_ID_CIDADE" class="java.lang.Long"/>
+	<field name="natureza_ocorrencia_ID" class="java.lang.Long"/>
+	<field name="natureza_ocorrencia_NOME" class="java.lang.String"/>
+	<field name="logradouro_ID" class="java.lang.Long"/>
+	<field name="logradouro_NOME" class="java.lang.String"/>
+	<field name="logradouro_A_ID" class="java.lang.Long"/>
+	<field name="logradouro_A_NOME" class="java.lang.String"/>
+	<field name="bairro_ID" class="java.lang.Long"/>
+	<field name="bairro_NOME" class="java.lang.String"/>
+	<field name="bairro_LIVRO" class="java.lang.String"/>
+	<field name="bairro_FOLHA" class="java.lang.Long"/>
+	<field name="bairro_MATRICULA" class="java.lang.String"/>
+	<field name="bairro_TIPO" class="java.lang.String"/>
+	<field name="bairro_A_ID" class="java.lang.Long"/>
+	<field name="bairro_A_NOME" class="java.lang.String"/>
+	<field name="bairro_A_LIVRO" class="java.lang.String"/>
+	<field name="bairro_A_FOLHA" class="java.lang.Long"/>
+	<field name="bairro_A_MATRICULA" class="java.lang.String"/>
+	<field name="bairro_A_TIPO" class="java.lang.String"/>
+	<field name="cidade_ID" class="java.lang.Long"/>
+	<field name="cidade_NOME" class="java.lang.String"/>
+	<field name="cidade_UF" class="java.lang.String"/>
+	<field name="cidade_A_ID" class="java.lang.Long"/>
+	<field name="cidade_A_NOME" class="java.lang.String"/>
+	<field name="cidade_A_UF" class="java.lang.String"/>
+	<title>
+		<band height="802" splitType="Stretch">
+			<rectangle>
+				<reportElement x="23" y="134" width="507" height="18" backcolor="#F4F7FC" uuid="b2b1bcab-6724-4e07-8258-05960d3f6e5e"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="23" y="617" width="507" height="185" backcolor="#F4F7FC" uuid="5748c1fb-3f96-4c02-88ea-3743cb466f34"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="37" y="542" width="481" height="17" backcolor="#F4F7FC" uuid="b0f181dc-f0ad-4069-9ca8-94abaa99cb80"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="37" y="503" width="481" height="18" backcolor="#F4F7FC" uuid="b410976f-05ff-417d-8728-87cf89c0bcec"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="37" y="467" width="481" height="18" backcolor="#F4F7FC" uuid="b8fe4428-a0b9-433f-a29a-2797fc08c28b"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="37" y="368" width="481" height="17" backcolor="#F4F7FC" uuid="e7548c42-64a6-46f0-8d2e-be2ce9511262"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="37" y="330" width="481" height="18" backcolor="#F4F7FC" uuid="c0092bab-cbda-4007-8a04-ffb91775c77a"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="37" y="291" width="481" height="20" backcolor="#F4F7FC" uuid="471b2bcf-1b09-457a-9c18-eb3e6ccf6242"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="63" y="45" width="439" height="39" uuid="6a7783d1-8077-4b47-bbfd-c2d8450b23fb"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ESTADO DO MARANHÃO
+PREFEITURA DE IMPERATRIZ
+SECRETARIA MUNICIPAL DE MEIO AMBIENTE E RECURSOS HÍDRICOS
+
+]]></text>
+			</staticText>
+			<image scaleImage="FillFrame">
+				<reportElement x="251" y="0" width="55" height="45" uuid="5d012fc2-b1d4-4245-976a-bfdb247b4f88"/>
+				<imageExpression><![CDATA[$P{LOGO_CIDADE}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="154" y="134" width="257" height="19" uuid="f3e6b2f8-719c-4d99-aa24-db7c2f1f9c47"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial Black" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ASSENTAMENTO DE OCORRÊNCIA]]></text>
+			</staticText>
+			<image scaleImage="FillFrame">
+				<reportElement x="251" y="84" width="55" height="50" uuid="41f93801-3c39-4dc0-98fc-fa4d5fdbe78b"/>
+				<imageExpression><![CDATA[$P{LOGO_PREFEITURA}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="427" y="134" width="31" height="19" uuid="fec721e8-c523-4e11-817f-5db15740de65"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial Black" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nº]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="458" y="134" width="72" height="19" uuid="db3d309a-36f1-4ade-bc0d-f3a547568530"/>
+				<textElement verticalAlignment="Middle" markup="html">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ocorrencia_ID}+"/"+ new SimpleDateFormat("yyyy").format($F{ocorrencia_DATA_REGISTRO})]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="23" y="156" width="507" height="1" uuid="246f55af-b5b2-46e4-98a0-d2d727a97d84"/>
+				<graphicElement>
+					<pen lineWidth="3.0"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="37" y="172" width="158" height="19" uuid="17e93f33-cda6-44c7-b1a9-dc9dfd893c38"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOME DO REGISTRANTE:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="37" y="191" width="133" height="19" uuid="a01794fc-80ba-4f35-81b7-069c455f495a"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATA DO REGISTRO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="37" y="210" width="181" height="19" uuid="f1deba02-ee67-400c-9c6f-c14b274995a8"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NATUREZA DA OCORRÊNCIA:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="23" y="242" width="507" height="1" uuid="855a4049-dfc1-4bd1-84fb-8c4089c1f029"/>
+				<graphicElement>
+					<pen lineWidth="3.0"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="37" y="243" width="111" height="19" uuid="7cd8b363-6927-4091-bdff-0572dfc84b0b"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COMUNICANTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="37" y="272" width="34" height="19" uuid="864dcaa0-65c8-4c21-a5d9-0f7c355a3d36"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOME:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="37" y="291" width="61" height="19" uuid="2ccbe650-ac17-444d-ae98-fed15aa327dd"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ENDEREÇO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="37" y="367" width="84" height="19" uuid="4c673adf-2491-4f0d-9328-0c4ccd42ccd0"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TELEFONE FIXO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="37" y="386" width="111" height="19" uuid="7af3f387-3d02-46ef-ad47-ff3a1aca665b"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TELEFONE CELULAR:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="457" y="291" width="22" height="19" uuid="3d25cd28-96c4-4aa6-910b-6c799ad3047b"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nº:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="37" y="310" width="45" height="19" uuid="b191079b-d6a5-4c48-bd4b-e81ef26f4ce5"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[BAIRRO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="37" y="329" width="84" height="19" uuid="62304032-c2a6-46cf-8717-806ed153a50a"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COMPLEMENTO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="37" y="348" width="45" height="19" uuid="50a9669e-bd30-4b36-8321-a2adea992366"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CIDADE:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="434" y="348" width="45" height="19" uuid="4b8aa229-cf3b-4ef2-8200-8b485d210c95"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ESTADO:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="195" y="172" width="323" height="20" uuid="e9eafcaf-2673-4b0f-957a-cb7d6319fe76"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{usuario_NOME}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="170" y="192" width="348" height="20" uuid="c40afefc-aa90-4ff5-b26a-20e7e2ee0565"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ocorrencia_DATA_REGISTRO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="218" y="210" width="300" height="20" uuid="495d2b00-0540-4d02-8e78-9e33d3ed3a7a"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{natureza_ocorrencia_NOME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="71" y="272" width="447" height="19" uuid="94fbd41d-16bd-41ec-a4eb-eb55f88af18f"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pessoa_COMUNICANTE_NOME}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="98" y="291" width="359" height="19" uuid="e318318b-ad47-4778-a3b0-c1630e59d6ac"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{logradouro_NOME}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="82" y="310" width="436" height="20" uuid="de6e3466-ed78-4aea-8776-49c576bafccf"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{bairro_NOME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="479" y="291" width="39" height="20" uuid="96d441a1-7b14-41f9-9731-ae063a14e493"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pessoa_COMUNICANTE_NUMERO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="121" y="330" width="397" height="18" uuid="d78ddc9f-3f45-4aa4-8eac-76e2de83276c"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pessoa_COMUNICANTE_COMPLEMENTO}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="82" y="348" width="352" height="20" uuid="2200e11b-f04c-4a5f-8758-6667aa3ba65c"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cidade_NOME}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="479" y="348" width="39" height="20" uuid="cdf2f991-288b-425b-9d11-63cc6267d19c"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cidade_UF}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="121" y="368" width="397" height="20" uuid="9302dd93-74de-461d-855b-c228356dba32"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pessoa_COMUNICANTE_TEL_FIXO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="148" y="388" width="370" height="17" uuid="3cd77862-c898-4d96-be27-bedd3d4e65a2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pessoa_COMUNICANTE_TEL_CEL}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="23" y="411" width="507" height="1" uuid="99db89fa-b141-4d9a-9251-bde5f0a944df"/>
+				<graphicElement>
+					<pen lineWidth="3.0"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="37" y="412" width="111" height="21" uuid="eb7c2d61-8cd0-4b12-9481-74e80e88d543"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DENUNCIADO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="37" y="447" width="34" height="19" uuid="cfe76a43-e58b-479b-a165-dbc738ead1d7"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOME:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="457" y="466" width="22" height="19" uuid="f8159ba9-0427-4313-b1c8-9a5e0ddb1fb4"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nº:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="37" y="466" width="61" height="19" uuid="e97528a7-feec-4ae4-9b3b-0e15090f9ea2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ENDEREÇO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="37" y="485" width="45" height="19" uuid="13796880-f5a7-4fce-b348-3b8a5f08e31e"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[BAIRRO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="37" y="503" width="84" height="19" uuid="162b9fb1-a2f5-413a-9304-d0ade32912ac"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COMPLEMENTO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="434" y="522" width="45" height="20" uuid="d8bfb023-473a-45bf-8177-a27cec4effcc"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ESTADO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="37" y="522" width="45" height="19" uuid="09fcdf7f-e7da-4c26-8ca4-845efd7b91aa"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CIDADE:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="37" y="540" width="84" height="19" uuid="ce16c04e-28fe-44f5-a15e-674bc60b25e6"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TELEFONE FIXO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="37" y="559" width="111" height="19" uuid="c99a154e-ea56-4171-b460-4662f18168a5"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TELEFONE CELULAR:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="71" y="447" width="447" height="20" uuid="11ad726c-0e02-4f20-a6c8-bd0466fa8670"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pessoa_DENUNCIADO_NOME}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="98" y="467" width="359" height="18" uuid="1b921f87-eaf9-4420-ab1e-d14a927719e7"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{logradouro_A_NOME}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="82" y="485" width="436" height="20" uuid="5bc15c28-080f-4e55-acb1-a0ddd4bfb46b"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bairro_A_NOME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="121" y="505" width="397" height="17" uuid="ebf2cf36-1a57-44dc-9323-622bc1c9e3a0"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pessoa_DENUNCIADO_COMPLEMENTO}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="82" y="522" width="352" height="20" uuid="7b898395-9a50-41d9-a38b-05263fd251c4"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{cidade_A_NOME}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="479" y="522" width="39" height="20" uuid="25290516-d6a9-49b5-b8ae-e0435578cac4"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cidade_A_UF}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="121" y="542" width="397" height="17" uuid="b724d751-8b3c-4e94-b4a5-3a704e9e1c8b"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pessoa_DENUNCIADO_TEL_FIXO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="148" y="559" width="370" height="19" uuid="e0bcb871-3cf4-499c-bb9b-1ab5907f13e2"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{pessoa_DENUNCIADO_TEL_CEL}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="23" y="588" width="507" height="1" uuid="8dd1e451-0279-4ee1-8506-3bb4aa6a14a8"/>
+				<graphicElement>
+					<pen lineWidth="3.0"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="195" y="594" width="191" height="21" uuid="26337e60-c2f0-4b37-b47b-c04608890e01"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RELATO DA OCORRÊNCIA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="23" y="617" width="507" height="185" uuid="1896a3f0-cfaf-410a-87fd-bd38d94e894a"/>
+				<textElement markup="html">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b>Por meio deste relato, venho denunciar a esta Secretaria</b><br>"+$F{ocorrencia_RELATO_OCORRENCIA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="479" y="466" width="39" height="19" uuid="9e2f8e36-ce90-4bc9-adec-8c89d496d876"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pessoa_DENUNCIADO_NUMERO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+</jasperReport>

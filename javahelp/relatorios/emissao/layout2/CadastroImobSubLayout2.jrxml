@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="AtendimentoSub" language="groovy" pageWidth="595" pageHeight="842" whenNoDataType="NoDataSection" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="0" bottomMargin="20" uuid="0bb2ac7a-5875-4a3b-8634-0e327eafefda">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<import value="extenso.ExtensoMetrico"/>
+	<import value="extenso.ExtensoMetricoQuadrado"/>
+	<import value="extenso.Extenso"/>
+	<parameter name="ID_EMISSAO" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     terreno_imob.`LOTE` AS terreno_imob_LOTE,
+     emissao_titulo.`ID` AS emissao_titulo_ID,
+     imovel.`ID` AS imovel_ID,
+     processo.`ID` AS processo_ID,
+     imovel.`M_FRENTE` AS imovel_M_FRENTE,
+     logradouro.`ID` AS logradouro_FRENTE_ID,
+     logradouro.`NOME` AS logradouro_FRENTE_NOME,
+     logradouro_A.`ID` AS logradouro_DIREITA_ID,
+     logradouro_A.`NOME` AS logradouro_DIREITA_NOME,
+     logradouro_B.`ID` AS logradouro_FUNDO_ID,
+     logradouro_B.`NOME` AS logradouro_FUNDO_NOME,
+     logradouro_C.`ID` AS logradouro_ESQUERDA_ID,
+     logradouro_C.`NOME` AS logradouro_ESQUERDA_NOME,
+     imovel.`VIZIN_DIR` AS imovel_VIZIN_DIR,
+     imovel.`M_DIREITA` AS imovel_M_DIREITA,
+     imovel.`VIZIN_ESQ` AS imovel_VIZIN_ESQ,
+     imovel.`M_ESQUERDA` AS imovel_M_ESQUERDA,
+     imovel.`VIZIN_FUN` AS imovel_VIZIN_FUN,
+     imovel.`M_FUNDO` AS imovel_M_FUNDO,
+     imovel.`VALOR_TOTAL` AS imovel_VALOR_TOTAL,
+     imovel.`NUMERO` AS imovel_NUMERO,
+     bairro.`ID` AS bairro_ID,
+     bairro.`NOME` AS bairro_IMOVEL_NOME,
+     bairro.`LIVRO` AS bairro_IMOVEL_LIVRO,
+     bairro.`FOLHA` AS bairro_IMOVEL_FOLHA,
+     bairro.`MATRICULA` AS bairro_IMOVEL_MATRICULA,
+     bairro.`TIPO` AS bairro_TIPO,
+     cad_imobiliario.`ID` AS cad_imobiliario_ID,
+     cad_imobiliario.`INSCRICAO` AS cad_imobiliario_INSCRICAO,
+     cad_imobiliario.`DISTRITO` AS cad_imobiliario_DISTRITO,
+     cad_imobiliario.`SETOR` AS cad_imobiliario_SETOR,
+     cad_imobiliario.`QUADRA` AS cad_imobiliario_QUADRA,
+     cad_imobiliario.`LOTE` AS cad_imobiliario_LOTE,
+     cad_imobiliario.`UNIDADE` AS cad_imobiliario_UNIDADE,
+     cad_imobiliario.`VALOR` AS cad_imobiliario_VALOR,
+     cad_imobiliario.`ID_USUARIO` AS cad_imobiliario_ID_USUARIO,
+     cadastrosimob_imovel.`ID` AS cadastrosimob_imovel_ID,
+     cadastrosimob_imovel.`ID_IMOVEL` AS cadastrosimob_imovel_ID_IMOVEL,
+     cadastrosimob_imovel.`ID_CAD_IMOBILIARIO` AS cadastrosimob_imovel_ID_CAD_IMOBILIARIO,
+     imovel.`M_AREA` AS imovel_M_AREA,
+     imovel.`ID_PROCESSO` AS imovel_ID_PROCESSO,
+     imovel.`ID_USUARIO` AS imovel_ID_USUARIO,
+     imovel.`ID_LOGRAFRENTE` AS imovel_ID_LOGRAFRENTE,
+     imovel.`VDEFAULT` AS imovel_VDEFAULT,
+     terreno_imob.`LOTE_UNICO` AS terreno_imob_LOTE_UNICO
+FROM
+     `imovel` imovel INNER JOIN `terreno_imob` terreno_imob ON imovel.`ID` = terreno_imob.`ID_IMOVEL`
+     INNER JOIN `processo` processo ON imovel.`ID_PROCESSO` = processo.`ID`
+     INNER JOIN `logradouro` logradouro ON imovel.`ID_LOGRAFRENTE` = logradouro.`ID`
+     INNER JOIN `logradouro` logradouro_A ON imovel.`ID_LOGRADIR` = logradouro_A.`ID`
+     INNER JOIN `logradouro` logradouro_B ON imovel.`ID_LOGRAFUNDO` = logradouro_B.`ID`
+     INNER JOIN `logradouro` logradouro_C ON imovel.`ID_LOGRAESQ` = logradouro_C.`ID`
+     INNER JOIN `bairro` bairro ON imovel.`ID_BAIRRO` = bairro.`ID`
+     INNER JOIN `cadastrosimob_imovel` cadastrosimob_imovel ON imovel.`ID` = cadastrosimob_imovel.`ID_IMOVEL`
+     INNER JOIN `cad_imobiliario` cad_imobiliario ON cadastrosimob_imovel.`ID_CAD_IMOBILIARIO` = cad_imobiliario.`ID`
+     INNER JOIN `emissao_titulo` emissao_titulo ON processo.`ID` = emissao_titulo.`ID_PROCESSO`
+WHERE
+     emissao_titulo.`ID` = $P{ID_EMISSAO}
+ORDER BY
+     imovel.`ID` DESC]]>
+	</queryString>
+	<field name="terreno_imob_LOTE" class="java.lang.String"/>
+	<field name="emissao_titulo_ID" class="java.lang.Long"/>
+	<field name="imovel_ID" class="java.lang.Long"/>
+	<field name="processo_ID" class="java.lang.Long"/>
+	<field name="imovel_M_FRENTE" class="java.lang.Double"/>
+	<field name="logradouro_FRENTE_ID" class="java.lang.Long"/>
+	<field name="logradouro_FRENTE_NOME" class="java.lang.String"/>
+	<field name="logradouro_DIREITA_ID" class="java.lang.Long"/>
+	<field name="logradouro_DIREITA_NOME" class="java.lang.String"/>
+	<field name="logradouro_FUNDO_ID" class="java.lang.Long"/>
+	<field name="logradouro_FUNDO_NOME" class="java.lang.String"/>
+	<field name="logradouro_ESQUERDA_ID" class="java.lang.Long"/>
+	<field name="logradouro_ESQUERDA_NOME" class="java.lang.String"/>
+	<field name="imovel_VIZIN_DIR" class="java.lang.String"/>
+	<field name="imovel_M_DIREITA" class="java.lang.Double"/>
+	<field name="imovel_VIZIN_ESQ" class="java.lang.String"/>
+	<field name="imovel_M_ESQUERDA" class="java.lang.Double"/>
+	<field name="imovel_VIZIN_FUN" class="java.lang.String"/>
+	<field name="imovel_M_FUNDO" class="java.lang.Double"/>
+	<field name="imovel_VALOR_TOTAL" class="java.lang.Double"/>
+	<field name="imovel_NUMERO" class="java.lang.String"/>
+	<field name="bairro_ID" class="java.lang.Long"/>
+	<field name="bairro_IMOVEL_NOME" class="java.lang.String"/>
+	<field name="bairro_IMOVEL_LIVRO" class="java.lang.String"/>
+	<field name="bairro_IMOVEL_FOLHA" class="java.lang.Long"/>
+	<field name="bairro_IMOVEL_MATRICULA" class="java.lang.String"/>
+	<field name="bairro_TIPO" class="java.lang.String"/>
+	<field name="cad_imobiliario_ID" class="java.lang.Long"/>
+	<field name="cad_imobiliario_INSCRICAO" class="java.lang.String"/>
+	<field name="cad_imobiliario_DISTRITO" class="java.lang.String"/>
+	<field name="cad_imobiliario_SETOR" class="java.lang.String"/>
+	<field name="cad_imobiliario_QUADRA" class="java.lang.String"/>
+	<field name="cad_imobiliario_LOTE" class="java.lang.String"/>
+	<field name="cad_imobiliario_UNIDADE" class="java.lang.String"/>
+	<field name="cad_imobiliario_VALOR" class="java.lang.Double"/>
+	<field name="cad_imobiliario_ID_USUARIO" class="java.lang.Long"/>
+	<field name="cadastrosimob_imovel_ID" class="java.lang.Long"/>
+	<field name="cadastrosimob_imovel_ID_IMOVEL" class="java.lang.Long"/>
+	<field name="cadastrosimob_imovel_ID_CAD_IMOBILIARIO" class="java.lang.Long"/>
+	<field name="imovel_M_AREA" class="java.lang.Double"/>
+	<field name="imovel_ID_PROCESSO" class="java.lang.Long"/>
+	<field name="imovel_ID_USUARIO" class="java.lang.Long"/>
+	<field name="imovel_ID_LOGRAFRENTE" class="java.lang.Long"/>
+	<field name="imovel_VDEFAULT" class="java.lang.String"/>
+	<field name="terreno_imob_LOTE_UNICO" class="java.lang.String"/>
+	<detail>
+		<band height="16">
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement mode="Opaque" x="0" y="0" width="555" height="16" forecolor="#000000" backcolor="#FFFFFF" uuid="a6f3c0fe-5654-4ba0-9f24-16fa7958c29e">
+					<printWhenExpression><![CDATA[($F{terreno_imob_LOTE} == "") ? true : false]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Justified" verticalAlignment="Bottom" markup="none">
+					<font fontName="Times New Roman" size="9" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["CADASTRO IMOBILIARIO: "+$F{cad_imobiliario_INSCRICAO}+
+" DISTRITO: "+$F{cad_imobiliario_DISTRITO}+
+" SETOR: "+$F{cad_imobiliario_SETOR}+
+" QUADRA: "+$F{cad_imobiliario_QUADRA}+
+" LOTE: "+$F{cad_imobiliario_LOTE}+
+" UNIDADE: "+$F{cad_imobiliario_UNIDADE}+"."]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement mode="Opaque" x="0" y="0" width="555" height="16" forecolor="#000000" backcolor="#FFFFFF" uuid="b1014e27-180c-440a-b108-092e8b86a366">
+					<printWhenExpression><![CDATA[($F{terreno_imob_LOTE_UNICO} == "Sim") ? true : false]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Justified" verticalAlignment="Top" markup="none">
+					<font fontName="Times New Roman" size="9" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["CADASTRO IMOBILIARIO: "+$F{cad_imobiliario_INSCRICAO}+
+" DISTRITO: "+$F{cad_imobiliario_DISTRITO}+
+" SETOR: "+$F{cad_imobiliario_SETOR}+
+" QUADRA: "+$F{cad_imobiliario_QUADRA}+
+" LOTE: "+$F{cad_imobiliario_LOTE}+
+" UNIDADE: "+$F{cad_imobiliario_UNIDADE}+"."]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

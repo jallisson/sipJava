@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE index PUBLIC "-//Sun Microsystems Inc.//DTD JavaHelp Index Version 2.0//EN" "http://java.sun.com/products/javahelp/index_2_0.dtd">
+<index version="2.0">
+    <indexitem text="Sistema Gov">
+        <indexitem text="Sobre o Gov" target="appwithhelp.about"/>
+        <indexitem text="Mais Sobre o Gov" target="appwithhelp.more"/> 
+        <indexitem text="Menu Cadastro" target="appwithhelp.menucadastro"/>
+        <indexitem text="Cadastro Monitor" target="appwithhelp.cadastromonitor"/>
+        <indexitem text="Cadastro Ocorrência" target="appwithhelp.cadastroocorrencia"/>
+        <indexitem text="Cadastro Carro" target="appwithhelp.cadastrocarro"/>
+        <indexitem text="Cadastro Motorista" target="appwithhelp.cadastromotorista"/>
+        <indexitem text="Cadastro Cobrador" target="appwithhelp.cadastrocobrador"/>
+        <indexitem text="Cadastro Rotas" target="appwithhelp.cadastrorotas"/>
+        <indexitem text="Cadastro Empresas" target="appwithhelp.cadastroempresas"/>
+        <indexitem text="Menu Movimento" target="appwithhelp.menumovimento"/>
+        <indexitem text="Registro de Video" target="appwithhelp.registrarvideo"/>
+         <indexitem text="Alterar Video" target="appwithhelp.alterarvideo"/>
+        <indexitem text="Inserir Ocorrência" target="appwithhelp.inserirocorrencia"/>
+        <indexitem text="Excluir Ocorrência" target="appwithhelp.excluirocorrencia"/>
+        <indexitem text="Consultar Video" target="appwithhelp.consultarvideo"/>
+        <indexitem text="Relatórios" target="appwithhelp.menurelatorios"/>
+        <indexitem text="Controle de Acesso" target="appwithhelp.controledeacesso"/>
+   
+    </indexitem>
+</index>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="VendasDiaSub" language="groovy" pageWidth="288" pageHeight="72" columnWidth="288" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="522d36e7-91db-417c-8de9-58aba8d647a8">
+	<property name="ireport.zoom" value="1.9487171000000014"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="DATA_INICIO" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="DATA_FIM" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CODIGO_CLIENTE" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     sum(venda.`VALOR_TOTAL`) AS venda_VALOR_TOTAL,
+     sum(venda.`DESCONTO`) AS venda_DESCONTO,
+     venda.`DATA_VENDA` AS venda_DATA_VENDA,
+     venda.`SITUACAO_VENDA` AS venda_SITUACAO_VENDA,
+     cliente.`ID` AS cliente_ID,
+     cliente.`NOME` AS cliente_NOME,
+     cliente.`ENDERECO` AS cliente_ENDERECO,
+     cliente.`BAIRRO` AS cliente_BAIRRO,
+     cliente.`CIDADE` AS cliente_CIDADE,
+     cliente.`UF` AS cliente_UF,
+     cliente.`CEP` AS cliente_CEP,
+     cliente.`TELEFONE` AS cliente_TELEFONE,
+     cliente.`EMAIL` AS cliente_EMAIL,
+     venda.`ID_CLIENTE` AS venda_ID_CLIENTE
+FROM
+     `cliente` cliente INNER JOIN `venda` venda ON cliente.`ID` = venda.`ID_CLIENTE`
+WHERE
+     DATA_VENDA BETWEEN $P{DATA_INICIO} AND $P{DATA_FIM}
+ AND venda.`SITUACAO_VENDA` = "ativa"
+ AND cliente.`ID` = $P{CODIGO_CLIENTE}]]>
+	</queryString>
+	<field name="venda_VALOR_TOTAL" class="java.lang.Double"/>
+	<field name="venda_DESCONTO" class="java.lang.Double"/>
+	<field name="venda_DATA_VENDA" class="java.sql.Date"/>
+	<field name="venda_SITUACAO_VENDA" class="java.lang.String"/>
+	<field name="cliente_ID" class="java.lang.Long"/>
+	<field name="cliente_NOME" class="java.lang.String"/>
+	<field name="cliente_ENDERECO" class="java.lang.String"/>
+	<field name="cliente_BAIRRO" class="java.lang.String"/>
+	<field name="cliente_CIDADE" class="java.lang.String"/>
+	<field name="cliente_UF" class="java.lang.String"/>
+	<field name="cliente_CEP" class="java.lang.String"/>
+	<field name="cliente_TELEFONE" class="java.lang.String"/>
+	<field name="cliente_EMAIL" class="java.lang.String"/>
+	<field name="venda_ID_CLIENTE" class="java.lang.Long"/>
+	<title>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="135" y="0" width="72" height="20" uuid="4bed1053-4169-4c4d-9293-d67f46e7c38f"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Liquido:]]></text>
+			</staticText>
+			<textField evaluationTime="Report" pattern="¤ #,##0.00">
+				<reportElement x="207" y="0" width="72" height="20" uuid="2429921f-4636-4521-9e37-623963754680"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{venda_VALOR_TOTAL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="56" height="20" uuid="ef4be17a-eaee-41b3-86fc-011c92672481"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Desconto:]]></text>
+			</staticText>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="56" y="0" width="79" height="20" uuid="0dea6c7d-d016-434f-baab-49b5dd2ab5b0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{venda_DESCONTO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+</jasperReport>

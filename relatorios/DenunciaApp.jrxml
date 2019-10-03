@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Ocorrencia" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c440d119-6505-4628-8b5b-bcdf7343861b">
+	<property name="ireport.zoom" value="1.3310000000000004"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="336"/>
+	<parameter name="LOGO_CIDADE" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ID_OCORRENCIA" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     denuncia.`DENUNCIADO` AS denuncia_DENUNCIADO,
+     denuncia.`LOCAL_DENUNCIA` AS denuncia_LOCAL_DENUNCIA,
+     denuncia.`P_REFERENCIA` AS denuncia_P_REFERENCIA,
+     denuncia.`DESCRICAO` AS denuncia_DESCRICAO,
+     denuncia.`DATA_DENUNCIA` AS denuncia_DATA_DENUNCIA,
+     denuncia.`URL_IMAGEM` AS denuncia_URL_IMAGEM,
+     denuncia.`TIPO_DENUNCIA` AS denuncia_TIPO_DENUNCIA,
+     denuncia.`ID` AS denuncia_ID
+FROM
+     `denuncia` denuncia
+WHERE
+     denuncia.`ID` = $P{ID_OCORRENCIA}]]>
+	</queryString>
+	<field name="denuncia_DENUNCIADO" class="java.lang.String"/>
+	<field name="denuncia_LOCAL_DENUNCIA" class="java.lang.String"/>
+	<field name="denuncia_P_REFERENCIA" class="java.lang.String"/>
+	<field name="denuncia_DESCRICAO" class="java.lang.String"/>
+	<field name="denuncia_DATA_DENUNCIA" class="java.sql.Date"/>
+	<field name="denuncia_URL_IMAGEM" class="java.lang.String"/>
+	<field name="denuncia_TIPO_DENUNCIA" class="java.lang.String"/>
+	<field name="denuncia_ID" class="java.lang.Long"/>
+	<title>
+		<band height="802" splitType="Stretch">
+			<rectangle>
+				<reportElement x="71" y="322" width="447" height="18" backcolor="#F4F7FC" uuid="5ac658a4-165e-4de7-b638-511df8bf0a7f"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="23" y="134" width="507" height="18" backcolor="#F4F7FC" uuid="b2b1bcab-6724-4e07-8258-05960d3f6e5e"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="23" y="521" width="507" height="281" backcolor="#F4F7FC" uuid="5748c1fb-3f96-4c02-88ea-3743cb466f34"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="37" y="358" width="481" height="40" backcolor="#F4F7FC" uuid="b410976f-05ff-417d-8728-87cf89c0bcec"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="37" y="417" width="481" height="23" backcolor="#F4F7FC" uuid="b8fe4428-a0b9-433f-a29a-2797fc08c28b"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="23" y="60" width="507" height="58" uuid="6a7783d1-8077-4b47-bbfd-c2d8450b23fb"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ESTADO DO MARANHÃO
+PREFEITURA DE IMPERATRIZ
+SECRETARIA MUNICIPAL DE MEIO AMBIENTE E RECURSOS HÍDRICOS
+
+]]></text>
+			</staticText>
+			<image scaleImage="FillFrame">
+				<reportElement x="246" y="0" width="66" height="60" uuid="5d012fc2-b1d4-4245-976a-bfdb247b4f88"/>
+				<imageExpression><![CDATA[$P{LOGO_CIDADE}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="105" y="134" width="306" height="19" uuid="f3e6b2f8-719c-4d99-aa24-db7c2f1f9c47"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial Black" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ASSENTAMENTO DE DÉNUNCIA PELO APP]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="427" y="134" width="31" height="19" uuid="fec721e8-c523-4e11-817f-5db15740de65"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial Black" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nº]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="458" y="134" width="72" height="19" uuid="db3d309a-36f1-4ade-bc0d-f3a547568530"/>
+				<textElement verticalAlignment="Middle" markup="html">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{denuncia_ID}+"/"+ new SimpleDateFormat("yyyy").format($F{denuncia_DATA_DENUNCIA})]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="23" y="156" width="507" height="1" uuid="246f55af-b5b2-46e4-98a0-d2d727a97d84"/>
+				<graphicElement>
+					<pen lineWidth="3.0"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="37" y="167" width="133" height="19" uuid="a01794fc-80ba-4f35-81b7-069c455f495a"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATA DO REGISTRO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="37" y="186" width="181" height="19" uuid="f1deba02-ee67-400c-9c6f-c14b274995a8"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NATUREZA DA OCORRÊNCIA:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="23" y="217" width="507" height="1" uuid="855a4049-dfc1-4bd1-84fb-8c4089c1f029"/>
+				<graphicElement>
+					<pen lineWidth="3.0"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="37" y="218" width="111" height="19" uuid="7cd8b363-6927-4091-bdff-0572dfc84b0b"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COMUNICANTE]]></text>
+			</staticText>
+			<line>
+				<reportElement x="23" y="284" width="507" height="1" uuid="99db89fa-b141-4d9a-9251-bde5f0a944df"/>
+				<graphicElement>
+					<pen lineWidth="3.0"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="37" y="285" width="111" height="21" uuid="eb7c2d61-8cd0-4b12-9481-74e80e88d543"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DENUNCIADO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="37" y="320" width="34" height="19" uuid="cfe76a43-e58b-479b-a165-dbc738ead1d7"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOME:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="37" y="339" width="117" height="19" uuid="e97528a7-feec-4ae4-9b3b-0e15090f9ea2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LOCAL DA DENÚNCIA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="37" y="398" width="133" height="19" uuid="162b9fb1-a2f5-413a-9304-d0ade32912ac"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PONTO DE REFERÊNCIA:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="23" y="482" width="507" height="1" uuid="8dd1e451-0279-4ee1-8506-3bb4aa6a14a8"/>
+				<graphicElement>
+					<pen lineWidth="3.0"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="195" y="488" width="191" height="21" uuid="26337e60-c2f0-4b37-b47b-c04608890e01"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DESCRIÇÃO DA DENÚNCIA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="23" y="521" width="507" height="281" uuid="1896a3f0-cfaf-410a-87fd-bd38d94e894a"/>
+				<textElement markup="html">
+					<font fontName="Arial" size="12" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b>Por meio desta descrição, venho denunciar a esta Secretaria:</b><br><br>"+$F{denuncia_DESCRICAO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="23" y="247" width="495" height="20" uuid="e3737ec7-d9b9-45d8-b2a7-afe827bb65b5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ANÔNIMO]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="170" y="167" width="360" height="20" uuid="4d92904e-aced-40fe-a638-31af550971d3"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{denuncia_DATA_DENUNCIA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="218" y="187" width="312" height="20" uuid="dc37041f-de58-4ef4-bc8f-f22caf2499e2"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{denuncia_TIPO_DENUNCIA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="71" y="322" width="447" height="17" uuid="adfbc2fd-7d70-4fe4-b19a-1f2f52158047"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{denuncia_DENUNCIADO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="37" y="358" width="481" height="40" uuid="edc532ab-bb40-4ab0-b6a3-1724f40f8e53"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{denuncia_LOCAL_DENUNCIA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="37" y="417" width="481" height="23" uuid="08bbb760-99c7-482f-a630-6f7a73694e97"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{denuncia_P_REFERENCIA}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+</jasperReport>

@@ -1,0 +1,547 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Atendimento" language="groovy" pageWidth="595" pageHeight="856" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="10" bottomMargin="20" uuid="d108df02-57bf-497e-a207-1cbe5cb9c439">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="582"/>
+	<import value="extenso.ExtensoMetrico"/>
+	<import value="extenso.ExtensoMetricoQuadrado"/>
+	<import value="extenso.Extenso"/>
+	<scriptlet name="scriptlet1" class="net.sf.jasperreports.engine.JRDefaultScriptlet"/>
+	<parameter name="ID_EMISSAO" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\Jallisson\\Google Drive\\SISTEMA SERF\\SISTEMA SIP\\MYSQL\\SIP\\Projeto\\Sip\\relatorios\\emissao\\getatlayout1\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     emissao_titulo.`ID` AS emissao_titulo_ID,
+     emissao_titulo.`ID_USUARIO` AS emissao_titulo_ID_USUARIO,
+     emissao_titulo.`ID_LOTEEMISSAO` AS emissao_titulo_ID_LOTEEMISSAO,
+     emissao_titulo.`ID_PROCESSO` AS emissao_titulo_ID_PROCESSO,
+     emissao_titulo.`DATA_IMPRESSAO` AS emissao_titulo_DATA_IMPRESSAO,
+     emissao_titulo.`MESANO` AS emissao_titulo_MESANO,
+     emissao_titulo.`CONVOCACAO` AS emissao_titulo_CONVOCACAO,
+     emissao_titulo.`VIZINHO` AS emissao_titulo_VIZINHO,
+     emissao_titulo.`CONTROLE` AS emissao_titulo_CONTROLE,
+     imovel.`ID` AS imovel_ID,
+     imovel.`ID_USUARIO` AS imovel_ID_USUARIO,
+     imovel.`ID_PROCESSO` AS imovel_ID_PROCESSO,
+     imovel.`M_AREA` AS imovel_M_AREA,
+     imovel.`NUMERO` AS imovel_NUMERO,
+     imovel.`ID_BAIRRO` AS imovel_ID_BAIRRO,
+     imovel.`M_FRENTE` AS imovel_M_FRENTE,
+     imovel.`VIZIN_DIR` AS imovel_VIZIN_DIR,
+     imovel.`M_DIREITA` AS imovel_M_DIREITA,
+     imovel.`VIZIN_ESQ` AS imovel_VIZIN_ESQ,
+     imovel.`M_ESQUERDA` AS imovel_M_ESQUERDA,
+     imovel.`VIZIN_FUN` AS imovel_VIZIN_FUN,
+     imovel.`M_FUNDO` AS imovel_M_FUNDO,
+     imovel.`VALOR_TOTAL` AS imovel_VALOR_TOTAL,
+     processo.`ID` AS processo_ID,
+     processo.`ID_USUARIO` AS processo_ID_USUARIO,
+     processo.`NUM_PROCESSO` AS processo_NUM_PROCESSO,
+     processo.`ID_REQUERENTE` AS processo_ID_REQUERENTE,
+     processo.`DATA_PROCESSO` AS processo_DATA_PROCESSO,
+     processo.`MESANO` AS processo_MESANO,
+     processo.`TIPO` AS processo_TIPO,
+     processo.`SITUACAO` AS processo_SITUACAO,
+     requerente.`ID` AS requerente_ID,
+     requerente.`ID_LOGRADOURO` AS requerente_ID_LOGRADOURO,
+     requerente.`NOME` AS requerente_NOME,
+     requerente.`NACIONALIDADE` AS requerente_NACIONALIDADE,
+     requerente.`EST_CIVIL` AS requerente_EST_CIVIL,
+     requerente.`PROFISSAO` AS requerente_PROFISSAO,
+     requerente.`RG` AS requerente_RG,
+     requerente.`ORGAO` AS requerente_ORGAO,
+     requerente.`CPF` AS requerente_CPF,
+     requerente.`NUMERO` AS requerente_NUMERO,
+     requerente.`ID_BAIRRO` AS requerente_ID_BAIRRO,
+     requerente.`ID_CIDADE` AS requerente_ID_CIDADE,
+     requerente.`TEL_FIXO` AS requerente_TEL_FIXO,
+     requerente.`TEL_CEL` AS requerente_TEL_CEL,
+     bairro.`ID` AS bairro_ID,
+     bairro.`NOME` AS bairro_NOME,
+     bairro.`LIVRO` AS bairro_LIVRO,
+     bairro.`FOLHA` AS bairro_FOLHA,
+     bairro.`MATRICULA` AS bairro_MATRICULA,
+     bairro.`TIPO` AS bairro_TIPO,
+     cidade.`ID` AS cidade_ID,
+     cidade.`NOME` AS cidade_NOME,
+     cidade.`UF` AS cidade_UF,
+     logradouro.`ID` AS logradouro_REQUERENTE_ID,
+     logradouro.`NOME` AS logradouro_REQUERENTE_NOME,
+     bairro_A.`ID` AS bairro_IMOVEL_ID,
+     bairro_A.`NOME` AS bairro_IMOVEL_NOME,
+     bairro_A.`LIVRO` AS bairro_IMOVEL_LIVRO,
+     bairro_A.`FOLHA` AS bairro_IMOVEL_FOLHA,
+     bairro_A.`MATRICULA` AS bairro_IMOVEL_MATRICULA,
+     bairro_A.`TIPO` AS bairro_IMOVEL_TIPO,
+     imovel.`ID_LOGRADIR` AS imovel_ID_LOGRADIR,
+     imovel.`ID_LOGRAFRENTE` AS imovel_ID_LOGRAFRENTE,
+     imovel.`ID_LOGRAFUNDO` AS imovel_ID_LOGRAFUNDO,
+     logradouro_A.`ID` AS logradouro_FRENTE_ID,
+     logradouro_A.`NOME` AS logradouro_FRENTE_NOME,
+     logradouro_B.`ID` AS logradouro_DIREITA_ID,
+     logradouro_B.`NOME` AS logradouro_DIREITA_NOME,
+     logradouro_C.`ID` AS logradouro_FUNDO_ID,
+     logradouro_C.`NOME` AS logradouro_FUNDO_NOME,
+     logradouro_D.`ID` AS logradouro_ESQUERDA_ID,
+     logradouro_D.`NOME` AS logradouro_ESQUERDA_NOME,
+     imovel.`ID_LOGRAESQ` AS imovel_ID_LOGRAESQ,
+     cad_imobiliario.`ID` AS cad_imobiliario_ID,
+     cad_imobiliario.`INSCRICAO` AS cad_imobiliario_INSCRICAO,
+     cad_imobiliario.`DISTRITO` AS cad_imobiliario_DISTRITO,
+     cad_imobiliario.`SETOR` AS cad_imobiliario_SETOR,
+     cad_imobiliario.`QUADRA` AS cad_imobiliario_QUADRA,
+     cad_imobiliario.`LOTE` AS cad_imobiliario_LOTE,
+     cad_imobiliario.`UNIDADE` AS cad_imobiliario_UNIDADE,
+     cad_imobiliario.`VALOR` AS cad_imobiliario_VALOR,
+     cad_imobiliario.`ID_USUARIO` AS cad_imobiliario_ID_USUARIO,
+     cadastrosimob_imovel.`ID` AS cadastrosimob_imovel_ID,
+     cadastrosimob_imovel.`ID_IMOVEL` AS cadastrosimob_imovel_ID_IMOVEL,
+     cadastrosimob_imovel.`ID_CAD_IMOBILIARIO` AS cadastrosimob_imovel_ID_CAD_IMOBILIARIO,
+     terreno_imob.`ID` AS terreno_imob_ID,
+     terreno_imob.`ID_IMOVEL` AS terreno_imob_ID_IMOVEL,
+     terreno_imob.`QUADRA` AS terreno_imob_QUADRA,
+     terreno_imob.`LOTE` AS terreno_imob_LOTE,
+     requerente.`NUBENTE` AS requerente_NUBENTE,
+     requerente.`REGIME` AS requerente_REGIME,
+     imovel.`VDEFAULT` AS imovel_VDEFAULT,
+     imovel.`ESQUINA` AS imovel_ESQUINA,
+     imovel.`DIS_ESQUINA` AS imovel_DIS_ESQUINA,
+     imovel.`LOGRA_ESQUINA` AS imovel_LOGRA_ESQUINA,
+     segundavia.`ID` AS segundavia_ID,
+     segundavia.`ID_USUARIO` AS segundavia_ID_USUARIO,
+     segundavia.`ID_PROCESSO` AS segundavia_ID_PROCESSO,
+     segundavia.`NUM_PROCESSOADM` AS segundavia_NUM_PROCESSOADM,
+     segundavia.`NUM_TITULOADM` AS segundavia_NUM_TITULOADM,
+     segundavia.`NOME_PREFEITO` AS segundavia_NOME_PREFEITO,
+     segundavia.`DATA_PROCESSOADM` AS segundavia_DATA_PROCESSOADM,
+     requerente.`REPRESENTADO` AS requerente_REPRESENTADO,
+     requerente.`REPRESENTADO_NOME` AS requerente_REPRESENTADO_NOME,
+     requerente.`REPRESENTADO_TIPO` AS requerente_REPRESENTADO_TIPO
+FROM
+     `processo` processo INNER JOIN `emissao_titulo` emissao_titulo ON processo.`ID` = emissao_titulo.`ID_PROCESSO`
+     INNER JOIN `imovel` imovel ON processo.`ID` = imovel.`ID_PROCESSO`
+     INNER JOIN `requerente` requerente ON processo.`ID_REQUERENTE` = requerente.`ID`
+     LEFT JOIN `segundavia` segundavia ON processo.`ID` = segundavia.`ID_PROCESSO`
+     INNER JOIN `bairro` bairro ON requerente.`ID_BAIRRO` = bairro.`ID`
+     INNER JOIN `cidade` cidade ON requerente.`ID_CIDADE` = cidade.`ID`
+     INNER JOIN `logradouro` logradouro ON requerente.`ID_LOGRADOURO` = logradouro.`ID`
+     INNER JOIN `bairro` bairro_A ON imovel.`ID_BAIRRO` = bairro_A.`ID`
+     INNER JOIN `logradouro` logradouro_A ON imovel.`ID_LOGRAFRENTE` = logradouro_A.`ID`
+     INNER JOIN `logradouro` logradouro_B ON imovel.`ID_LOGRADIR` = logradouro_B.`ID`
+     INNER JOIN `logradouro` logradouro_C ON imovel.`ID_LOGRAFUNDO` = logradouro_C.`ID`
+     INNER JOIN `logradouro` logradouro_D ON imovel.`ID_LOGRAESQ` = logradouro_D.`ID`
+     INNER JOIN `cadastrosimob_imovel` cadastrosimob_imovel ON imovel.`ID` = cadastrosimob_imovel.`ID_IMOVEL`
+     INNER JOIN `terreno_imob` terreno_imob ON imovel.`ID` = terreno_imob.`ID_IMOVEL`
+     INNER JOIN `cad_imobiliario` cad_imobiliario ON cadastrosimob_imovel.`ID_CAD_IMOBILIARIO` = cad_imobiliario.`ID`
+WHERE
+     emissao_titulo.`ID` = $P{ID_EMISSAO}
+ORDER BY
+     imovel.`ID` DESC]]>
+	</queryString>
+	<field name="emissao_titulo_ID" class="java.lang.Long"/>
+	<field name="emissao_titulo_ID_USUARIO" class="java.lang.Long"/>
+	<field name="emissao_titulo_ID_LOTEEMISSAO" class="java.lang.Long"/>
+	<field name="emissao_titulo_ID_PROCESSO" class="java.lang.Long"/>
+	<field name="emissao_titulo_DATA_IMPRESSAO" class="java.sql.Date"/>
+	<field name="emissao_titulo_MESANO" class="java.lang.String"/>
+	<field name="emissao_titulo_CONVOCACAO" class="java.lang.String"/>
+	<field name="emissao_titulo_VIZINHO" class="java.lang.String"/>
+	<field name="emissao_titulo_CONTROLE" class="java.lang.String"/>
+	<field name="imovel_ID" class="java.lang.Long"/>
+	<field name="imovel_ID_USUARIO" class="java.lang.Long"/>
+	<field name="imovel_ID_PROCESSO" class="java.lang.Long"/>
+	<field name="imovel_M_AREA" class="java.lang.Double"/>
+	<field name="imovel_NUMERO" class="java.lang.String"/>
+	<field name="imovel_ID_BAIRRO" class="java.lang.Long"/>
+	<field name="imovel_M_FRENTE" class="java.lang.Double"/>
+	<field name="imovel_VIZIN_DIR" class="java.lang.String"/>
+	<field name="imovel_M_DIREITA" class="java.lang.Double"/>
+	<field name="imovel_VIZIN_ESQ" class="java.lang.String"/>
+	<field name="imovel_M_ESQUERDA" class="java.lang.Double"/>
+	<field name="imovel_VIZIN_FUN" class="java.lang.String"/>
+	<field name="imovel_M_FUNDO" class="java.lang.Double"/>
+	<field name="imovel_VALOR_TOTAL" class="java.lang.Double"/>
+	<field name="processo_ID" class="java.lang.Long"/>
+	<field name="processo_ID_USUARIO" class="java.lang.Long"/>
+	<field name="processo_NUM_PROCESSO" class="java.lang.String"/>
+	<field name="processo_ID_REQUERENTE" class="java.lang.Long"/>
+	<field name="processo_DATA_PROCESSO" class="java.sql.Date"/>
+	<field name="processo_MESANO" class="java.lang.String"/>
+	<field name="processo_TIPO" class="java.lang.String"/>
+	<field name="processo_SITUACAO" class="java.lang.String"/>
+	<field name="requerente_ID" class="java.lang.Long"/>
+	<field name="requerente_ID_LOGRADOURO" class="java.lang.Long"/>
+	<field name="requerente_NOME" class="java.lang.String"/>
+	<field name="requerente_NACIONALIDADE" class="java.lang.String"/>
+	<field name="requerente_EST_CIVIL" class="java.lang.String"/>
+	<field name="requerente_PROFISSAO" class="java.lang.String"/>
+	<field name="requerente_RG" class="java.lang.String"/>
+	<field name="requerente_ORGAO" class="java.lang.String"/>
+	<field name="requerente_CPF" class="java.lang.String"/>
+	<field name="requerente_NUMERO" class="java.lang.String"/>
+	<field name="requerente_ID_BAIRRO" class="java.lang.Long"/>
+	<field name="requerente_ID_CIDADE" class="java.lang.Long"/>
+	<field name="requerente_TEL_FIXO" class="java.lang.String"/>
+	<field name="requerente_TEL_CEL" class="java.lang.String"/>
+	<field name="bairro_ID" class="java.lang.Long"/>
+	<field name="bairro_NOME" class="java.lang.String"/>
+	<field name="bairro_LIVRO" class="java.lang.String"/>
+	<field name="bairro_FOLHA" class="java.lang.Long"/>
+	<field name="bairro_MATRICULA" class="java.lang.String"/>
+	<field name="bairro_TIPO" class="java.lang.String"/>
+	<field name="cidade_ID" class="java.lang.Long"/>
+	<field name="cidade_NOME" class="java.lang.String"/>
+	<field name="cidade_UF" class="java.lang.String"/>
+	<field name="logradouro_REQUERENTE_ID" class="java.lang.Long"/>
+	<field name="logradouro_REQUERENTE_NOME" class="java.lang.String"/>
+	<field name="bairro_IMOVEL_ID" class="java.lang.Long"/>
+	<field name="bairro_IMOVEL_NOME" class="java.lang.String"/>
+	<field name="bairro_IMOVEL_LIVRO" class="java.lang.String"/>
+	<field name="bairro_IMOVEL_FOLHA" class="java.lang.Long"/>
+	<field name="bairro_IMOVEL_MATRICULA" class="java.lang.String"/>
+	<field name="bairro_IMOVEL_TIPO" class="java.lang.String"/>
+	<field name="imovel_ID_LOGRADIR" class="java.lang.Long"/>
+	<field name="imovel_ID_LOGRAFRENTE" class="java.lang.Long"/>
+	<field name="imovel_ID_LOGRAFUNDO" class="java.lang.Long"/>
+	<field name="logradouro_FRENTE_ID" class="java.lang.Long"/>
+	<field name="logradouro_FRENTE_NOME" class="java.lang.String"/>
+	<field name="logradouro_DIREITA_ID" class="java.lang.Long"/>
+	<field name="logradouro_DIREITA_NOME" class="java.lang.String"/>
+	<field name="logradouro_FUNDO_ID" class="java.lang.Long"/>
+	<field name="logradouro_FUNDO_NOME" class="java.lang.String"/>
+	<field name="logradouro_ESQUERDA_ID" class="java.lang.Long"/>
+	<field name="logradouro_ESQUERDA_NOME" class="java.lang.String"/>
+	<field name="imovel_ID_LOGRAESQ" class="java.lang.Long"/>
+	<field name="cad_imobiliario_ID" class="java.lang.Long"/>
+	<field name="cad_imobiliario_INSCRICAO" class="java.lang.String"/>
+	<field name="cad_imobiliario_DISTRITO" class="java.lang.String"/>
+	<field name="cad_imobiliario_SETOR" class="java.lang.String"/>
+	<field name="cad_imobiliario_QUADRA" class="java.lang.String"/>
+	<field name="cad_imobiliario_LOTE" class="java.lang.String"/>
+	<field name="cad_imobiliario_UNIDADE" class="java.lang.String"/>
+	<field name="cad_imobiliario_VALOR" class="java.lang.Double"/>
+	<field name="cad_imobiliario_ID_USUARIO" class="java.lang.Long"/>
+	<field name="cadastrosimob_imovel_ID" class="java.lang.Long"/>
+	<field name="cadastrosimob_imovel_ID_IMOVEL" class="java.lang.Long"/>
+	<field name="cadastrosimob_imovel_ID_CAD_IMOBILIARIO" class="java.lang.Long"/>
+	<field name="terreno_imob_ID" class="java.lang.Long"/>
+	<field name="terreno_imob_ID_IMOVEL" class="java.lang.Long"/>
+	<field name="terreno_imob_QUADRA" class="java.lang.String"/>
+	<field name="terreno_imob_LOTE" class="java.lang.String"/>
+	<field name="requerente_NUBENTE" class="java.lang.String"/>
+	<field name="requerente_REGIME" class="java.lang.String"/>
+	<field name="imovel_VDEFAULT" class="java.lang.String"/>
+	<field name="imovel_ESQUINA" class="java.lang.String"/>
+	<field name="imovel_DIS_ESQUINA" class="java.lang.Double"/>
+	<field name="imovel_LOGRA_ESQUINA" class="java.lang.String"/>
+	<field name="segundavia_ID" class="java.lang.Long"/>
+	<field name="segundavia_ID_USUARIO" class="java.lang.Long"/>
+	<field name="segundavia_ID_PROCESSO" class="java.lang.Long"/>
+	<field name="segundavia_NUM_PROCESSOADM" class="java.lang.String"/>
+	<field name="segundavia_NUM_TITULOADM" class="java.lang.String"/>
+	<field name="segundavia_NOME_PREFEITO" class="java.lang.String"/>
+	<field name="segundavia_DATA_PROCESSOADM" class="java.sql.Date"/>
+	<field name="requerente_REPRESENTADO" class="java.lang.String"/>
+	<field name="requerente_REPRESENTADO_NOME" class="java.lang.String"/>
+	<field name="requerente_REPRESENTADO_TIPO" class="java.lang.String"/>
+	<variable name="VALOR_ACUMULADO" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[]]></variableExpression>
+	</variable>
+	<variable name="SOMA_QUANTIDADE" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[]]></variableExpression>
+	</variable>
+	<title>
+		<band height="683" splitType="Stretch">
+			<textField>
+				<reportElement positionType="Float" x="17" y="430" width="516" height="80" uuid="00b3d7c6-55dd-4079-8558-7ed1c5ea2d55">
+					<printWhenExpression><![CDATA[($F{requerente_EST_CIVIL} == "CASADO" || $F{requerente_EST_CIVIL} == "CASADA") ? true : false]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Justified">
+					<font fontName="Times New Roman" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{requerente_NOME}+", "+$F{requerente_NACIONALIDADE}+", "+$F{requerente_EST_CIVIL}+" COM "+
+$F{requerente_NUBENTE}+" SOB O REGIME "+$F{requerente_REGIME}+", "+
+$F{requerente_PROFISSAO}+", PORTADOR(A) DO RG Nº "+$F{requerente_RG}+" "+$F{requerente_ORGAO}+
+", INSCRITO NO CPF SOB Nº DE ORDEM "+$F{requerente_CPF}+", RESIDENTE E DOMICILIADO(A) NA "+$F{logradouro_REQUERENTE_NOME}+
+" Nº "+$F{requerente_NUMERO}+", BAIRRO "+$F{bairro_NOME}+", "+$F{cidade_NOME}+"-"+$F{cidade_UF}+"."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="150" y="386" width="393" height="23" uuid="145dbb45-0ea3-474b-ba9c-dbd2354d3bc3"/>
+				<textElement>
+					<font fontName="Calibri" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["****"+$F{processo_NUM_PROCESSO}+"********************"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="287" y="410" width="218" height="20" uuid="73808460-6454-4861-9684-3e3c8e578fa0"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="Calibri" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[*********************************************]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="17" y="512" width="37" height="17" uuid="074f5a41-2376-44f8-a522-ba6e1c1d873b">
+					<printWhenExpression><![CDATA[$F{terreno_imob_LOTE} != "***" & $F{terreno_imob_LOTE} != "" ? true  : false]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="Times New Roman" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LOTES:]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="54" y="513" width="163" height="16" uuid="94f9e2dc-0410-47ee-901a-f85734f13a29"/>
+				<subreportParameter name="ID_EMISSAO">
+					<subreportParameterExpression><![CDATA[$F{emissao_titulo_ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "TerrImobLoteGetatLayout1.jasper"]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement x="217" y="512" width="60" height="17" forecolor="#000000" uuid="eef3e460-4dda-43ea-9935-dd2cc07bf15b">
+					<printWhenExpression><![CDATA[($F{terreno_imob_QUADRA} != "***" &  $F{terreno_imob_QUADRA} != "") ? true : false]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Times New Roman" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[QUADRA:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="277" y="512" width="256" height="17" uuid="6ea6b8cc-3b44-4b53-9ac2-1e63097b8679">
+					<printWhenExpression><![CDATA[($F{terreno_imob_QUADRA} != "***") ? true : false]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Times New Roman" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{terreno_imob_QUADRA}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement x="0" y="676" width="122" height="0" uuid="7dd751c4-e7ee-4df5-9b98-38343584d277"/>
+				<subreportParameter name="ID_EMISSAO">
+					<subreportParameterExpression><![CDATA[$F{emissao_titulo_ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "GetatFundoSubLayout1.jasper"]]></subreportExpression>
+			</subreport>
+			<break>
+				<reportElement x="0" y="675" width="100" height="1" uuid="4f9b9dd8-9e9e-4ec1-9b3b-69309e2aa710"/>
+			</break>
+			<subreport>
+				<reportElement x="-4" y="549" width="50" height="0" uuid="b5e4bccc-ef71-4e90-bd27-809e21143b2f"/>
+				<subreportParameter name="ID_EMISSAO">
+					<subreportParameterExpression><![CDATA[$F{emissao_titulo_ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "LoteDetalheGetatSubLayout1.jasper"]]></subreportExpression>
+			</subreport>
+			<textField pattern="">
+				<reportElement positionType="Float" isPrintRepeatedValues="false" x="17" y="550" width="516" height="44" isPrintInFirstWholeBand="true" uuid="e8c06c77-1697-44d0-97f2-8fce2c17014b">
+					<printWhenExpression><![CDATA[($F{terreno_imob_LOTE} != "" ) ? true : false]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font fontName="Times New Roman" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["O REFERIDO IMÓVEL FICA SITUADO NA QUADRA FORMADA PELA "+$F{logradouro_FRENTE_NOME}+", "+$F{logradouro_DIREITA_NOME}+", "+$F{logradouro_FUNDO_NOME}+" E "+$F{logradouro_ESQUERDA_NOME}+"."]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report" pattern="">
+				<reportElement x="17" y="529" width="516" height="31" uuid="b6ba0609-4ac0-4dba-ae88-20bfe2f03c33">
+					<printWhenExpression><![CDATA[($F{terreno_imob_LOTE} != "" ) ? true : false]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font fontName="Times New Roman" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["ÁREA DE: "+String.format("%.2f", $F{imovel_M_AREA})+"m² "+"("+new ExtensoMetricoQuadrado(new BigDecimal($F{imovel_M_AREA}))+
+"); FRENTE PARA "+$F{logradouro_FRENTE_NOME}+", nº "+$F{imovel_NUMERO}+" "+"BAIRRO "+$F{bairro_IMOVEL_NOME}+"."]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement x="33" y="667" width="67" height="0" uuid="84f5f2eb-88d5-48ba-bd1e-37c63701bb69"/>
+				<subreportParameter name="ID_EMISSAO">
+					<subreportParameterExpression><![CDATA[$F{emissao_titulo_ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "controle.jasper"]]></subreportExpression>
+			</subreport>
+			<textField>
+				<reportElement positionType="Float" x="17" y="430" width="516" height="80" uuid="f86cf1d8-3a7a-46ef-93c1-7c79ca19300f">
+					<printWhenExpression><![CDATA[($F{requerente_EST_CIVIL} != "CASADO" && $F{requerente_EST_CIVIL} != "CASADA") ? true : false]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Justified">
+					<font fontName="Times New Roman" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{requerente_NOME}+", "+$F{requerente_NACIONALIDADE}+", "+$F{requerente_EST_CIVIL}+", "+
+$F{requerente_PROFISSAO}+", PORTADOR(a) DO RG Nº "+$F{requerente_RG}+" "+$F{requerente_ORGAO}
++", INSCRITO NO CPF SOB Nº DE ORDEM "+$F{requerente_CPF}+", RESIDENTE E DOMICILIADO(A) NA "+$F{logradouro_REQUERENTE_NOME}+
+" nº "+$F{requerente_NUMERO}+", BAIRRO "+$F{bairro_NOME}+", "+$F{cidade_NOME}+"-"+$F{cidade_UF}+"."]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report" pattern="">
+				<reportElement x="17" y="519" width="516" height="125" uuid="f90b9b8f-46b6-4d4b-823d-60f5fa32a5ca">
+					<printWhenExpression><![CDATA[($F{terreno_imob_LOTE} == "" & $F{imovel_ESQUINA} == "Não" & $F{processo_TIPO} == "Normal" || $F{processo_TIPO} == "Transmutação") ? true : false]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font fontName="Times New Roman" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["ÁREA DE: "+String.format("%.2f", $F{imovel_M_AREA})+"m² "+"("+new ExtensoMetricoQuadrado(new BigDecimal($F{imovel_M_AREA}))+
+"); FRENTE PARA "+$F{logradouro_FRENTE_NOME}+", nº "+$F{imovel_NUMERO}+", "+"BAIRRO "+$F{bairro_IMOVEL_NOME}+","+
+" MEDINDO "+String.format("%.2f", $F{imovel_M_FRENTE})+"m "+"("+new ExtensoMetrico(new BigDecimal($F{imovel_M_FRENTE}))+
+"); LATERAL DIREITA CONFRONTANDO-SE COM "+$F{imovel_VIZIN_DIR}+", "+"MEDINDO "+String.format("%.2f", $F{imovel_M_DIREITA})+"m "+"("+new ExtensoMetrico(new BigDecimal($F{imovel_M_DIREITA}))+
+"); LATERAL ESQUERDA CONFRONTANDO-SE COM "+$F{imovel_VIZIN_ESQ}+", "+"MEDINDO "+String.format("%.2f", $F{imovel_M_ESQUERDA})+"m "+"("+new ExtensoMetrico(new BigDecimal($F{imovel_M_ESQUERDA}))+
+"); FUNDO CONFRONTANDO-SE COM "+$F{imovel_VIZIN_FUN}+", "+"MEDINDO "+String.format("%.2f", $F{imovel_M_FUNDO})+"m "+"("+new ExtensoMetrico(new BigDecimal($F{imovel_M_FUNDO}))+
+"). O REFERIDO IMÓVEL FICA SITUADO NA QUADRA FORMADA PELA "+$F{logradouro_FRENTE_NOME}+", "+$F{logradouro_DIREITA_NOME}+", "+$F{logradouro_FUNDO_NOME}+" e "+$F{logradouro_ESQUERDA_NOME}+"."+
+" DISTANTE "+String.format("%.2f", $F{imovel_DIS_ESQUINA})+"m "+"("+new ExtensoMetrico(new BigDecimal($F{imovel_DIS_ESQUINA}))+") DA "+$F{imovel_LOGRA_ESQUINA}+"."+"\n"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement x="-4" y="644" width="200" height="11" uuid="6b79d3ca-ff75-433e-a1a0-cbed723c440e"/>
+				<subreportParameter name="ID_EMISSAO">
+					<subreportParameterExpression><![CDATA[$F{emissao_titulo_ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "CadastroImobGetatSubLayout1.jasper"]]></subreportExpression>
+			</subreport>
+			<textField evaluationTime="Report" pattern="">
+				<reportElement x="17" y="519" width="516" height="125" uuid="cca4ff3b-ad7a-4436-8ed6-0af891441773">
+					<printWhenExpression><![CDATA[($F{terreno_imob_LOTE} == "" & $F{imovel_ESQUINA} == "Sim" & $F{processo_TIPO} == "Normal" || $F{processo_TIPO} == "Transmutação") ? true : false]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font fontName="Times New Roman" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["ÁREA DE: "+String.format("%.2f", $F{imovel_M_AREA})+"m² "+"("+new ExtensoMetricoQuadrado(new BigDecimal($F{imovel_M_AREA}))+
+"); FRENTE PARA "+$F{logradouro_FRENTE_NOME}+", nº "+$F{imovel_NUMERO}+", "+"BAIRRO "+$F{bairro_IMOVEL_NOME}+","+
+" MEDINDO "+String.format("%.2f", $F{imovel_M_FRENTE})+"m "+"("+new ExtensoMetrico(new BigDecimal($F{imovel_M_FRENTE}))+
+"); LATERAL DIREITA CONFRONTANDO-SE COM "+$F{imovel_VIZIN_DIR}+", "+"MEDINDO "+String.format("%.2f", $F{imovel_M_DIREITA})+"m "+"("+new ExtensoMetrico(new BigDecimal($F{imovel_M_DIREITA}))+
+"); LATERAL ESQUERDA CONFRONTANDO-SE COM "+$F{imovel_VIZIN_ESQ}+", "+"MEDINDO "+String.format("%.2f", $F{imovel_M_ESQUERDA})+"m "+"("+new ExtensoMetrico(new BigDecimal($F{imovel_M_ESQUERDA}))+
+"); FUNDO CONFRONTANDO-SE COM "+$F{imovel_VIZIN_FUN}+", "+"MEDINDO "+String.format("%.2f", $F{imovel_M_FUNDO})+"m "+"("+new ExtensoMetrico(new BigDecimal($F{imovel_M_FUNDO}))+
+"). O REFERIDO IMÓVEL FICA SITUADO NA QUADRA FORMADA PELA "+$F{logradouro_FRENTE_NOME}+", "+$F{logradouro_DIREITA_NOME}+", "+$F{logradouro_FUNDO_NOME}+" e "+$F{logradouro_ESQUERDA_NOME}+"."+"\n"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="17" y="430" width="516" height="80" uuid="0be833e5-57a2-4adf-9b15-89e78bae8999">
+					<printWhenExpression><![CDATA[($F{requerente_REPRESENTADO} == "Sim") ? true : false]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Justified">
+					<font fontName="Times New Roman" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{requerente_NOME}+", "+$F{requerente_NACIONALIDADE}+", "+$F{requerente_EST_CIVIL}+", "+
+$F{requerente_PROFISSAO}+", PORTADOR(A) DO RG Nº "+$F{requerente_RG}+" "+$F{requerente_ORGAO}
++", INSCRITO NO CPF SOB Nº DE ORDEM "+$F{requerente_CPF}+", "+$F{requerente_REPRESENTADO_TIPO}+
+" REPRESENTADO POR: "+$F{requerente_REPRESENTADO_NOME}+", RESIDENTE E DOMICILIADO(A) NA "+$F{logradouro_REQUERENTE_NOME}+
+" nº "+$F{requerente_NUMERO}+", BAIRRO "+$F{bairro_NOME}+", "+$F{cidade_NOME}+"-"+$F{cidade_UF}+"."]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report" pattern="">
+				<reportElement isPrintRepeatedValues="false" x="17" y="519" width="516" height="125" uuid="96480009-6aef-4111-9623-5591008cd7a0">
+					<printWhenExpression><![CDATA[($F{terreno_imob_LOTE} == "" & $F{imovel_ESQUINA} == "Sim" & $F{processo_TIPO} == "Segunda Via") ? true : false]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font fontName="Times New Roman" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["ÁREA DE: "+String.format("%.2f", $F{imovel_M_AREA})+"m² "+"("+new ExtensoMetricoQuadrado(new BigDecimal($F{imovel_M_AREA}))+
+"); FRENTE PARA "+$F{logradouro_FRENTE_NOME}+", nº "+$F{imovel_NUMERO}+", "+"BAIRRO "+$F{bairro_IMOVEL_NOME}+","+
+" MEDINDO "+String.format("%.2f", $F{imovel_M_FRENTE})+"m "+"("+new ExtensoMetrico(new BigDecimal($F{imovel_M_FRENTE}))+
+"); LATERAL DIREITA CONFRONTANDO-SE COM "+$F{imovel_VIZIN_DIR}+", "+"MEDINDO "+String.format("%.2f", $F{imovel_M_DIREITA})+"m "+"("+new ExtensoMetrico(new BigDecimal($F{imovel_M_DIREITA}))+
+"); LATERAL ESQUERDA CONFRONTANDO-SE COM "+$F{imovel_VIZIN_ESQ}+", "+"MEDINDO "+String.format("%.2f", $F{imovel_M_ESQUERDA})+"m "+"("+new ExtensoMetrico(new BigDecimal($F{imovel_M_ESQUERDA}))+
+"); FUNDO CONFRONTANDO-SE COM "+$F{imovel_VIZIN_FUN}+", "+"MEDINDO "+String.format("%.2f", $F{imovel_M_FUNDO})+"m "+"("+new ExtensoMetrico(new BigDecimal($F{imovel_M_FUNDO}))+
+"). O REFERIDO IMÓVEL FICA SITUADO NA QUADRA FORMADA PELA "+$F{logradouro_FRENTE_NOME}+", "+$F{logradouro_DIREITA_NOME}+", "+$F{logradouro_FUNDO_NOME}+" E "+$F{logradouro_ESQUERDA_NOME}+"."+
+" ORIUNDO DO PROCESSO ADMINISTRATIVO Nº "+$F{segundavia_NUM_PROCESSOADM}+", TÍTULO DEFINITIVO N° "+$F{segundavia_NUM_TITULOADM}+", ASSINADO PELO PREFEITO MUNICIPAL "+$F{segundavia_NOME_PREFEITO}+", EM "+new SimpleDateFormat("dd/MM/yyyy").format($F{segundavia_DATA_PROCESSOADM})+".\n"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report" pattern="">
+				<reportElement x="17" y="519" width="516" height="125" uuid="045c38e3-b107-4d3e-908c-d98851eaf2c7">
+					<printWhenExpression><![CDATA[($F{terreno_imob_LOTE} == "" & $F{imovel_ESQUINA} == "Não" & $F{processo_TIPO} == "Segunda Via") ? true : false]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font fontName="Times New Roman" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["ÁREA DE: "+String.format("%.2f", $F{imovel_M_AREA})+"m² "+"("+new ExtensoMetricoQuadrado(new BigDecimal($F{imovel_M_AREA}))+
+"); FRENTE PARA "+$F{logradouro_FRENTE_NOME}+", nº "+$F{imovel_NUMERO}+", "+"BAIRRO "+$F{bairro_IMOVEL_NOME}+","+
+" MEDINDO "+String.format("%.2f", $F{imovel_M_FRENTE})+"m "+"("+new ExtensoMetrico(new BigDecimal($F{imovel_M_FRENTE}))+
+"); LATERAL DIREITA CONFRONTANDO-SE COM "+$F{imovel_VIZIN_DIR}+", "+"MEDINDO "+String.format("%.2f", $F{imovel_M_DIREITA})+"m "+"("+new ExtensoMetrico(new BigDecimal($F{imovel_M_DIREITA}))+
+"); LATERAL ESQUERDA CONFRONTANDO-SE COM "+$F{imovel_VIZIN_ESQ}+", "+"MEDINDO "+String.format("%.2f", $F{imovel_M_ESQUERDA})+"m "+"("+new ExtensoMetrico(new BigDecimal($F{imovel_M_ESQUERDA}))+
+"); FUNDO CONFRONTANDO-SE COM "+$F{imovel_VIZIN_FUN}+", "+"MEDINDO "+String.format("%.2f", $F{imovel_M_FUNDO})+"m "+"("+new ExtensoMetrico(new BigDecimal($F{imovel_M_FUNDO}))+
+"). O REFERIDO IMÓVEL FICA SITUADO NA QUADRA FORMADA PELA "+$F{logradouro_FRENTE_NOME}+", "+$F{logradouro_DIREITA_NOME}+", "+$F{logradouro_FUNDO_NOME}+" E "+$F{logradouro_ESQUERDA_NOME}+"."+
+" DISTANTE "+String.format("%.2f", $F{imovel_DIS_ESQUINA})+"m "+"("+new ExtensoMetrico(new BigDecimal($F{imovel_DIS_ESQUINA}))+") DA "+$F{imovel_LOGRA_ESQUINA}+"."+"\n"+
+"ORIUNDO DO PROCESSO ADMINISTRATIVO Nº "+$F{segundavia_NUM_PROCESSOADM}+", TÍTULO DEFINITIVO N° "+$F{segundavia_NUM_TITULOADM}+", ASSINADO PELO PREFEITO MUNICIPAL "+$F{segundavia_NOME_PREFEITO}+", EM "+new SimpleDateFormat("dd/MM/yyyy").format($F{segundavia_DATA_PROCESSOADM})+".\n"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"+
+"*********************************************************************************************************************************************************************************************"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="413" y="159" width="120" height="76" uuid="d9b3865b-2ac2-43b5-aed4-8c12c43c68b1">
+					<printWhenExpression><![CDATA[($F{processo_TIPO} == "Segunda Via") ? true : false]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="Calibri" size="50" isBold="true"/>
+				</textElement>
+				<text><![CDATA[2ª via]]></text>
+			</staticText>
+		</band>
+	</title>
+</jasperReport>

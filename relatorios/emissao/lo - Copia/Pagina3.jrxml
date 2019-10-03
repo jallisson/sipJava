@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="titulosEmitidosLote" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7a06500f-7fe5-4f6c-a06f-edc0999c4f17">
+	<property name="ireport.zoom" value="1.3310000000000008"/>
+	<property name="ireport.x" value="11"/>
+	<property name="ireport.y" value="727"/>
+	<parameter name="ID_EMISSAO" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     tramitacao.`ID` AS tramitacao_ID,
+     tramitacao.`ID_USUARIO` AS tramitacao_ID_USUARIO,
+     tramitacao.`ID_PROCESSO` AS tramitacao_ID_PROCESSO,
+     tramitacao.`DATA_TRAMITACAO` AS tramitacao_DATA_TRAMITACAO,
+     tramitacao.`HORA` AS tramitacao_HORA,
+     tramitacao.`MESANO` AS tramitacao_MESANO,
+     tramitacao.`STATUSS` AS tramitacao_STATUSS,
+     tramitacao.`PARECER` AS tramitacao_PARECER,
+     tramitacao.`SETOR` AS tramitacao_SETOR,
+     tramitacao.`SETOR_ORIGEM` AS tramitacao_SETOR_ORIGEM,
+     tramitacao.`SETOR_DESTINO` AS tramitacao_SETOR_DESTINO,
+     tramitacao.`OBSERVACAO` AS tramitacao_OBSERVACAO,
+     tramitacao.`CONTROLE` AS tramitacao_CONTROLE,
+     requerente.`ID` AS requerente_ID,
+     requerente.`ID_LOGRADOURO` AS requerente_ID_LOGRADOURO,
+     requerente.`NOME` AS requerente_NOME,
+     requerente.`NACIONALIDADE` AS requerente_NACIONALIDADE,
+     requerente.`EST_CIVIL` AS requerente_EST_CIVIL,
+     requerente.`PROFISSAO` AS requerente_PROFISSAO,
+     requerente.`RG` AS requerente_RG,
+     requerente.`ORGAO` AS requerente_ORGAO,
+     requerente.`CPF` AS requerente_CPF,
+     requerente.`NUMERO` AS requerente_NUMERO,
+     requerente.`ID_BAIRRO` AS requerente_ID_BAIRRO,
+     requerente.`ID_CIDADE` AS requerente_ID_CIDADE,
+     requerente.`TEL_FIXO` AS requerente_TEL_FIXO,
+     requerente.`TEL_CEL` AS requerente_TEL_CEL,
+     requerente.`NUBENTE` AS requerente_NUBENTE,
+     requerente.`REGIME` AS requerente_REGIME,
+     processo.`ID` AS processo_ID,
+     processo.`ID_USUARIO` AS processo_ID_USUARIO,
+     processo.`NUM_PROCESSO` AS processo_NUM_PROCESSO,
+     processo.`ID_REQUERENTE` AS processo_ID_REQUERENTE,
+     processo.`DATA_PROCESSO` AS processo_DATA_PROCESSO,
+     processo.`MESANO` AS processo_MESANO,
+     processo.`TIPO_LICENCA` AS processo_TIPO_LICENCA,
+     requerente.`COMPLEMENTO` AS requerente_COMPLEMENTO,
+     requerente.`CEP` AS requerente_CEP,
+     logradouro.`ID` AS logradouro_ID,
+     logradouro.`NOME` AS logradouro_NOME,
+     bairro.`ID` AS bairro_ID,
+     bairro.`NOME` AS bairro_NOME,
+     cidade.`ID` AS cidade_ID,
+     cidade.`NOME` AS cidade_NOME,
+     cidade.`UF` AS cidade_UF,
+     atividade.`ID` AS atividade_ID,
+     atividade.`NOME` AS atividade_NOME,
+     processo.`ID_ATIVIDADE` AS processo_ID_ATIVIDADE,
+     emissao_licenca.`ID` AS emissao_licenca_ID,
+     emissao_licenca.`ID_JURIDICO` AS emissao_licenca_ID_JURIDICO,
+     emissao_licenca.`ID_USUARIO` AS emissao_licenca_ID_USUARIO,
+     emissao_licenca.`DATA_EMISSAO` AS emissao_licenca_DATA_EMISSAO,
+     emissao_licenca.`MESANO` AS emissao_licenca_MESANO,
+     emissao_licenca.`AREA_TERRENO` AS emissao_licenca_AREA_TERRENO,
+     emissao_licenca.`AREA_CONSTRUIDA` AS emissao_licenca_AREA_CONSTRUIDA,
+     emissao_licenca.`HORA_INICIAL` AS emissao_licenca_HORA_INICIAL,
+     emissao_licenca.`HORA_FINAL` AS emissao_licenca_HORA_FINAL,
+     juridico.`ID` AS juridico_ID,
+     juridico.`ID_USUARIO` AS juridico_ID_USUARIO,
+     juridico.`ID_DISTRIBUICAO` AS juridico_ID_DISTRIBUICAO,
+     juridico.`DATA_JURIDICO` AS juridico_DATA_JURIDICO,
+     juridico.`TRAMITOU_GABINETE` AS juridico_TRAMITOU_GABINETE,
+     juridico.`TRAMITOU_EMISSAO` AS juridico_TRAMITOU_EMISSAO,
+     distribuicao.`ID` AS distribuicao_ID,
+     distribuicao.`ID_USUARIO` AS distribuicao_ID_USUARIO,
+     distribuicao.`ID_ANALISTA` AS distribuicao_ID_ANALISTA,
+     distribuicao.`ID_PROCESSO` AS distribuicao_ID_PROCESSO,
+     distribuicao.`DATA_DIST` AS distribuicao_DATA_DIST,
+     distribuicao.`MESANO` AS distribuicao_MESANO,
+     distribuicao.`CONTROLE` AS distribuicao_CONTROLE,
+     distribuicao.`TRAMITOU_ANALISE` AS distribuicao_TRAMITOU_ANALISE,
+     distribuicao.`TRAMITOU_JURIDICO` AS distribuicao_TRAMITOU_JURIDICO
+FROM
+     `requerente` requerente INNER JOIN `processo` processo ON requerente.`ID` = processo.`ID_REQUERENTE`
+     INNER JOIN `tramitacao` tramitacao ON processo.`ID` = tramitacao.`ID_PROCESSO`
+     INNER JOIN `atividade` atividade ON processo.`ID_ATIVIDADE` = atividade.`ID`
+     INNER JOIN `distribuicao` distribuicao ON processo.`ID` = distribuicao.`ID_PROCESSO`
+     INNER JOIN `juridico` juridico ON distribuicao.`ID` = juridico.`ID_DISTRIBUICAO`
+     INNER JOIN `emissao_licenca` emissao_licenca ON juridico.`ID` = emissao_licenca.`ID_JURIDICO`
+     INNER JOIN `logradouro` logradouro ON requerente.`ID_LOGRADOURO` = logradouro.`ID`
+     INNER JOIN `bairro` bairro ON requerente.`ID_BAIRRO` = bairro.`ID`
+     INNER JOIN `cidade` cidade ON requerente.`ID_CIDADE` = cidade.`ID`
+WHERE
+     emissao_licenca.`ID` = $P{ID_EMISSAO}]]>
+	</queryString>
+	<field name="tramitacao_ID" class="java.lang.Long"/>
+	<field name="tramitacao_ID_USUARIO" class="java.lang.Long"/>
+	<field name="tramitacao_ID_PROCESSO" class="java.lang.Long"/>
+	<field name="tramitacao_DATA_TRAMITACAO" class="java.sql.Date"/>
+	<field name="tramitacao_HORA" class="java.lang.String"/>
+	<field name="tramitacao_MESANO" class="java.lang.String"/>
+	<field name="tramitacao_STATUSS" class="java.lang.String"/>
+	<field name="tramitacao_PARECER" class="java.lang.String"/>
+	<field name="tramitacao_SETOR" class="java.lang.String"/>
+	<field name="tramitacao_SETOR_ORIGEM" class="java.lang.String"/>
+	<field name="tramitacao_SETOR_DESTINO" class="java.lang.String"/>
+	<field name="tramitacao_OBSERVACAO" class="java.lang.String"/>
+	<field name="tramitacao_CONTROLE" class="java.lang.String"/>
+	<field name="requerente_ID" class="java.lang.Long"/>
+	<field name="requerente_ID_LOGRADOURO" class="java.lang.Long"/>
+	<field name="requerente_NOME" class="java.lang.String"/>
+	<field name="requerente_NACIONALIDADE" class="java.lang.String"/>
+	<field name="requerente_EST_CIVIL" class="java.lang.String"/>
+	<field name="requerente_PROFISSAO" class="java.lang.String"/>
+	<field name="requerente_RG" class="java.lang.String"/>
+	<field name="requerente_ORGAO" class="java.lang.String"/>
+	<field name="requerente_CPF" class="java.lang.String"/>
+	<field name="requerente_NUMERO" class="java.lang.String"/>
+	<field name="requerente_ID_BAIRRO" class="java.lang.Long"/>
+	<field name="requerente_ID_CIDADE" class="java.lang.Long"/>
+	<field name="requerente_TEL_FIXO" class="java.lang.String"/>
+	<field name="requerente_TEL_CEL" class="java.lang.String"/>
+	<field name="requerente_NUBENTE" class="java.lang.String"/>
+	<field name="requerente_REGIME" class="java.lang.String"/>
+	<field name="processo_ID" class="java.lang.Long"/>
+	<field name="processo_ID_USUARIO" class="java.lang.Long"/>
+	<field name="processo_NUM_PROCESSO" class="java.lang.String"/>
+	<field name="processo_ID_REQUERENTE" class="java.lang.Long"/>
+	<field name="processo_DATA_PROCESSO" class="java.sql.Date"/>
+	<field name="processo_MESANO" class="java.lang.String"/>
+	<field name="processo_TIPO_LICENCA" class="java.lang.String"/>
+	<field name="requerente_COMPLEMENTO" class="java.lang.String"/>
+	<field name="requerente_CEP" class="java.lang.String"/>
+	<field name="logradouro_ID" class="java.lang.Long"/>
+	<field name="logradouro_NOME" class="java.lang.String"/>
+	<field name="bairro_ID" class="java.lang.Long"/>
+	<field name="bairro_NOME" class="java.lang.String"/>
+	<field name="cidade_ID" class="java.lang.Long"/>
+	<field name="cidade_NOME" class="java.lang.String"/>
+	<field name="cidade_UF" class="java.lang.String"/>
+	<field name="atividade_ID" class="java.lang.Long"/>
+	<field name="atividade_NOME" class="java.lang.String"/>
+	<field name="processo_ID_ATIVIDADE" class="java.lang.Long"/>
+	<field name="emissao_licenca_ID" class="java.lang.Long"/>
+	<field name="emissao_licenca_ID_JURIDICO" class="java.lang.Long"/>
+	<field name="emissao_licenca_ID_USUARIO" class="java.lang.Long"/>
+	<field name="emissao_licenca_DATA_EMISSAO" class="java.sql.Date"/>
+	<field name="emissao_licenca_MESANO" class="java.lang.String"/>
+	<field name="emissao_licenca_AREA_TERRENO" class="java.lang.Double"/>
+	<field name="emissao_licenca_AREA_CONSTRUIDA" class="java.lang.Double"/>
+	<field name="emissao_licenca_HORA_INICIAL" class="java.lang.String"/>
+	<field name="emissao_licenca_HORA_FINAL" class="java.lang.String"/>
+	<field name="juridico_ID" class="java.lang.Long"/>
+	<field name="juridico_ID_USUARIO" class="java.lang.Long"/>
+	<field name="juridico_ID_DISTRIBUICAO" class="java.lang.Long"/>
+	<field name="juridico_DATA_JURIDICO" class="java.sql.Date"/>
+	<field name="juridico_TRAMITOU_GABINETE" class="java.lang.String"/>
+	<field name="juridico_TRAMITOU_EMISSAO" class="java.lang.String"/>
+	<title>
+		<band height="760" splitType="Stretch">
+			<ellipse>
+				<reportElement x="251" y="730" width="36" height="30" forecolor="#999999" backcolor="#666666" uuid="c147b268-6c74-4971-98bd-524373e61cc2"/>
+			</ellipse>
+			<staticText>
+				<reportElement x="266" y="735" width="11" height="20" forecolor="#FFFFFF" uuid="fa79593d-a2f4-47df-8e64-0b7bd3a585b8"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[3]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="28" y="13" width="495" height="15" uuid="70ce33a4-ce7a-4da5-ac17-d61594e9363c"/>
+				<textElement textAlignment="Justified" markup="none">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[1.3     EXIGÊNCIAS RELATIVAS AO CONTROLE DE RESÍDUOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="28" y="38" width="26" height="15" uuid="6c36527e-1440-46a5-bb6e-2b4fc7d2e804"/>
+				<textElement textAlignment="Justified" markup="none">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[1.3.1]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="60" y="38" width="463" height="55" uuid="033f3570-432f-4905-8880-5baf64f436f4"/>
+				<textElement textAlignment="Justified" markup="html">
+					<font fontName="Arial" size="11" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Na gestão e gerenciamento de resíduos sólidos, deve ser observada a seguinte ordem de prioridade: não geração, redução, reutilização, reciclagem, tratamento dos resíduos sólidos e disposição final ambientalmente adequada dos rejeitos, de acordo com a <b>Lei Federal nº 12.305/2010.</b>]]></text>
+			</staticText>
+			<elementGroup/>
+			<staticText>
+				<reportElement x="60" y="105" width="463" height="55" uuid="5545e27b-53ba-4b76-987b-c70acd76e89b"/>
+				<textElement textAlignment="Justified" markup="html">
+					<font fontName="Arial" size="11" isBold="false"/>
+				</textElement>
+				<text><![CDATA[O empreendedor deverá armazenar os resíduos (segundo <b>classificação da “NBR - 10.004 – Resíduos Sólidos – Classificação”</b>) de acordo com as normas<b>“NBR - 12.235 – Armazenamento de resíduos sólidos perigosos”</b> e <b>“NBR - 11.174 - Armazenamento de resíduos classes II - não inertes e III – inerte”, da ABNT.</b>]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="28" y="105" width="26" height="15" uuid="b5aa286a-4754-41f4-b949-316cf7ffbc3a"/>
+				<textElement textAlignment="Justified" markup="none">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[1.3.2]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="60" y="172" width="463" height="68" uuid="593d50b5-2a79-40ea-9d63-6e047a0f3b08"/>
+				<textElement textAlignment="Justified" markup="html">
+					<font fontName="Arial" size="11" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Os resíduos sólidos deverão ser adequadamente segregados, acondicionados, coletados, armazenados e transportados, de forma segura, até o destino final, não podendo ser jogados em locais impróprios como terrenos baldios (públicos ou privados), beiras de estrada, proximidades de nascentes, brejos, riachos, rios, lagos, lagoas, mangues, orla marítima, campos, áreas de parques e de preservação e outros ambientes igualmente frágeis.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="60" y="252" width="463" height="55" uuid="6d6fca1c-9724-4ca8-b800-494a93a15337"/>
+				<textElement textAlignment="Justified" markup="html">
+					<font fontName="Arial" size="11" isBold="false"/>
+				</textElement>
+				<text><![CDATA[O empreendedor está ciente de que todo óleo lubrificante usado ou contaminado deverá ser recolhido, coletado e ter destinação final, de modo que não afete negativamente o meio ambiente e propicie a máxima recuperação dos constituintes nele contidos, na forma prevista na <b>Resolução CONAMA n° 362/2005.</b>]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="28" y="172" width="26" height="15" uuid="65186687-d825-4170-943c-e00070e12003"/>
+				<textElement textAlignment="Justified" markup="none">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[1.3.3]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="28" y="252" width="26" height="15" uuid="5436d648-a408-4917-9947-13d516eb8436"/>
+				<textElement textAlignment="Justified" markup="none">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[1.3.4]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="28" y="317" width="495" height="15" uuid="5f34336c-b193-4b26-bc31-f5d91f287944"/>
+				<textElement textAlignment="Justified" markup="none">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[1.4  EXIGÊNCIAS RELATIVAS AO CONTROLE DE EMISSÕES ATMOSFÉRICAS ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="28" y="346" width="26" height="15" uuid="752c3485-3f03-4ec9-bf7d-6800d24b8a13"/>
+				<textElement textAlignment="Justified" markup="none">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[1.4.1]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="60" y="346" width="463" height="66" uuid="a2900d9d-28f9-4035-af7d-14d280c76b8b"/>
+				<textElement textAlignment="Justified" markup="html">
+					<font fontName="Arial" size="11" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Deverá ser tomadas providências em relação ás operações ou fontes geradoras de emissões atmosféricas fugitivas a fim de minimizá-la ( ou seja, diminuir, ou mesmo impedir o arraste de material particulado pela ação dos ventos), tais como: enclausuramento de instalações, armazenamento fechado de material, umidificação do solo, pavimentação e limpeza de áreas e vias de transporte. ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="60" y="424" width="463" height="43" uuid="60753d84-ca00-4053-b668-914ddc2dc89e"/>
+				<textElement textAlignment="Justified" markup="html">
+					<font fontName="Arial" size="11" isBold="false"/>
+				</textElement>
+				<text><![CDATA[As fontes de emissões atmosféricas fugitivas e/ou pontuais deverão atender aos ditames da Resolução CONAMA nº 008/1990, que estabelece, em nível nacional, limites máximos de emissão de Poluentes do ar.  ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="28" y="424" width="26" height="15" uuid="aa52cac7-1ebb-48f5-81fc-37e58d99910e"/>
+				<textElement textAlignment="Justified" markup="none">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[1.4.2]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-207" y="-158" width="26" height="15" uuid="678a67b8-7c95-4de5-be1d-5a3aeb7191f7"/>
+				<textElement textAlignment="Justified" markup="none">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[1.5.2]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="28" y="503" width="26" height="15" uuid="a88f6dc8-cb57-4da4-a1d9-24b2d77ddc20"/>
+				<textElement textAlignment="Justified" markup="none">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[1.5.1]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="60" y="503" width="463" height="57" uuid="5aa9c57e-8408-411e-b0e6-e197902a17a4"/>
+				<textElement textAlignment="Justified" markup="html">
+					<font fontName="Arial" size="11" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Visando o conforto da comunidade, o empreendedor deverá realizar o controle do ruído na fonte (exemplo: troca de maquinário, manutenção preventiva, etc.) e/ou na trajetória (exemplo: enclausuramento de maquinário, realização de processos produtivos ruidosos em ambientes fechados, plantio de árvores visando a formação de “barreira vegetal”, etc.).]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="28" y="477" width="495" height="15" uuid="319fee5a-5785-4fdf-8857-3362aaef97f0"/>
+				<textElement textAlignment="Justified" markup="none">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[1.5   EXIGÊNCIAS RELATIVAS AO CONTROLE DO RUÍDO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="60" y="567" width="463" height="53" uuid="d44386cd-8dff-4c56-a3a4-444a419dfa27"/>
+				<textElement textAlignment="Justified" markup="html">
+					<font fontName="Arial" size="11" isBold="false"/>
+				</textElement>
+				<text><![CDATA[O empreendedor deverá atender à NBR-10.151 (Avaliação do Ruído em Áreas Habitadas visando o conforto da comunidade), Resolução CONAMA n°001/90 (Dispõe sobre critérios de padrões de emissão de ruídos) e Lei Estadual n° 5.715/93, ou aquelas que venham a substituí-las.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="28" y="567" width="26" height="15" uuid="b7222751-212f-46c7-b477-9b6ab8cccda8"/>
+				<textElement textAlignment="Justified" markup="none">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[1.5.2]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="28" y="625" width="495" height="26" uuid="229dc722-fbee-4088-bc2c-0281ef3b19c0"/>
+				<textElement textAlignment="Justified" markup="none">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[1.6   EXIGÊNCIAS RELATIVAS AOS REQUISITOS DE SEGURANÇA CONTRA INCÊNDIO E PÂNICO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="60" y="657" width="463" height="73" uuid="fd28136d-61e0-439a-b92c-6d3585ff64c4"/>
+				<textElement textAlignment="Justified" markup="html">
+					<font fontName="Arial" size="11" isBold="false"/>
+				</textElement>
+				<text><![CDATA[O empreendedor deverá obedecer aos requisitos de Segurança contra Incêndio e Pânico (indispensáveis para promover a segurança de pessoas, instalações e mercadorias) conforme o Certificado de Aprovação, ou ato equivalente, fornecido pelo Corpo de Bombeiros Militar (de acordo com a Lei Estadual n° 6.546/1995 - Dispõe sobre o Código de Segurança Contra Incêndio e Pânico do Estado do Maranhão e dá outras providências)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="28" y="657" width="26" height="15" uuid="52b39d0c-42f6-4f1c-9a31-4d03e8dfd618"/>
+				<textElement textAlignment="Justified" markup="none">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[1.6.1]]></text>
+			</staticText>
+		</band>
+	</title>
+</jasperReport>
