@@ -1551,11 +1551,17 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTipoLicencaActionPerformed
 
     private void btnFiscalizacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiscalizacaoActionPerformed
-        // TODO add your handling code here:
+        FiscalizacaoFrame fiscalizacaoFrame = new FiscalizacaoFrame();
+        jDesktopPane.add(fiscalizacaoFrame);
+        fiscalizacaoFrame.setVisible(true);
+        centralizaJanelaRegVen(fiscalizacaoFrame);        // TODO add your handling code here:
     }//GEN-LAST:event_btnFiscalizacaoActionPerformed
 
     private void btnDenunciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDenunciaActionPerformed
-        // TODO add your handling code here:
+ DenunciaFrame ocorrenciaFrame = new DenunciaFrame();
+        jDesktopPane.add(ocorrenciaFrame);
+        ocorrenciaFrame.setVisible(true);
+        centralizaJanelaRegVen(ocorrenciaFrame);        // TODO add your handling code here:
     }//GEN-LAST:event_btnDenunciaActionPerformed
 
     private void mnuItemGabinete1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuItemGabinete1ActionPerformed

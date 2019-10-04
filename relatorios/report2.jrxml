@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report2" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="354c78de-38e5-449e-88fc-d52c5562ac0f">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="ID_OCORRENCIA" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     distribuicao.`ID` AS distribuicao_ID,
+     distribuicao.`ID_USUARIO` AS distribuicao_ID_USUARIO,
+     distribuicao.`ID_ANALISTA` AS distribuicao_ID_ANALISTA,
+     distribuicao.`ID_PROCESSO` AS distribuicao_ID_PROCESSO,
+     distribuicao.`DATA_DIST` AS distribuicao_DATA_DIST,
+     distribuicao.`MESANO` AS distribuicao_MESANO,
+     distribuicao.`CONTROLE` AS distribuicao_CONTROLE,
+     distribuicao.`TRAMITOU_ANALISE` AS distribuicao_TRAMITOU_ANALISE,
+     distribuicao.`TRAMITOU_JURIDICO` AS distribuicao_TRAMITOU_JURIDICO,
+     distribuicao.`TRAMITOU_FISCALIZACAO` AS distribuicao_TRAMITOU_FISCALIZACAO,
+     distribuicao.`STATUS` AS distribuicao_STATUS,
+     analista.`ID` AS analista_ID,
+     analista.`NOME` AS analista_NOME,
+     analista.`MATRICULA` AS analista_MATRICULA,
+     analista.`QTDE_ENTRADA` AS analista_QTDE_ENTRADA,
+     analista.`QTDE_SAIDA` AS analista_QTDE_SAIDA,
+     analista.`QTDE_GERAL` AS analista_QTDE_GERAL,
+     analista.`ID_USUARIO` AS analista_ID_USUARIO,
+     analista.`TIPO` AS analista_TIPO,
+     processo.`ID` AS processo_ID,
+     processo.`ID_USUARIO` AS processo_ID_USUARIO,
+     processo.`NUM_PROCESSO` AS processo_NUM_PROCESSO,
+     processo.`ID_REQUERENTE` AS processo_ID_REQUERENTE,
+     processo.`DATA_PROCESSO` AS processo_DATA_PROCESSO,
+     processo.`MESANO` AS processo_MESANO,
+     processo.`TIPO_LICENCA` AS processo_TIPO_LICENCA,
+     processo.`TRAMITOU_DMA` AS processo_TRAMITOU_DMA,
+     processo.`ID_ATIVIDADE` AS processo_ID_ATIVIDADE,
+     processo.`ARQUIVADO` AS processo_ARQUIVADO,
+     processo.`CONTROLE` AS processo_CONTROLE,
+     processo.`LANCADO_DMA` AS processo_LANCADO_DMA,
+     processo.`MP` AS processo_MP,
+     processo.`ID_DENUNCIA` AS processo_ID_DENUNCIA,
+     processo.`OBSERVACAO` AS processo_OBSERVACAO,
+     denuncia.`ID` AS denuncia_ID,
+     denuncia.`ID_USUARIO` AS denuncia_ID_USUARIO,
+     denuncia.`DATA_REGISTRO` AS denuncia_DATA_REGISTRO,
+     denuncia.`ID_NATUREZA_OCORRENCIA` AS denuncia_ID_NATUREZA_OCORRENCIA,
+     denuncia.`ID_COMUNICANTE` AS denuncia_ID_COMUNICANTE,
+     denuncia.`ID_DENUNCIADO` AS denuncia_ID_DENUNCIADO,
+     denuncia.`RELATO_OCORRENCIA` AS denuncia_RELATO_OCORRENCIA,
+     denuncia.`TIPO_DENUNCIA` AS denuncia_TIPO_DENUNCIA,
+     denuncia.`DENUNCIADO` AS denuncia_DENUNCIADO,
+     denuncia.`LOCAL_DENUNCIA` AS denuncia_LOCAL_DENUNCIA,
+     denuncia.`P_REFERENCIA` AS denuncia_P_REFERENCIA,
+     denuncia.`DESCRICAO` AS denuncia_DESCRICAO,
+     denuncia.`DATA_DENUNCIA` AS denuncia_DATA_DENUNCIA,
+     denuncia.`URL_IMAGEM` AS denuncia_URL_IMAGEM,
+     denuncia.`TOKEN_GCM` AS denuncia_TOKEN_GCM,
+     denuncia.`STATUS_APP` AS denuncia_STATUS_APP,
+     denuncia.`ORIGEM` AS denuncia_ORIGEM,
+     usuario.`ID` AS usuario_ID,
+     usuario.`NOME` AS usuario_NOME,
+     usuario.`LOGIN` AS usuario_LOGIN,
+     usuario.`SENHA` AS usuario_SENHA,
+     usuario.`SETOR` AS usuario_SETOR
+FROM
+     `analista` analista INNER JOIN `distribuicao` distribuicao ON analista.`ID` = distribuicao.`ID_ANALISTA`
+     INNER JOIN `processo` processo ON distribuicao.`ID_PROCESSO` = processo.`ID`
+     INNER JOIN `denuncia` denuncia ON processo.`ID_DENUNCIA` = denuncia.`ID`
+     INNER JOIN `usuario` usuario ON denuncia.`ID_USUARIO` = usuario.`ID`
+WHERE
+     denuncia.`ID` = $P{ID_OCORRENCIA}]]>
+	</queryString>
+	<field name="distribuicao_ID" class="java.lang.Long"/>
+	<field name="distribuicao_ID_USUARIO" class="java.lang.Long"/>
+	<field name="distribuicao_ID_ANALISTA" class="java.lang.Long"/>
+	<field name="distribuicao_ID_PROCESSO" class="java.lang.Long"/>
+	<field name="distribuicao_DATA_DIST" class="java.sql.Date"/>
+	<field name="distribuicao_MESANO" class="java.lang.String"/>
+	<field name="distribuicao_CONTROLE" class="java.lang.String"/>
+	<field name="distribuicao_TRAMITOU_ANALISE" class="java.lang.String"/>
+	<field name="distribuicao_TRAMITOU_JURIDICO" class="java.lang.String"/>
+	<field name="distribuicao_TRAMITOU_FISCALIZACAO" class="java.lang.String"/>
+	<field name="distribuicao_STATUS" class="java.lang.String"/>
+	<field name="analista_ID" class="java.lang.Long"/>
+	<field name="analista_NOME" class="java.lang.String"/>
+	<field name="analista_MATRICULA" class="java.lang.String"/>
+	<field name="analista_QTDE_ENTRADA" class="java.lang.Long"/>
+	<field name="analista_QTDE_SAIDA" class="java.lang.Long"/>
+	<field name="analista_QTDE_GERAL" class="java.lang.Long"/>
+	<field name="analista_ID_USUARIO" class="java.lang.Long"/>
+	<field name="analista_TIPO" class="java.lang.String"/>
+	<field name="processo_ID" class="java.lang.Long"/>
+	<field name="processo_ID_USUARIO" class="java.lang.Long"/>
+	<field name="processo_NUM_PROCESSO" class="java.lang.String"/>
+	<field name="processo_ID_REQUERENTE" class="java.lang.Long"/>
+	<field name="processo_DATA_PROCESSO" class="java.sql.Date"/>
+	<field name="processo_MESANO" class="java.lang.String"/>
+	<field name="processo_TIPO_LICENCA" class="java.lang.String"/>
+	<field name="processo_TRAMITOU_DMA" class="java.lang.String"/>
+	<field name="processo_ID_ATIVIDADE" class="java.lang.Long"/>
+	<field name="processo_ARQUIVADO" class="java.lang.String"/>
+	<field name="processo_CONTROLE" class="java.lang.String"/>
+	<field name="processo_LANCADO_DMA" class="java.lang.String"/>
+	<field name="processo_MP" class="java.lang.String"/>
+	<field name="processo_ID_DENUNCIA" class="java.lang.Long"/>
+	<field name="processo_OBSERVACAO" class="java.lang.String"/>
+	<field name="denuncia_ID" class="java.lang.Long"/>
+	<field name="denuncia_ID_USUARIO" class="java.lang.Long"/>
+	<field name="denuncia_DATA_REGISTRO" class="java.sql.Date"/>
+	<field name="denuncia_ID_NATUREZA_OCORRENCIA" class="java.lang.Long"/>
+	<field name="denuncia_ID_COMUNICANTE" class="java.lang.Long"/>
+	<field name="denuncia_ID_DENUNCIADO" class="java.lang.Long"/>
+	<field name="denuncia_RELATO_OCORRENCIA" class="java.lang.String"/>
+	<field name="denuncia_TIPO_DENUNCIA" class="java.lang.String"/>
+	<field name="denuncia_DENUNCIADO" class="java.lang.String"/>
+	<field name="denuncia_LOCAL_DENUNCIA" class="java.lang.String"/>
+	<field name="denuncia_P_REFERENCIA" class="java.lang.String"/>
+	<field name="denuncia_DESCRICAO" class="java.lang.String"/>
+	<field name="denuncia_DATA_DENUNCIA" class="java.sql.Date"/>
+	<field name="denuncia_URL_IMAGEM" class="java.lang.String"/>
+	<field name="denuncia_TOKEN_GCM" class="java.lang.String"/>
+	<field name="denuncia_STATUS_APP" class="java.lang.String"/>
+	<field name="denuncia_ORIGEM" class="java.lang.String"/>
+	<field name="usuario_ID" class="java.lang.Long"/>
+	<field name="usuario_NOME" class="java.lang.String"/>
+	<field name="usuario_LOGIN" class="java.lang.String"/>
+	<field name="usuario_SENHA" class="java.lang.String"/>
+	<field name="usuario_SETOR" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<textField>
+				<reportElement x="132" y="37" width="238" height="28" uuid="b2382d68-c38b-4ea2-bef2-3ea112a18c9a"/>
+				<textFieldExpression><![CDATA[$F{analista_NOME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="90" y="24" width="100" height="20" uuid="83bd9c3d-ac7b-4b82-936a-61b68d20670f"/>
+				<textFieldExpression><![CDATA[$F{denuncia_ID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="370" y="17" width="185" height="48" uuid="66173f92-303d-4df6-86b0-6ca94b82bf37"/>
+				<textFieldExpression><![CDATA[$F{denuncia_RELATO_OCORRENCIA}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Ocorrencia" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c440d119-6505-4628-8b5b-bcdf7343861b">
 	<property name="ireport.zoom" value="1.3310000000000004"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="336"/>
+	<property name="ireport.y" value="840"/>
 	<parameter name="LOGO_CIDADE" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -18,9 +18,45 @@
      denuncia.`DATA_DENUNCIA` AS denuncia_DATA_DENUNCIA,
      denuncia.`URL_IMAGEM` AS denuncia_URL_IMAGEM,
      denuncia.`TIPO_DENUNCIA` AS denuncia_TIPO_DENUNCIA,
-     denuncia.`ID` AS denuncia_ID
+     denuncia.`ID` AS denuncia_ID,
+     distribuicao.`ID` AS distribuicao_ID,
+     distribuicao.`ID_USUARIO` AS distribuicao_ID_USUARIO,
+     distribuicao.`ID_ANALISTA` AS distribuicao_ID_ANALISTA,
+     distribuicao.`ID_PROCESSO` AS distribuicao_ID_PROCESSO,
+     distribuicao.`DATA_DIST` AS distribuicao_DATA_DIST,
+     distribuicao.`MESANO` AS distribuicao_MESANO,
+     distribuicao.`CONTROLE` AS distribuicao_CONTROLE,
+     distribuicao.`TRAMITOU_ANALISE` AS distribuicao_TRAMITOU_ANALISE,
+     distribuicao.`TRAMITOU_JURIDICO` AS distribuicao_TRAMITOU_JURIDICO,
+     distribuicao.`TRAMITOU_FISCALIZACAO` AS distribuicao_TRAMITOU_FISCALIZACAO,
+     distribuicao.`STATUS` AS distribuicao_STATUS,
+     processo.`ID` AS processo_ID,
+     processo.`ID_USUARIO` AS processo_ID_USUARIO,
+     processo.`NUM_PROCESSO` AS processo_NUM_PROCESSO,
+     processo.`ID_REQUERENTE` AS processo_ID_REQUERENTE,
+     processo.`DATA_PROCESSO` AS processo_DATA_PROCESSO,
+     processo.`MESANO` AS processo_MESANO,
+     processo.`TIPO_LICENCA` AS processo_TIPO_LICENCA,
+     processo.`TRAMITOU_DMA` AS processo_TRAMITOU_DMA,
+     processo.`ID_ATIVIDADE` AS processo_ID_ATIVIDADE,
+     processo.`ARQUIVADO` AS processo_ARQUIVADO,
+     processo.`CONTROLE` AS processo_CONTROLE,
+     processo.`LANCADO_DMA` AS processo_LANCADO_DMA,
+     processo.`MP` AS processo_MP,
+     processo.`ID_DENUNCIA` AS processo_ID_DENUNCIA,
+     processo.`OBSERVACAO` AS processo_OBSERVACAO,
+     analista.`ID` AS analista_ID,
+     analista.`NOME` AS analista_NOME,
+     analista.`MATRICULA` AS analista_MATRICULA,
+     analista.`QTDE_ENTRADA` AS analista_QTDE_ENTRADA,
+     analista.`QTDE_SAIDA` AS analista_QTDE_SAIDA,
+     analista.`QTDE_GERAL` AS analista_QTDE_GERAL,
+     analista.`ID_USUARIO` AS analista_ID_USUARIO,
+     analista.`TIPO` AS analista_TIPO
 FROM
-     `denuncia` denuncia
+     `denuncia` denuncia LEFT JOIN `processo` processo ON denuncia.`ID` = processo.`ID_DENUNCIA`
+     LEFT JOIN `distribuicao` distribuicao ON processo.`ID` = distribuicao.`ID_PROCESSO`
+     LEFT JOIN `analista` analista ON distribuicao.`ID_ANALISTA` = analista.`ID`
 WHERE
      denuncia.`ID` = $P{ID_OCORRENCIA}]]>
 	</queryString>
@@ -32,6 +68,40 @@ WHERE
 	<field name="denuncia_URL_IMAGEM" class="java.lang.String"/>
 	<field name="denuncia_TIPO_DENUNCIA" class="java.lang.String"/>
 	<field name="denuncia_ID" class="java.lang.Long"/>
+	<field name="distribuicao_ID" class="java.lang.Long"/>
+	<field name="distribuicao_ID_USUARIO" class="java.lang.Long"/>
+	<field name="distribuicao_ID_ANALISTA" class="java.lang.Long"/>
+	<field name="distribuicao_ID_PROCESSO" class="java.lang.Long"/>
+	<field name="distribuicao_DATA_DIST" class="java.sql.Date"/>
+	<field name="distribuicao_MESANO" class="java.lang.String"/>
+	<field name="distribuicao_CONTROLE" class="java.lang.String"/>
+	<field name="distribuicao_TRAMITOU_ANALISE" class="java.lang.String"/>
+	<field name="distribuicao_TRAMITOU_JURIDICO" class="java.lang.String"/>
+	<field name="distribuicao_TRAMITOU_FISCALIZACAO" class="java.lang.String"/>
+	<field name="distribuicao_STATUS" class="java.lang.String"/>
+	<field name="processo_ID" class="java.lang.Long"/>
+	<field name="processo_ID_USUARIO" class="java.lang.Long"/>
+	<field name="processo_NUM_PROCESSO" class="java.lang.String"/>
+	<field name="processo_ID_REQUERENTE" class="java.lang.Long"/>
+	<field name="processo_DATA_PROCESSO" class="java.sql.Date"/>
+	<field name="processo_MESANO" class="java.lang.String"/>
+	<field name="processo_TIPO_LICENCA" class="java.lang.String"/>
+	<field name="processo_TRAMITOU_DMA" class="java.lang.String"/>
+	<field name="processo_ID_ATIVIDADE" class="java.lang.Long"/>
+	<field name="processo_ARQUIVADO" class="java.lang.String"/>
+	<field name="processo_CONTROLE" class="java.lang.String"/>
+	<field name="processo_LANCADO_DMA" class="java.lang.String"/>
+	<field name="processo_MP" class="java.lang.String"/>
+	<field name="processo_ID_DENUNCIA" class="java.lang.Long"/>
+	<field name="processo_OBSERVACAO" class="java.lang.String"/>
+	<field name="analista_ID" class="java.lang.Long"/>
+	<field name="analista_NOME" class="java.lang.String"/>
+	<field name="analista_MATRICULA" class="java.lang.String"/>
+	<field name="analista_QTDE_ENTRADA" class="java.lang.Long"/>
+	<field name="analista_QTDE_SAIDA" class="java.lang.Long"/>
+	<field name="analista_QTDE_GERAL" class="java.lang.Long"/>
+	<field name="analista_ID_USUARIO" class="java.lang.Long"/>
+	<field name="analista_TIPO" class="java.lang.String"/>
 	<title>
 		<band height="802" splitType="Stretch">
 			<rectangle>
@@ -47,7 +117,7 @@ WHERE
 				</graphicElement>
 			</rectangle>
 			<rectangle>
-				<reportElement x="23" y="521" width="507" height="281" backcolor="#F4F7FC" uuid="5748c1fb-3f96-4c02-88ea-3743cb466f34"/>
+				<reportElement x="23" y="521" width="507" height="261" backcolor="#F4F7FC" uuid="5748c1fb-3f96-4c02-88ea-3743cb466f34"/>
 				<graphicElement>
 					<pen lineWidth="0.0"/>
 				</graphicElement>
@@ -181,7 +251,7 @@ SECRETARIA MUNICIPAL DE MEIO AMBIENTE E RECURSOS HÍDRICOS
 				<text><![CDATA[DESCRIÇÃO DA DENÚNCIA]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="23" y="521" width="507" height="281" uuid="1896a3f0-cfaf-410a-87fd-bd38d94e894a"/>
+				<reportElement x="23" y="521" width="507" height="261" uuid="1896a3f0-cfaf-410a-87fd-bd38d94e894a"/>
 				<textElement markup="html">
 					<font fontName="Arial" size="12" isItalic="true"/>
 				</textElement>
@@ -229,6 +299,24 @@ SECRETARIA MUNICIPAL DE MEIO AMBIENTE E RECURSOS HÍDRICOS
 				</textElement>
 				<textFieldExpression><![CDATA[$F{denuncia_P_REFERENCIA}]]></textFieldExpression>
 			</textField>
+			<textField>
+				<reportElement x="170" y="782" width="360" height="20" forecolor="#FF0000" uuid="d29e7894-af15-4084-8fe6-8781a0f67611">
+					<printWhenExpression><![CDATA[($F{analista_NOME} == null) ? false : true]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Freestyle Script" size="15" isBold="true" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{analista_NOME}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="23" y="782" width="147" height="19" uuid="aa03a456-b843-4dd9-b23b-a88281e955bd">
+					<printWhenExpression><![CDATA[($F{analista_NOME} == null) ? false : true]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FISCAL RESPONSAVEL:]]></text>
+			</staticText>
 		</band>
 	</title>
 </jasperReport>

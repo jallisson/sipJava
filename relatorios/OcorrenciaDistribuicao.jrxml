@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Ocorrencia" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c440d119-6505-4628-8b5b-bcdf7343861b">
 	<property name="ireport.zoom" value="1.3310000000000004"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="773"/>
+	<property name="ireport.y" value="376"/>
 	<parameter name="LOGO_CIDADE" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -11,59 +11,6 @@
 	</parameter>
 	<queryString>
 		<![CDATA[SELECT
-     denuncia.`ID` AS ocorrencia_ID,
-     denuncia.`ID_USUARIO` AS ocorrencia_ID_USUARIO,
-     denuncia.`DATA_REGISTRO` AS ocorrencia_DATA_REGISTRO,
-     denuncia.`ID_NATUREZA_OCORRENCIA` AS ocorrencia_ID_NATUREZA_OCORRENCIA,
-     denuncia.`ID_COMUNICANTE` AS ocorrencia_ID_COMUNICANTE,
-     denuncia.`ID_DENUNCIADO` AS ocorrencia_ID_DENUNCIADO,
-     denuncia.`RELATO_OCORRENCIA` AS ocorrencia_RELATO_OCORRENCIA,
-     usuario.`ID` AS usuario_ID,
-     usuario.`NOME` AS usuario_NOME,
-     usuario.`LOGIN` AS usuario_LOGIN,
-     usuario.`SENHA` AS usuario_SENHA,
-     usuario.`SETOR` AS usuario_SETOR,
-     pessoa_COMUNICANTE.`ID` AS pessoa_COMUNICANTE_ID,
-     pessoa_COMUNICANTE.`NOME` AS pessoa_COMUNICANTE_NOME,
-     pessoa_COMUNICANTE.`ID_LOGRADOURO` AS pessoa_COMUNICANTE_ID_LOGRADOURO,
-     pessoa_COMUNICANTE.`NUMERO` AS pessoa_COMUNICANTE_NUMERO,
-     pessoa_COMUNICANTE.`TEL_FIXO` AS pessoa_COMUNICANTE_TEL_FIXO,
-     pessoa_COMUNICANTE.`TEL_CEL` AS pessoa_COMUNICANTE_TEL_CEL,
-     pessoa_COMUNICANTE.`COMPLEMENTO` AS pessoa_COMUNICANTE_COMPLEMENTO,
-     pessoa_COMUNICANTE.`ID_CIDADE` AS pessoa_COMUNICANTE_ID_CIDADE,
-     pessoa_DENUNCIADO.`ID` AS pessoa_DENUNCIADO_ID,
-     pessoa_DENUNCIADO.`NOME` AS pessoa_DENUNCIADO_NOME,
-     pessoa_DENUNCIADO.`ID_LOGRADOURO` AS pessoa_DENUNCIADO_ID_LOGRADOURO,
-     pessoa_DENUNCIADO.`NUMERO` AS pessoa_DENUNCIADO_NUMERO,
-     pessoa_DENUNCIADO.`TEL_FIXO` AS pessoa_DENUNCIADO_TEL_FIXO,
-     pessoa_DENUNCIADO.`TEL_CEL` AS pessoa_DENUNCIADO_TEL_CEL,
-     pessoa_DENUNCIADO.`ID_BAIRRO` AS pessoa_DENUNCIADO_ID_BAIRRO,
-     pessoa_DENUNCIADO.`COMPLEMENTO` AS pessoa_DENUNCIADO_COMPLEMENTO,
-     pessoa_DENUNCIADO.`ID_CIDADE` AS pessoa_DENUNCIADO_ID_CIDADE,
-     natureza_ocorrencia.`ID` AS natureza_ocorrencia_ID,
-     natureza_ocorrencia.`NOME` AS natureza_ocorrencia_NOME,
-     logradouro.`ID` AS logradouro_ID,
-     logradouro.`NOME` AS logradouro_NOME,
-     logradouro_A.`ID` AS logradouro_A_ID,
-     logradouro_A.`NOME` AS logradouro_A_NOME,
-     bairro.`ID` AS bairro_ID,
-     bairro.`NOME` AS bairro_NOME,
-     bairro.`LIVRO` AS bairro_LIVRO,
-     bairro.`FOLHA` AS bairro_FOLHA,
-     bairro.`MATRICULA` AS bairro_MATRICULA,
-     bairro.`TIPO` AS bairro_TIPO,
-     bairro_A.`ID` AS bairro_A_ID,
-     bairro_A.`NOME` AS bairro_A_NOME,
-     bairro_A.`LIVRO` AS bairro_A_LIVRO,
-     bairro_A.`FOLHA` AS bairro_A_FOLHA,
-     bairro_A.`MATRICULA` AS bairro_A_MATRICULA,
-     bairro_A.`TIPO` AS bairro_A_TIPO,
-     cidade.`ID` AS cidade_ID,
-     cidade.`NOME` AS cidade_NOME,
-     cidade.`UF` AS cidade_UF,
-     cidade_A.`ID` AS cidade_A_ID,
-     cidade_A.`NOME` AS cidade_A_NOME,
-     cidade_A.`UF` AS cidade_A_UF,
      distribuicao.`ID` AS distribuicao_ID,
      distribuicao.`ID_USUARIO` AS distribuicao_ID_USUARIO,
      distribuicao.`ID_ANALISTA` AS distribuicao_ID_ANALISTA,
@@ -83,6 +30,23 @@
      analista.`QTDE_GERAL` AS analista_QTDE_GERAL,
      analista.`ID_USUARIO` AS analista_ID_USUARIO,
      analista.`TIPO` AS analista_TIPO,
+     denuncia.`ID` AS denuncia_ID,
+     denuncia.`ID_USUARIO` AS denuncia_ID_USUARIO,
+     denuncia.`DATA_REGISTRO` AS denuncia_DATA_REGISTRO,
+     denuncia.`ID_NATUREZA_OCORRENCIA` AS denuncia_ID_NATUREZA_OCORRENCIA,
+     denuncia.`ID_COMUNICANTE` AS denuncia_ID_COMUNICANTE,
+     denuncia.`ID_DENUNCIADO` AS denuncia_ID_DENUNCIADO,
+     denuncia.`RELATO_OCORRENCIA` AS denuncia_RELATO_OCORRENCIA,
+     denuncia.`TIPO_DENUNCIA` AS denuncia_TIPO_DENUNCIA,
+     denuncia.`DENUNCIADO` AS denuncia_DENUNCIADO,
+     denuncia.`LOCAL_DENUNCIA` AS denuncia_LOCAL_DENUNCIA,
+     denuncia.`P_REFERENCIA` AS denuncia_P_REFERENCIA,
+     denuncia.`DESCRICAO` AS denuncia_DESCRICAO,
+     denuncia.`DATA_DENUNCIA` AS denuncia_DATA_DENUNCIA,
+     denuncia.`URL_IMAGEM` AS denuncia_URL_IMAGEM,
+     denuncia.`TOKEN_GCM` AS denuncia_TOKEN_GCM,
+     denuncia.`STATUS_APP` AS denuncia_STATUS_APP,
+     denuncia.`ORIGEM` AS denuncia_ORIGEM,
      processo.`ID` AS processo_ID,
      processo.`ID_USUARIO` AS processo_ID_USUARIO,
      processo.`NUM_PROCESSO` AS processo_NUM_PROCESSO,
@@ -99,76 +63,12 @@
      processo.`ID_DENUNCIA` AS processo_ID_DENUNCIA,
      processo.`OBSERVACAO` AS processo_OBSERVACAO
 FROM
-     `usuario` usuario LEFT JOIN `denuncia` denuncia ON usuario.`ID` = denuncia.`ID_USUARIO`
-     LEFT JOIN `pessoa` pessoa_COMUNICANTE ON denuncia.`ID_COMUNICANTE` = pessoa_COMUNICANTE.`ID`
-     LEFT JOIN `pessoa` pessoa_DENUNCIADO ON denuncia.`ID_DENUNCIADO` = pessoa_DENUNCIADO.`ID`
-     LEFT JOIN `natureza_ocorrencia` natureza_ocorrencia ON denuncia.`ID_NATUREZA_OCORRENCIA` = natureza_ocorrencia.`ID`
-     LEFT JOIN `processo` processo ON denuncia.`ID` = processo.`ID_DENUNCIA`
-     LEFT JOIN `distribuicao` distribuicao ON processo.`ID` = distribuicao.`ID_PROCESSO`
-     LEFT JOIN `analista` analista ON distribuicao.`ID_ANALISTA` = analista.`ID`
-     AND analista.`ID` = distribuicao.`ID_ANALISTA`
-     LEFT JOIN `logradouro` logradouro_A ON pessoa_DENUNCIADO.`ID_LOGRADOURO` = logradouro_A.`ID`
-     LEFT JOIN `bairro` bairro_A ON pessoa_DENUNCIADO.`ID_BAIRRO` = bairro_A.`ID`
-     LEFT JOIN `cidade` cidade_A ON pessoa_DENUNCIADO.`ID_CIDADE` = cidade_A.`ID`
-     LEFT JOIN `logradouro` logradouro ON pessoa_COMUNICANTE.`ID_LOGRADOURO` = logradouro.`ID`
-     LEFT JOIN `bairro` bairro ON pessoa_COMUNICANTE.`ID_BAIRRO` = bairro.`ID`
-     LEFT JOIN `cidade` cidade ON pessoa_COMUNICANTE.`ID_CIDADE` = cidade.`ID`
+     `distribuicao` distribuicao INNER JOIN `analista` analista ON distribuicao.`ID_ANALISTA` = analista.`ID`
+     INNER JOIN `processo` processo ON distribuicao.`ID_PROCESSO` = processo.`ID`
+     INNER JOIN `denuncia` denuncia ON processo.`ID_DENUNCIA` = denuncia.`ID`
 WHERE
      denuncia.`ID` = $P{ID_OCORRENCIA}]]>
 	</queryString>
-	<field name="ocorrencia_ID" class="java.lang.Long"/>
-	<field name="ocorrencia_ID_USUARIO" class="java.lang.Long"/>
-	<field name="ocorrencia_DATA_REGISTRO" class="java.sql.Date"/>
-	<field name="ocorrencia_ID_NATUREZA_OCORRENCIA" class="java.lang.Long"/>
-	<field name="ocorrencia_ID_COMUNICANTE" class="java.lang.Long"/>
-	<field name="ocorrencia_ID_DENUNCIADO" class="java.lang.Long"/>
-	<field name="ocorrencia_RELATO_OCORRENCIA" class="java.lang.String"/>
-	<field name="usuario_ID" class="java.lang.Long"/>
-	<field name="usuario_NOME" class="java.lang.String"/>
-	<field name="usuario_LOGIN" class="java.lang.String"/>
-	<field name="usuario_SENHA" class="java.lang.String"/>
-	<field name="usuario_SETOR" class="java.lang.String"/>
-	<field name="pessoa_COMUNICANTE_ID" class="java.lang.Long"/>
-	<field name="pessoa_COMUNICANTE_NOME" class="java.lang.String"/>
-	<field name="pessoa_COMUNICANTE_ID_LOGRADOURO" class="java.lang.Long"/>
-	<field name="pessoa_COMUNICANTE_NUMERO" class="java.lang.String"/>
-	<field name="pessoa_COMUNICANTE_TEL_FIXO" class="java.lang.String"/>
-	<field name="pessoa_COMUNICANTE_TEL_CEL" class="java.lang.String"/>
-	<field name="pessoa_COMUNICANTE_COMPLEMENTO" class="java.lang.String"/>
-	<field name="pessoa_COMUNICANTE_ID_CIDADE" class="java.lang.Long"/>
-	<field name="pessoa_DENUNCIADO_ID" class="java.lang.Long"/>
-	<field name="pessoa_DENUNCIADO_NOME" class="java.lang.String"/>
-	<field name="pessoa_DENUNCIADO_ID_LOGRADOURO" class="java.lang.Long"/>
-	<field name="pessoa_DENUNCIADO_NUMERO" class="java.lang.String"/>
-	<field name="pessoa_DENUNCIADO_TEL_FIXO" class="java.lang.String"/>
-	<field name="pessoa_DENUNCIADO_TEL_CEL" class="java.lang.String"/>
-	<field name="pessoa_DENUNCIADO_ID_BAIRRO" class="java.lang.Long"/>
-	<field name="pessoa_DENUNCIADO_COMPLEMENTO" class="java.lang.String"/>
-	<field name="pessoa_DENUNCIADO_ID_CIDADE" class="java.lang.Long"/>
-	<field name="natureza_ocorrencia_ID" class="java.lang.Long"/>
-	<field name="natureza_ocorrencia_NOME" class="java.lang.String"/>
-	<field name="logradouro_ID" class="java.lang.Long"/>
-	<field name="logradouro_NOME" class="java.lang.String"/>
-	<field name="logradouro_A_ID" class="java.lang.Long"/>
-	<field name="logradouro_A_NOME" class="java.lang.String"/>
-	<field name="bairro_ID" class="java.lang.Long"/>
-	<field name="bairro_NOME" class="java.lang.String"/>
-	<field name="bairro_LIVRO" class="java.lang.String"/>
-	<field name="bairro_FOLHA" class="java.lang.Long"/>
-	<field name="bairro_MATRICULA" class="java.lang.String"/>
-	<field name="bairro_TIPO" class="java.lang.String"/>
-	<field name="bairro_A_ID" class="java.lang.Long"/>
-	<field name="bairro_A_NOME" class="java.lang.String"/>
-	<field name="bairro_A_LIVRO" class="java.lang.String"/>
-	<field name="bairro_A_FOLHA" class="java.lang.Long"/>
-	<field name="bairro_A_MATRICULA" class="java.lang.String"/>
-	<field name="bairro_A_TIPO" class="java.lang.String"/>
-	<field name="cidade_ID" class="java.lang.Long"/>
-	<field name="cidade_NOME" class="java.lang.String"/>
-	<field name="cidade_UF" class="java.lang.String"/>
-	<field name="cidade_A_ID" class="java.lang.Long"/>
-	<field name="cidade_A_NOME" class="java.lang.String"/>
-	<field name="cidade_A_UF" class="java.lang.String"/>
 	<field name="distribuicao_ID" class="java.lang.Long"/>
 	<field name="distribuicao_ID_USUARIO" class="java.lang.Long"/>
 	<field name="distribuicao_ID_ANALISTA" class="java.lang.Long"/>
@@ -188,6 +88,23 @@ WHERE
 	<field name="analista_QTDE_GERAL" class="java.lang.Long"/>
 	<field name="analista_ID_USUARIO" class="java.lang.Long"/>
 	<field name="analista_TIPO" class="java.lang.String"/>
+	<field name="denuncia_ID" class="java.lang.Long"/>
+	<field name="denuncia_ID_USUARIO" class="java.lang.Long"/>
+	<field name="denuncia_DATA_REGISTRO" class="java.sql.Date"/>
+	<field name="denuncia_ID_NATUREZA_OCORRENCIA" class="java.lang.Long"/>
+	<field name="denuncia_ID_COMUNICANTE" class="java.lang.Long"/>
+	<field name="denuncia_ID_DENUNCIADO" class="java.lang.Long"/>
+	<field name="denuncia_RELATO_OCORRENCIA" class="java.lang.String"/>
+	<field name="denuncia_TIPO_DENUNCIA" class="java.lang.String"/>
+	<field name="denuncia_DENUNCIADO" class="java.lang.String"/>
+	<field name="denuncia_LOCAL_DENUNCIA" class="java.lang.String"/>
+	<field name="denuncia_P_REFERENCIA" class="java.lang.String"/>
+	<field name="denuncia_DESCRICAO" class="java.lang.String"/>
+	<field name="denuncia_DATA_DENUNCIA" class="java.sql.Date"/>
+	<field name="denuncia_URL_IMAGEM" class="java.lang.String"/>
+	<field name="denuncia_TOKEN_GCM" class="java.lang.String"/>
+	<field name="denuncia_STATUS_APP" class="java.lang.String"/>
+	<field name="denuncia_ORIGEM" class="java.lang.String"/>
 	<field name="processo_ID" class="java.lang.Long"/>
 	<field name="processo_ID_USUARIO" class="java.lang.Long"/>
 	<field name="processo_NUM_PROCESSO" class="java.lang.String"/>
@@ -212,7 +129,7 @@ WHERE
 				</graphicElement>
 			</rectangle>
 			<rectangle>
-				<reportElement x="23" y="609" width="507" height="174" backcolor="#F4F7FC" uuid="5748c1fb-3f96-4c02-88ea-3743cb466f34"/>
+				<reportElement x="23" y="615" width="507" height="168" backcolor="#F4F7FC" uuid="5748c1fb-3f96-4c02-88ea-3743cb466f34"/>
 				<graphicElement>
 					<pen lineWidth="0.0"/>
 				</graphicElement>
@@ -609,14 +526,14 @@ SECRETARIA MUNICIPAL DE MEIO AMBIENTE E RECURSOS HÍDRICOS
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="195" y="588" width="191" height="21" uuid="26337e60-c2f0-4b37-b47b-c04608890e01"/>
+				<reportElement x="195" y="594" width="191" height="21" uuid="26337e60-c2f0-4b37-b47b-c04608890e01"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Arial" size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[RELATO DA OCORRÊNCIA]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="23" y="609" width="507" height="174" uuid="1896a3f0-cfaf-410a-87fd-bd38d94e894a"/>
+				<reportElement x="23" y="617" width="507" height="166" uuid="1896a3f0-cfaf-410a-87fd-bd38d94e894a"/>
 				<textElement markup="html">
 					<font fontName="Arial" size="12" isItalic="true"/>
 				</textElement>
@@ -630,20 +547,16 @@ SECRETARIA MUNICIPAL DE MEIO AMBIENTE E RECURSOS HÍDRICOS
 				<textFieldExpression><![CDATA[$F{pessoa_DENUNCIADO_NUMERO}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="23" y="782" width="147" height="19" uuid="fdccf25b-c9b7-4b6c-be07-57dffc684f9a">
-					<printWhenExpression><![CDATA[($F{analista_NOME} == null) ? false : true]]></printWhenExpression>
-				</reportElement>
+				<reportElement x="71" y="783" width="158" height="19" uuid="fdccf25b-c9b7-4b6c-be07-57dffc684f9a"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Arial" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[FISCAL RESPONSAVEL:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="170" y="782" width="360" height="20" forecolor="#FF0000" uuid="4b0aec8a-9933-4639-80ca-4bddcf352e73">
-					<printWhenExpression><![CDATA[($F{analista_NOME} == null) ? false : true]]></printWhenExpression>
-				</reportElement>
+				<reportElement x="229" y="782" width="301" height="20" uuid="4b0aec8a-9933-4639-80ca-4bddcf352e73"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Freestyle Script" size="15" isBold="true" isItalic="false"/>
+					<font fontName="Freestyle Script" size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{analista_NOME}]]></textFieldExpression>
 			</textField>

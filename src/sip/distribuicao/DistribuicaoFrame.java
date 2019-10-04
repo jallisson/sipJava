@@ -248,6 +248,46 @@ public class DistribuicaoFrame extends javax.swing.JInternalFrame {
         });
 
     }
+    
+    private void executaRelatorio() {
+        AcessoBD acessoBd = new AcessoBD();
+        int indice = tblDistribuicao.getSelectedRow();
+        int mostraID = listDistribuicao.get(indice).getDenuncia().getId();
+
+        try {
+            HashMap parametros = new HashMap();
+            parametros.put("LOGO_CIDADE", System.getProperty("user.dir") + "\\imagem\\logocidade.jpg");
+            parametros.put("ID_OCORRENCIA", (long) mostraID);
+
+            JasperPrint jp = JasperFillManager.fillReport(System.getProperty("user.dir") + "\\relatorios\\Ocorrencia.jasper", parametros, acessoBd.conectar());
+
+            //JOptionPane.showMessageDialog(this, "Aquarde enquanto é gerado!", "Informação", JOptionPane.INFORMATION_MESSAGE);
+            JasperViewer.viewReport(jp, false);
+
+        } catch (JRException ex) {
+            Logger.getLogger(EmissaoLicencaFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void executaRelatorioApp() {
+        AcessoBD acessoBd = new AcessoBD();
+        int indice = tblDistribuicao.getSelectedRow();
+        int mostraID = listDistribuicao.get(indice).getDenuncia().getId();
+
+        try {
+            HashMap parametros = new HashMap();
+            parametros.put("LOGO_CIDADE", System.getProperty("user.dir") + "\\imagem\\logocidade.jpg");
+            parametros.put("ID_OCORRENCIA", (long) mostraID);
+
+            JasperPrint jp = JasperFillManager.fillReport(System.getProperty("user.dir") + "\\relatorios\\DenunciaApp.jasper", parametros, acessoBd.conectar());
+
+            //JOptionPane.showMessageDialog(this, "Aquarde enquanto é gerado!", "Informação", JOptionPane.INFORMATION_MESSAGE);
+            JasperViewer.viewReport(jp, false);
+
+        } catch (JRException ex) {
+            Logger.getLogger(EmissaoLicencaFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     private void formataData() {
 
@@ -1182,6 +1222,7 @@ public class DistribuicaoFrame extends javax.swing.JInternalFrame {
         btnTramitarAnalise = new javax.swing.JButton();
         btnTramitarJuridico = new javax.swing.JButton();
         btnTramitarFiscalização = new javax.swing.JButton();
+        btnImprimir = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -1190,7 +1231,7 @@ public class DistribuicaoFrame extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setResizable(true);
         setTitle("Cadastro Processo\n");
-        setPreferredSize(new java.awt.Dimension(1000, 670));
+        setPreferredSize(new java.awt.Dimension(1100, 670));
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         jPanel1.setBackground(new java.awt.Color(122, 149, 222));
@@ -1615,6 +1656,15 @@ public class DistribuicaoFrame extends javax.swing.JInternalFrame {
         });
         jPanel4.add(btnTramitarFiscalização);
 
+        btnImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sip/imagem/printer.png"))); // NOI18N
+        btnImprimir.setText("IMPRIMIR DENÚNCIA");
+        btnImprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImprimirActionPerformed(evt);
+            }
+        });
+        jPanel4.add(btnImprimir);
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
@@ -1907,12 +1957,27 @@ public class DistribuicaoFrame extends javax.swing.JInternalFrame {
         }        // TODO add your handling code here:
     }//GEN-LAST:event_btnTramitarFiscalizaçãoActionPerformed
 
+    private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
+        if (tblDistribuicao.getSelectedRow() != -1) {
+            int indice = tblDistribuicao.getSelectedRow();
+            if (listDistribuicao.get(indice).getDenuncia().getOrigem() != null) {
+                executaRelatorioApp();
+            } else {
+                executaRelatorio();
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecione um processo na tabela!", "Denúncia", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_btnImprimirActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bGVTipo;
     private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnFiltrar;
+    private javax.swing.JButton btnImprimir;
     private javax.swing.JButton btnNovo;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JButton btnSelecionaAnalista;

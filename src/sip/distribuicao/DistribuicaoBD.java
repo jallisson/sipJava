@@ -111,7 +111,7 @@ public class DistribuicaoBD {
                 distribuicao.setPessoa(pessoa);
          
                 Denuncia denuncia = new Denuncia();
-               denuncia.setId(rs.getInt("denuncia.id"));
+                denuncia.setId(rs.getInt("denuncia.id"));
                 denuncia.setToken(rs.getString("denuncia.token_gcm"));
                 denuncia.setOrigem(rs.getString("denuncia.origem"));
                 
