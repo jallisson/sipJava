@@ -678,7 +678,7 @@ public class FiscalizacaoFrame extends javax.swing.JInternalFrame {
             JSONObject info = new JSONObject();
             info.put("title", "Secretaria do Meio Ambiente");   // Notification title
             info.put("body", corpo); // Notification body
-            info.put("color", "blue");
+            info.put("color", "#000099");
 
             json.put("notification", info);
 

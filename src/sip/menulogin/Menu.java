@@ -808,6 +808,11 @@ public class Menu extends javax.swing.JFrame {
 
         mnuMovimento.setText("Movimento");
         mnuMovimento.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        mnuMovimento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuMovimentoActionPerformed(evt);
+            }
+        });
 
         mnuItemProcesso.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, 0));
         mnuItemProcesso.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sip/imagemsip/processo_32x32.png"))); // NOI18N
@@ -1567,6 +1572,10 @@ public class Menu extends javax.swing.JFrame {
     private void mnuItemGabinete1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuItemGabinete1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_mnuItemGabinete1ActionPerformed
+
+    private void mnuMovimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuMovimentoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mnuMovimentoActionPerformed
 
     /**
      * @param args the command line arguments

@@ -37,10 +37,7 @@ public class AcessoBD {
            //con = DriverManager.getConnection("jdbc:mysql://sipjj.com/sipjj426_sip?user=sipjj426_root&password=rooot");//endereço aonde esta localizado o banco de dados  
             
             //con = DriverManager.getConnection("jdbc:mysql://192.168.2.190/gov?user=root&password=root");//endereço aonde esta localizado o banco de dados      
-        } catch (SQLException ex) {
-            Logger.getLogger(AcessoBD.class.getName()).log(Level.SEVERE, null, ex);
-             JOptionPane.showMessageDialog(null,ex);
-        } catch (ClassNotFoundException ex) {
+        } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(AcessoBD.class.getName()).log(Level.SEVERE, null, ex);
              JOptionPane.showMessageDialog(null,ex);
         }catch(Exception ex){

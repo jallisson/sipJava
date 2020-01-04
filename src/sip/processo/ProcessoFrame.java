@@ -1474,7 +1474,8 @@ public class ProcessoFrame extends javax.swing.JInternalFrame {
             JSONObject info = new JSONObject();
             info.put("title", "Secretaria do Meio Ambiente");   // Notification title
             info.put("body", corpo); // Notification body
-            info.put("color", "blue");
+            info.put("color", "#000099");
+            //info.put("icon", "/sip/imagem/ic_stat_name.png" );
 
             json.put("notification", info);
 
