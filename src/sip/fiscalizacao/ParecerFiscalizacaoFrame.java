@@ -434,7 +434,7 @@ public class ParecerFiscalizacaoFrame extends javax.swing.JInternalFrame {
 
         //int indice = tblEmissao.getSelectedRow();
         //int idProcesso =  listEmissaoTitulo.get(indice).getProcesso().getId();
-        String controle = getFiscalizacao().getProcesso().getId() + " " + tipo + " EM EDIÇÃO";
+        String controle = getFiscalizacao().getProcesso().getId() + " " + tipo + " EM EDIÇÃO " + getUsuario().getId();
 
         tram.setUsuario(getUsuario());
         tram.setProcesso(getFiscalizacao().getProcesso());
@@ -475,7 +475,7 @@ public class ParecerFiscalizacaoFrame extends javax.swing.JInternalFrame {
         java.util.Date converteDataHora = dateTimeFormat.parse(new HorarioDeVerao().horarioVerao());
         java.sql.Timestamp timeStamp = new java.sql.Timestamp(converteDataHora.getTime());
 
-        String controle = getFiscalizacao().getProcesso().getId() + " " + tipo + " CONCLUIDO";
+        String controle = getFiscalizacao().getProcesso().getId() + " " + tipo + " CONCLUIDO "+ getUsuario().getId();
 
         tram.setUsuario(getUsuario());
         tram.setProcesso(getFiscalizacao().getProcesso());
@@ -1372,14 +1372,14 @@ public class ParecerFiscalizacaoFrame extends javax.swing.JInternalFrame {
 
         btnSelecionaAnexo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sip/imagem/lupa_16x16.png"))); // NOI18N
         btnSelecionaAnexo.setEnabled(false);
-        btnSelecionaAnexo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSelecionaAnexoActionPerformed(evt);
-            }
-        });
         btnSelecionaAnexo.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 btnSelecionaAnexoFocusLost(evt);
+            }
+        });
+        btnSelecionaAnexo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSelecionaAnexoActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();

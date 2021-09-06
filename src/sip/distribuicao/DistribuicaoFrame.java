@@ -819,16 +819,28 @@ public class DistribuicaoFrame extends javax.swing.JInternalFrame {
         //if (ultima > -1) { 
         //}
         //tblDistribuicao.setRowSelectionInterval(0, 0);
-        //int indice = tblDistribuicao.getSelectedRow();
+         String teste = getProcesso().getDenuncia().getStatusApp();
+         String controle = null;
+         int indice = tblDistribuicao.getSelectedRow();
         //int idProcesso = listDistribuicao.get(indice).getId();
-        String controle = getProcesso().getId() + " " + "RECEBIDO DO PROTOCOLO" + " " + "DMA";
+         if (getProcesso().getDenuncia().getStatusApp().equals("Reaberto")){
+             controle = getProcesso().getId() + " " + "RECEBIDO DO PROTOCOLO - Reaberto" + " " + "DMA "+getUsuario().getId();
+         }else{
+             controle = getProcesso().getId() + " " + "RECEBIDO DO PROTOCOLO" + " " + "DMA "+getUsuario().getId();
+         }
+        
 
         tram.setUsuario(getUsuario());
         tram.setProcesso(getProcesso());
         tram.setDataTramitacao(timeStamp);
         tram.setMesAno(ftfMes.getText());
         tram.setUsuario(getUsuario());
-        tram.setStatus("RECEBIDO DO PROTOCOLO");
+         if (getProcesso().getDenuncia().getStatusApp().equals("Reaberto")){
+            tram.setStatus("RECEBIDO DO PROTOCOLO - REABERTO");
+        }else{
+            tram.setStatus("RECEBIDO DO PROTOCOLO");
+        }
+        
         tram.setParecer(" ");
         tram.setSetor("DMA");
         tram.setSetorOrigem(" ");
@@ -860,6 +872,8 @@ public class DistribuicaoFrame extends javax.swing.JInternalFrame {
         Tramitacao tram = new Tramitacao();
         ftfMesTramite.setValue(jdcDataTramite.getDate());
 
+        int indice = tblDistribuicao.getSelectedRow();
+        
         SimpleDateFormat dateTimeFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         String theDate = dateTimeFormat.format(jdcDataTramite.getDate());
         java.util.Date converteDataHora = dateTimeFormat.parse(new HorarioDeVerao().horarioVerao());
@@ -874,7 +888,12 @@ public class DistribuicaoFrame extends javax.swing.JInternalFrame {
                 controle = getProcesso().getId() + " " + "ENVIADO" + " " + " " + "DMA" + " " + "JURIDICO";
                 break;
             case "fiscalização":
-                controle = getProcesso().getId() + " " + "ENVIADO" + " " + " " + "DMA" + " " + "FISCALIZAÇÃO";
+                
+                if (getProcesso().getDenuncia().getStatusApp().equals("Reaberto")){
+                    controle = getProcesso().getId() + " " + "REABERTO" + " " + " " + "DMA" + " " + "FISCALIZAÇÃO";
+                }else{
+                    controle = getProcesso().getId() + " " + "ENVIADO" + " " + " " + "DMA" + " " + "FISCALIZAÇÃO";
+                }         
                 break;
         }
 
@@ -883,7 +902,12 @@ public class DistribuicaoFrame extends javax.swing.JInternalFrame {
         tram.setDataTramitacao(timeStamp);
         tram.setMesAno(ftfMesTramite.getText());
         tram.setUsuario(getUsuario());
+        if (getProcesso().getDenuncia().getStatusApp().equals("Reaberto")){
+        tram.setStatus("REABERTO - ENVIADO");
+        }else{
         tram.setStatus("ENVIADO");
+        }
+        
         tram.setParecer(" ");
         tram.setSetor(" ");
         switch (tramitaParaOnde) {
@@ -1252,7 +1276,7 @@ public class DistribuicaoFrame extends javax.swing.JInternalFrame {
 
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
-        jPanel20.setBorder(javax.swing.BorderFactory.createTitledBorder("Analista"));
+        jPanel20.setBorder(javax.swing.BorderFactory.createTitledBorder("Analista - Fiscal"));
         jPanel20.setLayout(new java.awt.GridBagLayout());
 
         txtNomeAnalista.setEditable(false);

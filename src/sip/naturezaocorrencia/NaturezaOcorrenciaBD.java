@@ -79,6 +79,7 @@ public class NaturezaOcorrenciaBD {
             ps = con.prepareStatement(incluiNaturezaOcorrencia);
 
             ps.setString(1, naturezaOcorrencia.getNome());
+            ps.setString(2, naturezaOcorrencia.getNoApp());
             ps.executeUpdate();
 
             acessoBD.desconectar();

@@ -1144,6 +1144,7 @@ public class ProcessoFrame extends javax.swing.JInternalFrame {
 
     private void controle() {
         popularComboBoxTipoLicenca();
+        ftfAno.setValue(jdcData.getDate());
         Integer ano;
         ano = jdcData.getDate().getYear();
         if (jCBOficio.isSelected()) {
@@ -1153,9 +1154,12 @@ public class ProcessoFrame extends javax.swing.JInternalFrame {
         } else {
             numeroProcesso = ftfNumero.getText() + "/" + jycAno.getYear();
         }
-
-        if (cbTipo.getSelectedItem() == "PRORROGAÇÃO DE LICENÇA DE OPERAÇÃO" || cbTipo.getSelectedItem() == "RENOVAÇÃO DE LICENÇA DE OPERAÇÃO" || cbTipo.getSelectedItem() == "PRORROGAÇÃO DE LICENÇA DE INSTALAÇÃO") {
-            controle = numeroProcesso + " " + listResumoTriagem.get(cbTipo.getSelectedIndex()).getAbreviatura() + " " + ano.toString();
+        
+        String teste = "teste";
+        
+        //if (cbTipo.getSelectedItem() == "PRORROGAÇÃO DE LICENÇA DE OPERAÇÃO" || cbTipo.getSelectedItem() == "RENOVAÇÃO DE LICENÇA DE OPERAÇÃO" || cbTipo.getSelectedItem() == "PRORROGAÇÃO DE LICENÇA DE INSTALAÇÃO" || cbTipo.getSelectedItem() == "PRORROGAÇÃO DE LICENÇA DE OPERAÇÃO" || cbTipo.getSelectedItem() == "RENOVAÇÃO DA LICENÇA ÚNICA" || cbTipo.getSelectedItem() == "PRORROGAÇÃO DE LICENÇA DE INSTALAÇÃO" || cbTipo.getSelectedItem() == "RENOVAÇÃO DE LICENÇA DE EXTRAÇÃO") {
+        if ("RLO".equals(listResumoTriagem.get(cbTipo.getSelectedIndex()).getAbreviatura()) || "RLE".equals(listResumoTriagem.get(cbTipo.getSelectedIndex()).getAbreviatura()) || "RLU".equals(listResumoTriagem.get(cbTipo.getSelectedIndex()).getAbreviatura()) || "PLO".equals(listResumoTriagem.get(cbTipo.getSelectedIndex()).getAbreviatura()) || "PLI".equals(listResumoTriagem.get(cbTipo.getSelectedIndex()).getAbreviatura())) {
+            controle = numeroProcesso + " " + listResumoTriagem.get(cbTipo.getSelectedIndex()).getAbreviatura() + " " + ftfAno.getText();
         } else {
             controle = numeroProcesso + " " + listResumoTriagem.get(cbTipo.getSelectedIndex()).getAbreviatura();
         }
@@ -1175,6 +1179,7 @@ public class ProcessoFrame extends javax.swing.JInternalFrame {
         } else {
             Processo processo = new Processo();
             ftfMes.setValue(jdcData.getDate());
+            
             controle();
             inserirMp();
 
@@ -1194,8 +1199,8 @@ public class ProcessoFrame extends javax.swing.JInternalFrame {
             processo.setDenuncia(getDenuncia());
             processo.setObservacao(jTARelatoOcorrencia.getText().trim());
 
-            ProcessoBD motoristaBD = new ProcessoBD();
-            if (motoristaBD.incluiProcesso(processo)) {
+            ProcessoBD processoBD = new ProcessoBD();
+            if (processoBD.incluiProcesso(processo)) {
                 JOptionPane.showMessageDialog(this, "Processo cadastrado com sucesso!", "Confirmação", JOptionPane.INFORMATION_MESSAGE);
 
                 atualizaTabela();
@@ -1332,6 +1337,7 @@ public class ProcessoFrame extends javax.swing.JInternalFrame {
         }
 
     }
+    
 
     private void excluiAnexoTabelaInserir() {
         if (tblInserirAnexosProcesso.getSelectedRow() != -1) {
@@ -1621,6 +1627,55 @@ public class ProcessoFrame extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Tramitacao já cadastrada", "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
+    
+      private void executaTramitacaoDistribuicaoDnReaberto() throws ParseException {
+
+        Tramitacao tram = new Tramitacao();
+        java.util.Date hoje = new java.util.Date();
+        jdcDataTramite = new JDateChooser("dd/MM/yyyy", "##/##/#####", '_');
+        jdcDataTramite.setDate(hoje);
+
+        ftfMes.setValue(jdcDataTramite.getDate());
+
+        SimpleDateFormat dateTimeFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        String theDate = dateTimeFormat.format(jdcDataTramite.getDate());
+        java.util.Date converteDataHora = dateTimeFormat.parse(new HorarioDeVerao().horarioVerao());
+        java.sql.Timestamp timeStamp = new java.sql.Timestamp(converteDataHora.getTime());
+
+        int indice = tblProcesso.getSelectedRow();
+        int idProcesso = listProcesso.get(indice).getId();
+        String controleTrami = idProcesso + " " + "REABERTO" + " " + " " + "PROTOCOLO" + " " + "DMA";
+
+        tram.setUsuario(getUsuario());
+        tram.setProcesso(listProcesso.get(tblProcesso.getSelectedRow()));
+        tram.setDataTramitacao(timeStamp);
+        tram.setMesAno(ftfMesTramite.getText());
+        tram.setUsuario(getUsuario());
+        tram.setStatus("REABERTO");
+        tram.setParecer(" ");
+        tram.setSetor(" ");
+        tram.setSetorOrigem("PROTOCOLO");
+        tram.setSetorDestino("DMA");
+        tram.setLaudoMzu(" ");
+        tram.setObservacao(null);
+        tram.setControle(controleTrami);
+        tram.setSituacaoCad(" ");
+
+        TramitacaoBD tramitacaoBD = new TramitacaoBD();
+        if (tramitacaoBD.incluiTramitacao(tram)) {
+            JOptionPane.showMessageDialog(this, "tramitacao cadastrada com sucesso!", "Confirmação", JOptionPane.INFORMATION_MESSAGE);
+            //alteraProcTramiDMA();
+            //atualizaTabela();
+            //esabilitaBotoes();
+            //desabilitaCampos();
+            //limpaCampos();
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Tramitacao já cadastrada", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    
 
     private void caixaAlta() {
         txtDescricaoAnexo.addKeyListener(new KeyListener() {
@@ -1948,7 +2003,10 @@ public class ProcessoFrame extends javax.swing.JInternalFrame {
 
     private void MenuJtableDetalhe() {
 
-        jMenuItemAlterar.setText("Abrir");
+        jMenuItemAlterar.setText(""
+                + ""
+                + ""
+                + "");
 
         jMenuItemAlterar.addActionListener(
                 new java.awt.event.ActionListener() {
@@ -2208,6 +2266,30 @@ public class ProcessoFrame extends javax.swing.JInternalFrame {
             //JOptionPane.showMessageDialog(this, "Digite o ID","ID",JOptionPane.INFORMATION_MESSAGE);
         }
     }
+    
+     private void reabrirDenuncia() {
+        int indice = tblProcesso.getSelectedRow();
+        Denuncia denunciaStatus = new Denuncia();
+        denunciaStatus.setId( listProcesso.get(indice).getDenuncia().getId());
+        denunciaStatus.setStatusApp("Reaberto");
+
+        DenunciaBD denunciaBD = new DenunciaBD();
+
+        if (denunciaBD.alteraDenunciaStatusApp(denunciaStatus)) {
+            try {
+                executaTramitacaoDistribuicaoDnReaberto();
+            } catch (ParseException ex) {
+                Logger.getLogger(ProcessoFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            JOptionPane.showMessageDialog(this, "Status Denúncia Modificado!", "Denúncia", JOptionPane.INFORMATION_MESSAGE);
+            
+
+            //executaTramitacaoDistribuicao();
+        } else {
+            JOptionPane.showMessageDialog(this, "Erro ao modificar Status ", "Denúncia", JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -2238,6 +2320,7 @@ public class ProcessoFrame extends javax.swing.JInternalFrame {
         jPanel7 = new javax.swing.JPanel();
         jLabel20 = new javax.swing.JLabel();
         ftfMesTramite = new javax.swing.JFormattedTextField();
+        ftfAno = new javax.swing.JFormattedTextField();
         jPanel14 = new javax.swing.JPanel();
         cbTipo = new javax.swing.JComboBox();
         jPanel23 = new javax.swing.JPanel();
@@ -2301,6 +2384,7 @@ public class ProcessoFrame extends javax.swing.JInternalFrame {
         btnCancelar = new javax.swing.JButton();
         btnTramitar = new javax.swing.JButton();
         btnImprimir = new javax.swing.JButton();
+        btnImprimir1 = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -2330,12 +2414,12 @@ public class ProcessoFrame extends javax.swing.JInternalFrame {
         getContentPane().add(jPanel1, gridBagConstraints);
 
         jTabbedPane2.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 jTabbedPane2AncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         jTabbedPane2.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -2468,6 +2552,18 @@ public class ProcessoFrame extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel13.add(ftfMesTramite, gridBagConstraints);
+
+        ftfAno.setEditable(false);
+        ftfAno.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("yyyy"))));
+        ftfAno.setToolTipText("Data do Video");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 60;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel13.add(ftfAno, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
@@ -2603,14 +2699,14 @@ public class ProcessoFrame extends javax.swing.JInternalFrame {
         ftfNumero.setEditable(false);
         ftfNumero.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("000000"))));
         ftfNumero.setToolTipText("Data do Video");
-        ftfNumero.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ftfNumeroActionPerformed(evt);
-            }
-        });
         ftfNumero.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 ftfNumeroFocusLost(evt);
+            }
+        });
+        ftfNumero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ftfNumeroActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -3326,12 +3422,12 @@ public class ProcessoFrame extends javax.swing.JInternalFrame {
         btnImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sip/imagem/printer.png"))); // NOI18N
         btnImprimir.setText("Capa");
         btnImprimir.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 btnImprimirAncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         btnImprimir.addActionListener(new java.awt.event.ActionListener() {
@@ -3340,6 +3436,15 @@ public class ProcessoFrame extends javax.swing.JInternalFrame {
             }
         });
         jPanel4.add(btnImprimir);
+
+        btnImprimir1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sip/imagem/note_book.png"))); // NOI18N
+        btnImprimir1.setText("Reabrir Denuncia");
+        btnImprimir1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImprimir1ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(btnImprimir1);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -3950,6 +4055,17 @@ public class ProcessoFrame extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbSolicitacaoKeyPressed
 
+    private void btnImprimir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimir1ActionPerformed
+        if (tblProcesso.getSelectedRow() != -1) {
+            int resposta = JOptionPane.showConfirmDialog(this, "Confirma a reabertura da Denuncia?", "Confirmação", JOptionPane.YES_NO_OPTION);
+            if (resposta == JOptionPane.YES_OPTION) {
+                reabrirDenuncia();
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecione uma ocorrencia da lista!", "Denuncia", JOptionPane.INFORMATION_MESSAGE);
+        }// TODO add your handling code here:
+    }//GEN-LAST:event_btnImprimir1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bGVTipo;
     private javax.swing.JButton btnAlterar;
@@ -3962,6 +4078,7 @@ public class ProcessoFrame extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnExcluirAnexo2;
     private javax.swing.JButton btnFiltrar;
     private javax.swing.JButton btnImprimir;
+    private javax.swing.JButton btnImprimir1;
     private javax.swing.JButton btnIncluiAnexo;
     private javax.swing.JButton btnLAbrirArquivo;
     private javax.swing.JButton btnLocalizarAnexos;
@@ -3975,6 +4092,7 @@ public class ProcessoFrame extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnTramitar;
     private javax.swing.JComboBox cbSolicitacao;
     private javax.swing.JComboBox cbTipo;
+    private javax.swing.JFormattedTextField ftfAno;
     private javax.swing.JFormattedTextField ftfMes;
     private javax.swing.JFormattedTextField ftfMesTramite;
     private javax.swing.JFormattedTextField ftfNumero;

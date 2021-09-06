@@ -48,6 +48,9 @@ public class ColorirTabelaDenunciaApp extends DefaultTableCellRenderer {
          if(text != null && "Finalizado".equals(text.toString())){
             c = Color.GREEN;
         }
+         if(text != null && "Reaberto".equals(text.toString())){
+             c = new Color(0,255,255);
+        }
                        
            setBackground(c);      
 

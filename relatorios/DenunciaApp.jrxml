@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Ocorrencia" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c440d119-6505-4628-8b5b-bcdf7343861b">
 	<property name="ireport.zoom" value="1.3310000000000004"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="840"/>
+	<property name="ireport.y" value="811"/>
 	<parameter name="LOGO_CIDADE" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -299,17 +299,8 @@ SECRETARIA MUNICIPAL DE MEIO AMBIENTE E RECURSOS HÍDRICOS
 				</textElement>
 				<textFieldExpression><![CDATA[$F{denuncia_P_REFERENCIA}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="170" y="782" width="360" height="20" forecolor="#FF0000" uuid="d29e7894-af15-4084-8fe6-8781a0f67611">
-					<printWhenExpression><![CDATA[($F{analista_NOME} == null) ? false : true]]></printWhenExpression>
-				</reportElement>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Freestyle Script" size="15" isBold="true" isItalic="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{analista_NOME}]]></textFieldExpression>
-			</textField>
 			<staticText>
-				<reportElement x="23" y="782" width="147" height="19" uuid="aa03a456-b843-4dd9-b23b-a88281e955bd">
+				<reportElement x="23" y="783" width="147" height="19" uuid="aa03a456-b843-4dd9-b23b-a88281e955bd">
 					<printWhenExpression><![CDATA[($F{analista_NOME} == null) ? false : true]]></printWhenExpression>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
@@ -319,4 +310,17 @@ SECRETARIA MUNICIPAL DE MEIO AMBIENTE E RECURSOS HÍDRICOS
 			</staticText>
 		</band>
 	</title>
+	<detail>
+		<band height="50">
+			<textField>
+				<reportElement x="170" y="0" width="360" height="20" forecolor="#FF0000" uuid="d29e7894-af15-4084-8fe6-8781a0f67611">
+					<printWhenExpression><![CDATA[($F{analista_NOME} == null) ? false : true]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Freestyle Script" size="15" isBold="true" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{analista_NOME}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
 </jasperReport>

@@ -723,7 +723,7 @@ public class FiscalizacaoFrame extends javax.swing.JInternalFrame {
         java.util.Date converteDataHora = dateTimeFormat.parse(new HorarioDeVerao().horarioVerao());
         java.sql.Timestamp timeStamp = new java.sql.Timestamp(converteDataHora.getTime());
 
-        String controle = getDistribuicao().getProcesso().getId() + " " + "RECEBIDO DO DMA" + " " + "FISCALIZAÇÃO";
+        String controle = getDistribuicao().getProcesso().getId() + " " + "RECEBIDO DO DMA" + " " + "FISCALIZAÇÃO " + getUsuario().getId();
 
         tram.setUsuario(getUsuario());
         tram.setProcesso(getDistribuicao().getProcesso());
@@ -772,7 +772,7 @@ public class FiscalizacaoFrame extends javax.swing.JInternalFrame {
         java.util.Date converteDataHora = dateTimeFormat.parse(new HorarioDeVerao().horarioVerao());
         java.sql.Timestamp timeStamp = new java.sql.Timestamp(converteDataHora.getTime());
 
-        String controle = getDistribuicao().getProcesso().getId() + " " + "PROCESSO CONCLUIDO NA FISCALIZAÇÃO";
+        String controle = getDistribuicao().getProcesso().getId() + " " + "PROCESSO CONCLUIDO NA FISCALIZAÇÃO " + getUsuario().getId();
 
         tram.setUsuario(getUsuario());
         tram.setProcesso(getDistribuicao().getProcesso());

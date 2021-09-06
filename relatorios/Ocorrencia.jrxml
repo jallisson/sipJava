@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Ocorrencia" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c440d119-6505-4628-8b5b-bcdf7343861b">
 	<property name="ireport.zoom" value="1.3310000000000004"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="773"/>
+	<property name="ireport.y" value="724"/>
 	<parameter name="LOGO_CIDADE" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -18,6 +18,7 @@
      denuncia.`ID_COMUNICANTE` AS ocorrencia_ID_COMUNICANTE,
      denuncia.`ID_DENUNCIADO` AS ocorrencia_ID_DENUNCIADO,
      denuncia.`RELATO_OCORRENCIA` AS ocorrencia_RELATO_OCORRENCIA,
+     denuncia.`LINK` AS ocorrencia_LINK,
      usuario.`ID` AS usuario_ID,
      usuario.`NOME` AS usuario_NOME,
      usuario.`LOGIN` AS usuario_LOGIN,
@@ -123,6 +124,7 @@ WHERE
 	<field name="ocorrencia_ID_COMUNICANTE" class="java.lang.Long"/>
 	<field name="ocorrencia_ID_DENUNCIADO" class="java.lang.Long"/>
 	<field name="ocorrencia_RELATO_OCORRENCIA" class="java.lang.String"/>
+	<field name="ocorrencia_LINK" class="java.lang.String"/>
 	<field name="usuario_ID" class="java.lang.Long"/>
 	<field name="usuario_NOME" class="java.lang.String"/>
 	<field name="usuario_LOGIN" class="java.lang.String"/>
@@ -204,7 +206,14 @@ WHERE
 	<field name="processo_ID_DENUNCIA" class="java.lang.Long"/>
 	<field name="processo_OBSERVACAO" class="java.lang.String"/>
 	<title>
-		<band height="802" splitType="Stretch">
+		<band height="758" splitType="Stretch">
+			<staticText>
+				<reportElement x="411" y="647" width="144" height="41" uuid="6171f3c5-7d8b-4670-ad6a-dc7484b116b9"/>
+				<textElement>
+					<font fontName="Verdana" size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SEM DADOS]]></text>
+			</staticText>
 			<rectangle>
 				<reportElement x="23" y="134" width="507" height="18" backcolor="#F4F7FC" uuid="b2b1bcab-6724-4e07-8258-05960d3f6e5e"/>
 				<graphicElement>
@@ -212,7 +221,7 @@ WHERE
 				</graphicElement>
 			</rectangle>
 			<rectangle>
-				<reportElement x="23" y="609" width="507" height="174" backcolor="#F4F7FC" uuid="5748c1fb-3f96-4c02-88ea-3743cb466f34"/>
+				<reportElement x="23" y="609" width="388" height="149" backcolor="#F4F7FC" uuid="5748c1fb-3f96-4c02-88ea-3743cb466f34"/>
 				<graphicElement>
 					<pen lineWidth="0.0"/>
 				</graphicElement>
@@ -609,16 +618,16 @@ SECRETARIA MUNICIPAL DE MEIO AMBIENTE E RECURSOS HÍDRICOS
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="195" y="588" width="191" height="21" uuid="26337e60-c2f0-4b37-b47b-c04608890e01"/>
+				<reportElement x="136" y="589" width="191" height="21" uuid="26337e60-c2f0-4b37-b47b-c04608890e01"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Arial" size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[RELATO DA OCORRÊNCIA]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="23" y="609" width="507" height="174" uuid="1896a3f0-cfaf-410a-87fd-bd38d94e894a"/>
+				<reportElement x="23" y="609" width="388" height="149" uuid="1896a3f0-cfaf-410a-87fd-bd38d94e894a"/>
 				<textElement markup="html">
-					<font fontName="Arial" size="12" isItalic="true"/>
+					<font fontName="Arial" size="10" isItalic="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA["<b>Por meio deste relato, venho denunciar a esta Secretaria</b><br>"+$F{ocorrencia_RELATO_OCORRENCIA}]]></textFieldExpression>
 			</textField>
@@ -630,16 +639,28 @@ SECRETARIA MUNICIPAL DE MEIO AMBIENTE E RECURSOS HÍDRICOS
 				<textFieldExpression><![CDATA[$F{pessoa_DENUNCIADO_NUMERO}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="23" y="782" width="147" height="19" uuid="fdccf25b-c9b7-4b6c-be07-57dffc684f9a">
-					<printWhenExpression><![CDATA[($F{analista_NOME} == null) ? false : true]]></printWhenExpression>
-				</reportElement>
+				<reportElement x="411" y="589" width="144" height="21" uuid="70bc550b-e324-45b7-be2b-241e0e4b5396"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Arial" size="12" isBold="true"/>
+					<font fontName="Arial" size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[FISCAL RESPONSAVEL:]]></text>
+				<text><![CDATA[LOCALIZAÇÃO GPS]]></text>
 			</staticText>
+			<image scaleImage="RealSize">
+				<reportElement x="411" y="610" width="144" height="120" uuid="58df4943-5996-4491-b17c-e5aa7ce6e604">
+					<printWhenExpression><![CDATA[($F{ocorrencia_LINK} != null & $F{ocorrencia_LINK} != "") ? true : false]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA[
+com.google.zxing.client.j2se.MatrixToImageWriter.toBufferedImage(
+new com.google.zxing.qrcode.QRCodeWriter().encode(
+$F{ocorrencia_LINK},
+com.google.zxing.BarcodeFormat.QR_CODE, 300, 300))]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<detail>
+		<band height="20">
 			<textField>
-				<reportElement x="170" y="782" width="360" height="20" forecolor="#FF0000" uuid="4b0aec8a-9933-4639-80ca-4bddcf352e73">
+				<reportElement x="170" y="0" width="104" height="20" forecolor="#FF0000" uuid="4b0aec8a-9933-4639-80ca-4bddcf352e73">
 					<printWhenExpression><![CDATA[($F{analista_NOME} == null) ? false : true]]></printWhenExpression>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
@@ -647,6 +668,15 @@ SECRETARIA MUNICIPAL DE MEIO AMBIENTE E RECURSOS HÍDRICOS
 				</textElement>
 				<textFieldExpression><![CDATA[$F{analista_NOME}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement x="23" y="1" width="147" height="19" uuid="fdccf25b-c9b7-4b6c-be07-57dffc684f9a">
+					<printWhenExpression><![CDATA[($F{analista_NOME} == null) ? false : true]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FISCAL RESPONSAVEL:]]></text>
+			</staticText>
 		</band>
-	</title>
+	</detail>
 </jasperReport>

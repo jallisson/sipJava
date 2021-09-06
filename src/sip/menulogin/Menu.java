@@ -71,6 +71,7 @@ import sip.fiscalizacao.FiscalizacaoFrame;
 import sip.lotedma.LoteDmaFrame;
 import sip.movimentodma.MovimentoDmaFrame;
 import sip.pessoa.PessoaFrame;
+import sip.relatorio.RelDenunciaData;
 import sip.relatorio.RelProcAnalistaDistFrame;
 import sip.relatorio.RelatorioMovimentoProcessoFrame;
 import sip.relatoriosarquivo.RelatorioTriagemPoluicaoFrame;
@@ -375,6 +376,7 @@ public class Menu extends javax.swing.JFrame {
         mnuDenuncia = new javax.swing.JMenu();
         mnuListagem3 = new javax.swing.JMenu();
         mnuItemRelTriagemPoluicao = new javax.swing.JMenuItem();
+        mnuItemRelTriagemPoluicao3 = new javax.swing.JMenuItem();
         mnuDenuncia1 = new javax.swing.JMenu();
         mnuListagem4 = new javax.swing.JMenu();
         mnuItemRelTriagemPoluicao1 = new javax.swing.JMenuItem();
@@ -1030,6 +1032,14 @@ public class Menu extends javax.swing.JFrame {
         });
         mnuListagem3.add(mnuItemRelTriagemPoluicao);
 
+        mnuItemRelTriagemPoluicao3.setText("Denúncias Por Data");
+        mnuItemRelTriagemPoluicao3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuItemRelTriagemPoluicao3ActionPerformed(evt);
+            }
+        });
+        mnuListagem3.add(mnuItemRelTriagemPoluicao3);
+
         mnuDenuncia.add(mnuListagem3);
 
         mnuRelatorios.add(mnuDenuncia);
@@ -1577,6 +1587,13 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_mnuMovimentoActionPerformed
 
+    private void mnuItemRelTriagemPoluicao3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuItemRelTriagemPoluicao3ActionPerformed
+        RelDenunciaData denunciaData = new RelDenunciaData();
+        jDesktopPane.add(denunciaData);
+        denunciaData.setVisible(true);
+        centralizaJanelaRegVen(denunciaData);// TODO add your handling code here:
+    }//GEN-LAST:event_mnuItemRelTriagemPoluicao3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1675,6 +1692,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem mnuItemRelTriagemPoluicao;
     private javax.swing.JMenuItem mnuItemRelTriagemPoluicao1;
     private javax.swing.JMenuItem mnuItemRelTriagemPoluicao2;
+    private javax.swing.JMenuItem mnuItemRelTriagemPoluicao3;
     private javax.swing.JMenuItem mnuItemRequerente;
     private javax.swing.JMenuItem mnuItemSair;
     private javax.swing.JMenuItem mnuItemTipoLicenca;

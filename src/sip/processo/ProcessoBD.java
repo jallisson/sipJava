@@ -129,6 +129,7 @@ public class ProcessoBD {
                 denuncia.setId(rs.getInt("denuncia.id"));
                 denuncia.setToken(rs.getString("denuncia.token_gcm"));
                 denuncia.setOrigem(rs.getString("denuncia.origem"));
+                denuncia.setStatusApp(rs.getString("denuncia.status_app"));
                 processo.setDenuncia(denuncia);
                     
                 listaProcesso.add(processo);
@@ -193,6 +194,7 @@ public class ProcessoBD {
                 denuncia.setId(rs.getInt("denuncia.id"));
                 denuncia.setToken(rs.getString("denuncia.token_gcm"));
                 denuncia.setOrigem(rs.getString("denuncia.origem"));
+                denuncia.setStatusApp(rs.getString("denuncia.status_app"));
                 processo.setDenuncia(denuncia);
 
                 listaProcesso.add(processo);
@@ -448,6 +450,7 @@ public class ProcessoBD {
                 
                 Denuncia denuncia = new Denuncia();
                 denuncia.setId(rs.getInt("denuncia.id"));
+                denuncia.setStatusApp(rs.getString("denuncia.status_app"));
                 processo.setDenuncia(denuncia);
 
                 ps = con.prepareStatement(consultaAnexosProcesso);

@@ -34,8 +34,8 @@ public class DenunciaBD {
     private String consultaDenunciaApp = "SELECT oco.* FROM denuncia oco where oco.origem = 'App'  ORDER BY oco.id DESC";
     private String consultaDenunciaNome = "SELECT oco.*, comunicante.*, denunciado.*, natureza.*, logra_comu.nome, logra_denun.nome, usu.nome FROM denuncia oco LEFT JOIN pessoa comunicante ON oco.id_comunicante = comunicante.id LEFT JOIN pessoa denunciado ON oco.id_denunciado = denunciado.id JOIN natureza_ocorrencia natureza ON oco.id_natureza_ocorrencia = natureza.id LEFT JOIN logradouro logra_comu ON comunicante.id_logradouro = logra_comu.id LEFT JOIN logradouro logra_denun ON denunciado.id_logradouro = logra_denun.id  JOIN usuario usu ON oco.id_usuario = usu.id where natureza.nome like ? or comunicante.nome like ? or denunciado.nome like ? or logra_denun.nome like ?  ORDER BY oco.id DESC";
     private String consultaDenunciaNomeApp = "SELECT oco.* FROM denuncia oco where oco.origem = 'App' and oco.tipo_denuncia like ? or oco.denunciado like ? or oco.local_denuncia like ?  ORDER BY oco.id DESC";
-    private String incluiDenuncia = "insert into denuncia (id_usuario, data_registro, id_natureza_ocorrencia, id_comunicante, id_denunciado, relato_ocorrencia) values(?, ?, ?, ?, ?, ?)";
-    private String alteraDenuncia = "update denuncia set data_registro = ?, id_natureza_ocorrencia = ?, id_comunicante = ?, id_denunciado = ?, relato_ocorrencia = ? where denuncia.id = ?";
+    private String incluiDenuncia = "insert into denuncia (id_usuario, data_registro, id_natureza_ocorrencia, id_comunicante, id_denunciado, relato_ocorrencia, link) values(?, ?, ?, ?, ?, ?, ?)";
+    private String alteraDenuncia = "update denuncia set data_registro = ?, id_natureza_ocorrencia = ?, id_comunicante = ?, id_denunciado = ?, relato_ocorrencia = ?, link = ? where denuncia.id = ?";
     private String excluiDenuncia = "delete from denuncia where denuncia.id = ?";
     private String alteraDenunciaStatus = "update denuncia set status_app = ? where denuncia.id = ?";
     
@@ -55,6 +55,7 @@ public class DenunciaBD {
                 denuncia.setRelatoOcorencia(rs.getString("oco.relato_ocorrencia"));
                 denuncia.setOrigem(rs.getString("oco.origem"));
                 denuncia.setStatusApp(rs.getString("oco.status_app"));
+                denuncia.setLink(rs.getString("oco.link"));
                                
                 
                 NaturezaOcorrencia natureza = new NaturezaOcorrencia();
@@ -226,6 +227,7 @@ public class DenunciaBD {
             ps.setInt(4, denuncia.getComunicante().getId());
             ps.setInt(5, denuncia.getPDenunciado().getId());
             ps.setString(6, denuncia.getRelatoOcorencia());
+            ps.setString(7, denuncia.getLink());
            
             
             /*
@@ -262,8 +264,9 @@ public class DenunciaBD {
             ps.setInt(3, denuncia.getComunicante().getId());
             ps.setInt(4, denuncia.getPDenunciado().getId());
             ps.setString(5, denuncia.getRelatoOcorencia());
+            ps.setString(6, denuncia.getLink());
                        
-            ps.setInt(6, denuncia.getId());
+            ps.setInt(7, denuncia.getId());
 
             ps.executeUpdate();
 

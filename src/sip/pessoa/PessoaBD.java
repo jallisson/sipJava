@@ -29,7 +29,7 @@ public class PessoaBD {
     private String consultaPessoa = "select pess.*, logra.*, bai.*, cid.* from pessoa pess left join logradouro logra on pess.id_logradouro = logra.id left join bairro bai on pess.id_bairro = bai.id left join cidade cid on pess.id_cidade = cid.id order by pess.id desc";
     private String consultaPessoaNome = "select pess.*, logra.*, bai.*, cid.* from pessoa pess left join logradouro logra on pess.id_logradouro = logra.id left join bairro bai on pess.id_bairro = bai.id left join cidade cid on pess.id_cidade = cid.id where pess.nome like ?";
     private String incluiPessoa = "insert into pessoa (nome, id_logradouro, numero, tel_fixo, tel_cel, id_bairro, complemento, id_cidade) values(?, ?, ?, ?, ?, ?, ?, ?)";
-    private String alteraPessoa = "update pessoa set nome = ?, id_logradouro = ?, numero = ?,  tel_fixo = ?, tel_cel = ?, id_bairro = ?, complemento = ? id_cidade = ? where pessuerente.id = ?";
+    private String alteraPessoa = "update pessoa set nome = ?, id_logradouro = ?, numero = ?,  tel_fixo = ?, tel_cel = ?, id_bairro = ?, complemento = ?, id_cidade = ? where pessoa.id = ?";
     private String excluipessuerente = "delete from pessoa where pessoa.id = ?";
     private String cont = "select count(*) from pessuerente";
 

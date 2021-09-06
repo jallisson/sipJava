@@ -114,6 +114,7 @@ public class DistribuicaoBD {
                 denuncia.setId(rs.getInt("denuncia.id"));
                 denuncia.setToken(rs.getString("denuncia.token_gcm"));
                 denuncia.setOrigem(rs.getString("denuncia.origem"));
+                denuncia.setStatusApp(rs.getString("denuncia.status_app"));
                 
                 distribuicao.setDenuncia(denuncia);
                     
@@ -189,6 +190,7 @@ public class DistribuicaoBD {
                denuncia.setId(rs.getInt("denuncia.id"));
                 denuncia.setToken(rs.getString("denuncia.token_gcm"));
                 denuncia.setOrigem(rs.getString("denuncia.origem"));
+                denuncia.setStatusApp(rs.getString("denuncia.status_app"));
                 
                 distribuicao.setDenuncia(denuncia);
          

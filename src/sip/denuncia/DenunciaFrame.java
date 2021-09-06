@@ -326,6 +326,7 @@ public class DenunciaFrame extends javax.swing.JInternalFrame {
             txtNomeDenunciado.setText(listDenuncia.get(indice).getPDenunciado().getNome());
             jdcData.setDate(listDenuncia.get(indice).getDataRegistro());
             jTARelatoOcorrencia.setText(listDenuncia.get(indice).getRelatoOcorencia());
+            jTALink.setText(listDenuncia.get(indice).getLink());
 
         } else {
             //txtNome.setText("");
@@ -378,6 +379,7 @@ public class DenunciaFrame extends javax.swing.JInternalFrame {
             ocorrencia.setComunicante(getComunicante());
             ocorrencia.setPDenunciado(getDenunciado());
             ocorrencia.setRelatoOcorencia(jTARelatoOcorrencia.getText().trim());
+            ocorrencia.setLink(jTALink.getText().trim());
 
             DenunciaBD analiseBD = new DenunciaBD();
             if (analiseBD.incluiDenuncia(ocorrencia)) {
@@ -425,6 +427,7 @@ public class DenunciaFrame extends javax.swing.JInternalFrame {
             ocorrencia.setComunicante(getComunicante());
             ocorrencia.setPDenunciado(getDenunciado());
             ocorrencia.setRelatoOcorencia(jTARelatoOcorrencia.getText().trim());
+            ocorrencia.setLink(jTALink.getText().trim());
 
             DenunciaBD analiseBD = new DenunciaBD();
             if (analiseBD.alteraDenuncia(ocorrencia)) {
@@ -439,6 +442,8 @@ public class DenunciaFrame extends javax.swing.JInternalFrame {
             }
         }
     }
+    
+   
 
     private void exlcuiDenuncia() {
         DenunciaBD loteBD = new DenunciaBD();
@@ -534,6 +539,7 @@ public class DenunciaFrame extends javax.swing.JInternalFrame {
 
             jdcData.setDate(null);
             jTARelatoOcorrencia.setText("");
+            jTALink.setText("");
 
         }
     }
@@ -551,6 +557,7 @@ public class DenunciaFrame extends javax.swing.JInternalFrame {
 
         jdcData.setEnabled(true);
         jTARelatoOcorrencia.setEditable(true);
+        jTALink.setEditable(true);
 
     }
 
@@ -566,6 +573,7 @@ public class DenunciaFrame extends javax.swing.JInternalFrame {
 
         jdcData.setEnabled(false);
         jTARelatoOcorrencia.setEditable(false);
+        jTALink.setEditable(false);
     }
 
     private void desabilitaBotoes() {
@@ -802,6 +810,7 @@ public class DenunciaFrame extends javax.swing.JInternalFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jPanel22 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -821,6 +830,10 @@ public class DenunciaFrame extends javax.swing.JInternalFrame {
         jPanel29 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTADescricaoDenuncia = new javax.swing.JTextArea();
+        jPanel10 = new javax.swing.JPanel();
+        jPanel27 = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTALink = new javax.swing.JTextArea();
 
         setClosable(true);
         setIconifiable(true);
@@ -1324,7 +1337,7 @@ public class DenunciaFrame extends javax.swing.JInternalFrame {
         jLabel8.setText("Enviado Fiscal");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel9.add(jLabel8, gridBagConstraints);
 
@@ -1334,7 +1347,7 @@ public class DenunciaFrame extends javax.swing.JInternalFrame {
         jLabel9.setText("Finalizado");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel9.add(jLabel9, gridBagConstraints);
 
@@ -1345,6 +1358,17 @@ public class DenunciaFrame extends javax.swing.JInternalFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel9.add(jLabel10, gridBagConstraints);
+
+        jLabel11.setBackground(new java.awt.Color(0, 255, 255));
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(0, 255, 255));
+        jLabel11.setText("Reaberto");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel9.add(jLabel11, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
@@ -1514,6 +1538,33 @@ public class DenunciaFrame extends javax.swing.JInternalFrame {
         jPanel6.add(jTabbedPane3, gridBagConstraints);
 
         jTabbedPane1.addTab("Detalhe Denúncia_APP", jPanel6);
+
+        jPanel10.setLayout(new java.awt.GridBagLayout());
+
+        jPanel27.setBorder(javax.swing.BorderFactory.createTitledBorder("Link"));
+        jPanel27.setLayout(new java.awt.GridBagLayout());
+
+        jTALink.setEditable(false);
+        jTALink.setColumns(20);
+        jTALink.setRows(5);
+        jTALink.setWrapStyleWord(true);
+        jScrollPane5.setViewportView(jTALink);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel27.add(jScrollPane5, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel10.add(jPanel27, gridBagConstraints);
+
+        jTabbedPane1.addTab("Link", jPanel10);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -1787,6 +1838,7 @@ public class DenunciaFrame extends javax.swing.JInternalFrame {
     private com.toedter.calendar.JDateChooser jDCDataDenuncia;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel24;
@@ -1800,6 +1852,7 @@ public class DenunciaFrame extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel22;
@@ -1807,6 +1860,7 @@ public class DenunciaFrame extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel24;
     private javax.swing.JPanel jPanel25;
     private javax.swing.JPanel jPanel26;
+    private javax.swing.JPanel jPanel27;
     private javax.swing.JPanel jPanel29;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -1819,7 +1873,9 @@ public class DenunciaFrame extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTextArea jTADescricaoDenuncia;
+    private javax.swing.JTextArea jTALink;
     private javax.swing.JTextArea jTARelatoOcorrencia;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;

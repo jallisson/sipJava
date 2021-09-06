@@ -22,6 +22,20 @@ import sip.usuario.Usuario;
 public class Denuncia {
 
     /**
+     * @return the link
+     */
+    public String getLink() {
+        return link;
+    }
+
+    /**
+     * @param link the link to set
+     */
+    public void setLink(String link) {
+        this.link = link;
+    }
+
+    /**
      * @return the origem
      */
     public String getOrigem() {
@@ -151,6 +165,7 @@ public class Denuncia {
     private String token;
     private String statusApp;
     private String origem;
+    private String link;
     
 
 

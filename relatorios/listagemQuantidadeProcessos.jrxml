@@ -49,9 +49,9 @@
 FROM
      `requerente` requerente INNER JOIN `processo` processo ON requerente.`ID` = processo.`ID_REQUERENTE`
 WHERE
- processo.`DATA_PROCESSO` BETWEEN $P{DATA_INICIAL} AND $P{DATA_FINAL}
+ processo.`DATA_PROCESSO` BETWEEN $P{DATA_INICIAL} AND $P{DATA_FINAL} and processo.`TIPO_LICENCA` <> 'DENÚNCIA'
 ORDER BY
-processo.`DATA_PROCESSO`]]>
+processo.`DATA_PROCESSO` asc]]>
 	</queryString>
 	<field name="processo_ID" class="java.lang.Long"/>
 	<field name="processo_ID_USUARIO" class="java.lang.Long"/>
@@ -95,7 +95,7 @@ processo.`DATA_PROCESSO`]]>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="SansSerif" size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[QTDE DE PROCESSO LANÇADO - PROTOCOLO]]></text>
+				<text><![CDATA[RELAÇÃO DE PROCESSO - PROTOCOLO]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="74" y="10" width="413" height="20" uuid="54ffb395-1c59-49af-b89b-30cb8d9db9a9"/>
