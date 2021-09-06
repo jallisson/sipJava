@@ -24,7 +24,7 @@ public class AcessoBD {
      
     
     
-//testegittestando
+//testegittestandoggg
     public Connection conectar(){
         try {
             Class.forName("com.mysql.jdbc.Driver");
