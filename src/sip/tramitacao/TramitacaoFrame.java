@@ -177,9 +177,9 @@ public final class TramitacaoFrame extends javax.swing.JInternalFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String senha = "";
-
+                
                 senha = JOptionPane.showInputDialog(null, "Senha ?", "Pergunta", JOptionPane.PLAIN_MESSAGE);
-
+                //SENHA PARA ACESSAR O BOTÃO EXCLUIR!
                 if (senha.equals("adm12345")) {
                     btnAlterar.setEnabled(true);
                     btnExcluir.setEnabled(true);
