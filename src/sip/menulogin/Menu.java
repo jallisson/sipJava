@@ -298,7 +298,7 @@ public class Menu extends javax.swing.JFrame {
     private void initComponents() {
 
         entityManager = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("SipPU").createEntityManager();
-        query = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT n FROM NivelAcesso n");
+        query = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT u FROM Usuario u");
         list = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : query.getResultList();
         jDesktopPane = new javax.swing.JDesktopPane();
         jLabel1 = new javax.swing.JLabel();
@@ -340,31 +340,31 @@ public class Menu extends javax.swing.JFrame {
         mnuItemRequerente = new javax.swing.JMenuItem();
         mnuItemAnalista = new javax.swing.JMenuItem();
         mnuItemTipoLicenca = new javax.swing.JMenuItem();
-        mmuProtocolo1 = new javax.swing.JMenu();
-        mnuLogradouro1 = new javax.swing.JMenuItem();
-        mnuLogradouro2 = new javax.swing.JMenuItem();
-        mnuLogradouro3 = new javax.swing.JMenuItem();
-        mnuLogradouro4 = new javax.swing.JMenuItem();
-        mnuLogradouro5 = new javax.swing.JMenuItem();
+        mmuDenuncia = new javax.swing.JMenu();
+        mnuItemPessoa = new javax.swing.JMenuItem();
+        mnuItemNaturezaOcorrencia = new javax.swing.JMenuItem();
+        mnuItemDenuncia = new javax.swing.JMenuItem();
+        mnuItemResumoTriagem = new javax.swing.JMenuItem();
+        mnuItemTriagem = new javax.swing.JMenuItem();
         mnuMovimento = new javax.swing.JMenu();
         mnuItemProcesso = new javax.swing.JMenuItem();
         jMenuDMA = new javax.swing.JMenu();
         mnuItemDistribuicao = new javax.swing.JMenuItem();
         mnuItemEmissaoLicenca = new javax.swing.JMenuItem();
         mnuTipoEvento = new javax.swing.JMenuItem();
-        mnuTipoEvento1 = new javax.swing.JMenuItem();
+        mnuLocalEvento = new javax.swing.JMenuItem();
         mnuItemAutorizacaoEventos = new javax.swing.JMenuItem();
         mnuItemLoteDma = new javax.swing.JMenuItem();
         mnuItemMovimentoDma = new javax.swing.JMenuItem();
         mnuItemAnalise = new javax.swing.JMenuItem();
         mnuItemJuridico = new javax.swing.JMenuItem();
-        mnuItemJuridico1 = new javax.swing.JMenuItem();
+        mnuItemFiscalizacao = new javax.swing.JMenuItem();
         mnuItemGabinete = new javax.swing.JMenuItem();
         jSeparator5 = new javax.swing.JPopupMenu.Separator();
         mnuItemTramitacao = new javax.swing.JMenuItem();
         mnuItemTramitacao1 = new javax.swing.JMenuItem();
         jSeparator3 = new javax.swing.JPopupMenu.Separator();
-        mnuItemGabinete1 = new javax.swing.JMenuItem();
+        mnuItemReceita = new javax.swing.JMenuItem();
         jSeparator6 = new javax.swing.JPopupMenu.Separator();
         mnuRelatorios = new javax.swing.JMenu();
         mnuListagem = new javax.swing.JMenu();
@@ -376,11 +376,11 @@ public class Menu extends javax.swing.JFrame {
         mnuDenuncia = new javax.swing.JMenu();
         mnuListagem3 = new javax.swing.JMenu();
         mnuItemRelTriagemPoluicao = new javax.swing.JMenuItem();
-        mnuItemRelTriagemPoluicao3 = new javax.swing.JMenuItem();
+        mnuItemRelDenunciaData = new javax.swing.JMenuItem();
         mnuDenuncia1 = new javax.swing.JMenu();
         mnuListagem4 = new javax.swing.JMenu();
-        mnuItemRelTriagemPoluicao1 = new javax.swing.JMenuItem();
-        mnuItemRelTriagemPoluicao2 = new javax.swing.JMenuItem();
+        mnuItemRelProcAnalistaAnalise = new javax.swing.JMenuItem();
+        mnuItemRelProcNaoBaixado = new javax.swing.JMenuItem();
         mnuUtilitarios = new javax.swing.JMenu();
         mnuNivelAcesso = new javax.swing.JMenuItem();
         mnuAjuda = new javax.swing.JMenu();
@@ -609,7 +609,7 @@ public class Menu extends javax.swing.JFrame {
 
         getContentPane().add(jDesktopPane, "card2");
 
-        jMenuBar1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jMenuBar1.setBorder(new javax.swing.border.SoftBevelBorder(0));
         jMenuBar1.setEnabled(false);
         jMenuBar1.setMaximumSize(new java.awt.Dimension(286, 21));
         jMenuBar1.setMinimumSize(new java.awt.Dimension(285, 21));
@@ -746,65 +746,65 @@ public class Menu extends javax.swing.JFrame {
 
         mnuProtocolo.add(mmuProtocolo);
 
-        mmuProtocolo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sip/imagem/DENUNCIA_32x32 copy.png"))); // NOI18N
-        mmuProtocolo1.setText("Denuncia");
-        mmuProtocolo1.addActionListener(new java.awt.event.ActionListener() {
+        mmuDenuncia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sip/imagem/DENUNCIA_32x32 copy.png"))); // NOI18N
+        mmuDenuncia.setText("Denuncia");
+        mmuDenuncia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mmuProtocolo1ActionPerformed(evt);
+                mmuDenunciaActionPerformed(evt);
             }
         });
 
-        mnuLogradouro1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sip/imagem/PESSOA32x32.png"))); // NOI18N
-        mnuLogradouro1.setText("Pessoa");
-        mnuLogradouro1.setToolTipText("Cadastro Logradouro");
-        mnuLogradouro1.addActionListener(new java.awt.event.ActionListener() {
+        mnuItemPessoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sip/imagem/PESSOA32x32.png"))); // NOI18N
+        mnuItemPessoa.setText("Pessoa");
+        mnuItemPessoa.setToolTipText("Cadastro Logradouro");
+        mnuItemPessoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuLogradouro1ActionPerformed(evt);
+                mnuItemPessoaActionPerformed(evt);
             }
         });
-        mmuProtocolo1.add(mnuLogradouro1);
+        mmuDenuncia.add(mnuItemPessoa);
 
-        mnuLogradouro2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sip/imagem/NATUREZA_32x32.png"))); // NOI18N
-        mnuLogradouro2.setText("Natureza Ocorrência");
-        mnuLogradouro2.setToolTipText("Cadastro Logradouro");
-        mnuLogradouro2.addActionListener(new java.awt.event.ActionListener() {
+        mnuItemNaturezaOcorrencia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sip/imagem/NATUREZA_32x32.png"))); // NOI18N
+        mnuItemNaturezaOcorrencia.setText("Natureza Ocorrência");
+        mnuItemNaturezaOcorrencia.setToolTipText("Cadastro Logradouro");
+        mnuItemNaturezaOcorrencia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuLogradouro2ActionPerformed(evt);
+                mnuItemNaturezaOcorrenciaActionPerformed(evt);
             }
         });
-        mmuProtocolo1.add(mnuLogradouro2);
+        mmuDenuncia.add(mnuItemNaturezaOcorrencia);
 
-        mnuLogradouro3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sip/imagem/ocorrencia_32x32.png"))); // NOI18N
-        mnuLogradouro3.setText("Denuncia");
-        mnuLogradouro3.setToolTipText("Cadastro Logradouro");
-        mnuLogradouro3.addActionListener(new java.awt.event.ActionListener() {
+        mnuItemDenuncia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sip/imagem/ocorrencia_32x32.png"))); // NOI18N
+        mnuItemDenuncia.setText("Denuncia");
+        mnuItemDenuncia.setToolTipText("Cadastro Logradouro");
+        mnuItemDenuncia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuLogradouro3ActionPerformed(evt);
+                mnuItemDenunciaActionPerformed(evt);
             }
         });
-        mmuProtocolo1.add(mnuLogradouro3);
+        mmuDenuncia.add(mnuItemDenuncia);
 
-        mnuLogradouro4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sip/imagem/edit_32x32.png"))); // NOI18N
-        mnuLogradouro4.setText("Resumo Triagem");
-        mnuLogradouro4.setToolTipText("Cadastro Logradouro");
-        mnuLogradouro4.addActionListener(new java.awt.event.ActionListener() {
+        mnuItemResumoTriagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sip/imagem/edit_32x32.png"))); // NOI18N
+        mnuItemResumoTriagem.setText("Resumo Triagem");
+        mnuItemResumoTriagem.setToolTipText("Cadastro Logradouro");
+        mnuItemResumoTriagem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuLogradouro4ActionPerformed(evt);
+                mnuItemResumoTriagemActionPerformed(evt);
             }
         });
-        mmuProtocolo1.add(mnuLogradouro4);
+        mmuDenuncia.add(mnuItemResumoTriagem);
 
-        mnuLogradouro5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sip/imagem/MOT_COB_32x32.png"))); // NOI18N
-        mnuLogradouro5.setText("Triagem");
-        mnuLogradouro5.setToolTipText("Cadastro Logradouro");
-        mnuLogradouro5.addActionListener(new java.awt.event.ActionListener() {
+        mnuItemTriagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sip/imagem/MOT_COB_32x32.png"))); // NOI18N
+        mnuItemTriagem.setText("Triagem");
+        mnuItemTriagem.setToolTipText("Cadastro Logradouro");
+        mnuItemTriagem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuLogradouro5ActionPerformed(evt);
+                mnuItemTriagemActionPerformed(evt);
             }
         });
-        mmuProtocolo1.add(mnuLogradouro5);
+        mmuDenuncia.add(mnuItemTriagem);
 
-        mnuProtocolo.add(mmuProtocolo1);
+        mnuProtocolo.add(mmuDenuncia);
 
         jMenuBar1.add(mnuProtocolo);
 
@@ -862,15 +862,15 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenuDMA.add(mnuTipoEvento);
 
-        mnuTipoEvento1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sip/imagemsip/localEvento32x32.png"))); // NOI18N
-        mnuTipoEvento1.setText("Local Evento");
-        mnuTipoEvento1.setToolTipText("Cadastro Logradouro");
-        mnuTipoEvento1.addActionListener(new java.awt.event.ActionListener() {
+        mnuLocalEvento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sip/imagemsip/localEvento32x32.png"))); // NOI18N
+        mnuLocalEvento.setText("Local Evento");
+        mnuLocalEvento.setToolTipText("Cadastro Logradouro");
+        mnuLocalEvento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuTipoEvento1ActionPerformed(evt);
+                mnuLocalEventoActionPerformed(evt);
             }
         });
-        jMenuDMA.add(mnuTipoEvento1);
+        jMenuDMA.add(mnuLocalEvento);
 
         mnuItemAutorizacaoEventos.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, 0));
         mnuItemAutorizacaoEventos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sip/imagemsip/autorizacao_32x32.png"))); // NOI18N
@@ -929,16 +929,16 @@ public class Menu extends javax.swing.JFrame {
         });
         mnuMovimento.add(mnuItemJuridico);
 
-        mnuItemJuridico1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, 0));
-        mnuItemJuridico1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sip/imagemsip/Fiscalizacao_32x32.png"))); // NOI18N
-        mnuItemJuridico1.setText("Fiscalização");
-        mnuItemJuridico1.setToolTipText("Cadastro Terreno Imobiliario");
-        mnuItemJuridico1.addActionListener(new java.awt.event.ActionListener() {
+        mnuItemFiscalizacao.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, 0));
+        mnuItemFiscalizacao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sip/imagemsip/Fiscalizacao_32x32.png"))); // NOI18N
+        mnuItemFiscalizacao.setText("Fiscalização");
+        mnuItemFiscalizacao.setToolTipText("Cadastro Terreno Imobiliario");
+        mnuItemFiscalizacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuItemJuridico1ActionPerformed(evt);
+                mnuItemFiscalizacaoActionPerformed(evt);
             }
         });
-        mnuMovimento.add(mnuItemJuridico1);
+        mnuMovimento.add(mnuItemFiscalizacao);
 
         mnuItemGabinete.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, 0));
         mnuItemGabinete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sip/imagemsip/gabinetfinal_32x32.png"))); // NOI18N
@@ -975,16 +975,16 @@ public class Menu extends javax.swing.JFrame {
         mnuMovimento.add(mnuItemTramitacao1);
         mnuMovimento.add(jSeparator3);
 
-        mnuItemGabinete1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, 0));
-        mnuItemGabinete1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sip/imagemsip/cash_32x32.png"))); // NOI18N
-        mnuItemGabinete1.setText("Receitas");
-        mnuItemGabinete1.setToolTipText("Cadastro Terreno Imobiliario");
-        mnuItemGabinete1.addActionListener(new java.awt.event.ActionListener() {
+        mnuItemReceita.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, 0));
+        mnuItemReceita.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sip/imagemsip/cash_32x32.png"))); // NOI18N
+        mnuItemReceita.setText("Receitas");
+        mnuItemReceita.setToolTipText("Cadastro Terreno Imobiliario");
+        mnuItemReceita.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuItemGabinete1ActionPerformed(evt);
+                mnuItemReceitaActionPerformed(evt);
             }
         });
-        mnuMovimento.add(mnuItemGabinete1);
+        mnuMovimento.add(mnuItemReceita);
         mnuMovimento.add(jSeparator6);
 
         jMenuBar1.add(mnuMovimento);
@@ -1032,13 +1032,13 @@ public class Menu extends javax.swing.JFrame {
         });
         mnuListagem3.add(mnuItemRelTriagemPoluicao);
 
-        mnuItemRelTriagemPoluicao3.setText("Denúncias Por Data");
-        mnuItemRelTriagemPoluicao3.addActionListener(new java.awt.event.ActionListener() {
+        mnuItemRelDenunciaData.setText("Denúncias Por Data");
+        mnuItemRelDenunciaData.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuItemRelTriagemPoluicao3ActionPerformed(evt);
+                mnuItemRelDenunciaDataActionPerformed(evt);
             }
         });
-        mnuListagem3.add(mnuItemRelTriagemPoluicao3);
+        mnuListagem3.add(mnuItemRelDenunciaData);
 
         mnuDenuncia.add(mnuListagem3);
 
@@ -1048,21 +1048,21 @@ public class Menu extends javax.swing.JFrame {
 
         mnuListagem4.setText("Listagem");
 
-        mnuItemRelTriagemPoluicao1.setText("Processo Por Analista em Analise");
-        mnuItemRelTriagemPoluicao1.addActionListener(new java.awt.event.ActionListener() {
+        mnuItemRelProcAnalistaAnalise.setText("Processo Por Analista em Analise");
+        mnuItemRelProcAnalistaAnalise.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuItemRelTriagemPoluicao1ActionPerformed(evt);
+                mnuItemRelProcAnalistaAnaliseActionPerformed(evt);
             }
         });
-        mnuListagem4.add(mnuItemRelTriagemPoluicao1);
+        mnuListagem4.add(mnuItemRelProcAnalistaAnalise);
 
-        mnuItemRelTriagemPoluicao2.setText("Processo não baixados");
-        mnuItemRelTriagemPoluicao2.addActionListener(new java.awt.event.ActionListener() {
+        mnuItemRelProcNaoBaixado.setText("Processo não baixados");
+        mnuItemRelProcNaoBaixado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuItemRelTriagemPoluicao2ActionPerformed(evt);
+                mnuItemRelProcNaoBaixadoActionPerformed(evt);
             }
         });
-        mnuListagem4.add(mnuItemRelTriagemPoluicao2);
+        mnuListagem4.add(mnuItemRelProcNaoBaixado);
 
         mnuDenuncia1.add(mnuListagem4);
 
@@ -1437,44 +1437,44 @@ public class Menu extends javax.swing.JFrame {
         centralizaJanelaRegVen(analista);  // TODO add your handling code here:
     }//GEN-LAST:event_btnAnalistaActionPerformed
 
-    private void mnuLogradouro1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuLogradouro1ActionPerformed
+    private void mnuItemPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuItemPessoaActionPerformed
         PessoaFrame pessoaFrame = new PessoaFrame();
         jDesktopPane.add(pessoaFrame);
         pessoaFrame.setVisible(true);
         centralizaJanelaRegVen(pessoaFrame); // TODO add your handling code here:
-    }//GEN-LAST:event_mnuLogradouro1ActionPerformed
+    }//GEN-LAST:event_mnuItemPessoaActionPerformed
 
-    private void mmuProtocolo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mmuProtocolo1ActionPerformed
+    private void mmuDenunciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mmuDenunciaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_mmuProtocolo1ActionPerformed
+    }//GEN-LAST:event_mmuDenunciaActionPerformed
 
-    private void mnuLogradouro2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuLogradouro2ActionPerformed
+    private void mnuItemNaturezaOcorrenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuItemNaturezaOcorrenciaActionPerformed
         NaturezaOcorrenciaFrame naturezaOcorrenciaFrame = new NaturezaOcorrenciaFrame();
         jDesktopPane.add(naturezaOcorrenciaFrame);
         naturezaOcorrenciaFrame.setVisible(true);
         centralizaJanelaRegVen(naturezaOcorrenciaFrame); // TODO add your handling code here:
-    }//GEN-LAST:event_mnuLogradouro2ActionPerformed
+    }//GEN-LAST:event_mnuItemNaturezaOcorrenciaActionPerformed
 
-    private void mnuLogradouro3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuLogradouro3ActionPerformed
+    private void mnuItemDenunciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuItemDenunciaActionPerformed
         DenunciaFrame ocorrenciaFrame = new DenunciaFrame();
         jDesktopPane.add(ocorrenciaFrame);
         ocorrenciaFrame.setVisible(true);
         centralizaJanelaRegVen(ocorrenciaFrame);// TODO add your handling code here:
-    }//GEN-LAST:event_mnuLogradouro3ActionPerformed
+    }//GEN-LAST:event_mnuItemDenunciaActionPerformed
 
-    private void mnuLogradouro4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuLogradouro4ActionPerformed
+    private void mnuItemResumoTriagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuItemResumoTriagemActionPerformed
         ResumoTriagemFrame verificacaoTriagem = new ResumoTriagemFrame();
         jDesktopPane.add(verificacaoTriagem);
         verificacaoTriagem.setVisible(true);
         centralizaJanelaRegVen(verificacaoTriagem);// TODO add your handling code here:
-    }//GEN-LAST:event_mnuLogradouro4ActionPerformed
+    }//GEN-LAST:event_mnuItemResumoTriagemActionPerformed
 
-    private void mnuLogradouro5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuLogradouro5ActionPerformed
+    private void mnuItemTriagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuItemTriagemActionPerformed
         TriagemFrame verificacaoTriagem = new TriagemFrame();
         jDesktopPane.add(verificacaoTriagem);
         verificacaoTriagem.setVisible(true);
         centralizaJanelaRegVen(verificacaoTriagem);// TODO add your handling code here:
-    }//GEN-LAST:event_mnuLogradouro5ActionPerformed
+    }//GEN-LAST:event_mnuItemTriagemActionPerformed
 
     private void mnuItemRelTriagemPoluicaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuItemRelTriagemPoluicaoActionPerformed
         RelatorioTriagemPoluicaoFrame relatorioTriagemPoluicao = new RelatorioTriagemPoluicaoFrame();
@@ -1483,21 +1483,21 @@ public class Menu extends javax.swing.JFrame {
         centralizaJanelaRegVen(relatorioTriagemPoluicao);// TODO add your handling code here:
     }//GEN-LAST:event_mnuItemRelTriagemPoluicaoActionPerformed
 
-    private void mnuTipoEvento1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuTipoEvento1ActionPerformed
+    private void mnuLocalEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuLocalEventoActionPerformed
         LocalEventoFrame localEvento = new LocalEventoFrame();
         jDesktopPane.add(localEvento);
         localEvento.setVisible(true);
         centralizaJanelaRegVen(localEvento);// TODO add your handling code here:
-    }//GEN-LAST:event_mnuTipoEvento1ActionPerformed
+    }//GEN-LAST:event_mnuLocalEventoActionPerformed
 
-    private void mnuItemRelTriagemPoluicao1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuItemRelTriagemPoluicao1ActionPerformed
+    private void mnuItemRelProcAnalistaAnaliseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuItemRelProcAnalistaAnaliseActionPerformed
         RelProcAnalistaDistFrame RelProcAnalista = new RelProcAnalistaDistFrame();
         jDesktopPane.add(RelProcAnalista);
         RelProcAnalista.setVisible(true);
         centralizaJanelaRegVen(RelProcAnalista);// TODO add your handling code here:
-    }//GEN-LAST:event_mnuItemRelTriagemPoluicao1ActionPerformed
+    }//GEN-LAST:event_mnuItemRelProcAnalistaAnaliseActionPerformed
 
-    private void mnuItemRelTriagemPoluicao2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuItemRelTriagemPoluicao2ActionPerformed
+    private void mnuItemRelProcNaoBaixadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuItemRelProcNaoBaixadoActionPerformed
         AcessoBD acessoBd = new AcessoBD();
         try {
             HashMap parametros = new HashMap();
@@ -1507,7 +1507,7 @@ public class Menu extends javax.swing.JFrame {
         } catch (JRException ex) {
             Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
         }          // TODO add your handling code here:
-    }//GEN-LAST:event_mnuItemRelTriagemPoluicao2ActionPerformed
+    }//GEN-LAST:event_mnuItemRelProcNaoBaixadoActionPerformed
 
     private void mnuItemTramitacao1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuItemTramitacao1ActionPerformed
         TramitacaoMonitorFrame tramitacao = new TramitacaoMonitorFrame();
@@ -1516,12 +1516,12 @@ public class Menu extends javax.swing.JFrame {
         centralizaJanelaRegVen(tramitacao);  // TODO add your handling code here:
     }//GEN-LAST:event_mnuItemTramitacao1ActionPerformed
 
-    private void mnuItemJuridico1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuItemJuridico1ActionPerformed
+    private void mnuItemFiscalizacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuItemFiscalizacaoActionPerformed
         FiscalizacaoFrame fiscalizacaoFrame = new FiscalizacaoFrame();
         jDesktopPane.add(fiscalizacaoFrame);
         fiscalizacaoFrame.setVisible(true);
         centralizaJanelaRegVen(fiscalizacaoFrame);// TODO add your handling code here:
-    }//GEN-LAST:event_mnuItemJuridico1ActionPerformed
+    }//GEN-LAST:event_mnuItemFiscalizacaoActionPerformed
 
     private void btnLoteDmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoteDmaActionPerformed
         LoteDmaFrame loteDmaFrame = new LoteDmaFrame();
@@ -1579,20 +1579,20 @@ public class Menu extends javax.swing.JFrame {
         centralizaJanelaRegVen(ocorrenciaFrame);        // TODO add your handling code here:
     }//GEN-LAST:event_btnDenunciaActionPerformed
 
-    private void mnuItemGabinete1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuItemGabinete1ActionPerformed
+    private void mnuItemReceitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuItemReceitaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_mnuItemGabinete1ActionPerformed
+    }//GEN-LAST:event_mnuItemReceitaActionPerformed
 
     private void mnuMovimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuMovimentoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_mnuMovimentoActionPerformed
 
-    private void mnuItemRelTriagemPoluicao3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuItemRelTriagemPoluicao3ActionPerformed
+    private void mnuItemRelDenunciaDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuItemRelDenunciaDataActionPerformed
         RelDenunciaData denunciaData = new RelDenunciaData();
         jDesktopPane.add(denunciaData);
         denunciaData.setVisible(true);
         centralizaJanelaRegVen(denunciaData);// TODO add your handling code here:
-    }//GEN-LAST:event_mnuItemRelTriagemPoluicao3ActionPerformed
+    }//GEN-LAST:event_mnuItemRelDenunciaDataActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1666,8 +1666,8 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator5;
     private javax.swing.JPopupMenu.Separator jSeparator6;
     private java.util.List list;
+    private javax.swing.JMenu mmuDenuncia;
     private javax.swing.JMenu mmuProtocolo;
-    private javax.swing.JMenu mmuProtocolo1;
     private static javax.swing.JMenu mnuAjuda;
     private javax.swing.JMenuItem mnuAtividade;
     private javax.swing.JMenuItem mnuConteudo;
@@ -1679,37 +1679,38 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem mnuItemAutorizacaoEventos;
     private javax.swing.JMenuItem mnuItemBairro;
     private javax.swing.JMenuItem mnuItemCidade;
+    private javax.swing.JMenuItem mnuItemDenuncia;
     private javax.swing.JMenuItem mnuItemDistribuicao;
     private javax.swing.JMenuItem mnuItemEmissaoLicenca;
+    private javax.swing.JMenuItem mnuItemFiscalizacao;
     private javax.swing.JMenuItem mnuItemGabinete;
-    private javax.swing.JMenuItem mnuItemGabinete1;
     private javax.swing.JMenuItem mnuItemJuridico;
-    private javax.swing.JMenuItem mnuItemJuridico1;
     private javax.swing.JMenuItem mnuItemLoteDma;
     private javax.swing.JMenuItem mnuItemMovimentoDma;
+    private javax.swing.JMenuItem mnuItemNaturezaOcorrencia;
+    private javax.swing.JMenuItem mnuItemPessoa;
     private javax.swing.JMenuItem mnuItemProcesso;
+    private javax.swing.JMenuItem mnuItemReceita;
+    private javax.swing.JMenuItem mnuItemRelDenunciaData;
     private javax.swing.JMenuItem mnuItemRelMovimentoProcesso;
+    private javax.swing.JMenuItem mnuItemRelProcAnalistaAnalise;
+    private javax.swing.JMenuItem mnuItemRelProcNaoBaixado;
     private javax.swing.JMenuItem mnuItemRelTriagemPoluicao;
-    private javax.swing.JMenuItem mnuItemRelTriagemPoluicao1;
-    private javax.swing.JMenuItem mnuItemRelTriagemPoluicao2;
-    private javax.swing.JMenuItem mnuItemRelTriagemPoluicao3;
     private javax.swing.JMenuItem mnuItemRequerente;
+    private javax.swing.JMenuItem mnuItemResumoTriagem;
     private javax.swing.JMenuItem mnuItemSair;
     private javax.swing.JMenuItem mnuItemTipoLicenca;
     private javax.swing.JMenuItem mnuItemTramitacao;
     private javax.swing.JMenuItem mnuItemTramitacao1;
+    private javax.swing.JMenuItem mnuItemTriagem;
     private javax.swing.JMenuItem mnuItemTrocaUsuario;
     private javax.swing.JMenuItem mnuItemUsuario;
     private javax.swing.JMenu mnuListagem;
     private javax.swing.JMenu mnuListagem2;
     private javax.swing.JMenu mnuListagem3;
     private javax.swing.JMenu mnuListagem4;
+    private javax.swing.JMenuItem mnuLocalEvento;
     private javax.swing.JMenuItem mnuLogradouro;
-    private javax.swing.JMenuItem mnuLogradouro1;
-    private javax.swing.JMenuItem mnuLogradouro2;
-    private javax.swing.JMenuItem mnuLogradouro3;
-    private javax.swing.JMenuItem mnuLogradouro4;
-    private javax.swing.JMenuItem mnuLogradouro5;
     private static javax.swing.JMenu mnuMovimento;
     private javax.swing.JMenuItem mnuNivelAcesso;
     private static javax.swing.JMenu mnuProtocolo;
@@ -1718,7 +1719,6 @@ public class Menu extends javax.swing.JFrame {
     public static javax.swing.JMenu mnuSistema;
     private javax.swing.JMenuItem mnuSobre1;
     private javax.swing.JMenuItem mnuTipoEvento;
-    private javax.swing.JMenuItem mnuTipoEvento1;
     private javax.swing.JMenu mnuTramitacao;
     private static javax.swing.JMenu mnuUtilitarios;
     private javax.persistence.Query query;
@@ -1785,6 +1785,44 @@ public class Menu extends javax.swing.JFrame {
             mnuItemTipoLicenca.setVisible(false);
             btnTipoLicenca.setVisible(false);
         }//fim do protocolo
+        
+        //inicio Denuncia
+        if (verificaAcesso("Pessoa", id_Usuario)) {
+            mnuItemPessoa.setVisible(true);
+            //btnLogradouro.setVisible(true);
+        } else {
+            mnuItemPessoa.setVisible(false);
+            //btnLogradouro.setVisible(false);
+        }
+          if (verificaAcesso("Natureza da Ocorrência", id_Usuario)) {
+            mnuItemNaturezaOcorrencia.setVisible(true);
+            //btnLogradouro.setVisible(true);
+        } else {
+            mnuItemNaturezaOcorrencia.setVisible(false);
+            //btnLogradouro.setVisible(false);
+        }
+           if (verificaAcesso("Denuncia", id_Usuario)) {
+            mnuItemDenuncia.setVisible(true);
+            btnDenuncia.setVisible(true);
+        } else {
+            mnuItemDenuncia.setVisible(false);
+            btnDenuncia.setVisible(false);
+        }
+          if (verificaAcesso("Resumo Triagem", id_Usuario)) {
+            mnuItemResumoTriagem.setVisible(true);
+            //btnLogradouro.setVisible(true);
+        } else {
+            mnuItemResumoTriagem.setVisible(false);
+            //btnLogradouro.setVisible(false);
+        }
+          if (verificaAcesso("Triagem", id_Usuario)) {
+            mnuItemTriagem.setVisible(true);
+            //btnLogradouro.setVisible(true);
+        } else {
+            mnuItemTriagem.setVisible(false);
+            //btnLogradouro.setVisible(false);
+        }
+        
 
         //inicio do movimento
         if (verificaAcesso("Processo", id_Usuario)) {
@@ -1816,6 +1854,13 @@ public class Menu extends javax.swing.JFrame {
         } else {
             mnuTipoEvento.setVisible(false);
         }
+         if (verificaAcesso("Local do Evento", id_Usuario)) {
+            mnuLocalEvento.setVisible(true);
+        } else {
+            mnuLocalEvento.setVisible(false);
+        }
+        
+        
         if (verificaAcesso("Autorização Eventos", id_Usuario)) {
             mnuItemAutorizacaoEventos.setVisible(true);
             btnAutorizacaoEventos.setVisible(true);
@@ -1853,6 +1898,14 @@ public class Menu extends javax.swing.JFrame {
             mnuItemJuridico.setVisible(false);
             btnJuridico.setVisible(false);
         }
+        
+         if (verificaAcesso("Fiscalização", id_Usuario)) {
+            mnuItemFiscalizacao.setVisible(true);
+            btnFiscalizacao.setVisible(true);
+        } else {
+            mnuItemFiscalizacao.setVisible(false);
+            btnFiscalizacao.setVisible(false);
+        }
 
         if (verificaAcesso("Gabinete", id_Usuario)) {
             mnuItemGabinete.setVisible(true);
@@ -1869,6 +1922,14 @@ public class Menu extends javax.swing.JFrame {
             mnuItemTramitacao.setVisible(false);
             btnTramitacao.setVisible(false);
         }
+        
+         if (verificaAcesso("Receita", id_Usuario)) {
+            mnuItemReceita.setVisible(true);
+            //btnTramitacao.setVisible(true);
+        } else {
+            mnuItemReceita.setVisible(false);
+            //btnTramitacao.setVisible(false);
+        }
         //RELATORIOS
         if (verificaAcesso("Movimento Processo", id_Usuario)) {
             mnuItemRelMovimentoProcesso.setVisible(true);
@@ -1877,6 +1938,48 @@ public class Menu extends javax.swing.JFrame {
             mnuItemRelMovimentoProcesso.setVisible(false);
 
         }
+        
+        if (verificaAcesso("Relatorio Triagem Poluição", id_Usuario)) {
+            mnuItemRelTriagemPoluicao.setVisible(true);
+
+        } else {
+            mnuItemRelTriagemPoluicao.setVisible(false);
+
+        }
+                  
+        if (verificaAcesso("Relatorio Denuncia Data", id_Usuario)) {
+            mnuItemRelDenunciaData.setVisible(true);
+
+        } else {
+            mnuItemRelDenunciaData.setVisible(false);
+
+        }
+          
+        if (verificaAcesso("Relatorio Processo Analista Analise", id_Usuario)) {
+            mnuItemRelProcAnalistaAnalise.setVisible(true);
+
+        } else {
+            mnuItemRelProcAnalistaAnalise.setVisible(false);
+
+        }
+         
+         if (verificaAcesso("Relatorio Processo Não Baixado", id_Usuario)) {
+            mnuItemRelProcNaoBaixado.setVisible(true);
+
+        } else {
+            mnuItemRelProcNaoBaixado.setVisible(false);
+
+        }
+         
+          if (verificaAcesso("Nivel de Acesso", id_Usuario)) {
+            mnuNivelAcesso.setVisible(true);
+
+        } else {
+            mnuNivelAcesso.setVisible(false);
+
+        }
+         
+         
         
         
        

@@ -9,7 +9,7 @@
     </Component>
     <Component class="javax.persistence.Query" name="query">
       <Properties>
-        <Property name="query" type="java.lang.String" value="SELECT n FROM NivelAcesso n"/>
+        <Property name="query" type="java.lang.String" value="SELECT u FROM Usuario u"/>
         <Property name="entityManager" type="java.lang.Object" editor="org.netbeans.modules.form.j2ee.J2EEPropertyModifier$EMProperty$EntityManagerEditor">
           <ComponentRef name="entityManager"/>
         </Property>
@@ -231,7 +231,7 @@
                 </MenuItem>
               </SubComponents>
             </Menu>
-            <Menu class="javax.swing.JMenu" name="mmuProtocolo1">
+            <Menu class="javax.swing.JMenu" name="mmuDenuncia">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/sip/imagem/DENUNCIA_32x32 copy.png"/>
@@ -239,10 +239,10 @@
                 <Property name="text" type="java.lang.String" value="Denuncia"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mmuProtocolo1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mmuDenunciaActionPerformed"/>
               </Events>
               <SubComponents>
-                <MenuItem class="javax.swing.JMenuItem" name="mnuLogradouro1">
+                <MenuItem class="javax.swing.JMenuItem" name="mnuItemPessoa">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/sip/imagem/PESSOA32x32.png"/>
@@ -251,10 +251,10 @@
                     <Property name="toolTipText" type="java.lang.String" value="Cadastro Logradouro"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuLogradouro1ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuItemPessoaActionPerformed"/>
                   </Events>
                 </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="mnuLogradouro2">
+                <MenuItem class="javax.swing.JMenuItem" name="mnuItemNaturezaOcorrencia">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/sip/imagem/NATUREZA_32x32.png"/>
@@ -263,10 +263,10 @@
                     <Property name="toolTipText" type="java.lang.String" value="Cadastro Logradouro"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuLogradouro2ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuItemNaturezaOcorrenciaActionPerformed"/>
                   </Events>
                 </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="mnuLogradouro3">
+                <MenuItem class="javax.swing.JMenuItem" name="mnuItemDenuncia">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/sip/imagem/ocorrencia_32x32.png"/>
@@ -275,10 +275,10 @@
                     <Property name="toolTipText" type="java.lang.String" value="Cadastro Logradouro"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuLogradouro3ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuItemDenunciaActionPerformed"/>
                   </Events>
                 </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="mnuLogradouro4">
+                <MenuItem class="javax.swing.JMenuItem" name="mnuItemResumoTriagem">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/sip/imagem/edit_32x32.png"/>
@@ -287,10 +287,10 @@
                     <Property name="toolTipText" type="java.lang.String" value="Cadastro Logradouro"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuLogradouro4ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuItemResumoTriagemActionPerformed"/>
                   </Events>
                 </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="mnuLogradouro5">
+                <MenuItem class="javax.swing.JMenuItem" name="mnuItemTriagem">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/sip/imagem/MOT_COB_32x32.png"/>
@@ -299,7 +299,7 @@
                     <Property name="toolTipText" type="java.lang.String" value="Cadastro Logradouro"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuLogradouro5ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuItemTriagemActionPerformed"/>
                   </Events>
                 </MenuItem>
               </SubComponents>
@@ -385,7 +385,7 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuTipoEventoActionPerformed"/>
                   </Events>
                 </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="mnuTipoEvento1">
+                <MenuItem class="javax.swing.JMenuItem" name="mnuLocalEvento">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/sip/imagemsip/localEvento32x32.png"/>
@@ -394,7 +394,7 @@
                     <Property name="toolTipText" type="java.lang.String" value="Cadastro Logradouro"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuTipoEvento1ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuLocalEventoActionPerformed"/>
                   </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="mnuItemAutorizacaoEventos">
@@ -474,7 +474,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuItemJuridicoActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="mnuItemJuridico1">
+            <MenuItem class="javax.swing.JMenuItem" name="mnuItemFiscalizacao">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="O"/>
@@ -486,7 +486,7 @@
                 <Property name="toolTipText" type="java.lang.String" value="Cadastro Terreno Imobiliario"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuItemJuridico1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuItemFiscalizacaoActionPerformed"/>
               </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mnuItemGabinete">
@@ -538,7 +538,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator3">
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="mnuItemGabinete1">
+            <MenuItem class="javax.swing.JMenuItem" name="mnuItemReceita">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="O"/>
@@ -550,7 +550,7 @@
                 <Property name="toolTipText" type="java.lang.String" value="Cadastro Terreno Imobiliario"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuItemGabinete1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuItemReceitaActionPerformed"/>
               </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator6">
@@ -623,12 +623,12 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuItemRelTriagemPoluicaoActionPerformed"/>
                       </Events>
                     </MenuItem>
-                    <MenuItem class="javax.swing.JMenuItem" name="mnuItemRelTriagemPoluicao3">
+                    <MenuItem class="javax.swing.JMenuItem" name="mnuItemRelDenunciaData">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Den&#xfa;ncias Por Data"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuItemRelTriagemPoluicao3ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuItemRelDenunciaDataActionPerformed"/>
                       </Events>
                     </MenuItem>
                   </SubComponents>
@@ -645,20 +645,20 @@
                     <Property name="text" type="java.lang.String" value="Listagem"/>
                   </Properties>
                   <SubComponents>
-                    <MenuItem class="javax.swing.JMenuItem" name="mnuItemRelTriagemPoluicao1">
+                    <MenuItem class="javax.swing.JMenuItem" name="mnuItemRelProcAnalistaAnalise">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Processo Por Analista em Analise"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuItemRelTriagemPoluicao1ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuItemRelProcAnalistaAnaliseActionPerformed"/>
                       </Events>
                     </MenuItem>
-                    <MenuItem class="javax.swing.JMenuItem" name="mnuItemRelTriagemPoluicao2">
+                    <MenuItem class="javax.swing.JMenuItem" name="mnuItemRelProcNaoBaixado">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Processo n&#xe3;o baixados"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuItemRelTriagemPoluicao2ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuItemRelProcNaoBaixadoActionPerformed"/>
                       </Events>
                     </MenuItem>
                   </SubComponents>
