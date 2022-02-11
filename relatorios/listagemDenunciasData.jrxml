@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="listagemQuantidadeProcessos" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8f2dd8bd-e8fc-4fb0-a0f4-c5502fdcd852">
 	<property name="ireport.zoom" value="1.5"/>
-	<property name="ireport.x" value="10"/>
+	<property name="ireport.x" value="208"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="DATA_INICIAL" class="java.util.Date">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
@@ -27,8 +27,7 @@ WHERE
 group by
 natureza_ocorrencia.`ID`
 ORDER BY
-COUNT(denuncia.`ID_NATUREZA_OCORRENCIA`) DESC
-]]>
+COUNT(denuncia.`ID_NATUREZA_OCORRENCIA`) DESC]]>
 	</queryString>
 	<field name="COUNT(denuncia.`ID_NATUREZA_OCORRENCIA`)" class="java.lang.Long"/>
 	<field name="denuncia_ID_USUARIO" class="java.lang.Long"/>
@@ -39,6 +38,9 @@ COUNT(denuncia.`ID_NATUREZA_OCORRENCIA`) DESC
 	<field name="natureza_ocorrencia_ID" class="java.lang.Long"/>
 	<field name="natureza_ocorrencia_NOME" class="java.lang.String"/>
 	<field name="natureza_ocorrencia_NOAPP" class="java.lang.String"/>
+	<variable name="TOTAL_GERAL" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{COUNT(denuncia.`ID_NATUREZA_OCORRENCIA`)}]]></variableExpression>
+	</variable>
 	<title>
 		<band height="78" splitType="Stretch">
 			<staticText>
@@ -167,19 +169,12 @@ COUNT(denuncia.`ID_NATUREZA_OCORRENCIA`) DESC
 				</textElement>
 				<text><![CDATA[Fim do Relatório]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="501" y="0" width="53" height="20" uuid="49d6af43-5f93-4580-8b7e-951ee3985ed4"/>
-				<textElement verticalAlignment="Middle">
-					<font size="9"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
-			</textField>
 			<staticText>
 				<reportElement x="446" y="0" width="53" height="20" uuid="050ca8ef-8f8d-4934-8a05-78422ca272b3"/>
 				<textElement textAlignment="Justified" verticalAlignment="Middle">
 					<font fontName="SansSerif" size="9" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Qtde Total:]]></text>
+				<text><![CDATA[Qtde Geral:]]></text>
 			</staticText>
 			<textField evaluationTime="Report">
 				<reportElement x="516" y="20" width="40" height="20" uuid="256bdf9a-f42f-4b2c-928f-72028162c88d"/>
@@ -194,6 +189,13 @@ COUNT(denuncia.`ID_NATUREZA_OCORRENCIA`) DESC
 					<font fontName="SansSerif" size="9"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="499" y="0" width="57" height="20" uuid="2620aaaa-324b-4c3d-9097-0b1b566ce654"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_GERAL}]]></textFieldExpression>
 			</textField>
 		</band>
 	</lastPageFooter>
