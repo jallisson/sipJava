@@ -45,6 +45,23 @@ public class ColorirTabelaTramitacao extends DefaultTableCellRenderer {
         if(text != null && "ARQUIVADO".equals(text.toString())){
             c = Color.RED;
         }
+        if(text != null && "LAUDO DA FISCALIZAÇÃO CONCLUIDO".equals(text.toString())){
+            c = new Color(204,0,204);
+        }
+        if(text != null && "NOTIFICAÇÃO CONCLUIDO".equals(text.toString())){
+            c = new Color(204,0,204);
+        }
+        if(text != null && "AUTO DE INFRAÇÃO CONCLUIDO".equals(text.toString())){
+            c = new Color(204,0,204);
+        }
+        if(text != null && "TERMO CONCLUIDO".equals(text.toString())){
+            c = new Color(204,0,204);
+        }
+         if(text != null && "DESPACHO CONCLUIDO".equals(text.toString())){
+            c = new Color(204,0,204);
+        }
+        else {
+        }
         if(text2 != null){
             c = Color.YELLOW;
         }
