@@ -516,7 +516,7 @@ public class AnalistaFrame extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel3.add(btnFiltrar, gridBagConstraints);
 
-        tblAnalista.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tblAnalista.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         tblAnalista.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 

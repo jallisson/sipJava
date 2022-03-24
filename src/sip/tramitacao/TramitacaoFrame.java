@@ -176,7 +176,8 @@ public final class TramitacaoFrame extends javax.swing.JInternalFrame {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                String senha = "";
+                String senha;
+                senha = "";
                 
                 senha = JOptionPane.showInputDialog(null, "Senha ?", "Pergunta", JOptionPane.PLAIN_MESSAGE);
                 //SENHA PARA ACESSAR O BOTÃO EXCLUIR!

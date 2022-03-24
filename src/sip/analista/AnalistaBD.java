@@ -24,7 +24,7 @@ public class AnalistaBD {
     private Connection con;
     private ResultSet rs;
     private AcessoBD acessoBD = new AcessoBD();
-    private String consultaAnalista = "SELECT analista.*, analista.qtde_entrada - analista.qtde_saida AS saldo, usu.* FROM analista analista  JOIN usuario usu ON analista.id_usuario = usu.id ORDER BY analista.id DESC";
+    private String consultaAnalista = "SELECT analista.*, analista.qtde_entrada - analista.qtde_saida AS saldo, usu.* FROM analista analista  JOIN usuario usu ON analista.id_usuario = usu.id where analista.tipo = 'FISCAL' ORDER BY analista.id DESC";
     private String consultaAnalistaNome = "SELECT analista.*,  analista.qtde_entrada - analista.qtde_saida AS saldo, usu.* FROM analista analista  JOIN usuario usu ON analista.id_usuario = usu.id where analista.nome like ?";
     private String incluiAnalista = "insert into analista (nome, matricula, qtde_entrada, qtde_saida, id_usuario, tipo) values(?, ?, ?, ?, ?, ?)";
     private String alteraAnalista = "update analista set nome = ?, matricula = ?, id_usuario = ?, tipo = ? where analista.id = ?";
